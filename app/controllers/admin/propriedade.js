@@ -98,7 +98,7 @@ exports.postNewPropiedade = (req, res, next) => {
     }
 
     if (req.file) {
-        fileHelper.compressImage(req.file)
+        fileHelper.compressImage(req.file, 700)
             .then(newPath => {
                 cloudinary.uploader.upload(newPath, {
                         folder: 'planagro'
@@ -148,7 +148,7 @@ exports.setPropiedadeImage = (req, res, next) => {
                 });
             }
 
-            fileHelper.compressImage(req.file)
+            fileHelper.compressImage(req.file, 700)
                 .then(newPath => {
 
                     cloudinary.uploader.upload(newPath, {
@@ -275,7 +275,7 @@ exports.postEditPropiedade = (req, res, next) => {
                     cloudinary.uploader.destroy(prop.mainImage.public_id)
                 }
 
-                fileHelper.compressImage(req.file)
+                fileHelper.compressImage(req.file, 700)
                     .then(newPath => {
                         cloudinary.uploader.upload(newPath, {
                                 folder: 'planagro'

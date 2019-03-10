@@ -1798,11 +1798,18 @@ a.btn-read {
 }
 
 #feedback {
-    background: url(../img/fixed-slider.webp) no-repeat fixed;
+    background: url(../img/fixed-slider.jpg) no-repeat fixed;
     position: relative;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center center
+    background-position: center center;
+}
+
+#feedback.webp {
+    background: url(../img/fixed-slider.webp) no-repeat fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 #feedback:before {
@@ -2050,10 +2057,15 @@ a.btn-read {
 }
 
 #banner {
-    background: url(../img/banner.webp) no-repeat;
+    background: url(../img/banner.jpg) no-repeat;
     background-size: cover;
     position: relative;
     margin-top: 125px
+}
+
+#banner.webp{
+    background: url(../img/banner.webp) no-repeat;
+    background-size: cover;
 }
 
 @media screen and (max-width:768px) {
@@ -2099,6 +2111,10 @@ a.btn-read {
 #who_are {
     margin-top: 80px;
     padding: 0;
+    background-image: url(../img/fixed-slider.jpg) !important
+}
+
+#who_are.webp{
     background-image: url(../img/fixed-slider.webp) !important
 }
 
@@ -3691,10 +3707,16 @@ blockquote {
 
 #imovel-submit {
     padding: 70px 0;
-    background: url(../img/banner1920x1170.webp) no-repeat fixed;
+    background: url(../img/banner1920x1170.jpg) no-repeat fixed;
     background-position: center center;
     background-size: cover;
     position: relative
+}
+
+#imovel-submit.webp{
+    background: url(../img/banner1920x1170.webp) no-repeat fixed;
+    background-position: center center;
+    background-size: cover;
 }
 
 #imovel-submit::before {
@@ -3960,11 +3982,17 @@ blockquote {
 }
 
 #slider-fixed {
-    background: url(../img/fixed-slider.webp) no-repeat fixed;
+    background: url(../img/fixed-slider.jpg) no-repeat fixed;
     background-size: cover;
     background-position: center center;
     height: 80vh;
     position: relative
+}
+
+#slider-fixed.webp{
+    background: url(../img/fixed-slider.webp) no-repeat fixed;
+    background-size: cover;
+    background-position: center center;
 }
 
 .fix-banner {
