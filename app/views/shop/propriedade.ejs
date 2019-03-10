@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../includes/imports/head') %>
+</head>
+
+<body class="pagewrap wow fadeInd">
+
+	<%- include('../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Ver Propriedade</h3>
+						<div class="page_location">
+							<a href="index.html">Início</a>
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+							<span>Ver Propriedade</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Single imovel Start -->
+	<section id="single_imovel" style="padding-top: 30px">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="row">
+								<div class="container">
+									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para propriedades</a>
+								</div>
+							</div>
+							<% if(prop.mainImage || prop.images.length > 0) {%>
+							<div class="imovel_slider mt-2">
+								<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
+									<!-- Wrapper for slides -->
+									<div class="carousel-inner" role="listbox">
+										<div class="item active">
+											<% if(prop.mainImage) {%>
+											<img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>">
+											<% } %>
+										</div>
+										<% prop.images.forEach( image => { %>
+										<div class="item">
+											<img src="<%= image.url %>" alt="<%= prop.title %>">
+										</div>
+										<% }) %>
+									</div>
+
+
+									<!-- Controls -->
+									<a class="left carousel-control" href="#fotos-imovel-carousel" role="button" data-slide="prev">
+										<div class="lef_btn">Anterior</div>
+									</a>
+									<a class="right carousel-control" href="#fotos-imovel-carousel" role="button" data-slide="next">
+										<div class="right_btn">Próximo</div>
+									</a>
+								</div>
+							</div>
+							<% } %>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="detail_text">
+								<div class="imovel-text">
+									<h4 class="imovel-title">
+										<%= prop.titulo %>
+									</h4>
+									<span><i class="fa fa-map-marker" aria-hidden="true"></i>
+										<%= prop.rua ? `Rua ${prop.rua}` : ''%>
+										<%= prop.numero ? `num. ${prop.numero}.` : '' %>
+										<%= prop.bairro ? `Bairro ${prop.bairro}, ` : '' %>
+										<%= prop.cep ? `CEP: ${prop.cep}` : '' %>
+										<% if(prop.zona == 'Rural') { %>
+										<%= prop.municipio ? `${prop.municipio}` : '' %>
+										<% } %>
+									</span>
+									<blockquote>
+										<%- prop.descricao %>
+									</blockquote>
+
+								</div>
+							</div>
+							<% if(prop.vantagens.length > 0) { %>
+							<div class="single_feature">
+								<h4 class="inner-title">Vantagens</h4>
+								<div class="info-list">
+									<ul>
+										<% for( vantagem of prop.vantagens) { %>
+										<li><span><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+											<%= vantagem.value %>
+										</li>
+										<% } %>
+									</ul>
+								</div>
+							</div>
+							<% } %>
+							<% if(prop.zona == 'Urbana'){ %>
+							<div class="single_map">
+								<h4 class="inner-title">LOCAL NO MAPA</h4>
+								<iframe width="100%" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
+								 allowfullscreen></iframe>
+							</div>
+							<% } %>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="imovel_sidebar">
+						<div class="contact_agent sidebar-widget">
+							<a style="border-top: none; border-radius: 10px;" href="<%= encodeURI(`https://api.whatsapp.com/send?phone=55${sobre.whatsapp}&text=Oi! Tenho interesse na propriedade "
+							 ${prop.titulo}", código "${prop.codigo}" . Pode me tirar algumas dúvidas? O link da propriedade é
+							 www.planagroimoveis.com.br/propriedade/${prop.codigo}`)%>" class="call-whatsapp">
+								<span class="small">Saiba mais por</span>
+								<span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
+							</a>
+						</div>
+						<div class="imovel_listing sidebar-widget">
+							<h4 class="inner-title">Detalhes da Propriedade</h4>
+							<div class="profile_data">
+								<ul>
+									<li><span>Zona :</span>
+										<%= prop.zona %>
+									</li>
+									<li><span>Tipo :</span>
+										<%= prop.tipo %>
+									</li>
+									<li><span>Preço :</span> R$<span class="tomoney">
+											<%= prop.preco %></span></li>
+
+									<% if(prop.zona == 'Urbana') { %>
+
+									<% if( prop.dormitorios) { %>
+									<li><span>Dormitórios :</span>
+										<%= prop.dormitorios %>
+									</li>
+									<% } %>
+
+									<% if( prop.banheiros) { %>
+									<li><span>Banheiros :</span>
+										<%= prop.banheiros %>
+									</li>
+									<% } %>
+
+									<% if( prop.suites) { %>
+									<li><span>Suites :</span>
+										<%= prop.suites %>
+									</li>
+									<% } %>
+
+									<% if( prop.cozinhas) { %>
+									<li><span>Cozinhas :</span>
+										<%= prop.cozinhas %>
+									</li>
+									<% } %>
+
+									<% if( prop.patio ) { %>
+									<li><span>Pátio :</span>
+										<%= prop.patio ? 'Sim' : 'Não' %>
+									</li>
+									<% } %>
+
+									<% if(prop.piscina) { %>
+									<li><span>Piscina :</span>
+										<%= prop.piscina ? 'Sim' : 'Não' %>
+									</li>
+									<% } %>
+
+									<% if(prop.mobiliado) { %>
+									<li><span>Mobiliado :</span>
+										<%= prop.mobiliado ? 'Sim' : 'Não' %>
+									</li>
+									<% } %>
+
+									<% } else{ %>
+
+									<% if( prop.acudes ) { %>
+									<li><span>Açudes :</span>
+										<%= prop.acudes %>
+									</li>
+									<% } %>
+
+									<% if( prop.galpoes ) { %>
+									<li><span>Galpões :</span>
+										<%= prop.galpoes %>
+									</li>
+									<% } %>
+
+									<% if( prop.mangueiras ) { %>
+									<li><span>Mangueiras :</span>
+										<%= prop.mangueiras %>
+									</li>
+									<% } %>
+
+									<% } %>
+								</ul>
+							</div>
+						</div>
+						<div class="contact_agent sidebar-widget">
+							<div class="property__share">
+								<h4 class="inner-title">Compartilhar</h4>
+								<!-- Compartilha o link da propiedade atual  -->
+								<div class="share-list">
+									<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>"
+									 data-a2a-title="<%= prop.title %>">
+										<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+										<a class="a2a_button_facebook"></a>
+										<a class="a2a_button_twitter"></a>
+										<a class="a2a_button_whatsapp"></a>
+										<a class="a2a_button_google_gmail"></a>
+										<a class="a2a_button_outlook_com"></a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="contact_agent sidebar-widget">
+							<div class="agent_details">
+								<%- include('../includes/form/errorBox') %>
+								<%  if(successMessage) { %>
+								<div class="alert alert-success mt-2" role="alert">
+									<p>
+										<%= successMessage %>
+									</p>
+								</div>
+								<% } %>
+								<h4 class="inner-title">Tenho interesse!</h4>
+								<p>Entraremos em contato pelos dados fornecidos. </p>
+								<form class="message_agent" action="/interesse" method="post">
+									<div class="row">
+										<div class="col-md-12">
+											<input type="text" class="form-control" name="nome" placeholder="Seu nome" value="<%= form ? form.values.nome : '' %>">
+										</div>
+										<div class="col-md-12">
+											<input type="text" class="form-control" name="email" placeholder="Seu email" value="<%= form ? form.values.email : '' %>">
+										</div>
+										<div class="col-md-12">
+											<input type="text" class="form-control" name="telefone" placeholder="Seu Telefone" value="<%= form ? form.values.telefone : '' %>">
+										</div>
+										<div class="col-md-12">
+											<input name="mensagem" type="hidden" value="<%= `Oi! Tenho interesse na propriedade " ${prop.titulo}", código
+											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>"
+										</div>
+										<div class="col-md-12">
+											<button type="submit" class="btn btn-default" name="submit">ME LIGUEM!</button>
+										</div>
+									</div>
+									<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+									<input type="hidden" name="codigo" value="<%= prop.codigo %>">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Single imovel End -->
+
+
+	<!-- Contact Section End -->
+	<%- include('../includes/components/info-banner') %>
+
+	<%- include('../includes/components/footer-contact') %>
+
+	<%- include('../includes/components/footer') %>
+
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+</body>
+<script>
+	var a2a_config = a2a_config || {};
+	a2a_config.locale = "pt-BR";
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<%- include('../includes/imports/end') %>
+
+</html>

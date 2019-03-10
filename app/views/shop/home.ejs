@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../includes/imports/head') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../includes/components/nav') %>
+
+	<!-- Slider Part Start -->
+	<section id="slider-fixed">
+		<div class="fix-banner">
+			<div class="carousel-caption">
+				<div class="container">
+					<div class="slider-search-2">
+						<h1>Encontre e compre Imóveis Rurais e Urbanos!</h1>
+						<div class="imovel_search_form">
+							<form action="/comprar" method="GET" class="imovel_filter_input">
+								<input type="hidden" name="filtrando" id="inputFiltrando">
+								<input type="hidden" name="selectedTipo" value="">
+								<div class="row">
+									<div class="col-md-2 col-sm-6">
+										<select name="zona" class="selectpicker form-control" id="selectZona">
+											<option disabled selected value="todos">Zona</option>
+											<option value="Urbana">Urbana</option>
+											<option value="Rural">Rural</option>
+										</select>
+									</div>
+									<div class="col-md-3 col-sm-6">
+										<select name="tipo" class="selectpicker form-control" id="selectTipo">
+											<option disabled selected label="Zona não selecionada"> Tipo de imóvel</option>
+											<optgroup label="Zona não selecionada">
+												<option></option>
+											</optgroup>
+										</select>
+									</div>
+									<div class="col-md-2 col-sm-6 rural-form hidden">
+										<select name="extensaomin" class="selectpicker form-control">
+											<option selected disabled>Extensão Mín.</option>
+											<option value="0">Qualquer valor</option>
+											<option value="10">10 hec.</option>
+											<option value="50">50 hec.</option>
+											<option value="150">150 hec.</option>
+											<option value="300">300 hec.</option>
+											<option value="500">500 hec.</option>
+											<option value="700">700 hec.</option>
+											<option value="1000">1000 hec.</option>
+										</select>
+									</div>
+									<div class="col-md-2 col-sm-6 rural-form hidden">
+										<select name="extensaomax" class="selectpicker form-control">
+											<option selected disabled>Extensão Máx.</option>
+											<option value="1000000000000">Qualquer valor</option>
+											<option value="10">10 hec.</option>
+											<option value="50">50 hec.</option>
+											<option value="150">150 hec.</option>
+											<option value="300">300 hec.</option>
+											<option value="500">500 hec.</option>
+											<option value="700">700 hec.</option>
+											<option value="1000">1000 hec.</option>
+										</select>
+									</div>
+									<div class="col-md-2 col-sm-6 urbano-form">
+										<select name="valmin" class="selectpicker form-control">
+											<option selected disabled>Valor Min.</option>
+											<option value="0">Qualquer valor</option>
+											<option value="100000">R$100,000,00</option>
+											<option value="200000">R$200,000,00</option>
+											<option value="400000">R$400,000,00</option>
+											<option value="600000">R$600,000,00</option>
+											<option value="800000">R$800,000,00</option>
+											<option value="1000000">R$1,000,000,00</option>
+											<option value="1500000">R$1,500,000,00</option>
+											<option value="2500000">R$2,500,000,00</option>
+											<option value="3000000">R$3,000,000,00</option>
+										</select>
+									</div>
+									<div class="col-md-2 col-sm-6 urbano-form">
+										<select name="valmax" class="selectpicker form-control">
+											<option selected disabled>Valor Max.</option>
+											<option value="1000000000000">Qualquer valor</option>
+											<option value="100000">R$100,000,00</option>
+											<option value="200000">R$200,000,00</option>
+											<option value="400000">R$400,000,00</option>
+											<option value="600000">R$600,000,00</option>
+											<option value="800000">R$800,000,00</option>
+											<option value="1000000">R$1,000,000,00</option>
+											<option value="1500000">R$1,500,000,00</option>
+											<option value="2500000">R$2,500,000,00</option>
+											<option value="3000000">R$3,000,000,00</option>
+										</select>
+									</div>
+									<div class="col-md-3 col-sm-4">
+										<input type="submit" name="search" value="Pesquisar" class="btn btn-default">
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="advance-page">
+							<a href="/comprar" class="btn btn-primary">Pesquisa Avançada</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Slider Part End -->
+
+	<!-- imovel Tab -->
+	<section id="imovel-tab">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title-row">
+						<h3 class="section_title_blue">IMÓVEIS <span>EM DESTAQUE</span></h3>
+						<div class="sub-title">
+							<p>Confira os imóveis mais quentes do nosso site!</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="gallery-section">
+						<div class="auto-container">
+							<!--Filtros em JS, na hora de colocar os imóveis tu precisa deixar ali na classe
+							a categoria dele, ali o primeiro por exemplo tem a classe urbano e apartamento, que
+							são as categorias dele e é por essas classes que eles vao ser filtrados
+							<div class="filters">
+								<ul class="filter-tabs filter-btns clearfix anim-3-all">
+									<li class="active filter" data-role="button" data-filter="all">Todos</li>
+									<li class="filter" data-role="button" data-filter=".urbano">Urbano</li>
+									<li class="filter" data-role="button" data-filter=".rural">Rural</li>
+
+									<ul class="urbanofilter-tabs hidden filter-btns clearfix anim-3-all align-middle">
+										<li class="filter" data-role="button" data-filter=".apartamento">Apartamentos</li>
+										<li class="filter" data-role="button" data-filter=".casa">Casas</li>
+										<li class="filter" data-role="button" data-filter=".escritorio">Escritórios</li>
+										<li class="filter" data-role="button" data-filter=".escritorio">Kitnet</li>
+										<li class="filter" data-role="button" data-filter=".escritorio">Salão Comercial</li>
+									</ul>
+
+									<ul class="ruralfilter-tabs hidden filter-btns clearfix anim-3-all align-middle">
+										<li class="filter" data-role="button" data-filter=".chacara">Chacáras</li>
+										<li class="filter" data-role="button" data-filter=".campo">Campos</li>
+										<li class="filter" data-role="button" data-filter=".sitio">Sítio</li>
+										<li class="filter" data-role="button" data-filter=".terreno">Terreno</li>
+									</ul>
+
+								</ul>
+							</div> -->
+							<!--Filter List-->
+							<!-- Tab Content -->
+							<div class="row filter-list clearfix">
+								<% for(prop of props) {%>
+								<div class="column mix mix_all urbano col-md-3 col-sm-4 col-xs-12">
+									<%- include('../includes/components/propiedade-grid') %>
+								</div>
+								<% } %>
+							</div>
+							<!-- End tab content -->
+							<div class="row">
+								<div class="col-md-12">
+									<div class="float-right">
+										<a role="button" href="/comprar" class="btn btn-default">Ver mais</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End imovel Tab -->
+
+	<!-- Offer Part Start -->
+	<section id="offer-style-3">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title-row">
+						<h3 class="section_title_blue">SÓ AQUI <span>VOCÊ ENCONTRA</span></h3>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-home-1"></i></div>
+						<a href="/sobre">
+							<h5 class="offer-title">
+								<%= sobre.diferencial1.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial1.desc %>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-pencil-and-paper"></i></div>
+						<a href="/sobre">
+							<h5 class="offer-title">
+								<%= sobre.diferencial2.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial2.desc %>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-home"></i></div>
+						<a href="/sobre">
+							<h5 class="offer-title">
+								<%= sobre.diferencial3.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial3.desc %>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInRight" data-wow-delay="200ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-connections"></i></div>
+						<a href="/sobre">
+							<h5 class="offer-title">
+								<%= sobre.diferencial4.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial4.desc %>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Offer Part End -->
+
+	<!-- Contact Section End -->
+	<%- include('../includes/components/info-banner') %>
+
+	<%- include('../includes/components/footer-contact') %>
+
+	<%- include('../includes/components/footer') %>
+
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+	<%- include('../includes/imports/end') %>
+
+	<%- include('../includes/modals/modal-share') %>
+
+</body>
+
+<!-- Main Banner search mask -->
+<script src="js/zonaMaskFilter.js"></script>
+
+<!-- Featured Filtering buttons mask -->
+<script>
+	$('[data-filter=".urbano"]').click(() => {
+		$('.urbanofilter-tabs').addClass('visible');
+		$('.urbanofilter-tabs').removeClass('hidden');
+		$('.ruralfilter-tabs').removeClass('visible');
+		$('.ruralfilter-tabs').addClass('hidden');
+	});
+
+	$('[data-filter=".rural"]').click(() => {
+		$('.ruralfilter-tabs').addClass('visible');
+		$('.ruralfilter-tabs').removeClass('hidden');
+		$('.urbanofilter-tabs').removeClass('visible');
+		$('.urbanofilter-tabs').addClass('hidden');
+	});
+
+	$('[data-filter="all"]').click(() => {
+		$('.urbanofilter-tabs').removeClass('visible');
+		$('.urbanofilter-tabs').addClass('hidden');
+		$('.ruralfilter-tabs').removeClass('visible');
+		$('.ruralfilter-tabs').addClass('hidden');
+	});
+</script>
+
+</html>

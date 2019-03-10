@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../includes/imports/head')%>
+</head>
+
+<body class="pagewrap wow fadeIn ">
+	<%- include('../includes/components/nav') %>
+
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Vender Imóvel</h3>
+						<br /><br />
+						<h5 class="page_subtitle">Envie-nos os dados do seu Imóvel e lhe retornaremos com mais informações.</h5>
+						<div class="page_location">
+							<a href="index.html">Início</a>
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+							<span>Novo Imóvel</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Submit imovel Start -->
+	<section id="submit_imovel">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-9 col-sm-12">
+					<%- include('../includes/form/errorBox') %>
+					<%  if(successMessage) { %>
+					<div class="alert alert-success mt-2" role="alert">
+						<p>
+							<%= successMessage %>
+						</p>
+					</div>
+					<% }%>
+					<form action="/vender" method="POST" class="submit_form">
+						<div class="basic_information">
+							<!-- Todos os inputs com class .rural-form e sao mostrados e os .urbano-form são escondidos
+							se a zona rural é selecionada, e vice-versa para a zona urbana selecionada.-->
+
+							<h4 class="inner-title">Informações Básicas</h4>
+							<div class="row">
+
+								<div class="col-md-12 col-sm-12">
+									<input name="titulo" type="text" placeholder="Título do imóvel (algo que o descreva)" class="form-control"
+									 value="<%= form ? form.titulo : '' %>">
+								</div>
+								<div class="row">
+									<div class="col-12">
+										<textarea type="text" placeholder="Dados adicionais" name="descricao" class="form-control"><%= form ? form.descricao : '' %></textarea>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<select name="zona" class="selectpicker form-control" id="selectZona" data-live-search="true">
+											<option disabled selected value="todos">Zona do Imóvel</option>
+											<option value="Rural">Zona Rural</option>
+											<option value="Urbana">Zona Urbana</option>
+										</select>
+									</div>
+									<div class="col-md-6 col-sm-6">
+										<input type="hidden" name="selectedTipo" value="<%= form ? form.tipo : ''%>">
+										<select name="tipo" class="selectpicker form-control" id="selectTipo" data-live-search="true">
+											<option disabled selected label="Zona não selecionada"> Tipo de imóvel </option>
+											<optgroup label="Zona não selecionada">
+												<option></option>
+											</optgroup>
+											<!-- Está sendo escrito pela mascara do javascript no arquivo zonaMaskFilter.js -->
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="imovel_location">
+								<h4 class="inner-title">Endereço do Imóvel</h4>
+								<div class="row">
+									<!-- É exibido de acordo com a zona -->
+									<div>
+										<div class="col-md-12 col-sm-12">
+											<div class="row">
+												<div class="col-12">
+													<textarea type="text" placeholder="Insira dados do endereço como rua, número, bairro, cep..." name="endereco"
+													 class="form-control"><%= form ? form.endereco : '' %></textarea>
+												</div>
+											</div>
+										</div>
+										<div class="rural-form hidden">
+
+											<div class="col-md-12 col-sm-12">
+												<div class="row">
+													<div class="col-md-6 col-sm-12">
+														<select name="cidade" class="selectpicker form-control" id="selectMunicipio">
+															<option disabled selected>Município</option>
+															<option value="Aceguá"> Aceguá</option>
+															<option value="Bagé">Bagé</option>
+															<option value="Candiota">Candiota</option>
+															<option value="Dom Pedrito">Dom Pedrito</option>
+															<option value="Hulha Negra">Hulha Negra</option>
+															<option value="Outros">Outros</option>
+														</select>
+													</div>
+													<!-- Só é exibido se o município for Bagé -->
+													<div name="localidade" class="col-md-6 col-sm-12 hidden" id="bageLocalidades">
+														<select class="selectpicker form-control">
+															<option disabled selected>Localidade</option>
+															<option value="Igrejinha">Igrejinha</option>
+															<option value="Palmas">Palmas</option>
+															<option value="Piraí">Piraí</option>
+															<option value="Outros">Outros</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="imovel_owner">
+									<h4 class="inner-title">Detalhes de Contato</h4>
+									<p>É por esses meios que vamos lhe retornar com mais informações para prosseguir!</p>
+									<div class="row">
+										<div class="col-md-4">
+											<input name="nome" type="text" placeholder="Nome" class="form-control" value="<%= form ? form. nome : '' %>">
+										</div>
+										<div class="col-md-4">
+											<input type="email" placeholder="Email" class="form-control" name="email" value="<%= form ? form. email : '' %>">
+										</div>
+										<div class="col-md-4">
+											<input type="text" placeholder="Telefone" class="form-control" name="telefone" value="<%= form ? form. telefone : '' %>">
+										</div>
+										<div class="col-md-12">
+											<textarea placeholder="Mensagem" class="form-control" name="mensagem"><%= form ? form. mensagem : '' %></textarea>
+										</div>
+									</div>
+									<div class="browse_submit">
+										<button name="submit" type="submit" class="btn btn-default">Enviar</button>
+										<p><span>nota</span> : Responderemos o mais rápido possível, aguarde nosso contato!</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Submit imovel End -->
+
+	<%- include('../includes/components/footer') %>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+</body>
+
+<%- include('../includes/imports/end') %>
+
+</html>

@@ -1,0 +1,134 @@
+<div class="imovel_grid">
+    <div class="img_area">
+        <%- prop.ativo ? '<div class="sale_btn">Disponível</div>' : ''%>
+        <%- prop.destaque ? '<div class="featured_btn">Destaque</div>' : ''%>
+        <div class="imovel_cod">
+            <%= prop.codigo %>
+        </div>
+       <% if(prop.mainImage) {%>
+         <a href="/propriedade/<%= prop.codigo %>"><img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>"></a>
+       <% } %>
+
+    </div>
+    <div class="imovel-text">
+        <a href="/propriedade/<%= prop.codigo %>">
+            <h6 class="imovel-title">
+                <%= prop.titulo %>
+            </h6>
+        </a>
+        <span><i class="fa fa-map-marker" aria-hidden="true"></i>
+            <% if( prop.zona == 'Rural' ){ %>
+
+            <%= prop.cidade %>,
+            <%= prop.localidade %>
+            <%}else{ %>
+
+            Rua
+            <%= prop.rua %>,
+            <%= prop.numero %>, Bairro
+            <%= prop.bairro %>.
+            <% } %>
+        </span>
+
+        <div class="quantity">
+            <ul>
+                <% if( prop.zona == 'Rural' ){ %>
+
+                <% if(prop.extensao) { %>
+                <li><span>Extensão</span>
+                    <%= prop.extensao ? prop.extensao : '' %> hec.
+                </li>
+                <% }%>
+
+                <% if( prop.localidade) {%>
+                <li>
+                    <span>Localidade</span>
+                    <%= prop.localidade ? prop.localidade : '' %>
+                </li>
+                <% }%>
+
+                <% if( prop.acudes) {%>
+                <li>
+                    <span>Açudes</span>
+                    <%= prop.acudes ? prop.acudes : '' %>
+                </li>
+                <% } %>
+
+                <% if( prop.mangueiras) {%>
+                <li>
+                    <span>Mangueiras</span>
+                    <%= prop.mangueiras ? prop.mangueiras : '' %>
+                </li>
+                <% } %>
+
+                <% if( prop.galpoes) {%>
+                <li>
+                    <span>Galpoes</span>
+                    <%= prop.galpoes ? prop.galpoes : '' %>
+                </li>
+
+                <%}%>
+
+                <%}else if(prop.zona == 'Urbana'){ %>
+                <% if( prop.area) {%>
+                <li>
+                    <span>Área</span>
+                    <%= prop.area ? prop.area : '' %> m²
+                </li>
+                <%}%>
+
+                <% if( prop.dormitorios) {%>
+                <li>
+                    <span>Dormitórios</span>
+                    <%= prop.dormitorios ? prop.dormitorios : '' %>
+                </li>
+                <%}%>
+
+                <% if( prop.banheiros) {%>
+                <li>
+                    <span>Banheiros</span>
+                    <%= prop.banheiros ? prop.banheiros : '' %>
+                </li>
+                <%}%>
+
+                <% if( prop.cozinhas) {%>
+                <li>
+                    <span>Cozinhas</span>
+                    <%= prop.cozinhas ? prop.cozinhas : '' %>
+                </li>
+                <%}%>
+
+                <% if( prop.suites) {%>
+                <li>
+                    <span>Suítes</span>
+                    <%= prop.suites ? prop.suites : '' %>
+                </li>
+                <%}%>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+    <div class="bed_area">
+        <ul>
+        <li>
+            <i class="fa dollar-sign"></i>
+            <% if( prop.preco != 0 ) { %>
+            </i> R$ <span class="tomoney">
+                    <%= prop.preco %></span>,00
+            <% } else {%>
+            Confira conosco!
+            <% } %>
+            </li>
+            <li class="flat-icon ">
+                <button class="share-button" type="button" data-codigo="<%= prop.codigo %>" data-titulo="<%= prop.titulo %>"
+                    data-toggle="modal" data-target="#shareModal">
+                    <i class="flaticon-connections"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <a href="<%= encodeURI(`https://api.whatsapp.com/send?phone=55${sobre.whatsapp}&text=Oi! Tenho interesse na propriedade "${prop.titulo}", código "${prop.codigo}". Pode me tirar algumas dúvidas? O link da propriedade é www.planagroimoveis.com.br/propriedade/${prop.codigo}`)%>" class="call-whatsapp">
+        <span class="small">Saiba mais por</span>
+        <span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
+    </a>
+</div>

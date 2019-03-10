@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+
+							<form class="profile_area" method="POST" action="/admin/info">
+								<div class="media_links">
+									<h4 class="inner-title">Informações da Empresa</h4>
+									<p>Aqui você pode gerenciar as principais informações da Empresa, as quais aparecerão no site.</p>
+									<div class="information_form">
+										<div class="input-group">
+											<label class="profile_label">Endereço:</label>
+											<input value="<%= sobre.endereco %>" type="text" name="endereco" class="form-control" placeholder="Endereço(s) da Empresa">
+										</div>
+										<div class="input-group">
+											<label class="profile_label">Telefone:</label>
+											<input value="<%= sobre.telefone %>" type="text" name="telefone" class="form-control setting_input"
+											 placeholder="Telefone(s) da Empresa">
+										</div>
+										<div class="input-group">
+											<label class="profile_label">Whatsapp:</label>
+											<input value="<%= sobre.whatsapp %>" type="text" name="whatsapp" class="form-control setting_input"
+											 placeholder="5399999-9999">
+											 <small><p><b>Atenção:</b>O número de whatsapp deve ser exatamente formato DD999999999, ou seja, apenas números sem caracteres especiais, e apenas os dois dígitos do DDD (sem o zero). Isso é importante para trabalhar em harmonia com as funções do site.</p></small>
+										</div>
+									</div>
+									<div class="input-group">
+										<label class="profile_label">Email:</label>
+										<input value="<%= sobre.email %>" type="text" name="email" class="form-control setting_input" placeholder="Email(s) da Empresa">
+									</div>
+									<div class="input-group">
+										<label class="profile_label">Perfil do Facebook:</label>
+										<input value="<%= sobre.facebook %>" type="text" name="facebook" class="form-control setting_input"
+										 placeholder="Link do perfil do Facebook">
+									</div>
+								</div>
+								<div class="save_change">
+									<button class="btn btn-default" type="submit">Salvar</button>
+								</div>
+								<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/components/footer')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

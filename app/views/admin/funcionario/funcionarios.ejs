@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head')%>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="profile_area" method="post" action="#">
+								<h4 class="inner-title">Gerenciar Equipe</h4>
+								<p>Aqui você pode gerenciar a equipe da empresa, que refletirão na página Sobre.</p>
+								<div id="testimonial_list">
+									<% for( func of funcs ) {%>
+										<div class="testimonial_details animated fadeIn">
+											<img src="<%= func.image.url %>" alt="" style="height: 100px; width: 100px; object-fit:cover " >
+											<div class="testimonial_name">
+												<input readonly type="text" class="form-control testimonial_name" value="<%= func.nome %>">
+											</div>
+											<a role="button" href="/admin/funcionarios/edit/<%= func._id %>" type="submit" class="edit_testimonial"><i class="fa fa-edit"></i></a>
+										</div>
+									<% } %>
+								</div>
+							</div>
+							<div class="row">
+								<div class="save_change">
+									<a role="button" href="/admin/funcionarios/new" class="btn btn-default" type="submit">Novo</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/components/footer')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

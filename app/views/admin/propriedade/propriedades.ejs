@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="my_properties_filter">
+						<form action="#" method="GET">
+							<div class="row">
+								<div class="col-sm-2">
+									<p class="pt-2">Filtrar por: </p>
+								</div>
+								<div class="col-sm-5">
+									<input name="titulo" type="text" class="form-control" placeholder="Título" value="<%= form.titulo ? form.titulo : ''%>">
+								</div>
+								<div class="col-sm-5">
+									<input name="propietario" type="text" class="form-control" placeholder="Propietário" value="<%= form.propietario ? form.propietario : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<input name="codigo" type="text" class="form-control" placeholder="Código" value="<%= form.codigo ? form.codigo : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<select name="destaque" class="selectpicker form-control">
+										<option disabled selected>Destaque</option>
+										<option <% if(form.destaque ) { %>
+											<%= form.destaque == 'true' ? 'selected' : ''%>
+											<% }%>
+											value="true">Sim</option>
+										<option <% if(form.destaque ) { %>
+											<%= form.destaque == 'false' ? 'selected' : ''%>
+											<% }%>
+											value="false">Não</option>
+									</select>
+								</div>
+								<div class="col-sm-3">
+									<select name="ativo" class="selectpicker form-control">
+										<option disabled selected>Ativo/Inativo</option>
+										<option <% if(form.ativo ) { %>
+											<%= form.ativo == 'true' ? 'selected' : ''%>
+											<% }%>
+											value="true">Ativo</option>
+										<option <% if(form.ativo ) { %>
+											<%= form.ativo == 'false' ? 'selected' : ''%>
+											<% }%>
+											value="false">Inativo</option>
+									</select>
+								</div>
+								<div class="col-sm-2">
+									<button type="submit" class="btn-default-outline btn-filter">Filtrar</button>
+								</div>
+								<div class="col-sm-2">
+									<a role="button" href="/admin/propiedades" class="btn-default-outline btn-filter">Zerar filtros</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="my_property_list">
+						<table class="list_table" border="0" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<td></td>
+									<td>Propriedade</td>
+									<td>Código</td>
+									<td>Destaque</td>
+									<td>Ativo</td>
+									<td>Ações</td>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(prop of props) { %>
+								<tr>
+									<td>
+										<% if(prop.mainImage) {%>
+										<img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>" style="height: 150px; width: 120px; object-fit: cover">
+										<% } %>
+									</td>
+									<td>
+										<div class="property-text mt-2">
+											<a href="/propriedade/<%= prop.codigo %>">
+												<h6 class="property-title">
+													<%= prop.titulo %>
+												</h6>
+											</a>
+											<span><i class="fa fa-map-marker" aria-hidden="true"></i>
+												<% if( prop.zona == 'Urbana' ) { %>
+												<%= prop.rua+ ', ' +prop.numero%>
+												<% } %>
+
+												<% if( prop.zona == 'Rural' ) {%>
+												<%=prop.municipio %>
+												<%= prop.localidade? ', '+ prop.localidade  : ''%>
+												<% } %>
+											</span>
+											<br />
+											<span><i class="fa fa-user" aria-hidden="true"></i>
+												<%= prop.propietario %></span>
+											<div class="listing_price"> R$<span class="tomoney">
+													<%= prop.preco %></span></div>
+										</div>
+
+									</td>
+									<td>
+										<span>
+											<%= prop.codigo %></span>
+									</td>
+									<td>
+										<span>
+											<%= prop.destaque ? 'Sim' : 'Não' %></span>
+									</td>
+									<td>
+										<span>
+											<%= prop.ativo ? 'Sim' : 'Não' %></span>
+									</td>
+									<td>
+										<span><a href="/admin/propiedades/edit/<%= prop.id %>"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a></span>
+									</td>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
+					</div>
+					<!-- Pagination -->
+					<div class="row">
+						<div class="col-md-12">
+							<%- include('../../includes/components/pagination') %>
+						</div>
+					</div>
+					<!-- End Pagination -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/components/footer') %>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

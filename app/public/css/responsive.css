@@ -1,0 +1,774 @@
+@media (max-width:1400px) {
+    #who_are {
+        background-position: 195% center
+    }
+
+    .who_text {
+        padding: 80px 20px 80px 14%
+    }
+}
+
+@media (max-width:1200px) {
+    #slider-fixed .carousel-caption {
+        right: 0
+    }
+
+    .service_area {
+        padding: 30px 20px
+    }
+
+    #find_area .imovel_search_form {
+        margin-left: -20px;
+        padding-right: 0
+    }
+
+    .appartment_area .find_text span {
+        font-size: 24px
+    }
+
+    .booking_house p {
+        font-size: 21px
+    }
+
+    .slider_btn {
+        margin-top: 25px
+    }
+
+    .slider_text {
+        padding: 30px 0
+    }
+
+    .advance_search>.form_part>.price_input {
+        width: 47%
+    }
+
+    .dropdown-menu ul {
+        right: 100%;
+        left: inherit
+    }
+
+    .socail_area>ul>li {
+        height: 30px;
+        line-height: 30px;
+        width: 30px
+    }
+
+    .advance_search .form_part .location {
+        padding: 0 5px
+    }
+
+    .slider_arrow>ul>li>i {
+        padding: 5px 10px
+    }
+
+    .find_text span {
+        width: 255px
+    }
+
+    .tabs_edit {
+        padding: 0 10px
+    }
+
+    .service_area {
+        padding: 40px 20px
+    }
+
+    .sub-title {
+        padding-left: 10%;
+        padding-right: 10%;
+        width: 100%
+    }
+
+    .list_type {
+        height: 234px
+    }
+
+    .list_img {
+        width: 50%
+    }
+
+    .list_type {
+        width: 50%
+    }
+
+    .feedback p {
+        width: 78%
+    }
+
+    .bed_area {
+        height: 50px
+    }
+
+    .match_imovel>.bed_area>ul>li {
+        line-height: 50px
+    }
+
+    .slider_text>h1 {
+        font-size: 30px
+    }
+
+    .slider_text {
+        width: 75%
+    }
+
+    .carousel-caption.slider_text>p {
+        font-size: 14px
+    }
+
+    #who_are {
+        background-position: 750% center
+    }
+
+    .who_text {
+        padding: 80px 20px 80px 5%
+    }
+}
+
+@media screen and (max-width:1200px) and (min-width:992px) {
+    .bed_area ul li:last-child {
+        display: none
+    }
+
+    .quantity {
+        display: flex;
+        margin-left: -12px;
+        margin-right: -12px
+    }
+
+    .quantity ul li {
+        display: inline-block;
+        padding: 0 12px
+    }
+}
+
+@media screen and (max-width:992px) {
+    .navbar-header {
+        padding: 0
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .nav-logo {
+        height: 55px
+    }
+}
+
+@media (min-width:992px) {
+
+    .video-header .navbar-default .navbar-nav>li>a,
+    .video-header .navbar-default .navbar-nav>li>a>i {
+        color: #fff
+    }
+
+    .nav .dropdown-menu,
+    .nav .dropdown-menu ul {
+        visibility: hidden;
+        display: block;
+        top: 110%;
+        opacity: 0
+    }
+
+    .nav>.dropdown:hover>ul.dropdown-menu {
+        top: 100%;
+        visibility: visible;
+        opacity: 1;
+        -moz-transition: all .2s ease;
+        -webkit-transition: all .2s ease;
+        -ms-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        transition: all .2s ease
+    }
+
+    .full-page-map .nav>.dropdown>.dropdown-menu {
+        visibility: hidden;
+        display: block;
+        bottom: 110%;
+        top: inherit;
+        opacity: 0
+    }
+
+    .full-page-map .nav>.dropdown:hover>ul.dropdown-menu {
+        bottom: 100%;
+        top: inherit;
+        visibility: visible;
+        opacity: 1;
+        -moz-transition: all .2s ease;
+        -webkit-transition: all .2s ease;
+        -ms-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        transition: all .2s ease
+    }
+
+    .nav .dropdown-menu .dropdown>ul.dropdown-menu {
+        top: 100%;
+        visibility: hidden;
+        opacity: 0
+    }
+
+    .nav .dropdown-menu .dropdown:hover>ul.dropdown-menu {
+        top: 0;
+        visibility: visible;
+        opacity: 1;
+        -moz-transition: all .2s ease;
+        -webkit-transition: all .2s ease;
+        -ms-transition: all .2s ease;
+        -o-transition: all .2s ease;
+        transition: all .2s ease
+    }
+}
+
+@media (max-width:991px) {
+    .video-header .navbar-default .navbar-nav {
+        background: #fff
+    }
+
+    #offer-style-3 {
+        padding-bottom: 40px
+    }
+
+    .booking_house {
+        padding: 40px 0
+    }
+
+    .search-fixed-right {
+        width: 40%
+    }
+
+    .terms_description {
+        margin-top: 50px
+    }
+
+    .terms_deals {
+        padding-left: 30px
+    }
+
+    .profile_area {
+        margin-top: 50px
+    }
+
+    .info-pages {
+        margin-top: 50px
+    }
+
+    .page-style-4 .carousel-inner>.item>a>img,
+    .page-style-4 .carousel-inner>.item>img {
+        height: 60vh
+    }
+
+    .page-style-4 #slider .carousel-caption {
+        width: 100%
+    }
+
+    .slider-imovel .imovel-text {
+        width: 90%
+    }
+
+    .slider-search-2 {
+        width: 100%
+    }
+
+    .navbar-nav>li .dropdown-menu {
+        background: #f5f5f5 none repeat scroll 0 0;
+        box-shadow: none
+    }
+
+    #find_area .imovel_search_form {
+        margin-left: 0;
+        padding-right: 0
+    }
+
+    #find_area .tabs_edit {
+        padding: 0 15px
+    }
+
+    #offer-style-2 .offer_area {
+        padding: 15px 0;
+        margin: 0
+    }
+
+    .who_text {
+        padding: 80px 30px
+    }
+
+    .list_img {
+        width: 55%
+    }
+
+    .list_type {
+        width: 45%
+    }
+
+    .list_type {
+        height: 265px
+    }
+
+    .footer_widget {
+        margin-bottom: 30px
+    }
+
+    .dropdown-menu {
+        box-shadow: none;
+        border: none
+    }
+
+    .navbar-nav>li>a {
+        line-height: 45px
+    }
+
+    .navbar-nav>li>a>i {
+        float: right;
+        line-height: 45px
+    }
+
+    .nav .dropdown-menu {
+        position: static;
+        width: 100%;
+        float: none
+    }
+
+    .navbar-nav {
+        padding-top: 15px;
+        padding-bottom: 15px
+    }
+
+    .navbar-brand {
+        line-height: 56px;
+        width: 135px
+    }
+
+    #nav_header {
+        min-height: 60px
+    }
+
+    .navbar-toggle {
+        margin-top: 13px
+    }
+
+    .find_text {
+        display: none
+    }
+
+    #find_area {
+        height: auto
+    }
+
+    .imovel_filter_input {
+        padding: 30px 15px
+    }
+
+    .tabs_edit {
+        padding: 0
+    }
+
+    .news_area,
+    .offer_area {
+        margin-bottom: 30px
+    }
+
+    .register_btn {
+        padding-top: 30px;
+        text-align: center
+    }
+
+    .slider_text>h1 {
+        font-size: 34px
+    }
+
+    .imovel_sidebar {
+        margin-top: 50px
+    }
+
+    .carousel-inner>.item>a>img,
+    .carousel-inner>.item>img {
+        display: block;
+        height: 80vh;
+        max-width: inherit;
+        width: auto
+    }
+
+    .carousel-caption {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+
+    .slider_btn {
+        margin-top: 25px
+    }
+
+    .carousel-caption.slider_text>p {
+        padding-top: 20px
+    }
+
+    .side_bar {
+        margin-top: 50px
+    }
+
+    .single_map {
+        margin-top: 30px
+    }
+
+    .information_form {
+        padding: 20px 0
+    }
+
+    .information_form textarea.form-control {
+        width: 70%
+    }
+
+    .save_change {
+        padding-left: 120px
+    }
+
+    .type_select {
+        width: 22%
+    }
+
+    .contact_area {
+        margin-bottom: 50px
+    }
+
+    .single_agent img {
+        width: 50%;
+        float: left;
+        padding-right: 30px
+    }
+}
+
+@media (max-width:767px) {
+    .search-fixed-right {
+        width: 100%
+    }
+
+    .search-fixed-right #find-location .imovel_filter_input {
+        height: auto
+    }
+
+    .single_agent img {
+        width: 100%;
+        float: none;
+        padding: 0
+    }
+
+    .inner-title {
+        font-size: 18px
+    }
+
+    .info-pages {
+        padding: 15px
+    }
+
+    .award img {
+        margin-bottom: 30px
+    }
+
+    .profile_description {
+        margin-top: 30px
+    }
+
+    #find-location {
+        width: 100%
+    }
+
+    .page-style-4 .carousel-inner>.item>a>img,
+    .page-style-4 .carousel-inner>.item>img {
+        height: 40vh
+    }
+
+    .slider-imovel .imovel-text {
+        width: 100%
+    }
+
+    .feedback-text2 {
+        padding: 20px
+    }
+
+    #slider-fixed {
+        height: 90vh
+    }
+
+    .slider-search-2 h1 {
+        font-size: 18px
+    }
+
+    #find-location {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        -moz-transform: translate(0, 100%);
+        -webkit-transform: translate(0, 100%);
+        -ms-transform: translate(0, 100%);
+        -o-transform: translate(0, 100%);
+        transform: translate(0, 100%);
+        -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+        -o-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+        transition: all .3s ease-in-out
+    }
+
+    #find-location.open {
+        -moz-transform: translate(0, 50px);
+        -webkit-transform: translate(0, 50px);
+        -ms-transform: translate(0, 50px);
+        -o-transform: translate(0, 50px);
+        transform: translate(0, 50px)
+    }
+
+    #find_area .imovel_search_form {
+        margin-left: 0
+    }
+
+    #find_area .tabs_edit {
+        padding: 0
+    }
+
+    #find_area .imovel_filter_input {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    .sub-title p {
+        font-size: 14px;
+        font-weight: 400
+    }
+
+    .page-style-2 .carousel-caption h1 {
+        font-size: 21px;
+        padding-bottom: 20px
+    }
+
+    .page-style-2 .tab-content {
+        margin-top: 10px
+    }
+
+    .section_title_blue,
+    .section_title_green,
+    .section_title_white {
+        font-size: 20px
+    }
+
+    .achievement {
+        padding: 30px 0
+    }
+
+    .tabs_edit>li>a {
+        padding: 12px 15px
+    }
+
+    .page-style-2 .tabs_edit a::before {
+        display: none
+    }
+
+    #top_header {
+        display: none
+    }
+
+    .top_contact {
+        display: none
+    }
+
+    .top_right {
+        display: table;
+        margin: 0 auto;
+        float: none
+    }
+
+    .find_text {
+        display: none
+    }
+
+    .team_img {
+        display: block
+    }
+
+    .banner_page {
+        float: left;
+        width: 100%
+    }
+
+    .carousel-inner>.item>a>img,
+    .carousel-inner>.item>img {
+        display: block;
+        height: 100vh;
+        max-width: inherit;
+        width: auto
+    }
+
+    .slider_text {
+        width: 98%
+    }
+
+    .slider_text>h1 {
+        font-size: 24px;
+        line-height: 35px
+    }
+
+    .navbar-nav>li .dropdown-menu {
+        background: #f5f5f5;
+        box-shadow: none
+    }
+
+    .dropdown-menu>li>a,
+    .navbar-nav .visible .dropdown-menu .dropdown-header,
+    .navbar-nav .visible .dropdown-menu>li>a {
+        padding: 5px 15px 5px 25px;
+        line-height: 20px
+    }
+
+    .imovel_search_form {
+        padding-right: 0
+    }
+
+    .sub-title {
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    .booking_house p {
+        font-size: 16px
+    }
+
+    .feedback p {
+        width: 85%
+    }
+
+    .register_btn {
+        text-align: left
+    }
+
+    .pagination>li>a,
+    .pagination>li>span {
+        padding: 8px 12px
+    }
+
+    .pagination>li {
+        padding-right: 5px
+    }
+
+    .show_type {
+        margin-top: 5px;
+        margin-bottom: 5px
+    }
+
+    .imovel_view ul li a,
+    .imovel_view ul li span {
+        margin-top: 5px
+    }
+
+    .page_title {
+        text-align: center;
+        width: 100%;
+        font-size: 24px
+    }
+
+    .page_location {
+        text-align: center;
+        width: 100%;
+        margin-top: 20px
+    }
+
+    .info-list>ul>li,
+    .list_img {
+        width: 100%
+    }
+
+    .list_type {
+        width: 100%;
+        height: 260px
+    }
+
+    .imovel_slider .carousel-inner>.item>a>img,
+    .imovel_slider .carousel-inner>.item>img {
+        height: auto !important;
+        width: 100%
+    }
+
+    .single_type>.active>img {
+        border: none
+    }
+
+    .more_information>.profile_data>ul>li>span {
+        text-align: left;
+        width: 100%
+    }
+
+    .profile_description {
+        margin-top: 30px
+    }
+
+    .service_text {
+        padding-left: 15px;
+        padding-top: 30px;
+        width: 100%
+    }
+
+    .banner_text {
+        padding: 20px
+    }
+
+    .check_submit ul li {
+        width: 100%
+    }
+
+    .browse_submit>p {
+        display: inline-block;
+        font-size: 13px;
+        line-height: 26px;
+        margin-top: 30px;
+        width: 100%
+    }
+
+    .profile_label {
+        text-align: left;
+        width: 140px
+    }
+
+    .information_form .form-control,
+    .information_form textarea.form-control {
+        width: 100%
+    }
+
+    .save_change {
+        padding-left: 0
+    }
+
+    .socail_area>ul {
+        display: inline-block;
+        width: 100%
+    }
+
+    .pagination>li {
+        padding-right: 1px
+    }
+}
+
+@media (max-width:320px) {
+    .slider_btn {
+        display: none
+    }
+
+    .slider_text>p {
+        font-size: 14px;
+        line-height: 24px
+    }
+
+    .slider_text {
+        padding: 30px 0
+    }
+
+    .page-style-2 .imovel_search_form {
+        display: none
+    }
+
+    .slider-search-2 h1 {
+        font-size: 16px
+    }
+
+    .slider-search-2 .imovel_filter_input {
+        display: none
+    }
+
+    #slider-fixed {
+        height: 100vh
+    }
+}

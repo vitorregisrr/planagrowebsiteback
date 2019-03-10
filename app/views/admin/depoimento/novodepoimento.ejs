@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head')%>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="row">
+						<%- include('../../includes/form/errorBox') %>
+						<form action="/admin/depoimentos/new" method="POST" enctype="multipart/form-data">
+							<h4 class="inner-title">Novo Depoimento</h4>
+							<div class="col-md-12 col-sm-12">
+								<input name="nome" type="text" placeholder="Nome do cliente" class="form-control" value="<%= form.values ? form.values.nome : null %>">
+							</div>
+							<div class="col-md-12 col-sm-12">
+								<textarea placeholder="Depoimento" name="depoimento" class="form-control"><%= form.values ? form.values.depoimento : null %></textarea>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="img-submit">
+										<input name="image" type="file" id="main-img-upload" />
+									</div>
+								</div>
+							</div>
+							<button type="submit" class="btn btn-default float-right"> Salvar </button>
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/components/footer')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

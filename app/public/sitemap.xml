@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://www.planagroimoveis.com.br/</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/comprar</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/propriedade/138</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/vender</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/contato</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/sobre</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/comprar?filtrando=Rural</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/comprar?page=1</loc>
+  </url>
+  <url>
+    <loc>http://www.planagroimoveis.com.br/comprar?filtrando=Urbana</loc>
+  </url>
+</urlset>

@@ -1,0 +1,32 @@
+<div class="col-md-4 col-sm-12">
+    <div class="settings_links">
+        <ul>
+            <li><span>Conteúdos do Site</span></li>
+            <li class="<%= path == 'admin/info' ? 'active' : ''%>"><a href="/admin/info"><i class="flaticon-share"></i>Informações
+                    da Empresa</a></li>
+            <li class="<%= path == 'admin/sobre' ? 'active' : ''%>"><a href="/admin/sobre"><i class="flaticon-share"></i>Conteúdo
+                    "Sobre"</a></li>
+            <li class="<%= path == 'admin/depoimentos' ? 'active' : ''%>"><a href="/admin/depoimentos"><i class="flaticon-like"></i>Depoimentos
+                    de Clientes</a></li>
+            <li class="<%= path == 'admin/funcionarios' ? 'active' : ''%>"><a href="/admin/funcionarios"><i class="flaticon-office"></i>Funcionários
+                    da Empresa</a></li>
+        </ul>
+        <ul>
+            <li class=""><span>Gerenciamento de Propriedades</span></li>
+            <li class="<%= path == 'admin/propiedades' ? 'active' : ''%>"><a href="/admin/propiedades"><i class="flaticon-home"></i>
+                    Ver Propriedades</a></li>
+            <li class="<%= path == 'admin/novapropiedade' ? 'active' : ''%>"><a href="/admin/propiedades/new"><i class="flaticon-star"></i>
+                    Nova Propriedade</a></li>
+        </ul>
+        <ul>
+            <li class=""><span>Gerenciamento de Cliente</span></li>
+            <li class="<%= path == 'admin/clientes' ? 'active' : ''%>"><a href="/admin/clientes"><i class="flaticon-user"></i>
+                    Ver Clientes</a></li>
+            <li class="<%= path == 'admin/novapropiedade' ? 'active' : ''%>"><a href="/admin/clientes/new"><i class="flaticon-star"></i>
+                    Novo Cliente</a></li>
+        </ul>
+        <ul>
+            <li class="<%= path == 'admin/logout' ? 'active' : ''%>"><a href="/admin/logout"><i class="flaticon-upload"></i>Sair</a></li>
+        </ul>
+    </div>
+</div>

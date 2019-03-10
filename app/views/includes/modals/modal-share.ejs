@@ -1,0 +1,41 @@
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="shareModalLabel">Compartilhar propiedade</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="share-buttons" class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="planagroimoveis.com.br"
+                    data-a2a-title="planagroimoveis.com.br">
+                    <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+                    <a class="a2a_button_facebook"></a>
+                    <a class="a2a_button_twitter"></a>
+                    <a class="a2a_button_whatsapp"></a>
+                    <a class="a2a_button_google_gmail"></a>
+                    <a class="a2a_button_email"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share buttons modal -->
+<script>
+    $('.share-button').click(function () {
+        const codigo = $(this).attr('data-codigo');
+        const titulo = $(this).attr('data-titulo');
+        console.log( codigo, titulo )
+        $('#share-buttons').attr('data-a2a-url', `https://www.planagroimoveis.com.br/propriedade/${codigo}`);
+        $('#share-buttons').attr('data-a2a-title', `Planagro Imóveis - ${titulo}`);
+    });
+</script>
+
+<script>
+    var a2a_config = a2a_config || {};
+    a2a_config.onclick = 1;
+    a2a_config.num_services = 2;
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>

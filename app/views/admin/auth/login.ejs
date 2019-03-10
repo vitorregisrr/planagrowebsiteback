@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrapwow fadeIn">
+
+	<section class="login-box">
+		<!-- Modal -->
+		<div id="myModal_two">
+			<div class="modal-dialog toggle_area" role="document">
+				<div class="modal-header toggle_header">
+					<h4 class="inner-title">LOGIN DE ADMNISTRADOR</h4>
+				</div>
+				<div class="modal-body login_body">
+					<div class="login_option">
+						<%- include('../../includes/form/errorBox') %>
+						<form class="signin" action="/admin/login" method="post">
+							<div class="form-group">
+								<input type="usuario" name="usuario" class="form-control" placeholder="Login de admnistrador">
+							</div>
+							<div class="form-group">
+								<input type="password" name="password" class="form-control" placeholder="Senha">
+							</div>
+							<div class="form-group">
+								<button type="submit" name="signin" class="btn btn-default">Sign In</button>
+							</div>
+							<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+					</div>
+					<div class="submit_area"><span>Esqueceu a senha?<a href="#">  clique aqui!</a></span></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Modules and Popup -->
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

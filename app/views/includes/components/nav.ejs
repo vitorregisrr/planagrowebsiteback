@@ -1,0 +1,65 @@
+<header id="header">
+	<% if(contact) { %>
+	<!-- Top Header Start -->
+	<div id="top_header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-sm-5">
+					<div class="top_contact">
+						<ul>
+							<li><i class="fa fa-phone" aria-hidden="true"></i> Precisa de ajuda? Ligue para a gente!
+								<%= sobre.telefone %>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-4 col-sm-7">
+					<div class="top_contact">
+						<ul>
+							<li><i class="fa fa-map-marker"></i> Encontre-nos na
+								<%= sobre.endereco %>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Top Header End -->
+
+	<% } %>
+	<!-- Nav Header Start -->
+	<div id="nav_header">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12">
+					<nav class="navbar navbar-default nav_edit">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+							 aria-expanded="false">
+								<span class="sr-only">Abrir Menu</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+							<a class="navbar-brand" href="#"><img class="nav-logo" src="/img/logo.png" alt=""></a>
+						</div>
+						<div class="collapse navbar-collapse my_nav" id="bs-example-navbar-collapse-1">
+							<div class="submit_imovel">
+								<a href="/vender"><i class="fa fa-plus" aria-hidden="true"></i>Vender Imóvel</a>
+								<a href="/comprar"><i class="fa fa-plus" aria-hidden="true"></i>Comprar Imóvel</a>
+							</div>
+							<ul class="nav navbar-nav navbar-right nav_text">
+								<li><a href="/">Início</a></li>
+								<li><a href="/sobre">Sobre nós</a></li>
+								<li><a href="/contato">Entrar em contato</a></li>
+							</ul>
+						</div>
+						<!-- /.navbar-collapse -->
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Nav Header End -->
+</header>

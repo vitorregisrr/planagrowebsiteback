@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="row">
+						<%- include('../../includes/form/errorBox') %>
+						<div class="col-md-12 col-sm-12">
+							<form class="profile_area" method="post" action="/admin/sobre">
+								<div class="media_links">
+									<h4 class="inner-title">Conteúdos sobre a Empresa</h4>
+									<p>Aqui você pode gerenciar os textos e conteúdos sobre a empresa, que refletirão no site.</p>
+									<div class="information_form">
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseQuemSomos" role="button" aria-expanded="false" aria-controls="collapseQuemSomos">Quem
+												nós somos?</label>
+											<div class="collapse" id="collapseQuemSomos">
+												<textarea name="quemsomos" id="" type="text" class="form-control" placeholder="Conteúdo"><%= sobre.quemsomos %></textarea>
+											</div>
+										</div>
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseOqueFazemos" role="button" aria-expanded="false" aria-controls="collapseExample">O
+												que nós fazemos?</label>
+											<div class="collapse" id="collapseOqueFazemos">
+												<textarea name="oquefazemos" type="text" class="form-control" placeholder="Conteúdo"><%= sobre.oquefazemos %></textarea>
+											</div>
+										</div>
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseMissao" role="button" aria-expanded="false" aria-controls="collapseExample">Nossa
+												Missão</label>
+											<div class="collapse" id="collapseMissao">
+												<textarea name="nossamissao" type="text" class="form-control" placeholder="Conteúdo"><%= sobre.nossamissao %></textarea>
+											</div>
+										</div>
+
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseDiferencial1" role="button" aria-expanded="false" aria-controls="collapseExample">Diferencial
+												1</label>
+											<div class="collapse" id="collapseDiferencial1">
+												<input value="<%= sobre.diferencial1.titulo %>" name="diferencial1titulo" type="text" class="form-control"
+												 placeholder="Título">
+												<textarea name="diferencial1desc" type="text" class="form-control" placeholder="Descrição"><%= sobre.diferencial1.desc %></textarea>
+											</div>
+										</div>
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseDiferencial2" role="button" aria-expanded="false" aria-controls="collapseExample">Diferencial
+												2</label>
+											<div class="collapse" id="collapseDiferencial2">
+												<input value="<%= sobre.diferencial2.titulo %>" name="diferencial2titulo" type="text" class="form-control"
+												 placeholder="Título">
+												<textarea name="diferencial2desc" type="text" class="form-control" placeholder="Descrição"><%= sobre.diferencial2.desc %></textarea>
+											</div>
+										</div>
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseDiferencial3" role="button" aria-expanded="false" aria-controls="collapseExample">Diferencial
+												3</label>
+											<div class="collapse" id="collapseDiferencial3">
+												<input value="<%= sobre.diferencial3.titulo %>" name="diferencial3titulo" type="text" class="form-control"
+												 placeholder="Título">
+												<textarea name="diferencial3desc" type="text" class="form-control" placeholder="Descrição"><%= sobre.diferencial3.desc %></textarea>
+											</div>
+										</div>
+										<div class="input_group_collapse">
+											<label data-toggle="collapse" href="#collapseDiferencial4" role="button" aria-expanded="false" aria-controls="collapseExample">Diferencial
+												4</label>
+											<div class="collapse" id="collapseDiferencial4">
+												<input value="<%= sobre.diferencial4.titulo %>" name="diferencial4titulo" type="text" class="form-control"
+												 placeholder="Título">
+												<textarea name="diferencial4desc" type="text" class="form-control" placeholder="Descrição"><%= sobre.diferencial4.desc %></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="save_change">
+									<button class="btn btn-default" type="submit">Salvar</button>
+								</div>
+								<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Profile Setting End -->
+	<%- include('../../includes/components/footer')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

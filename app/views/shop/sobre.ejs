@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../includes/imports/head') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../includes/components/nav') %>
+
+	<!-- Banner Section Start -->
+	<section id="banner">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Sobre Nós</h3>
+						<div class="page_location">
+							<a href="index.html">Início</a>
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+							<span>Sobre Nós</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Offer Part Start -->
+	<section id="offer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-home-1"></i></div>
+						<a href="#">
+							<h5 class="offer-title">
+								<%= sobre.diferencial1.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial1.desc %>
+						</p>
+						<a href="#" class="btn-link"></a>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-pencil-and-paper"></i></div>
+						<a href="#">
+							<h5 class="offer-title">
+								<%= sobre.diferencial2.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial2.desc %>
+						</p>
+						<a href="#" class="btn-link"></a>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-home"></i></div>
+						<a href="#">
+							<h5 class="offer-title">
+								<%= sobre.diferencial3.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial3.desc %>
+						</p>
+						<a href="#" class="btn-link"></a>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6">
+					<div class="offer_area wow fadeInRight" data-wow-delay="200ms" data-wow-duration="1000ms">
+						<div class="circle_area"><i class="flaticon-connections"></i></div>
+						<a href="#">
+							<h5 class="offer-title">
+								<%= sobre.diferencial4.titulo %>
+							</h5>
+						</a>
+						<p>
+							<%= sobre.diferencial4.desc %>
+						</p>
+						<a href="#" class="btn-link"></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Offer Part End -->
+
+	<!-- Who We Are Part Start -->
+	<section id="who_are">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-7">
+					<div class="row">
+						<div class="who_text">
+							<div class="section_title_white">
+								<h2>quem <span>nós somos?</span></h2>
+							</div>
+							<p>
+								<%= sobre.quemsomos %>
+							</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- Who We Are Part End -->
+
+	<!-- About Accordion Part Start -->
+	<section id="about_description">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="we_do">
+						<div class="title-row">
+							<h2 class="section_title_blue">Oque <span>nós fazemos</span></h2>
+						</div>
+						<p>
+							<%= sobre.oquefazemos %>
+						</p>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="we_do">
+						<div class="title-row">
+							<h2 class="section_title_blue">Nossa <span>Missão</span></h2>
+						</div>
+						<p>
+							<%= sobre.nossamissao %>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- About Accordion Part End -->
+
+	<!-- Client Feedback Section Start -->
+	<% if(deps.lenght > 0) {%>
+	<section id="feedback">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="fedback_area">
+						<div class="row">
+							<div class="col-ms-12">
+								<div class="title-row">
+									<h2 class="section_title_white">Depoimento dos clientes</h2>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-ms-12">
+								<div class="testimonials-carousel">
+									<% for( dep of deps) {%>
+										<div class="item">
+											<div class="feedback">
+												<p><%= dep.depoimento %></p>
+												<div class="testimonial_person">
+													<img class="avata" alt="<%= dep.nome %>" src="<%= dep.image.url %>" alt="<%= dep.nome %>">
+													<h5 class="client-name"><%= dep.nome %></h5>
+												</div>
+											</div>
+										</div>
+									<% } %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<% } %>
+	<!-- Client Feedback Section End -->
+
+	<% if(funcs.length > 0) {%>
+	<!-- Team Section Start -->
+	<section id="our_team">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="title-row">
+						<h3 class="section_title_blue">Nossa <span>Equipe</span></h3>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="our_team_member">
+						<% for( func of funcs) { %>
+							<div class="item">
+								<div class="team_img">
+									<div class="profile-pic">
+										<img alt="<%= func.nome %>" src="<%= func.image.url %>" />
+									</div>
+									<div class="member_info">
+										<h5 class="member-name"><%= func.nome %></h5>
+									</div>
+								</div>
+							</div>
+						<% } %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<% } %>
+	<%- include('../includes/components/info-banner') %>
+
+	<%- include('../includes/components/footer-contact') %>
+
+	<%- include('../includes/components/footer') %>
+
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+</body>
+
+<%- include('../includes/imports/end') %>
+
+</html>
