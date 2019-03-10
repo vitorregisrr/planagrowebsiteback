@@ -46,7 +46,7 @@ exports.compressImage = (file, size) => {
 
 exports.compressImagesArray = (files, size) => {
     const compressPromisse = files.map(file => {
-        const newPath = file.path.split('.')[0] + '.webp';
+        const newPath = file.path.split('.')[0] + '.jpeg';
 
         return sharp(file.path)
             .resize(size)
