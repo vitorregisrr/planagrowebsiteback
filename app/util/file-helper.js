@@ -11,7 +11,7 @@ exports.delete = path => {
 }
 
 exports.compressImage = (file, size) => {
-    const newPath = file.path.split('.')[0] + '.webp';
+    const newPath = file.path.split('.')[0] + '.jpeg';
 
     return sharp(file.path)
         .resize(size)
