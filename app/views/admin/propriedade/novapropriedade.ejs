@@ -62,7 +62,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo" value="<%= form ? form.values.tipo : '' %>">
-											<select name="tipo" class="selectpicker form-control" id="selectTipo" data-live-search="true">
+											<select data-disableTipo="true" name="tipo" class="selectpicker form-control" id="selectTipo" data-live-search="true">
 												<option disabled selected label="Zona não selecionada"> Tipo de imóvel </option>
 												<optgroup label="Zona não selecionada">
 													<option></option>
@@ -71,9 +71,11 @@
 											</select>
 										</div>
 										<div class="col-md-6 col-sm-4 hidden rural-form">
+											<label for="extensao"> Extensão: </label>
 											<input type="number" name="extensao" step="any" placeholder="Extensão (hec.)" class="form-control" value="<%= form.values ? form.values.extensao : null %>">
 										</div>
 										<div class="col-md-6 col-sm-4 hidden urbano-form">
+											<label for="area"> Área: </label>
 											<input type="number" name="area" step="any" placeholder="Área (m²)" class="form-control" value="<%= form.values ? form.values.area : null %>">
 										</div>
 
