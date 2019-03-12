@@ -19,14 +19,12 @@
         <span><i class="fa fa-map-marker" aria-hidden="true"></i>
             <% if( prop.zona == 'Rural' ){ %>
 
-            <%= prop.cidade %>,
-            <%= prop.localidade %>
+            <%= prop.cidade ? prop.cidade : '' %>
+            <%= prop.localidade ? `, ${prop.localidade}` : '' %>
             <%}else{ %>
-
-            Rua
-            <%= prop.rua %>,
-            <%= prop.numero %>, Bairro
-            <%= prop.bairro %>.
+            <%= prop.rua ? `Rua ${prop.rua}` : ''%>
+            <%= prop.rua ? `, num. ${prop.numero}` : '' %>
+            <%= prop.rua ? `, Bairro. ${prop.bairro},` : '' %>
             <% } %>
         </span>
 
