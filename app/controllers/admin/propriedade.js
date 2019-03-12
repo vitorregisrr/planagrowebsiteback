@@ -112,8 +112,8 @@ exports.postNewPropiedade = (req, res, next) => {
                             })
                             .save()
 
-                            .then(resul => {
-                                res.redirect('/admin/propiedades');
+                            .then(prop => {
+                                res.redirect('/admin/propiedades/outrasfotos/'+prop.codigo);
                             })
 
                             .catch(err => next(err));
@@ -127,8 +127,8 @@ exports.postNewPropiedade = (req, res, next) => {
             })
             .save()
 
-            .then(resul => {
-                res.redirect('/admin/propiedades');
+            .then(prop => {
+                res.redirect('/admin/propiedades/outrasfotos/'+prop.codigo);
             })
 
             .catch(err => next(err));
@@ -241,6 +241,30 @@ exports.getEditPropiedade = (req, res, next) => {
             }
             res.render('admin/propriedade/editarpropriedade', {
                 pageTitle: "Editar Propiedade",
+                path: "admin/propiedades",
+                prop: prop,
+                errorMessage: [],
+                form: false,
+                robotsFollow: false,
+                contact: false
+            })
+        })
+        .catch(err => next(err, 500));
+};
+
+//GET EDIT PROPIEDADE
+exports.getOutrasFotos = (req, res, next) => {
+    const propCod = req.params.propCod;
+
+    Propiedade.findOne({
+            codigo: propCod
+        })
+        .then(prop => {
+            if (!prop) {
+                return res.redirect('/admin/propiedades')
+            }
+            res.render('admin/propriedade/outrasfotos', {
+                pageTitle: "Editar Outra fotos",
                 path: "admin/propiedades",
                 prop: prop,
                 errorMessage: [],

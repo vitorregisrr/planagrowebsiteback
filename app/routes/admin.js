@@ -31,6 +31,8 @@ router.get('/admin', isAuth, setLocals, adminCtrl.info.getInfo);
     router.get('/admin/propiedades/edit/:propId', isAuth, setLocals, adminCtrl.propriedade.getEditPropiedade);
     //POST EDIT
     router.post('/admin/propiedades/edit', isAuth, setLocals, validators.propriedade.editPropiedade, adminCtrl.propriedade.postEditPropiedade);
+    //GET OUTRAS FOTOS
+    router.get('/admin/propiedades/outrasfotos/:propCod', isAuth, setLocals, adminCtrl.propriedade.getOutrasFotos);
     //DELETE 
     router.post('/admin/propiedades/delete', isAuth, setLocals, adminCtrl.propriedade.deletePropiedade);
 
