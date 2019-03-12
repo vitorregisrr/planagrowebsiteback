@@ -1,7 +1,9 @@
 if (document.querySelector('input[name="selectedTipo"]')) {
+    const disableTodos = document.querySelector('#selectTipo').getAttribute('data-disableTipo');
+    console.log(disableTodos)
     const tipoSelecionado = document.querySelector('input[name="selectedTipo"]').value,
         tiposUrbanos = `<optgroup label="Tipos Urbanos" id="selectUrbano">
-                            ${ $('input[name="selectedTipo"]').attr('data-disableTipo') ? '<option value="">Todos</option>' : '' }
+                            ${ !disableTodos ? '<option value="">Todos</option>' : '' }
                             <option ${"Casa"==tipoSelecionado?"selected":""} value="Casa">Casa</option>
                             <option ${"Apartamento"==tipoSelecionado?"selected":""} value="Apartamento">Apartamento</option>
                             <option ${"Kitnet"==tipoSelecionado?"selected":""} value="Kitnet">Kitnet</option>   
@@ -11,7 +13,7 @@ if (document.querySelector('input[name="selectedTipo"]')) {
                         </optgroup>`,
 
         tiposRurais = `<optgroup label="Tipos Rurais" id="selectRural">
-                            ${ $('input[name="selectedTipo"]').attr('data-disableTipo') ? '<option value="">Todos</option>' : '' }
+                            ${ !disableTodos ? '<option value="">Todos</option>' : '' }
                             <option ${"Chácara"==tipoSelecionado?"selected":""} value="Chácara">Chácara</option>
                             <option ${"Sítio"==tipoSelecionado?"selected":""} value="Sítio">Sítio</option>  
                             <option ${"Campo"==tipoSelecionado?"selected":""} value="Campo">Campo</option>

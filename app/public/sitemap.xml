@@ -10,10 +10,10 @@
     <loc>https://www.planagroimoveis.com.br/comprar</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/sobre</loc>
+    <loc>https://www.planagroimoveis.com.br/contato</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/contato</loc>
+    <loc>https://www.planagroimoveis.com.br/sobre</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/112</loc>
@@ -38,6 +38,9 @@
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/comprar?filtrando=Rural</loc>
+  </url>
+  <url>
+    <loc>https://www.planagroimoveis.com.br/propriedade/144</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/132</loc>
