@@ -43,7 +43,7 @@
 								<form id="filtros-urbano" class="filter-form hidden" method="GET" action="/comprar">
 									<input type="hidden" name="zona" value="Urbana">
 									<input type="hidden" name="filtrando" value="Urbana">
-									<div class="col-md-3 col-sm-6">
+									<div class="col-md-2 col-sm-6">
 										<select name="tipo" class="selectpicker form-control">
 											<option selected disabled>Tipo</option>
 											<option value="">Todos</option>
@@ -79,7 +79,10 @@
 									<div class="col-md-2 col-sm-3">
 										<input name="cidade" type="text" placeholder="Cidade" class="form-control" value="<%= form.cidade ? form.cidade : ''%>">
 									</div>
-									<div class="col-md-3 col-sm-4">
+									<div class="col-md-2 col-sm-4">
+										<input name="rua" type="text" placeholder="Rua" class="form-control" value="<%= form.rua ? form.rua : ''%>">
+									</div>
+									<div class="col-md-2 col-sm-4">
 										<input name="bairro" type="text" placeholder="Bairro" class="form-control" value="<%= form.bairro ? form.bairro : ''%>">
 									</div>
 									<div class="col-md-2 col-sm-4">
