@@ -557,19 +557,19 @@
 					<div class="row">
 
 						<% if( props.length <= 0){ %>
-						<div class="error_area">
-							<div style="font-size: 30px; line-height: 30px" class="page_error">Não encontramos nada! :(</div>
-							<h4 style="font-size: 15px; line-height: 25px; margin: 20px 0" class="section_title_green">Parece que não
-								achamos nada pelos filtros que você escolheu! Tente pesquisar de forma menos específica, ou verifique se os
-								endereços estão corretamente digitados.</h4>
-							<a href="/comprar" class="btn btn-default">voltar para todas as propriedades</a>
-						</div>
+							<div class="error_area">
+								<div style="font-size: 30px; line-height: 30px" class="page_error">Não encontramos nada! :(</div>
+								<h4 style="font-size: 15px; line-height: 25px; margin: 20px 0" class="section_title_green">Parece que não
+									achamos nada pelos filtros que você escolheu! Tente pesquisar de forma menos específica, ou verifique se os
+									endereços estão corretamente digitados.</h4>
+								<a href="/comprar" class="btn btn-default">voltar para todas as propriedades</a>
+							</div>
 						<% } %>
 
 						<% for(prop of props) {%>
-						<div class="column mix mix_all urbano col-md-3 col-sm-4 col-xs-12">
-							<%- include('../includes/components/propiedade-grid.ejs') %>
-						</div>
+							<div class="imovel_column col-md-3 col-sm-4 col-xs-12">
+								<%- include('../includes/components/propiedade-grid.ejs') %>
+							</div>
 						<% } %>
 					</div>
 					<!-- End imovel Grids -->

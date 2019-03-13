@@ -124,23 +124,6 @@
     }
 }
 
-@media screen and (max-width:1200px) and (min-width:992px) {
-    .bed_area ul li:last-child {
-        display: none
-    }
-
-    .quantity {
-        display: flex;
-        margin-left: -12px;
-        margin-right: -12px
-    }
-
-    .quantity ul li {
-        display: inline-block;
-        padding: 0 12px
-    }
-}
-
 @media screen and (max-width:992px) {
     .navbar-header {
         padding: 0
