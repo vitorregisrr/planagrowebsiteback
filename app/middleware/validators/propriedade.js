@@ -15,12 +15,6 @@ exports.propiedade = [
         })
         .isString(),
 
-        body('descricao', 'A descrição é obrigatória.')
-        .isLength({
-            min: 1
-        })
-        .isString(),
-
         body('preco', 'O campo número é inválido')
         .isNumeric()
         .withMessage('Preço inválido, deve ser um número.')
@@ -83,12 +77,6 @@ exports.editPropiedade = [
         }),
 
         body('propietario', 'O campo propietáro é obrigatório.')
-        .isLength({
-            min: 1
-        })
-        .isString(),
-
-        body('descricao', 'A descrição é obrigatória.')
         .isLength({
             min: 1
         })
