@@ -60,7 +60,8 @@
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo" value="<%= prop.tipo %>">
-											<select  data-disableTipo="true" name="tipo" class="selectpicker form-control" id="selectTipo" data-live-search="true">
+											<select data-disableTipo="true" name="tipo" class="selectpicker form-control" id="selectTipo"
+											 data-live-search="true">
 												<option value="" disabled selected label="Zona não selecionada"> Tipo de imóvel </option>
 												<optgroup label="Zona não selecionada">
 													<option></option>
@@ -79,9 +80,18 @@
 
 										<div class="col-md-6 col-sm-4">
 											<label for="preco"> Preço: </label>
-											<input value="<%= prop.preco %>" type="text" placeholder="Preço (R$)." class="form-control moneymask"
+											<input value="<%= prop.preco %>" style="margin-bottom: 5px !important" type="text" placeholder="Preço (R$)." class="form-control moneymask"
 											 data-realinput="#intPreco">
 											<input type="hidden" name="preco" id="intPreco" value="<%= prop.preco %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
+										</div>
+
+										<div class="col-md-6 col-sm-4">
+											<label for="precoHec"> Preço por Hectar: </label>
+											<input value="<%= prop.precoHec %>" style="margin-bottom: 5px !important" type="text" placeholder="Preço (R$)." class="form-control moneymask"
+											 data-realinput="#intPrecoHec">
+											<input type="hidden" name="precoHec" id="intPrecoHec" value="<%= prop.precoHec %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
 										</div>
 									</div>
 								</div>

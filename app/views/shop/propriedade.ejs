@@ -135,72 +135,86 @@
 									<li><span>Tipo :</span>
 										<%= prop.tipo %>
 									</li>
-									<li><span>Preço :</span> R$<span class="tomoney">
-											<%= prop.preco %></span></li>
 
 									<% if(prop.zona == 'Urbana') { %>
+										<% if(prop.preco) { %>
+											<li><span>Preço :</span> R$<span class="tomoney">
+											<%= prop.preco %></span></li>
+										<% }else{ %>
+											<li><span>Preço :</span><span>
+											Confira!</span></li>
+										<% } %>
+										<% if( prop.dormitorios) { %>
+										<li><span>Dormitórios :</span>
+											<%= prop.dormitorios %>
+										</li>
+										<% } %>
 
-									<% if( prop.dormitorios) { %>
-									<li><span>Dormitórios :</span>
-										<%= prop.dormitorios %>
-									</li>
-									<% } %>
+										<% if( prop.banheiros) { %>
+										<li><span>Banheiros :</span>
+											<%= prop.banheiros %>
+										</li>
+										<% } %>
 
-									<% if( prop.banheiros) { %>
-									<li><span>Banheiros :</span>
-										<%= prop.banheiros %>
-									</li>
-									<% } %>
+										<% if( prop.suites) { %>
+										<li><span>Suites :</span>
+											<%= prop.suites %>
+										</li>
+										<% } %>
 
-									<% if( prop.suites) { %>
-									<li><span>Suites :</span>
-										<%= prop.suites %>
-									</li>
-									<% } %>
+										<% if( prop.cozinhas) { %>
+										<li><span>Cozinhas :</span>
+											<%= prop.cozinhas %>
+										</li>
+										<% } %>
 
-									<% if( prop.cozinhas) { %>
-									<li><span>Cozinhas :</span>
-										<%= prop.cozinhas %>
-									</li>
-									<% } %>
+										<% if( prop.patio ) { %>
+										<li><span>Pátio :</span>
+											<%= prop.patio ? 'Sim' : 'Não' %>
+										</li>
+										<% } %>
 
-									<% if( prop.patio ) { %>
-									<li><span>Pátio :</span>
-										<%= prop.patio ? 'Sim' : 'Não' %>
-									</li>
-									<% } %>
+										<% if(prop.piscina) { %>
+										<li><span>Piscina :</span>
+											<%= prop.piscina ? 'Sim' : 'Não' %>
+										</li>
+										<% } %>
 
-									<% if(prop.piscina) { %>
-									<li><span>Piscina :</span>
-										<%= prop.piscina ? 'Sim' : 'Não' %>
-									</li>
-									<% } %>
-
-									<% if(prop.mobiliado) { %>
-									<li><span>Mobiliado :</span>
-										<%= prop.mobiliado ? 'Sim' : 'Não' %>
-									</li>
-									<% } %>
-
+										<% if(prop.mobiliado) { %>
+										<li><span>Mobiliado :</span>
+											<%= prop.mobiliado ? 'Sim' : 'Não' %>
+										</li>
+										<% } %>
 									<% } else{ %>
+										<% if(prop.preco) { %>
+											<li><span>Preço :</span> R$<span class="tomoney">
+											<%= prop.preco %></span></li>
+										<% } %>
+										<% if(prop.precoHec) { %>
+											<li><span>Preço/hec:</span> 
+											R$<span class="tomoney"><%= prop.precoHec %></span></li>
+										<% }else{ %>
+											<li><span>Preço/hec:</span>
+											<span>Confira!</span></li>
+										<% } %>
+										
+										<% if( prop.acudes ) { %>
+										<li><span>Açudes :</span>
+											<%= prop.acudes %>
+										</li>
+										<% } %>
 
-									<% if( prop.acudes ) { %>
-									<li><span>Açudes :</span>
-										<%= prop.acudes %>
-									</li>
-									<% } %>
+										<% if( prop.galpoes ) { %>
+										<li><span>Galpões :</span>
+											<%= prop.galpoes %>
+										</li>
+										<% } %>
 
-									<% if( prop.galpoes ) { %>
-									<li><span>Galpões :</span>
-										<%= prop.galpoes %>
-									</li>
-									<% } %>
-
-									<% if( prop.mangueiras ) { %>
-									<li><span>Mangueiras :</span>
-										<%= prop.mangueiras %>
-									</li>
-									<% } %>
+										<% if( prop.mangueiras ) { %>
+										<li><span>Mangueiras :</span>
+											<%= prop.mangueiras %>
+										</li>
+										<% } %>
 
 									<% } %>
 								</ul>

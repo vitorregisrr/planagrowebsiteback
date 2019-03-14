@@ -81,8 +81,15 @@
 
 										<div class="col-md-6 col-sm-4">
 											<label for="preco"> Preço: </label>
-											<input type="text" placeholder="Preço (R$)." class="form-control moneymask" data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
+											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask" data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
 											<input type="hidden" name="preco" id="intPreco" value="<%= form ? form.values.preco : '' %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
+										</div>
+										<div class="rural-form col-md-6 col-sm-4 hidden">
+											<label for="precoHec"> Preço por Hectar: </label>
+											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask" data-realinput="#intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
+											<input type="hidden" name="precoHec" id="intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
 										</div>
 									</div>
 								</div>

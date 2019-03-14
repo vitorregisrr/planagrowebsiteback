@@ -315,6 +315,7 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.descricao = req.body.descricao;
                                 prop.zona = req.body.zona;
                                 prop.preco = req.body.preco;
+                                prop.precoHec = req.body.precoHec;
                                 prop.tipo = req.body.tipo;
                                 prop.extensao = req.body.extensao;
                                 prop.area = req.body.area;
@@ -359,6 +360,7 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.tipo = req.body.tipo;
                 prop.extensao = req.body.extensao;
                 prop.area = req.body.area;
+                prop.precoHec = req.body.precoHec;
                 prop.cep = req.body.cep;
                 prop.bairro = req.body.bairro;
                 prop.rua = req.body.rua;

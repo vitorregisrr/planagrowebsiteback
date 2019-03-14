@@ -36,7 +36,14 @@ const Propiedade = new Schema({
 
     preco: {
         type: Number,
-        required: true,
+        default: 0,
+        required: false,
+    },
+
+    precoHec: {
+        type: Number,
+        default: 0,
+        required: false,
     },
 
     ativo: {
