@@ -574,7 +574,7 @@ section {
 }
 
 .top_contact {
-    padding: 8px 0
+    padding: 13px 0
 }
 
 .top_contact>ul>li {
@@ -831,7 +831,7 @@ input[type=radio]:checked {
 }
 
 .nav-logo {
-    height: 85px;
+    height: 60px;
     width: auto
 }
 
@@ -864,7 +864,7 @@ input[type=radio]:checked {
 
 #nav_header {
     min-height: 85px;
-    padding: 15px 0
+    padding: 2px 0
 }
 
 .navbar-default .navbar-nav li a {
@@ -2060,7 +2060,7 @@ a.btn-read {
     background: url(../img/banner.jpg) no-repeat;
     background-size: cover;
     position: relative;
-    margin-top: 185px
+    margin-top: 135px
 }
 
 #banner.webp{
@@ -3987,7 +3987,7 @@ blockquote {
     background: url(../img/fixed-slider.jpg) no-repeat fixed;
     background-size: cover;
     background-position: center center;
-    height: 80vh;
+    height: 90vh;
     position: relative
 }
 
