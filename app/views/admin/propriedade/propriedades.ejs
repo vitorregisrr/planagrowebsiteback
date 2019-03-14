@@ -119,8 +119,18 @@
 											<br />
 											<span><i class="fa fa-user" aria-hidden="true"></i>
 												<%= prop.propietario %></span>
-											<div class="listing_price"> R$<span class="tomoney">
-													<%= prop.preco %></span></div>
+											<div class="listing_price">
+												 <% if(prop.zona == 'Urbana') { %>
+													 R$<span class="tomoney"><%= prop.preco %></span>
+												 <% }else { %>
+													<% if(prop.precoHec) { %>
+														R$<span class="tomoney"><%= prop.precoHec %></span>/hec
+
+													<% }else if(prop.preco) {%>
+														R$<span class="tomoney"><%= prop.preco %></span>/hec
+													<% } %>
+												<% } %>
+											</div>
 										</div>
 
 									</td>
