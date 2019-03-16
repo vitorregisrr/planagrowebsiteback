@@ -131,6 +131,11 @@ exports.postNewPropiedade = (req, res, next) => {
         ...req.body
     }
 
+    if(req.body.proprietarioId == ''){
+        delete form.proprietarioId;
+    }
+
+    console.log(form.proprietarioId)
     if (req.file) {
         fileHelper.compressImage(req.file, 700)
             .then(newPath => {
@@ -352,7 +357,6 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.ativo = req.body.ativo;
                                 prop.destaque = req.body.destaque;
                                 prop.titulo = req.body.titulo;
-                                prop.proprietarioId = req.body.proprietarioId;
                                 prop.descricao = req.body.descricao;
                                 prop.zona = req.body.zona;
                                 prop.preco = req.body.preco;
@@ -365,6 +369,10 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.rua = req.body.rua;
                                 prop.numero = req.body.numero;
                                 prop.vantagens = JSON.parse(req.body.vantagens);
+
+                                if(req.body.proprietarioId && req.body.proprietarioId != ''){
+                                    prop.proprietarioId = req.body.proprietarioId;
+                                }
 
                                 //detalhes urbano
                                 prop.dormitorios = req.body.dormitorios;
@@ -394,7 +402,11 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.ativo = req.body.ativo;
                 prop.destaque = req.body.destaque;
                 prop.titulo = req.body.titulo;
-                prop.proprietarioId = req.body.proprietarioId;
+
+                if(req.body.proprietarioId && req.body.proprietarioId != ''){
+                    prop.proprietarioId = req.body.proprietarioId;
+                }
+
                 prop.descricao = req.body.descricao;
                 prop.zona = req.body.zona;
                 prop.preco = req.body.preco;

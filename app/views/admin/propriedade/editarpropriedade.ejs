@@ -43,10 +43,8 @@
 										<div class="col-md-12 col-sm-12">
 											<select name="proprietarioId" data-live-search="true" title="Proprietário do Imóvel" class="selectpicker form-control">
 												<% for( cliente of clientes) { %>
-												<option <%=prop.proprietarioId==cliente.id ? 'selected' : '' %> value="
-													<%= cliente._id %>">
-													<%= cliente.nome %>
-												</option>
+												<option <%=prop.proprietarioId==cliente.id ? 'selected' : '' %> 
+												value="<%= cliente._id %>"><%= cliente.nome %></option>
 												<% } %>
 											</select>
 										</div>
