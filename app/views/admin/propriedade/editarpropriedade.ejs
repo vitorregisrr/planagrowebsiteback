@@ -41,10 +41,9 @@
 									se a zona rural é selecionada, e vice-versa para a zona urbana selecionada.-->
 									<div class="row">
 										<div class="col-md-12 col-sm-12">
-											<select name="proprietarioId" data-live-search="true" title="Proprietário do Imóvel" class="selectpicker form-control">
-												<% for( cliente of clientes) { %>
-												<option <%=prop.proprietarioId==cliente.id ? 'selected' : '' %> 
-												value="<%= cliente._id %>"><%= cliente.nome %></option>
+											<select name="proprietarioId" data-live-search="true" title="Proprietário do Imóvel" class="selectpicker-cliente form-control">
+												<% if( prop.proprietarioId) { %>
+												<option selected value="<%= prop.proprietarioId.id %>"><%= prop.proprietarioId.nome %></option>
 												<% } %>
 											</select>
 										</div>
@@ -357,11 +356,11 @@
 <!-- SCRIPT VANTAGENS -->
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
-		const inputVantagens = $('#inputVantagens');
-		const btnNewVantagem = $('#nova_vantagem');
-		let vantagens = JSON.parse(inputVantagens.val());
-		let numberOfDetails = vantagens.length;
-		let inputDetailsJson = document.querySelector('#vantagens_array');
+		inputVantagens = $('#inputVantagens');
+		btnNewVantagem = $('#nova_vantagem');
+		vantagens = JSON.parse(inputVantagens.val());
+		numberOfDetails = vantagens.length;
+		inputDetailsJson = document.querySelector('#vantagens_array');
 
 		vantagens.forEach(vantagem => {
 			$('.vantagem').children('.remove_vantagem').remove();
@@ -386,35 +385,35 @@
 			</div>`
 			);
 		});
+	});
 
-		const removeDetail = (btn) => {
-			const parent = $(btn).parent();
-			numberOfDetails -= 1;
-			vantagens = vantagens.filter(v => v.id != parent.children('.vantagem--input').data('number'));
-			inputVantagens.val(JSON.stringify(vantagens));
-			parent.remove();
-			$('.vantagem').last().append(
-				'<button type="button" onclick="removeDetail(this) "class="remove_vantagem"><i class="fa fa-remove"></i></button>'
-			);
+	const removeDetail = (btn) => {
+		const parent = $(btn).parent();
+		numberOfDetails -= 1;
+		vantagens = vantagens.filter(v => v.id != parent.children('.vantagem--input').data('number'));
+		inputVantagens.val(JSON.stringify(vantagens));
+		parent.remove();
+		$('.vantagem').last().append(
+			'<button type="button" onclick="removeDetail(this) "class="remove_vantagem"><i class="fa fa-remove"></i></button>'
+		);
+	}
+
+	const setVantagem = vant => {
+		const number = vant.getAttribute('data-number');
+		const alreadyExists = vantagens.find(v => v.id == number);
+
+		if (alreadyExists) {
+			alreadyExists.value = vant.value;
+
+		} else {
+			vantagens.push({
+				id: number,
+				value: vant.value
+			});
 		}
 
-		const setVantagem = vant => {
-			const number = vant.getAttribute('data-number');
-			const alreadyExists = vantagens.find(v => v.id == number);
-
-			if (alreadyExists) {
-				alreadyExists.value = vant.value;
-
-			} else {
-				vantagens.push({
-					id: number,
-					value: vant.value
-				});
-			}
-
-			inputVantagens.val(JSON.stringify(vantagens));
-		};.
-	});
+		inputVantagens.val(JSON.stringify(vantagens));
+	};
 </script>
 
 </html>

@@ -4,7 +4,7 @@ const Propiedade = require('../../models/propiedade'),
     cloudinary = require('../../util/cloudinary');
 
 
-    
+
 //GET CLIENTE PROFILE
 exports.getCliente = (req, res, next) => {
     const clienteCod = req.params.clienteCod;
@@ -16,19 +16,21 @@ exports.getCliente = (req, res, next) => {
             if (!cliente) {
                 return res.redirect('/admin/clientes')
             }
-          
-            Propiedade.find({ proprietarioId : cliente })
-            .then( props => {
-                res.render('admin/cliente/perfilcliente', {
-                    pageTitle: "Perfil de "+cliente.nome,
-                    path: "admin/clientes",
-                    cliente: cliente,
-                    props: props,
-                    robotsFollow: false,
-                    contact: false
+
+            Propiedade.find({
+                    proprietarioId: cliente
                 })
-            })
-            .catch( err => next(err, 500));
+                .then(props => {
+                    res.render('admin/cliente/perfilcliente', {
+                        pageTitle: "Perfil de " + cliente.nome,
+                        path: "admin/clientes",
+                        cliente: cliente,
+                        props: props,
+                        robotsFollow: false,
+                        contact: false
+                    })
+                })
+                .catch(err => next(err, 500));
         })
         .catch(err => next(err, 500));
 };
@@ -272,7 +274,7 @@ exports.getDocumentos = (req, res, next) => {
 exports.setNewDocumento = (req, res, next) => {
     const clienteId = req.body.id;
     const docName = req.body.docName;
-    
+
     Cliente.findOne({
             _id: clienteId,
         })
@@ -288,10 +290,16 @@ exports.setNewDocumento = (req, res, next) => {
                 })
                 .then(doc => {
                     fileHelper.delete(req.file.path);
-                    cliente.documentos.push({ ...doc, titulo: docName });
+                    cliente.documentos.push({
+                        ...doc,
+                        titulo: docName
+                    });
                     cliente.save()
                         .then(resul => {
-                            return res.status(200).json(JSON.stringify({ ...doc, titulo: docName}));
+                            return res.status(200).json(JSON.stringify({
+                                ...doc,
+                                titulo: docName
+                            }));
                         })
                         .catch(err => {
                             cloudinary.uploader.destroy(doc.public_id)
@@ -300,7 +308,7 @@ exports.setNewDocumento = (req, res, next) => {
                             });
                         });
                 })
-                .catch( err => {
+                .catch(err => {
                     fileHelper.delete(req.file.path);
                     res.status(500).json({
                         "message": err
@@ -311,6 +319,25 @@ exports.setNewDocumento = (req, res, next) => {
             "message": err
         }))
 
+}
+
+
+exports.searchByAjax = (req, res, next) => {
+    const text = req.query.text;
+    Cliente.find({
+            nome: {
+                $regex: text,
+                $options: 'i'
+            }
+        })
+        .select('nome id codigo')
+        .then(clientes => {
+            return res.status(200).json({clientes});
+        })
+        .catch(err =>{
+            res.status(500).json(JSON.stringify([]));
+            console.log(err)
+        })
 }
 
 exports.removeDocumento = (req, res, next) => {

@@ -107,4 +107,7 @@ router.get('/admin', isAuth, setLocals, adminCtrl.info.getInfo);
     //REMOVER DOCUMENTO DE CIENTE
     router.post('/api/cliente/removerdocumento', isAuth, adminCtrl.cliente.removeDocumento);
 
+    //SEARCH CLIENT BY REGEX
+    router.get('/api/cliente/searchbyajax', isAuth, adminCtrl.cliente.searchByAjax);
+
 module.exports = router;

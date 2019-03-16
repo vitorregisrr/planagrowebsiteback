@@ -274,6 +274,7 @@ exports.getEditPropiedade = (req, res, next) => {
     Propiedade.findOne({
             _id: propId
         })
+        .populate('proprietarioId')
         .then(prop => {
             if (!prop) {
                 return res.redirect('/admin/propiedades')
