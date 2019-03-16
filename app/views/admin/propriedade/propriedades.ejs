@@ -93,7 +93,7 @@
 								<tr>
 									<td>
 										<% if(prop.mainImage) {%>
-										<img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>" style="height: 150px; width: 120px; object-fit: cover">
+										<img data-src="<%= prop.mainImage.url %>" class="lazy" alt="<%= prop.titulo %>" style="height: 150px; width: 120px; object-fit: cover">
 										<% } %>
 									</td>
 									<td>

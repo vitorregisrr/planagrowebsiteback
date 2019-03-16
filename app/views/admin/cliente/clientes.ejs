@@ -75,7 +75,7 @@
 								<% for(cliente of clientes) { %>
 								<tr>
 									<td>
-										<a href="/admin/cliente/<%= cliente.codigo %>"><img src="<%= cliente.mainImage ? cliente.mainImage.url : '/img/thumbs/cliente.png' %>" alt="<%= cliente.titulo %>"
+										<a href="/admin/cliente/<%= cliente.codigo %>"><img class="lazy" data-src="<%= cliente.mainImage ? cliente.mainImage.url : '/img/thumbs/cliente.png' %>" alt="<%= cliente.titulo %>"
 											 style="height: 120px; width: 90px; object-fit: cover"></a>
 									</td>
 									<td>

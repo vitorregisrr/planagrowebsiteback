@@ -6,7 +6,7 @@
             <%= prop.codigo %>
         </div>
        <% if(prop.mainImage) {%>
-         <a href="/propriedade/<%= prop.codigo %>"><img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>"></a>
+         <a href="/propriedade/<%= prop.codigo %>"><img class="lazy" src="/img/loading.gif" data-src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>"></a>
        <% } %>
 
     </div>
