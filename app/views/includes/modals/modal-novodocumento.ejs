@@ -115,40 +115,41 @@ document.addEventListener("DOMContentLoaded", function() {
     const onSelectFile = () => upload(inputDocumento.files[0]);
 
     inputDocumento.addEventListener('change', onSelectFile, false);
-
-    const removeDocumento = (btn) => {
-
-        const csurfToken = document.getElementById('csurfToken').value;
-        const clienteId = document.getElementById('inputId').value;
-        const documentoId = $(btn).attr('data-documento');
-
-        var formData = new FormData();
-        formData.append('documentoId', documentoId);
-        formData.append('clienteId', clienteId);
-        formData.append('_csrf', csurfToken);
-
-
-        fetch('/api/cliente/removerdocumento', {
-                method: 'POST',
-                headers: {
-                    "csrf-token": csurfToken
-                },
-                body: formData
-            })
-
-            .then(
-                response => response.json()
-
-            ).then(success => {
-                console.log(success)
-                $(btn).closest('tr').remove();
-
-            }).catch(
-                error => {
-                    alert('Houve um erro ao apagar o documento, reincie a página e tente novamente!');
-                    console.log(error);
-                }
-            );
-    }
 });
+
+
+const removeDocumento = (btn) => {
+
+    const csurfToken = document.getElementById('csurfToken').value;
+    const clienteId = document.getElementById('inputId').value;
+    const documentoId = $(btn).attr('data-documento');
+
+    var formData = new FormData();
+    formData.append('documentoId', documentoId);
+    formData.append('clienteId', clienteId);
+    formData.append('_csrf', csurfToken);
+
+
+    fetch('/api/cliente/removerdocumento', {
+            method: 'POST',
+            headers: {
+                "csrf-token": csurfToken
+            },
+            body: formData
+        })
+
+        .then(
+            response => response.json()
+
+        ).then(success => {
+            console.log(success)
+            $(btn).closest('tr').remove();
+
+        }).catch(
+            error => {
+                alert('Houve um erro ao apagar o documento, reincie a página e tente novamente!');
+                console.log(error);
+            }
+        );
+}
 </script>
