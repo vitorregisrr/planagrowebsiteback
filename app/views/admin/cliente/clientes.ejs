@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner" class="img-webp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="my_properties_filter">
+						<form action="#" method="GET">
+							<div class="row">
+								<div class="col-sm-5">
+									<input name="nome" type="text" class="form-control" placeholder="Nome" value="<%= form.nome ? form.nome : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<input name="cpf" type="text" class="form-control" placeholder="CPF" value="<%= form.cpf ? form.cpf : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<input name="rg" type="text" class="form-control" placeholder="RG" value="<%= form.rg ? form.rg : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<input name="codigo" type="number" class="form-control" placeholder="Código" value="<%= form.codigo ? form.codigo : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<input name="telefone" type="number" class="form-control" placeholder="Telefone" value="<%= form.telefone ? form.telefone : ''%>">
+								</div>
+								<div class="col-sm-3">
+									<input name="celular" type="number" class="form-control" placeholder="Celular" value="<%= form.celular ? form.celular : ''%>">
+								</div>
+								<div class="col-sm-2">
+									<button type="submit" class="btn-default-outline btn-filter">Filtrar</button>
+								</div>
+								<div class="col-sm-2">
+									<a role="button" href="/admin/clientes" class="btn-default-outline btn-filter">Zerar filtros</a>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="my_property_list">
+						<table class="list_table" border="0" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<td></td>
+									<td>Nome</td>
+									<td>Código</td>
+									<td>Telefone(s)</td>
+									<td>E-mail</td>
+									<td>Ações</td>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(cliente of clientes) { %>
+								<tr>
+									<td>
+										<a href="/admin/cliente/<%= cliente.codigo %>"><img src="<%= cliente.mainImage ? cliente.mainImage.url : '/img/thumbs/cliente.png' %>" alt="<%= cliente.titulo %>"
+											 style="height: 120px; width: 90px; object-fit: cover"></a>
+									</td>
+									<td>
+										<div class="property-text mt-2">
+											<a href="/admin/cliente/<%= cliente.codigo %>">
+												<h6 class="property-title">
+													<%= cliente.nome %>
+												</h6>
+											</a>
+										</div>
+									</td>
+									<td>
+										<span>
+											<%= cliente.codigo %></span>
+									</td>
+									<td>
+										<%= cliente.telefone ? cliente.telefone +'/' : '' %>
+										<%= cliente.celular %>
+									</td>
+									<td>
+										<%= cliente.email %>
+									</td>
+									<td>
+										<span class="text-center"><a href="/admin/clientes/edit/<%= cliente.id %>"><i class="fa fa-pencil" aria-hidden="true"></i><br/>
+											 	Editar</a></span>
+										<span class="text-center"><a href="/admin/cliente/<%= cliente.codigo %>"><i class="fa fa-user" aria-hidden="true"></i><br/>
+												Perfil</a></span>
+									</td>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
+					</div>
+					<!-- Pagination -->
+					<div class="row">
+						<div class="col-md-12">
+							<%- include('../../includes/components/pagination') %>
+						</div>
+					</div>
+					<!-- End Pagination -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/components/footer') %>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

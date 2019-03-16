@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner" class="img-webp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+
+	<div class="container">
+		<div class="row">
+			<%- include('../../includes/components/painelMenu') %>
+			<div class="col-md-8 col-sm-12">
+				<div class="row" style="padding: 20px 12px">
+					<a href="/admin/clientes" class="btn btn-sm btn-default">Voltar para Clientes</a>
+					<a href="/admin/clientes/edit/<%= cliente.id %>" class="float-right btn btn-sm btn-default">Editar</a>
+				</div>
+				<div class="row mb-10">
+					<div class="col-md-4 col-sm-2">
+						<div class="profile_person">
+							<img src="<%= cliente.mainImage ? cliente.mainImage.url : '/img/thumbs/cliente.png'%>" alt="">
+						</div>
+					</div>
+					<div class="col-md-8 col-sm-10">
+						<div class="profile_description">
+							<div class="agent-intro">
+								<span>Perfil de</span>
+								<h4 class="agent-name">
+									<%= cliente.nome %>
+								</h4>
+							</div>
+							<div class="profile_data">
+								<ul>
+									<li><span>CPF:</span>:
+										<%= cliente.cpf ? cliente.cpf : 'Não especificado'%>
+									</li>
+									<li><span>RG:</span>:
+										<%= cliente.rg ? cliente.rg : 'Não especificado'%>
+									</li>
+									<li><span>Email:</span>:
+										<%= cliente.email ? cliente.email : 'Não especificado'%>
+									</li>
+									<li><span>Telefone: </span>:
+										<%= cliente.telefone ? cliente.telefone : 'Não especificado'%>
+									</li>
+									<li><span>Celular: </span>:
+										<%= cliente.celular ? cliente.celular : 'Não especificado'%>
+									</li>
+									<li><span>Endereco: </span>:
+										<%= cliente.endereco ? cliente.endereco : 'Não especificado'%>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row mb-10">
+					<div class="col-md-6">
+						<div class="upload_media">
+							<h4 class="inner-title mb-0">Documentos do Cliente</h4>
+							<div class="row">
+								<div class="col-md-10">
+									<div class="row">
+										<table class="list_table" border="0" cellpadding="0" cellspacing="0">
+											<thead>
+												<tr>
+													<td>Título</td>
+													<td>Ações</td>
+												</tr>
+											</thead>
+											<tbody id="documentosTable">
+												<% for(documento of cliente.documentos) {%>
+												<tr>
+													<td><a href="${doc.url}">
+															<%= documento.titulo %></a></td>
+													<td>
+														<span class="text-center"><a href="<%= documento.url %>"><i class="fa fa-arrow-right" aria-hidden="true"></i><br />
+																Abrir</a></span>
+													</td>
+												</tr>
+												<% } %>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="agents_property">
+							<div class="row">
+								<div class="col-md-12">
+									<h4 class="inner-title mb-0">Propriedades do Cliente</h4>
+								</div>
+							</div>
+							<div class="row">
+								<div class="my_property_list">
+									<table class="list_table" border="0" cellpadding="0" cellspacing="0">
+										<thead>
+											<tr>
+												<td>Propriedade</td>
+												<td></td>
+												<td>Código</td>
+												<td>Ações</td>
+											</tr>
+										</thead>
+										<tbody>
+											<% for(prop of props) { %>
+											<tr>
+												<td>
+													<% if(prop.mainImage) {%>
+													<img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>" style="height: 150px; width: 120px; object-fit: cover">
+													<% } %>
+												</td>
+												<td>
+													<div class="property-text mt-2">
+														<a href="/propriedade/<%= prop.codigo %>">
+															<h6 class="property-title">
+																<%= prop.titulo %>
+															</h6>
+														</a>
+														<div class="listing_price">
+															<% if(prop.zona == 'Urbana') { %>
+															R$<span class="tomoney">
+																<%= prop.preco %></span>
+															<% }else { %>
+															<% if(prop.precoHec) { %>
+															R$<span class="tomoney">
+																<%= prop.precoHec %></span>/hec
+
+															<% }else if(prop.preco) {%>
+															R$<span class="tomoney">
+																<%= prop.preco %></span>/hec
+															<% } %>
+															<% } %>
+														</div>
+													</div>
+
+												</td>
+												<td>
+													<span>
+														<%= prop.codigo %></span>
+												</td>
+												<td>
+													<span class="text-center"><a href="/admin/propiedades/edit/<%= prop.id %>"><i class="fa fa-pencil"
+															 aria-hidden="true"></i><br /> Editar</a></span><br />
+													<span class="text-center"><a href="/propriedade/<%= prop.codigo %>"><i class="fa fa-arrow-right"
+															 aria-hidden="true"></i><br /> Ver</a></span><br />
+												</td>
+											</tr>
+											<% } %>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%- include('../../includes/components/footer')%>
+	<%- include('../../includes/modals/modal-novodocumento')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

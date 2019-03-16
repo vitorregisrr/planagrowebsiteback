@@ -71,6 +71,10 @@
 												<%= form.tipo == 'Escritório' ? 'selected' : ''%>
 												<% }%>
 												value="Terreno">Terreno</option>
+											<option <% if(form.tipo ) { %>
+												<%= form.tipo == 'Chácara' ? 'selected' : ''%>
+												<% }%>
+												value="Chácara">Chácara</option>
 										</select>
 									</div>
 									<div class="col-md-2 col-sm-3">
@@ -604,6 +608,8 @@
 
 <!-- Localidaeds Bagé hidden -->
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+	
 	$('#selectMunicipio').change(function () {
 		console.log()
 		if ($(this).val() == 'bage') {
@@ -613,9 +619,7 @@
 			$('#bageLocalidades').addClass('hidden');
 		}
 	});
-</script>
-<!-- Filter Hidden Script -->
-<script>
+	
 	$('#btnUrbano').click(function () {
 
 		if (!$(this).hasClass('active')) {
@@ -649,6 +653,7 @@
 			$('#filtros-rural').addClass('hidden');
 		}
 	});
+});
 </script>
 
 </html>

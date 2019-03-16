@@ -32,14 +32,11 @@
 					<div class="my_properties_filter">
 						<form action="#" method="GET">
 							<div class="row">
-								<div class="col-sm-2">
-									<p class="pt-2">Filtrar por: </p>
-								</div>
 								<div class="col-sm-5">
 									<input name="titulo" type="text" class="form-control" placeholder="Título" value="<%= form.titulo ? form.titulo : ''%>">
 								</div>
 								<div class="col-sm-5">
-									<input name="propietario" type="text" class="form-control" placeholder="Propietário" value="<%= form.propietario ? form.propietario : ''%>">
+									<input name="proprietario" type="text" class="form-control" placeholder="Proprietário" value="<%= form.proprietario ? form.proprietario : ''%>">
 								</div>
 								<div class="col-sm-3">
 									<input name="codigo" type="number" class="form-control" placeholder="Código" value="<%= form.codigo ? form.codigo : ''%>">
@@ -83,8 +80,8 @@
 						<table class="list_table" border="0" cellpadding="0" cellspacing="0">
 							<thead>
 								<tr>
-									<td></td>
 									<td>Propriedade</td>
+									<td></td>
 									<td>Código</td>
 									<td>Destaque</td>
 									<td>Ativo</td>
@@ -118,7 +115,7 @@
 											</span>
 											<br />
 											<span><i class="fa fa-user" aria-hidden="true"></i>
-												<%= prop.propietario %></span>
+												<a href="/admin/cliente/<%= prop.proprietarioId ? prop.proprietarioId.codigo : '' %>"><%= prop.proprietarioId ? prop.proprietarioId.nome : '' %></a></span>
 											<div class="listing_price">
 												 <% if(prop.zona == 'Urbana') { %>
 													 R$<span class="tomoney"><%= prop.preco %></span>
@@ -147,7 +144,8 @@
 											<%= prop.ativo ? 'Sim' : 'Não' %></span>
 									</td>
 									<td>
-										<span><a href="/admin/propiedades/edit/<%= prop.id %>"><i class="fa fa-pencil" aria-hidden="true"></i> Editar</a></span>
+										<span class="text-center"><a href="/admin/propiedades/edit/<%= prop.id %>"><i class="fa fa-pencil" aria-hidden="true"></i><br/> Editar</a></span><br />
+										<span class="text-center"><a href="/propriedade/<%= prop.codigo %>"><i class="fa fa-arrow-right" aria-hidden="true"></i><br/> Ver</a></span><br />
 									</td>
 								</tr>
 								<% } %>

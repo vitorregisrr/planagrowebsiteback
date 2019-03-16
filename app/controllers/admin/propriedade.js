@@ -1,4 +1,5 @@
 const Propiedade = require('../../models/propiedade'),
+    Cliente = require('../../models/cliente'),
     fileHelper = require('../../util/file-helper'),
     cloudinary = require('../../util/cloudinary');
 
@@ -9,13 +10,6 @@ exports.getPropiedades = (req, res, next) => {
     let totalItems;
 
     const query = {};
-
-    if (req.query.propietario && req.query.propietario != '') {
-        query.propietario = {
-            $regex: req.query.propietario,
-            $options: 'i'
-        }
-    }
 
     if (req.query.titulo && req.query.titulo != '') {
         query.titulo = {
@@ -36,50 +30,90 @@ exports.getPropiedades = (req, res, next) => {
         query.ativo = req.query.ativo;
     }
 
+    let proprietarioQuery = {};
 
-    Propiedade.find(query)
-        .countDocuments()
-        .then(num => {
-            totalItems = num;
-            const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+    if (req.query.proprietario) {
+        proprietarioQuery = {
+            nome: {
+                $regex: req.query.proprietario,
+                $options: 'i'
+            }
+        }
+    }
+    Cliente.findOne(proprietarioQuery)
+        .then(cliente => {
 
-            Propiedade.find(query)
-                .skip((currentPage - 1) * ITEMS_PER_PAGE)
-                .limit(ITEMS_PER_PAGE)
-                .sort({
-                    $natural: -1,
-                    ativo: -1
+            if (req.query.proprietario && cliente) {
+                query.proprietarioId = cliente.id;
+
+            } else if (req.query.proprietario && !cliente) {
+                return res.render('admin/propriedade/propriedades', {
+                    pageTitle: "Gerenciar Propriedades",
+                    props: [],
+                    path: "admin/propiedades",
+                    hasNext: false,
+                    hasPrevious:false,
+                    totalPages: 1,
+                    currentPage: 1,
+                    robotsFollow: false,
+                    contact: false,
+                    form: req.query
+                });
+            }
+
+            Propiedade.find({
+                    ...query
                 })
-                .then(props => {
-                    res.render('admin/propriedade/propriedades', {
-                        pageTitle: "Gerenciar Propriedades",
-                        props: props,
-                        path: "admin/propiedades",
-                        hasNext: currentPage < totalPages,
-                        hasPrevious: currentPage > 1,
-                        totalPages,
-                        currentPage,
-                        robotsFollow: false,
-                        contact: false,
-                        form: req.query
-                    });
+                .countDocuments()
+                .then(num => {
+                    totalItems = num;
+                    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+                    Propiedade.find(query)
+                        .skip((currentPage - 1) * ITEMS_PER_PAGE)
+                        .limit(ITEMS_PER_PAGE)
+                        .sort({
+                            $natural: -1,
+                            ativo: -1
+                        })
+                        .populate('proprietarioId')
+                        .then(props => {
+                            res.render('admin/propriedade/propriedades', {
+                                pageTitle: "Gerenciar Propriedades",
+                                props: props,
+                                path: "admin/propiedades",
+                                hasNext: currentPage < totalPages,
+                                hasPrevious: currentPage > 1,
+                                totalPages,
+                                currentPage,
+                                robotsFollow: false,
+                                contact: false,
+                                form: req.query
+                            });
+                        })
+                        .catch(err => next(err, 500));
                 })
                 .catch(err => next(err, 500));
         })
-        .catch(err => next(err, 500));
 };
 
 
 //GET NEW PROPIEDADE
 exports.getNewPropiedade = (req, res, next) => {
-    res.render('admin/propriedade/novapropriedade', {
-        pageTitle: "Nova Propiedade",
-        path: "admin/novapropiedade",
-        errorMessage: [],
-        form: false,
-        robotsFollow: false,
-        contact: false
-    });
+    Cliente.find()
+        .select('codigo nome')
+        .then(clientes => {
+            res.render('admin/propriedade/novapropriedade', {
+                pageTitle: "Nova Propiedade",
+                path: "admin/novapropiedade",
+                errorMessage: [],
+                form: false,
+                clientes,
+                robotsFollow: false,
+                contact: false
+            });
+        })
+        .catch(err => next(err, 500))
 };
 
 //POST NEW PROPIEDADE
@@ -113,7 +147,7 @@ exports.postNewPropiedade = (req, res, next) => {
                             .save()
 
                             .then(prop => {
-                                res.redirect('/admin/propiedades/outrasfotos/'+prop.codigo);
+                                res.redirect('/admin/propiedades/outrasfotos/' + prop.codigo);
                             })
 
                             .catch(err => next(err));
@@ -128,7 +162,7 @@ exports.postNewPropiedade = (req, res, next) => {
             .save()
 
             .then(prop => {
-                res.redirect('/admin/propiedades/outrasfotos/'+prop.codigo);
+                res.redirect('/admin/propiedades/outrasfotos/' + prop.codigo);
             })
 
             .catch(err => next(err));
@@ -214,12 +248,12 @@ exports.removePropiedadeImage = (req, res, next) => {
                         .catch(err => {
                             cloudinary.uploader.destroy(image.public_id)
                             res.status(500).json({
-                                'message': "Falha na hora de salvar a propiedade"
+                                'message': "Falha na hora de apagar a imagem do servidor"
                             });
                         });
                 })
                 .catch(err => res.status(500).json({
-                    'message': "Falha na hora de apagar a imagem" + err
+                    'message': "Falha na hora de salvar as alterações" + err
                 }))
 
         })
@@ -239,15 +273,22 @@ exports.getEditPropiedade = (req, res, next) => {
             if (!prop) {
                 return res.redirect('/admin/propiedades')
             }
-            res.render('admin/propriedade/editarpropriedade', {
-                pageTitle: "Editar Propiedade",
-                path: "admin/propiedades",
-                prop: prop,
-                errorMessage: [],
-                form: false,
-                robotsFollow: false,
-                contact: false
-            })
+
+            Cliente.find()
+                .select('codigo nome')
+                .then(clientes => {
+                    res.render('admin/propriedade/editarpropriedade', {
+                        pageTitle: "Editar Propiedade",
+                        path: "admin/propiedades",
+                        prop: prop,
+                        clientes: clientes,
+                        errorMessage: [],
+                        form: false,
+                        robotsFollow: false,
+                        contact: false
+                    })
+                })
+                .catch(err => next(err, 500));
         })
         .catch(err => next(err, 500));
 };
@@ -311,7 +352,7 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.ativo = req.body.ativo;
                                 prop.destaque = req.body.destaque;
                                 prop.titulo = req.body.titulo;
-                                prop.propietario = req.body.propietario;
+                                prop.proprietarioId = req.body.proprietarioId;
                                 prop.descricao = req.body.descricao;
                                 prop.zona = req.body.zona;
                                 prop.preco = req.body.preco;
@@ -353,7 +394,7 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.ativo = req.body.ativo;
                 prop.destaque = req.body.destaque;
                 prop.titulo = req.body.titulo;
-                prop.propietario = req.body.propietario;
+                prop.proprietarioId = req.body.proprietarioId;
                 prop.descricao = req.body.descricao;
                 prop.zona = req.body.zona;
                 prop.preco = req.body.preco;

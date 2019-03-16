@@ -320,7 +320,8 @@
     }
 
     #nav_header {
-        min-height: 60px
+        min-height: 60px;
+        padding: 7px 0;
     }
 
     .navbar-toggle {
@@ -414,6 +415,12 @@
         width: 50%;
         float: left;
         padding-right: 30px
+    }
+
+    .profile_person img{
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
     }
 }
 

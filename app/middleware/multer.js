@@ -16,7 +16,7 @@ module.exports = (multer({
     fileFilter: (req, file, cb) => {
          
         // Array com os formatos aceitos
-        const isAccepted = ['image/png', 'image/jpg', 'image/jpeg'].find( t => file.mimetype == t );
+        const isAccepted = ['image/png', 'image/jpg', 'image/jpeg', 'application/pdf'].find( t => file.mimetype == t );
 
         if(isAccepted){
             return cb(null, true);

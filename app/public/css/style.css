@@ -1797,9 +1797,12 @@ a.btn-read {
     padding-top: 10px
 }
 
-#feedback {
-    background: url(../img/fixed-slider.jpg) no-repeat fixed;
+#feedback{
     position: relative;
+}
+
+#feedback.no-webp {
+    background: url(../img/fixed-slider.jpg) no-repeat fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -2057,10 +2060,13 @@ a.btn-read {
 }
 
 #banner {
-    background: url(../img/banner.jpg) no-repeat;
-    background-size: cover;
     position: relative;
     margin-top: 135px
+}
+
+#banner.no-webp {
+    background: url(../img/banner.jpg) no-repeat;
+    background-size: cover;
 }
 
 #banner.webp{
@@ -2111,11 +2117,15 @@ a.btn-read {
 #who_are {
     margin-top: 80px;
     padding: 0;
-    background-image: url(../img/fixed-slider.jpg) !important
 }
 
+#who_are.no-webp {
+    background-image: url(../img/fixed-slider.jpg) !important;
+}
+
+
 #who_are.webp{
-    background-image: url(../img/fixed-slider.webp) !important
+    background-image: url(../img/fixed-slider.webp) !important;
 }
 
 .who_text {
@@ -2623,6 +2633,11 @@ blockquote {
 
 .agent-info {
     margin-bottom: 50px
+}
+
+.agent-name{
+    margin-top: -13px;
+    padding-top: 0px;
 }
 
 .imovel_search {
@@ -3709,10 +3724,13 @@ blockquote {
 
 #imovel-submit {
     padding: 70px 0;
+    position: relative
+}
+
+#imovel-submit.no-webp {
     background: url(../img/banner1920x1170.jpg) no-repeat fixed;
     background-position: center center;
     background-size: cover;
-    position: relative
 }
 
 #imovel-submit.webp{
@@ -3984,11 +4002,14 @@ blockquote {
 }
 
 #slider-fixed {
+    height: 90vh;
+    position: relative
+}
+
+#slider-fixed.no-webp {
     background: url(../img/fixed-slider.jpg) no-repeat fixed;
     background-size: cover;
     background-position: center center;
-    height: 90vh;
-    position: relative
 }
 
 #slider-fixed.webp{
@@ -4526,6 +4547,10 @@ blockquote {
     margin-bottom: 0
 }
 
+.text-red{
+    color: #601416 !important;
+}
+
 @media screen and (max-width:768px) {
     .remove_testimonial {
         background-color: #601416;
@@ -4573,4 +4598,8 @@ blockquote {
 
 .mt-2 {
     margin-top: 20px !important
+}
+
+.mb-0{
+    margin-bottom: 0 !important;
 }

@@ -29,26 +29,27 @@
 <input type="hidden" value="<%= csrfToken %>" id="csurfToken">
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
     const inputImage = document.getElementById('inputImage');
     const id = document.getElementById('inputId').value;
     const csurfToken = document.getElementById('csurfToken').value;
     const box = document.getElementById('uploadMessage');
-
+    
     const setUploadMessage = status => {
-
+    
         switch (status) {
             case 'waiting':
                 inputImage.disabled = false;
                 box.className = 'alert alert-info';
                 box.innerHTML = 'Por favor, selecione uma imagem e aguarde.';
                 break
-
+    
             case 'uploading':
                 inputImage.disabled = true;
                 box.className = 'alert alert-warning';
                 box.innerHTML = 'Imagem recebida! Estamos processando, por favor aguarde.';
                 break;
-
+    
             case 'error':
                 inputImage.disabled = false;
                 box.className = 'alert alert-danger';
@@ -56,23 +57,23 @@
                 break;
         }
     }
-
+    
     setUploadMessage('waiting');
-
+    
     const upload = (file) => {
         var formData = new FormData();
         formData.append('image', file);
         formData.append('id', id);
         formData.append('_csrf', csurfToken);
-
+    
         setUploadMessage('uploading');
-
+    
         fetch('/api/propiedade/novafoto', {
             method: 'POST',
             body: formData
         }).then(
             response => response.json()
-
+    
         ).then(image => {
             image = JSON.parse(image)
             $('#novaFotoModal').modal('hide');
@@ -100,24 +101,24 @@
             }
         );
     };
-
+    
     // Event handler executed when a file is selected
     const onSelectFile = () => upload(inputImage.files[0]);
-
+    
     inputImage.addEventListener('change', onSelectFile, false);
-
+    
     const removeImage = (btn) => {
-
+    
         const csurfToken = document.getElementById('csurfToken').value;
         const propId = document.getElementById('inputId').value;
         const imageId = $(btn).attr('data-image');
-
+    
         var formData = new FormData();
         formData.append('imageId', imageId);
         formData.append('propId', propId);
         formData.append('_csrf', csurfToken);
-
-
+    
+    
         fetch('/api/propiedade/removerfoto', {
                 method: 'POST',
                 headers: {
@@ -125,14 +126,14 @@
                 },
                 body: formData
             })
-
+    
             .then(
                 response => response.json()
-
+    
             ).then(success => {
                 console.log(success)
                 $(btn).closest('tr').remove();
-
+    
             }).catch(
                 error => {
                     alert('Houve um erro ao apagar a imagem, reinciie a página e tente novamente!');
@@ -140,4 +141,5 @@
                 }
             );
     }
+});
 </script>

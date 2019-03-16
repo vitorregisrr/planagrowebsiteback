@@ -1,5 +1,6 @@
 const { check, body, validationResult } = require('express-validator/check'),
-Propriedade = require('../../models/propiedade');
+Propriedade = require('../../models/propiedade'),
+Cliente = require('../../models/cliente');
 
 exports.propiedade = [
     [
@@ -8,12 +9,6 @@ exports.propiedade = [
             max: 40,
             min: 5
         }),
-
-        body('propietario', 'O campo propietáro é obrigatório.')
-        .isLength({
-            min: 1
-        })
-        .isString(),
 
         body('preco', 'O campo número é inválido')
         .isNumeric()
@@ -48,7 +43,10 @@ exports.propiedade = [
     (req, res, next) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res
+            Cliente.find()
+            .select('codigo nome')
+            .then(clientes => {
+                return res
                 .status(422)
                 .render('admin/propriedade/novapropriedade', {
                     path: 'admin/propiedades',
@@ -59,8 +57,11 @@ exports.propiedade = [
                         hasError: errors.array().map(i => i.param)
                     },
                     robotsFollow: false,
+                    clientes,
                     contact: false
                 })
+            })
+            .catch( err => next(err, 500));
         } else {
             next();
         }
@@ -75,12 +76,6 @@ exports.editPropiedade = [
             max: 40,
             min: 5
         }),
-
-        body('propietario', 'O campo propietáro é obrigatório.')
-        .isLength({
-            min: 1
-        })
-        .isString(),
 
         body('preco', 'O campo número é inválido')
         .withMessage('Preço inválido, deve ser um número.'),
@@ -117,16 +112,22 @@ exports.editPropiedade = [
                 _id: req.body.id
             })
             .then( prop => {
-                return res
-                .status(422)
-                .render('admin/propriedade/editarpropriedade', {
-                    path: 'admin/propiedades',
-                    pageTitle: 'Editar Propiedade',
-                    errorMessage: errors.array(),
-                    prop: prop,
-                    robotsFollow: false,
-                    contact: false
+                Cliente.find()
+                .select('codigo nome')
+                .then(clientes => {
+                    return res
+                    .status(422)
+                    .render('admin/propriedade/editarpropriedade', {
+                        path: 'admin/propiedades',
+                        pageTitle: 'Editar Propiedade',
+                        errorMessage: errors.array(),
+                        prop: prop,
+                        clientes,
+                        robotsFollow: false,
+                        contact: false
+                    })
                 })
+                .catch( err => next(err, 500))
             })
             .catch( err => next(err));
         } else {

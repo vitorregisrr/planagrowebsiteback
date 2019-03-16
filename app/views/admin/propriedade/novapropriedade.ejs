@@ -39,7 +39,16 @@
 									se a zona rural é selecionada, e vice-versa para a zona urbana selecionada.-->
 									<div class="row">
 										<div class="col-md-12 col-sm-12">
-											<input name="propietario" type="text" placeholder="Propietário do Imóvel" class="form-control" value="<%= form.values ? form.values.propietario : null %>">
+											<select name="proprietarioId" data-live-search="true" title="Proprietário do Imóvel" class="selectpicker form-control">
+												<% for( cliente of clientes) { %>
+												<option <% if(form) { %>
+													<%= form.values.proprietarioId == cliente.id ? 'selected' : '' %>
+													<% }%>value="
+													<%= cliente._id %>">
+													<%= cliente.nome %>
+												</option>
+												<% } %>
+											</select>
 										</div>
 										<div class="col-md-12 col-sm-12">
 											<input name="titulo" type="text" placeholder="Título do Imóvel" class="form-control" value="<%= form.values ? form.values.titulo : null %>">
@@ -62,7 +71,8 @@
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo" value="<%= form ? form.values.tipo : '' %>">
-											<select data-disableTipo="true" name="tipo" class="selectpicker form-control" id="selectTipo" data-live-search="true">
+											<select data-disableTipo="true" name="tipo" class="selectpicker form-control" id="selectTipo"
+											 data-live-search="true">
 												<option disabled selected label="Zona não selecionada"> Tipo de imóvel </option>
 												<optgroup label="Zona não selecionada">
 													<option></option>
@@ -81,13 +91,15 @@
 
 										<div class="col-md-6 col-sm-4">
 											<label for="preco"> Preço: </label>
-											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask" data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
+											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask"
+											 data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
 											<input type="hidden" name="preco" id="intPreco" value="<%= form ? form.values.preco : '' %>">
 											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
 										</div>
 										<div class="rural-form col-md-6 col-sm-4 hidden">
 											<label for="precoHec"> Preço por Hectar: </label>
-											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask" data-realinput="#intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
+											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask"
+											 data-realinput="#intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
 											<input type="hidden" name="precoHec" id="intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
 											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
 										</div>
@@ -381,68 +393,70 @@
 
 <!-- SCRIPT VANTAGENS -->
 <script>
-	const inputVantagens = $('#inputVantagens');
-	const btnNewVantagem = $('#nova_vantagem');
-	let vantagens = [];
+	document.addEventListener("DOMContentLoaded", function () {
+		const inputVantagens = $('#inputVantagens');
+		const btnNewVantagem = $('#nova_vantagem');
+		let vantagens = [];
 
-	if (inputVantagens.val()) {
-		vantagens = JSON.parse(inputVantagens.val());
-	}
+		if (inputVantagens.val()) {
+			vantagens = JSON.parse(inputVantagens.val());
+		}
 
-	let numberOfDetails = vantagens.length || 0;
-	let inputDetailsJson = document.querySelector('#vantagens_array');
+		let numberOfDetails = vantagens.length || 0;
+		let inputDetailsJson = document.querySelector('#vantagens_array');
 
-	vantagens.forEach(vantagem => {
-		$('.vantagem').children('.remove_vantagem').remove();
+		vantagens.forEach(vantagem => {
+			$('.vantagem').children('.remove_vantagem').remove();
 
-		numberOfDetails += 1;
-		$('#details_list').append(
-			`<div class="vantagem animated fadeIn">
+			numberOfDetails += 1;
+			$('#details_list').append(
+				`<div class="vantagem animated fadeIn">
 					<input type="text" class="form-control vantagem--input" oninput="setVantagem(this)" value="${vantagem.value}" data-number="${vantagem.id}">
 					<button type="button" onclick="removeDetail(this)" class="remove_vantagem"><i class="fa fa-remove"></i></button>
 			</div>`
-		);
-	});
+			);
+		});
 
-	btnNewVantagem.click(() => {
-		$('.vantagem').children('.remove_vantagem').remove();
+		btnNewVantagem.click(() => {
+			$('.vantagem').children('.remove_vantagem').remove();
 
-		numberOfDetails += 1;
-		$('#details_list').append(
-			`<div class="vantagem animated fadeIn">
+			numberOfDetails += 1;
+			$('#details_list').append(
+				`<div class="vantagem animated fadeIn">
 					<input type="text" class="form-control vantagem--input" oninput="setVantagem(this)" placeholder="Vantagem" data-number="${numberOfDetails}">
 					<button type="button" onclick="removeDetail(this)" class="remove_vantagem"><i class="fa fa-remove"></i></button>
 			</div>`
-		);
-	});
+			);
+		});
 
-	const removeDetail = (btn) => {
-		const parent = $(btn).parent();
-		numberOfDetails -= 1;
-		vantagens = vantagens.filter(v => v.id != parent.children('.vantagem--input').data('number'));
-		inputVantagens.val(JSON.stringify(vantagens));
-		parent.remove();
-		$('.vantagem').last().append(
-			'<button type="button" onclick="removeDetail(this) "class="remove_vantagem"><i class="fa fa-remove"></i></button>'
-		);
-	}
-
-	const setVantagem = vant => {
-		const number = vant.getAttribute('data-number');
-		const alreadyExists = vantagens.find(v => v.id == number);
-
-		if (alreadyExists) {
-			alreadyExists.value = vant.value;
-
-		} else {
-			vantagens.push({
-				id: number,
-				value: vant.value
-			});
+		const removeDetail = (btn) => {
+			const parent = $(btn).parent();
+			numberOfDetails -= 1;
+			vantagens = vantagens.filter(v => v.id != parent.children('.vantagem--input').data('number'));
+			inputVantagens.val(JSON.stringify(vantagens));
+			parent.remove();
+			$('.vantagem').last().append(
+				'<button type="button" onclick="removeDetail(this) "class="remove_vantagem"><i class="fa fa-remove"></i></button>'
+			);
 		}
 
-		inputVantagens.val(JSON.stringify(vantagens));
-	};
+		const setVantagem = vant => {
+			const number = vant.getAttribute('data-number');
+			const alreadyExists = vantagens.find(v => v.id == number);
+
+			if (alreadyExists) {
+				alreadyExists.value = vant.value;
+
+			} else {
+				vantagens.push({
+					id: number,
+					value: vant.value
+				});
+			}
+
+			inputVantagens.val(JSON.stringify(vantagens));
+		};
+	});
 </script>
 
 </html>

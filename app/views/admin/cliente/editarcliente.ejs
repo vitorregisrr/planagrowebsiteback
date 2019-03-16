@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head') %>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner" class="img-webp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="row">
+						<%- include('../../includes/form/errorBox') %>
+						<div class="col-md-9 col-sm-12">
+							<form action="/admin/clientes/edit" method="post" class="submit_form" enctype="multipart/form-data">
+								<input name="id" type="hidden" value="<%= cliente.id %>">
+								<h4 class="inner-title">Editando <span class="text-red"><%= cliente.nome %></span></h4>
+								<div class="row">
+									<div class="col-12">
+										<input name="nome" type="text" placeholder="Nome do Cliente" class="form-control" value="<%= cliente.nome %>">
+									</div>
+									<div class="col-12">
+										<input name="email" type="email" placeholder="E-mail do Cliente" class="form-control" value="<%= cliente.email %>">
+									</div>
+									<div class="col-12">
+										<select name="estadocivil" class="selectpicker form-control" id="selectZona" data-live-search="true">
+											<option selected disabled>Estado Civíl</option>
+											<option value="Não Especificado">Não Especificado</option>
+											<option value="Solteiro">Solteiro</option>
+											<option value="Casado">Casado</option>
+											<option value="Divorciado">Divorciado</option>
+										</select>
+									</div>
+									<div class="col-12">
+										<input type="text" name="endereco" placeholder="Endereço do cliente" value="<%= cliente.endereco %>" class="form-control">
+									</div>
+									<div class="col-md-6 col-sm-4">
+										<label for="cpf">CPF:</label>
+										<input type="text" name="cpf" placeholder="Ex: 123.456.789-10" class="form-control" value="<%= cliente.cpf %>">
+									</div>
+
+									<div class="col-md-6 col-sm-4">
+										<label for="rg">RG:</label>
+										<input type="text" name="rg" placeholder="Ex: 1234567" class="form-control" value="<%= cliente.rg %>">
+									</div>
+									<div class="col-md-6 col-sm-4">
+										<label for="telefone">Telefone (residencial):</label>
+										<input type="tel" maxlength="15" name="telefone" placeholder="Ex: 3242-0000" class="form-control" value="<%= cliente.telefone %>">
+									</div>
+
+									<div class="col-md-6 col-sm-4">
+										<label for="celular">Celular:</label>
+										<input type="tel" maxlength="15" name="celular" placeholder="Ex: 539999-9999" class="form-control" value="<%= cliente.celular %>">
+									</div>
+
+
+								</div>
+								<div class="upload_media">
+									<h4 class="inner-title">Foto do Cliente</h4>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="img-submit">
+												<input name="image" type="file" id="main-img-upload" />
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="upload_media">
+									<h4 class="inner-title">Documentos do Cliente</h4>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="row">
+												<table class="list_table" border="0" cellpadding="0" cellspacing="0">
+													<thead>
+														<tr>
+															<td>Prévia</td>
+															<td>Título</td>
+															<td>Ações</td>
+														</tr>
+													</thead>
+													<tbody id="documentosTable">
+														<% for(documento of cliente.documentos) {%>
+														<tr>
+															<td>
+																<div class="property-text">
+																	<a href="<%= documento.url %>"><img src="<%= documento.url %>" style="height: 100px; width: 100px; object-fit: cover"></a>
+																</div>
+															</td>
+															<td><a href="${doc.url}">
+																	<%= documento.titulo %></a></td>
+															<td>
+																<span><button type="button" data-documento="<%= documento.public_id %>" onclick="removeDocumento(this)"><i
+																		 class="fa fa-times" aria-hidden="true"></i> Remover</button></span>
+															</td>
+														</tr>
+														<% } %>
+													</tbody>
+												</table>
+												<button type="button" class="btn btn-default float-right" id="novaFoto" data-toggle="modal" data-target="#novoDocumentoModal"><i
+													 class="fa fa-plus"></i></button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="browse_submit">
+									<div class="row">
+										<button type="submit" class="float-right btn btn-default">Salvar</button>
+									</div>
+								</div>
+								<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+							</form>
+						</div>
+						<div class="col-sm-6">
+							<form action="/admin/clientes/delete" method="POST">
+								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+								<input type="hidden" name="id" value="<%= cliente.id %>">
+								<button type="submit" href="/admin/clientes" class="btn btn-sm btn-default-outline btn-filter">Deletar</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<%- include('../../includes/components/footer')%>
+	<%- include('../../includes/modals/modal-novodocumento')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

@@ -24,13 +24,15 @@
 
 <!-- Share buttons modal -->
 <script>
-    $('.share-button').click(function () {
-        const codigo = $(this).attr('data-codigo');
-        const titulo = $(this).attr('data-titulo');
-        console.log( codigo, titulo )
-        $('#share-buttons').attr('data-a2a-url', `https://www.planagroimoveis.com.br/propriedade/${codigo}`);
-        $('#share-buttons').attr('data-a2a-title', `Planagro Imóveis - ${titulo}`);
-    });
+document.addEventListener("DOMContentLoaded", function() {
+  $('.share-button').click(function () {
+      const codigo = $(this).attr('data-codigo');
+      const titulo = $(this).attr('data-titulo');
+      console.log( codigo, titulo )
+      $('#share-buttons').attr('data-a2a-url', `https://www.planagroimoveis.com.br/propriedade/${codigo}`);
+      $('#share-buttons').attr('data-a2a-title', `Planagro Imóveis - ${titulo}`);
+  });
+});
 </script>
 
 <script>

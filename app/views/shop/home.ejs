@@ -265,6 +265,7 @@
 
 <!-- Featured Filtering buttons mask -->
 <script>
+document.addEventListener("DOMContentLoaded", function() {
 	$('[data-filter=".urbano"]').click(() => {
 		$('.urbanofilter-tabs').addClass('visible');
 		$('.urbanofilter-tabs').removeClass('hidden');
@@ -285,6 +286,7 @@
 		$('.ruralfilter-tabs').removeClass('visible');
 		$('.ruralfilter-tabs').addClass('hidden');
 	});
+});
 </script>
 
 </html>

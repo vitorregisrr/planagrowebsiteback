@@ -13,9 +13,14 @@ const Propiedade = new Schema({
         required: true,
     },
 
+    proprietarioId: {
+        type: Schema.Types.ObjectId,
+        ref: 'Cliente'
+    },
+
     propietario: {
         type: String,
-        required: true,
+        required: false,
     },
 
     descricao: {

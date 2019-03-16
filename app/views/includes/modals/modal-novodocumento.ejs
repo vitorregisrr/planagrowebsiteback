@@ -1,0 +1,154 @@
+<div class="modal fade" id="novoDocumentoModal" tabindex="-1" role="dialog" aria-labelledby="novoDocumentoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="novoDocumentoModalLabel">Novo Documento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="upload_media">
+                    <h4 class="inner-title">Insira um título</h4>
+                    <input id="docName" type="text" max-length="30" class="form-control" placeholder="Título do documento"/>
+                    <h4 class="inner-title">Selecione a foto</h4>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="img-submit">
+                                <input type="file" id="inputDocumento" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p id="uploadMessage" style="text-transform: none;" class="alert alert-info">Selecione um documento(PDF ou Imagem) e aguarde as instruções nesta caixa.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="<%= cliente.id %>" id="inputId">
+<input type="hidden" value="<%= csrfToken %>" id="csurfToken">
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  
+    const inputDocumento = document.getElementById('inputDocumento');
+    const inputName = document.getElementById('docName');
+    const id = document.getElementById('inputId').value;
+    const csurfToken = document.getElementById('csurfToken').value;
+    const box = document.getElementById('uploadMessage');
+
+    const setUploadStatus = status => {
+
+        switch (status) {
+            case 'waiting':
+                inputDocumento.disabled = false;
+                inputName.value.disabled = false;
+                inputName.value = '';
+                box.className = 'alert alert-info';
+                box.innerHTML = 'Por favor, selecione um documento(pdf ou imagem) e aguarde.';
+                break
+
+            case 'uploading':
+                inputDocumento.disabled = true;
+                inputName.value.disabled = true;
+                box.className = 'alert alert-warning';
+                box.innerHTML = 'Documento recebido! Estamos processando, por favor aguarde.';
+                break;
+
+            case 'error':
+                inputDocumento.disabled = false;
+                inputName.value.disabled = false;
+                inputDocumento.value = '';
+                box.className = 'alert alert-danger';
+                box.innerHTML = 'O Arquivo recebido é inválido ou houve uma falha no servidor. Tente novamente. ';
+                break;
+        }
+    }
+
+    setUploadStatus('waiting');
+
+    const upload = (file) => {
+        var formData = new FormData();
+        formData.append('image', file);
+        formData.append('docName', inputName.value);
+        formData.append('id', id);
+        formData.append('_csrf', csurfToken);
+
+        setUploadStatus('uploading');
+
+        fetch('/api/cliente/novodocumento', {
+            method: 'POST',
+            body: formData
+        }).then(
+            response => response.json()
+
+        ).then(doc => {
+            doc = JSON.parse(doc)
+            $('#novoDocumentoModal').modal('hide');
+            setUploadStatus('waiting');
+            $(inputDocumento).val('');
+            $('#documentosTable').append(
+                `
+                <tr>
+                    <td>
+                        <div class="property-text">
+                        <a href="${doc.url}"><img src="${doc.url}"
+                            style="height: 100px; width: 100px; object-fit: cover"></a>
+                        </div>
+                    </td>
+                    <td> <a href="${doc.url}">${doc.titulo}</a> </td>
+                    <td>
+                        <span><button type="button" data-documento="${doc.public_id}" onclick="removeDocumento(this)"><i class="fa fa-times" aria-hidden="true"></i> Remover</button></span>
+                    </td>
+                </tr> 
+            `
+            );
+        }).catch(
+            error => {
+                setUploadStatus('error');
+            }
+        );
+    };
+
+    // Event handler executed when a file is selected
+    const onSelectFile = () => upload(inputDocumento.files[0]);
+
+    inputDocumento.addEventListener('change', onSelectFile, false);
+
+    const removeDocumento = (btn) => {
+
+        const csurfToken = document.getElementById('csurfToken').value;
+        const clienteId = document.getElementById('inputId').value;
+        const documentoId = $(btn).attr('data-documento');
+
+        var formData = new FormData();
+        formData.append('documentoId', documentoId);
+        formData.append('clienteId', clienteId);
+        formData.append('_csrf', csurfToken);
+
+
+        fetch('/api/cliente/removerdocumento', {
+                method: 'POST',
+                headers: {
+                    "csrf-token": csurfToken
+                },
+                body: formData
+            })
+
+            .then(
+                response => response.json()
+
+            ).then(success => {
+                console.log(success)
+                $(btn).closest('tr').remove();
+
+            }).catch(
+                error => {
+                    alert('Houve um erro ao apagar o documento, reincie a página e tente novamente!');
+                    console.log(error);
+                }
+            );
+    }
+});
+</script>

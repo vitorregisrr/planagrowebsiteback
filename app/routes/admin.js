@@ -15,6 +15,7 @@ const adminCtrl = {
     index: require('../controllers/admin/index'),
     info: require('../controllers/admin/info'),
     sobre: require('../controllers/admin/sobre'),
+    cliente: require('../controllers/admin/cliente'),
     propriedade: require('../controllers/admin/propriedade')
 }
 
@@ -35,6 +36,24 @@ router.get('/admin', isAuth, setLocals, adminCtrl.info.getInfo);
     router.get('/admin/propiedades/outrasfotos/:propCod', isAuth, setLocals, adminCtrl.propriedade.getOutrasFotos);
     //DELETE 
     router.post('/admin/propiedades/delete', isAuth, setLocals, adminCtrl.propriedade.deletePropiedade);
+
+//CLIENTES
+    router.get('/admin/clientes', isAuth, setLocals, adminCtrl.cliente.getClientes);
+    //GET PROFILE
+    router.get('/admin/cliente/:clienteCod', isAuth, setLocals, adminCtrl.cliente.getCliente);
+    //GET NEW
+    router.get('/admin/clientes/new', isAuth, setLocals, adminCtrl.cliente.getNewCliente);
+    //POST NEW
+    router.post('/admin/clientes/new', isAuth, setLocals, adminCtrl.cliente.postNewCliente);
+    //GET EDIT
+    router.get('/admin/clientes/edit/:clienteId', isAuth, setLocals, adminCtrl.cliente.getEditCliente);
+    //POST EDIT
+    router.post('/admin/clientes/edit', isAuth, setLocals, adminCtrl.cliente.postEditCliente);
+    //GET OUTRAS FOTOS
+    router.get('/admin/clientes/documentos/:clienteCod', isAuth, setLocals, adminCtrl.cliente.getDocumentos);
+    //DELETE 
+    router.post('/admin/clientes/delete', isAuth, setLocals, adminCtrl.cliente.deleteCliente);
+
 
 //DEPOIMENTOS
     router.get('/admin/depoimentos', isAuth, setLocals, adminCtrl.depoimento.getDepoimentos);
@@ -81,5 +100,11 @@ router.get('/admin', isAuth, setLocals, adminCtrl.info.getInfo);
 
     //REMOVER FOTO DA PROPIEDADE
     router.post('/api/propiedade/removerfoto', isAuth, adminCtrl.propriedade.removePropiedadeImage);
+
+    //NOVO DOCUMENTO DE CLIENTE
+    router.post('/api/cliente/novodocumento', isAuth, adminCtrl.cliente.setNewDocumento);
+
+    //REMOVER DOCUMENTO DE CIENTE
+    router.post('/api/cliente/removerdocumento', isAuth, adminCtrl.cliente.removeDocumento);
 
 module.exports = router;
