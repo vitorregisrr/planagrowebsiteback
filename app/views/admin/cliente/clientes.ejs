@@ -51,10 +51,10 @@
 									<input name="celular" type="number" class="form-control" placeholder="Celular" value="<%= form.celular ? form.celular : ''%>">
 								</div>
 								<div class="col-sm-2">
-									<button type="submit" class="btn-default-outline btn-filter">Filtrar</button>
+									<button type="submit" class="btn btn-default-outline">Filtrar</button>
 								</div>
 								<div class="col-sm-2">
-									<a role="button" href="/admin/clientes" class="btn-default-outline btn-filter">Zerar filtros</a>
+									<a role="button" href="/admin/clientes" class="btn-default-outline" style="padding: 5px">Reiniciar</a>
 								</div>
 							</div>
 						</form>
@@ -75,8 +75,8 @@
 								<% for(cliente of clientes) { %>
 								<tr>
 									<td>
-										<a href="/admin/cliente/<%= cliente.codigo %>"><img class="lazy" data-src="<%= cliente.mainImage ? cliente.mainImage.url : '/img/thumbs/cliente.png' %>" alt="<%= cliente.titulo %>"
-											 style="height: 120px; width: 90px; object-fit: cover"></a>
+										<a href="/admin/cliente/<%= cliente.codigo %>"><img class="lazy" data-src="<%= cliente.mainImage ? cliente.mainImage.url : '/img/thumbs/cliente.png' %>"
+											 alt="<%= cliente.titulo %>" style="height: 120px; width: 90px; object-fit: cover"></a>
 									</td>
 									<td>
 										<div class="property-text mt-2">
@@ -99,9 +99,10 @@
 										<%= cliente.email %>
 									</td>
 									<td>
-										<span class="text-center"><a href="/admin/clientes/edit/<%= cliente.id %>"><i class="fa fa-pencil" aria-hidden="true"></i><br/>
-											 	Editar</a></span>
-										<span class="text-center"><a href="/admin/cliente/<%= cliente.codigo %>"><i class="fa fa-user" aria-hidden="true"></i><br/>
+										<span class="text-center"><a href="/admin/clientes/edit/<%= cliente.id %>"><i class="fa fa-pencil"
+												 aria-hidden="true"></i><br />
+												Editar</a></span>
+										<span class="text-center"><a href="/admin/cliente/<%= cliente.codigo %>"><i class="fa fa-user" aria-hidden="true"></i><br />
 												Perfil</a></span>
 									</td>
 								</tr>

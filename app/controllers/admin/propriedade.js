@@ -29,69 +29,39 @@ exports.getPropiedades = (req, res, next) => {
     if (req.query.ativo && req.query.ativo != '') {
         query.ativo = req.query.ativo;
     }
-
-    let proprietarioQuery = {};
-
-    if (req.query.proprietario) {
-        proprietarioQuery = {
-            nome: {
-                $regex: req.query.proprietario,
-                $options: 'i'
-            }
-        }
+    if (req.query.proprietarioId && req.query.proprietarioId != '') {
+        query.proprietarioId = req.query.proprietarioId;
     }
-    Cliente.findOne(proprietarioQuery)
-        .then(cliente => {
 
-            if (req.query.proprietario && cliente) {
-                query.proprietarioId = cliente.id;
+    Propiedade.find({
+            ...query
+        })
+        .countDocuments()
+        .then(num => {
+            totalItems = num;
+            const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
-            } else if (req.query.proprietario && !cliente) {
-                return res.render('admin/propriedade/propriedades', {
-                    pageTitle: "Gerenciar Propriedades",
-                    props: [],
-                    path: "admin/propiedades",
-                    hasNext: false,
-                    hasPrevious:false,
-                    totalPages: 1,
-                    currentPage: 1,
-                    robotsFollow: false,
-                    contact: false,
-                    form: req.query
-                });
-            }
-
-            Propiedade.find({
-                    ...query
+            Propiedade.find(query)
+                .skip((currentPage - 1) * ITEMS_PER_PAGE)
+                .limit(ITEMS_PER_PAGE)
+                .sort({
+                    $natural: -1,
+                    ativo: -1
                 })
-                .countDocuments()
-                .then(num => {
-                    totalItems = num;
-                    const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-
-                    Propiedade.find(query)
-                        .skip((currentPage - 1) * ITEMS_PER_PAGE)
-                        .limit(ITEMS_PER_PAGE)
-                        .sort({
-                            $natural: -1,
-                            ativo: -1
-                        })
-                        .populate('proprietarioId')
-                        .then(props => {
-                            res.render('admin/propriedade/propriedades', {
-                                pageTitle: "Gerenciar Propriedades",
-                                props: props,
-                                path: "admin/propiedades",
-                                hasNext: currentPage < totalPages,
-                                hasPrevious: currentPage > 1,
-                                totalPages,
-                                currentPage,
-                                robotsFollow: false,
-                                contact: false,
-                                form: req.query
-                            });
-                        })
-                        .catch(err => next(err, 500));
+                .populate('proprietarioId')
+                .then(props => {
+                    res.render('admin/propriedade/propriedades', {
+                        pageTitle: "Gerenciar Propriedades",
+                        props: props,
+                        path: "admin/propiedades",
+                        hasNext: currentPage < totalPages,
+                        hasPrevious: currentPage > 1,
+                        totalPages,
+                        currentPage,
+                        robotsFollow: false,
+                        contact: false,
+                        form: req.query
+                    });
                 })
                 .catch(err => next(err, 500));
         })
@@ -131,7 +101,7 @@ exports.postNewPropiedade = (req, res, next) => {
         ...req.body
     }
 
-    if(req.body.proprietarioId == ''){
+    if (req.body.proprietarioId == '') {
         delete form.proprietarioId;
     }
 
@@ -371,7 +341,7 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.numero = req.body.numero;
                                 prop.vantagens = JSON.parse(req.body.vantagens);
 
-                                if(req.body.proprietarioId && req.body.proprietarioId != ''){
+                                if (req.body.proprietarioId && req.body.proprietarioId != '') {
                                     prop.proprietarioId = req.body.proprietarioId;
                                 }
 
@@ -404,7 +374,7 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.destaque = req.body.destaque;
                 prop.titulo = req.body.titulo;
 
-                if(req.body.proprietarioId && req.body.proprietarioId != ''){
+                if (req.body.proprietarioId && req.body.proprietarioId != '') {
                     prop.proprietarioId = req.body.proprietarioId;
                 }
 
