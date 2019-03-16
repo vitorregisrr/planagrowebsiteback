@@ -40,7 +40,7 @@ exports.getPropiedades = (req, res, next) => {
             }
         }
     }
-    Cliente.find(proprietarioQuery)
+    Cliente.findOne(proprietarioQuery)
         .then(cliente => {
 
             if (req.query.proprietario && cliente) {
