@@ -1,0 +1,20 @@
+<script>
+var interval = setInterval(function() {
+    if (window.location.hash)
+      window.location = window.location.hash;
+  }, 100);
+   setTimeout(function() { clearInterval(interval); }, 1000);
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    function goToByScroll(id) {
+        id = id.replace("link", "");
+        $('html,body').animate({
+            scrollTop: $("#" + id).offset().top - 110
+        }, 'medium');
+    }
+
+    goToByScroll('startScroll');
+});
+</script>
