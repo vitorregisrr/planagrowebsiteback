@@ -18,13 +18,12 @@
         </a>
         <span><i class="fa fa-map-marker" aria-hidden="true"></i>
             <% if( prop.zona == 'Rural' ){ %>
-
-            <%= prop.cidade ? prop.cidade : '' %>
-            <%= prop.localidade ? `, ${prop.localidade}` : '' %>
+                <%= prop.cidade ? prop.cidade : '' %>
+                <%= prop.localidade ? `, ${prop.localidade}` : '' %>.
             <%}else{ %>
-            <%= prop.rua ? `Rua ${prop.rua}` : ''%>
-            <%= prop.rua ? `, num. ${prop.numero}` : '' %>
-            <%= prop.rua ? `, Bairro. ${prop.bairro},` : '' %>
+                <%= prop.rua ? `Rua ${prop.rua}` : ''%>
+                <%= prop.numero ? `, ${prop.numero}` : '' %>
+                <%= prop.bairro ? `, Bairro. ${prop.bairro}` : '' %>.
             <% } %>
         </span>
 
