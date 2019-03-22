@@ -419,6 +419,11 @@ section {
     padding: 0
 }
 
+.imovel_grid .imovel-text{
+    height: 170px;
+    overflow: hidden;
+}
+
 .imovel_grid .hover_imovel ul li:first-child a,
 .imovel_list .hover_imovel ul li:first-child a {
     position: relative;
@@ -2471,7 +2476,6 @@ blockquote {
     display: flex;
     margin-left: -8px;
     margin-right: -8px;
-    height: 98px;
     overflow: hidden;
 }
 
