@@ -366,7 +366,6 @@ section {
 .imovel-title {
     text-transform: inherit;
     font-weight: 700;
-    padding-bottom: 5px;
     font-size: 16px;
     -moz-transition: all .3s ease;
     -ms-transition: all .3s ease;
@@ -1602,7 +1601,6 @@ input[type=radio]:checked {
     font-weight: 400;
     padding-left: 20px
 }
-
 
 .bed_area ul li.imovel-price{
     font-size: 16px !important;
