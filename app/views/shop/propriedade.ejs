@@ -28,7 +28,7 @@
 	<!-- Banner Section End -->
 
 	<!-- Single imovel Start -->
-	<section id="single_imovel" style="padding-top: 30px">
+	<section id="single_imovel" style="padding-top: 30px; position: relative">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8">
@@ -36,12 +36,14 @@
 						<div class="col-md-12">
 							<div class="row">
 								<div class="container">
-									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para propriedades</a>
+									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para
+										propriedades</a>
 								</div>
 							</div>
 							<% if(prop.mainImage || prop.images.length > 0) {%>
 							<div class="imovel_slider mt-2">
-								<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
+							<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
+							<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
 										<div class="item active">
@@ -58,10 +60,12 @@
 
 
 									<!-- Controls -->
-									<a class="left carousel-control" href="#fotos-imovel-carousel" role="button" data-slide="prev">
+									<a class="left carousel-control" href="#fotos-imovel-carousel" role="button"
+										data-slide="prev">
 										<div class="lef_btn">Anterior</div>
 									</a>
-									<a class="right carousel-control" href="#fotos-imovel-carousel" role="button" data-slide="next">
+									<a class="right carousel-control" href="#fotos-imovel-carousel" role="button"
+										data-slide="next">
 										<div class="right_btn">Próximo</div>
 									</a>
 								</div>
@@ -108,8 +112,9 @@
 							<% if(prop.zona == 'Urbana'){ %>
 							<div class="single_map">
 								<h4 class="inner-title">LOCAL NO MAPA</h4>
-								<iframe width="100%" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
-								 allowfullscreen></iframe>
+								<iframe width="100%" height="350" frameborder="0" style="border:0"
+									src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
+									allowfullscreen></iframe>
 							</div>
 							<% } %>
 						</div>
@@ -137,84 +142,84 @@
 									</li>
 
 									<% if(prop.zona == 'Urbana') { %>
-										<% if(prop.preco) { %>
-											<li><span>Preço :</span> R$<span class="tomoney">
+									<% if(prop.preco) { %>
+									<li><span>Preço :</span> R$<span class="tomoney">
 											<%= prop.preco %></span></li>
-										<% }else{ %>
-											<li><span>Preço :</span><span>
+									<% }else{ %>
+									<li><span>Preço :</span><span>
 											Confira!</span></li>
-										<% } %>
-										<% if( prop.dormitorios) { %>
-										<li><span>Dormitórios :</span>
-											<%= prop.dormitorios %>
-										</li>
-										<% } %>
+									<% } %>
+									<% if( prop.dormitorios) { %>
+									<li><span>Dormitórios :</span>
+										<%= prop.dormitorios %>
+									</li>
+									<% } %>
 
-										<% if( prop.banheiros) { %>
-										<li><span>Banheiros :</span>
-											<%= prop.banheiros %>
-										</li>
-										<% } %>
+									<% if( prop.banheiros) { %>
+									<li><span>Banheiros :</span>
+										<%= prop.banheiros %>
+									</li>
+									<% } %>
 
-										<% if( prop.suites) { %>
-										<li><span>Suites :</span>
-											<%= prop.suites %>
-										</li>
-										<% } %>
+									<% if( prop.suites) { %>
+									<li><span>Suites :</span>
+										<%= prop.suites %>
+									</li>
+									<% } %>
 
-										<% if( prop.cozinhas) { %>
-										<li><span>Cozinhas :</span>
-											<%= prop.cozinhas %>
-										</li>
-										<% } %>
+									<% if( prop.cozinhas) { %>
+									<li><span>Cozinhas :</span>
+										<%= prop.cozinhas %>
+									</li>
+									<% } %>
 
-										<% if( prop.patio ) { %>
-										<li><span>Pátio :</span>
-											<%= prop.patio ? 'Sim' : 'Não' %>
-										</li>
-										<% } %>
+									<% if( prop.patio ) { %>
+									<li><span>Pátio :</span>
+										<%= prop.patio ? 'Sim' : 'Não' %>
+									</li>
+									<% } %>
 
-										<% if(prop.piscina) { %>
-										<li><span>Piscina :</span>
-											<%= prop.piscina ? 'Sim' : 'Não' %>
-										</li>
-										<% } %>
+									<% if(prop.piscina) { %>
+									<li><span>Piscina :</span>
+										<%= prop.piscina ? 'Sim' : 'Não' %>
+									</li>
+									<% } %>
 
-										<% if(prop.mobiliado) { %>
-										<li><span>Mobiliado :</span>
-											<%= prop.mobiliado ? 'Sim' : 'Não' %>
-										</li>
-										<% } %>
+									<% if(prop.mobiliado) { %>
+									<li><span>Mobiliado :</span>
+										<%= prop.mobiliado ? 'Sim' : 'Não' %>
+									</li>
+									<% } %>
 									<% } else{ %>
-										<% if(prop.preco) { %>
-											<li><span>Preço :</span> R$<span class="tomoney">
+									<% if(prop.preco) { %>
+									<li><span>Preço :</span> R$<span class="tomoney">
 											<%= prop.preco %></span></li>
-										<% } %>
-										<% if(prop.precoHec) { %>
-											<li><span>Preço/hec:</span> 
-											R$<span class="tomoney"><%= prop.precoHec %></span></li>
-										<% }else{ %>
-											<li><span>Preço/hec:</span>
-											<span>Confira!</span></li>
-										<% } %>
-										
-										<% if( prop.acudes ) { %>
-										<li><span>Açudes :</span>
-											<%= prop.acudes %>
-										</li>
-										<% } %>
+									<% } %>
+									<% if(prop.precoHec) { %>
+									<li><span>Preço/hec:</span>
+										R$<span class="tomoney"><%= prop.precoHec %></span></li>
+									<% }else{ %>
+									<li><span>Preço/hec:</span>
+										<span>Confira!</span></li>
+									<% } %>
 
-										<% if( prop.galpoes ) { %>
-										<li><span>Galpões :</span>
-											<%= prop.galpoes %>
-										</li>
-										<% } %>
+									<% if( prop.acudes ) { %>
+									<li><span>Açudes :</span>
+										<%= prop.acudes %>
+									</li>
+									<% } %>
 
-										<% if( prop.mangueiras ) { %>
-										<li><span>Mangueiras :</span>
-											<%= prop.mangueiras %>
-										</li>
-										<% } %>
+									<% if( prop.galpoes ) { %>
+									<li><span>Galpões :</span>
+										<%= prop.galpoes %>
+									</li>
+									<% } %>
+
+									<% if( prop.mangueiras ) { %>
+									<li><span>Mangueiras :</span>
+										<%= prop.mangueiras %>
+									</li>
+									<% } %>
 
 									<% } %>
 								</ul>
@@ -225,8 +230,9 @@
 								<h4 class="inner-title">Compartilhar</h4>
 								<!-- Compartilha o link da propiedade atual  -->
 								<div class="share-list">
-									<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>"
-									 data-a2a-title="<%= prop.title %>">
+									<div class="a2a_kit a2a_kit_size_32 a2a_default_style"
+										data-a2a-url="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>"
+										data-a2a-title="<%= prop.title %>">
 										<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
 										<a class="a2a_button_facebook"></a>
 										<a class="a2a_button_twitter"></a>
@@ -252,20 +258,24 @@
 								<form class="message_agent" action="/interesse" method="post">
 									<div class="row">
 										<div class="col-md-12">
-											<input type="text" class="form-control" name="nome" placeholder="Seu nome" value="<%= form ? form.values.nome : '' %>">
+											<input type="text" class="form-control" name="nome" placeholder="Seu nome"
+												value="<%= form ? form.values.nome : '' %>">
 										</div>
 										<div class="col-md-12">
-											<input type="text" class="form-control" name="email" placeholder="Seu email" value="<%= form ? form.values.email : '' %>">
+											<input type="text" class="form-control" name="email" placeholder="Seu email"
+												value="<%= form ? form.values.email : '' %>">
 										</div>
 										<div class="col-md-12">
-											<input type="text" class="form-control" name="telefone" placeholder="Seu Telefone" value="<%= form ? form.values.telefone : '' %>">
+											<input type="text" class="form-control" name="telefone"
+												placeholder="Seu Telefone"
+												value="<%= form ? form.values.telefone : '' %>">
 										</div>
 										<div class="col-md-12">
 											<input name="mensagem" type="hidden" value="<%= `Oi! Tenho interesse na propriedade " ${prop.titulo}", código
-											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>"
-										</div>
-										<div class="col-md-12">
-											<button type="submit" class="btn btn-default" name="submit">ME LIGUEM!</button>
+											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div> <div
+												class="col-md-12">
+											<button type="submit" class="btn btn-default" name="submit">ME
+												LIGUEM!</button>
 										</div>
 									</div>
 									<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
