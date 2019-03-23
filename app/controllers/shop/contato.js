@@ -1,5 +1,5 @@
 const Sobre = require('../../models/sobre'),
-    transporter = require('../../util/email-transporter');
+    transporter = require('../../util/email-transporter')();
 
 exports.getContato = (req, res, next) => {
     Sobre.findOne()

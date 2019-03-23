@@ -4,7 +4,7 @@ const sendgridTransport = require('nodemailer-sendgrid-transport'),
 let SENDGRID_KEY = '';
 
 try {
-    SENDRID_KEY = require('../../config').SENDGRID_KEY;
+    SENDGRID_KEY = require('../../config').SENDGRID_KEY;
 } catch (err) {
     SENDGRID_KEY = process.env.SENDGRID_KEY;
 }
