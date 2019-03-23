@@ -45,10 +45,11 @@
 										<div class="col-12">
 											<select name="estadocivil" class="selectpicker form-control" id="selectZona" data-live-search="true">
 												<option selected disabled>Estado Civíl</option>
-												<option value="Não Especificado">Não Especificado</option>
-												<option value="Solteiro">Solteiro</option>
-												<option value="Casado">Casado</option>
-												<option value="Divorciado">Divorciado</option>
+												<option value="Não Especificado" <% if(form.values) { %> <%= form.values.estadocivil=='Não Especificado' ? 'selected' : '' %> <% } %> >Não Especificado</option>
+												<option value="Solteiro(a)" <% if(form.values) { %> <%= form.values.estadocivil=='Solteiro(a)' ? 'selected' : '' %> <% } %> >Solteiro(a)</option>
+												<option value="Casado(a)">Casado(a)</option>
+												<option value="Divorciado(a)">Divorciado(a)</option>
+												<option value="Viúvo(a)">Divorciado(a)</option>
 											</select>
 										</div>
 										<div class="col-12">

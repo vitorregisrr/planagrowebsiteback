@@ -1,2 +1,15 @@
 <script src="/js/bootstrap-select-ajax.min.js"></script>
 <script src="/js/seletcpicker-cliente.config.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    function goToByScroll(id) {
+        id = id.replace("link", "");
+        $('html,body').animate({
+            scrollTop: $("#" + id).offset().top - 110
+        }, 'medium');
+    }
+
+    goToByScroll('startScroll');
+});
+</script>

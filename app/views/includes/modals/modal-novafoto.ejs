@@ -1,4 +1,5 @@
-<div class="modal fade" id="novaFotoModal" tabindex="-1" role="dialog" aria-labelledby="novaFotoModalLabel" aria-hidden="true">
+<div class="modal fade" id="novaFotoModal" tabindex="-1" role="dialog" aria-labelledby="novaFotoModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -29,58 +30,59 @@
 <input type="hidden" value="<%= csrfToken %>" id="csurfToken">
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const inputImage = document.getElementById('inputImage');
-    const id = document.getElementById('inputId').value;
-    const csurfToken = document.getElementById('csurfToken').value;
-    const box = document.getElementById('uploadMessage');
-    
-    const setUploadMessage = status => {
-    
-        switch (status) {
-            case 'waiting':
-                inputImage.disabled = false;
-                box.className = 'alert alert-info';
-                box.innerHTML = 'Por favor, selecione uma imagem e aguarde.';
-                break
-    
-            case 'uploading':
-                inputImage.disabled = true;
-                box.className = 'alert alert-warning';
-                box.innerHTML = 'Imagem recebida! Estamos processando, por favor aguarde.';
-                break;
-    
-            case 'error':
-                inputImage.disabled = false;
-                box.className = 'alert alert-danger';
-                box.innerHTML = 'O Arquivo recebido inválido ou houve uma falha no servidor. Tente novamente. ';
-                break;
+    document.addEventListener("DOMContentLoaded", function () {
+        const inputImage = document.getElementById('inputImage');
+        const id = document.getElementById('inputId').value;
+        const csurfToken = document.getElementById('csurfToken').value;
+        const box = document.getElementById('uploadMessage');
+
+        const setUploadMessage = status => {
+
+            switch (status) {
+                case 'waiting':
+                    inputImage.disabled = false;
+                    box.className = 'alert alert-info';
+                    box.innerHTML = 'Por favor, selecione uma imagem e aguarde.';
+                    break
+
+                case 'uploading':
+                    inputImage.disabled = true;
+                    box.className = 'alert alert-warning';
+                    box.innerHTML = 'Imagem recebida! Estamos processando, por favor aguarde.';
+                    break;
+
+                case 'error':
+                    inputImage.disabled = false;
+                    box.className = 'alert alert-danger';
+                    box.innerHTML =
+                        'O Arquivo recebido inválido ou houve uma falha no servidor. Tente novamente. ';
+                    break;
+            }
         }
-    }
-    
-    setUploadMessage('waiting');
-    
-    const upload = (file) => {
-        var formData = new FormData();
-        formData.append('image', file);
-        formData.append('id', id);
-        formData.append('_csrf', csurfToken);
-    
-        setUploadMessage('uploading');
-    
-        fetch('/api/propiedade/novafoto', {
-            method: 'POST',
-            body: formData
-        }).then(
-            response => response.json()
-    
-        ).then(image => {
-            image = JSON.parse(image)
-            $('#novaFotoModal').modal('hide');
-            setUploadMessage('waiting');
-            $(inputImage).val('');
-            $('#imagesTable').append(
-                `
+
+        setUploadMessage('waiting');
+
+        const upload = (file) => {
+            var formData = new FormData();
+            formData.append('image', file);
+            formData.append('id', id);
+            formData.append('_csrf', csurfToken);
+
+            setUploadMessage('uploading');
+
+            fetch('/api/propiedade/novafoto', {
+                method: 'POST',
+                body: formData
+            }).then(
+                response => response.json()
+
+            ).then(image => {
+                image = JSON.parse(image)
+                $('#novaFotoModal').modal('hide');
+                setUploadMessage('waiting');
+                $(inputImage).val('');
+                $('#imagesTable').append(
+                    `
                 <tr>
                     <td>
                         <div class="property-text">
@@ -93,54 +95,54 @@ document.addEventListener("DOMContentLoaded", function() {
                         </td>
                 </tr> 
             `
+                );
+            }).catch(
+                error => {
+                    setUploadMessage('error');
+                    inputImage.value = '';
+                }
             );
-        }).catch(
-            error => {
-                setUploadMessage('error');
-                inputImage.value = '';
-            }
-        );
-    };
-    
-    // Event handler executed when a file is selected
-    const onSelectFile = () => upload(inputImage.files[0]);
-    
-    inputImage.addEventListener('change', onSelectFile, false);
+        };
 
-});
+        // Event handler executed when a file is selected
+        const onSelectFile = () => upload(inputImage.files[0]);
 
-const removeImage = (btn) => {
-    
-    const csurfToken = document.getElementById('csurfToken').value;
-    const propId = document.getElementById('inputId').value;
-    const imageId = $(btn).attr('data-image');
+        inputImage.addEventListener('change', onSelectFile, false);
 
-    var formData = new FormData();
-    formData.append('imageId', imageId);
-    formData.append('propId', propId);
-    formData.append('_csrf', csurfToken);
+    });
+
+    const removeImage = (btn) => {
+
+        const csurfToken = document.getElementById('csurfToken').value;
+        const propId = document.getElementById('inputId').value;
+        const imageId = $(btn).attr('data-image');
+
+        var formData = new FormData();
+        formData.append('imageId', imageId);
+        formData.append('propId', propId);
+        formData.append('_csrf', csurfToken);
 
 
-    fetch('/api/propiedade/removerfoto', {
-            method: 'POST',
-            headers: {
-                "csrf-token": csurfToken
-            },
-            body: formData
-        })
+        fetch('/api/propiedade/removerfoto', {
+                method: 'POST',
+                headers: {
+                    "csrf-token": csurfToken
+                },
+                body: formData
+            })
 
-        .then(
-            response => response.json()
+            .then(
+                response => response.json()
 
-        ).then(success => {
-            console.log(success)
-            $(btn).closest('tr').remove();
+            ).then(success => {
+                console.log(success)
+                $(btn).closest('tr').remove();
 
-        }).catch(
-            error => {
-                alert('Houve um erro ao apagar a imagem, reinciie a página e tente novamente!');
-                console.log(error);
-            }
-        );
-}
+            }).catch(
+                error => {
+                    alert('Houve um erro ao apagar a imagem, reinciie a página e tente novamente!');
+                    console.log(error);
+                }
+            );
+    }
 </script>

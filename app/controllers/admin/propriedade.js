@@ -46,7 +46,8 @@ exports.getPropiedades = (req, res, next) => {
                 .limit(ITEMS_PER_PAGE)
                 .sort({
                     $natural: -1,
-                    ativo: -1
+                    ativo: 1,
+                    vendido: 1,
                 })
                 .populate('proprietarioId')
                 .then(props => {
@@ -89,6 +90,7 @@ exports.getNewPropiedade = (req, res, next) => {
 //POST NEW PROPIEDADE
 exports.postNewPropiedade = (req, res, next) => {
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
+    req.body.vendido = req.body.vendido == 'on' ? 'true' : 'false';
     req.body.destaque = req.body.destaque == 'on' ? 'true' : 'false';
 
     req.body.piscina = req.body.piscina == 'on' ? 'true' : 'false';
@@ -104,8 +106,6 @@ exports.postNewPropiedade = (req, res, next) => {
     if (req.body.proprietarioId == '') {
         delete form.proprietarioId;
     }
-
-    console.log(form.proprietarioId)
     if (req.file) {
         fileHelper.compressImage(req.file, 700)
             .then(newPath => {
@@ -296,6 +296,7 @@ exports.getOutrasFotos = (req, res, next) => {
 //POST EDIT PROPIEDADE
 exports.postEditPropiedade = (req, res, next) => {
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
+    req.body.vendido = req.body.vendido == 'on' ? 'true' : 'false';
     req.body.destaque = req.body.destaque == 'on' ? 'true' : 'false';
 
     req.body.piscina = req.body.piscina == 'on' ? 'true' : 'false';
@@ -326,6 +327,7 @@ exports.postEditPropiedade = (req, res, next) => {
 
                                 prop.mainImage = image;
                                 prop.ativo = req.body.ativo;
+                                prop.vendido = req.body.vendido;
                                 prop.destaque = req.body.destaque;
                                 prop.titulo = req.body.titulo;
                                 prop.descricao = req.body.descricao;
@@ -347,6 +349,7 @@ exports.postEditPropiedade = (req, res, next) => {
 
                                 //detalhes urbano
                                 prop.dormitorios = req.body.dormitorios;
+                                prop.salas = req.body.salas;
                                 prop.suites = req.body.suites;
                                 prop.cozihas = req.body.cozihas;
                                 prop.banheiros = req.body.banheiros;
@@ -371,6 +374,7 @@ exports.postEditPropiedade = (req, res, next) => {
             } else {
 
                 prop.ativo = req.body.ativo;
+                prop.vendido = req.body.vendido;
                 prop.destaque = req.body.destaque;
                 prop.titulo = req.body.titulo;
 
@@ -393,6 +397,7 @@ exports.postEditPropiedade = (req, res, next) => {
 
                 //detalhes urbano
                 prop.dormitorios = req.body.dormitorios;
+                prop.salas = req.body.salas;
                 prop.suites = req.body.suites;
                 prop.cozihas = req.body.cozihas;
                 prop.banheiros = req.body.banheiros;

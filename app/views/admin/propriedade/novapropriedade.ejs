@@ -127,6 +127,13 @@
 												</div>
 											</div>
 											<div class="property_details urbano-form">
+												<label>Salas</label>
+												<div class="number_picker">
+													<input name="salas" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
+													value="<%= form.values ? form.values.salas : null %>">
+												</div>
+											</div>
+											<div class="property_details urbano-form">
 												<label>Pátio</label>
 												<div class="radio_check">
 													<input <% if(form.values){ %>
@@ -355,6 +362,16 @@
 												<% } %>
 												type="checkbox" id="ativo" name="ativo">
 												<label for="ativo"><span>Não</span><span>Sim</span></label>
+											</div>
+										</div>
+										<div class="system_info">
+											<label>Vendido?</label>
+											<div class="radio_check">
+												<input <% if(form.values){ %>
+												<%= form.values.vendido == 'on' ? 'checked' : '' %>
+												<% } %>
+												type="checkbox" id="vendido" name="vendido">
+												<label for="vendido"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>
 									</div>

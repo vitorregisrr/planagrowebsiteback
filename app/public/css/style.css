@@ -12,6 +12,27 @@ body {
     overflow-x: hidden
 }
 
+
+.container.container-imoveis {
+    padding-right: 5px;
+    padding-left: 5px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+@media(min-width:1200px) {
+    .container.container-imoveis {
+        width: 1200px;
+    }
+}
+
+@media(min-width:1300px) {
+    .container.container-imoveis {
+        width: 1300px;
+    }
+}
+
+
 a {
     text-decoration: none;
     cursor: pointer
@@ -423,6 +444,78 @@ section {
     height: 170px;
     overflow: hidden;
 }
+
+.imovel_grid.sold{
+    position: relative;
+    opacity: .5;
+    overflow: visible !important;
+}
+
+.imovel_grid.sold .img_area{
+    overflow: visible;
+}
+  
+.imovel_grid .imovel_grid__sold{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(236, 236, 236, 0.144);
+    z-index: 1;
+}
+
+.sold__ribbon {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    position: absolute;
+  }
+  .sold__ribbon::before,
+  .sold__ribbon::after {
+    position: absolute;
+    z-index: -1;
+    content: '';
+    display: block;
+    border: 5px solid #601416;
+  }
+  .sold__ribbon span {
+    position: absolute;
+    display: block;
+    width: 225px;
+    padding: 10px 0;
+    background-color: #601416;
+    box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    color: #fff;
+    font: 700 14px/1 'Lato', sans-serif;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+    text-transform: uppercase;
+    text-align: center;
+  }
+  
+  /* top right*/
+  .sold__ribbon {
+    top: -10px;
+    right: -10px;
+  }
+  .sold__ribbon::before,
+  .sold__ribbon::after {
+    border-top-color: transparent;
+    border-right-color: transparent;
+  }
+  .sold__ribbon::before {
+    top: 0;
+    left: 18.5px;
+  }
+  .sold__ribbon::after {
+    bottom: 18.5px;
+    right: 0;
+  }
+  .sold__ribbon span {
+    left: -25px;
+    top: 30px;
+    transform: rotate(45deg);
+  }
 
 .imovel_grid .hover_imovel ul li:first-child a,
 .imovel_list .hover_imovel ul li:first-child a {
@@ -1637,12 +1730,12 @@ input[type=radio]:checked {
     -o-transition: all .3s ease-out;
     -webkit-transition: all .3s ease-out;
     transition: all .3s ease-out;
-    height: 200px;
+    height: 240px;
     object-fit: cover
 }
 
 .img_area:hover img {
-    -webkit-transform: scale(1.1);
+    -webkit-transform: scale(1.1); 
     transform: scale(1.1)
 }
 

@@ -222,6 +222,7 @@ exports.postEditCliente = (req, res, next) => {
                                 cliente.email = req.body.email;
                                 cliente.telefone = req.body.telefone;
                                 cliente.celular = req.body.celular;
+                                cliente.estadocivil = req.body.estadocivil;
                                 cliente.save();
                                 return res.redirect('/admin/clientes');
 
@@ -238,6 +239,7 @@ exports.postEditCliente = (req, res, next) => {
                 cliente.email = req.body.email;
                 cliente.telefone = req.body.telefone;
                 cliente.celular = req.body.celular;
+                cliente.estadocivil = req.body.estadocivil;
                 cliente.save();
                 return res.redirect('/admin/clientes')
             }

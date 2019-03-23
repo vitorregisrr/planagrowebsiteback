@@ -17,7 +17,7 @@ exports.getComprar = (req, res, next) => {
             const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
             Propiedade.find({ ...query, ativo: true})
-                .sort({$natural:-1, ativo: -1})
+                .sort({vendido: 1, $natural: -1})
                 .skip((currentPage - 1) * ITEMS_PER_PAGE)
                 .limit(ITEMS_PER_PAGE)
                 .then(props => {
@@ -25,7 +25,9 @@ exports.getComprar = (req, res, next) => {
                         .then(sobre => {
                             res.render('shop/comprar', {
                                 pageTitle: "Comprar, alugar ou arrendar propiedades rurais ou urbanas",
-                                props: props,
+                                props: props.sort( (x,y) => {
+                                    return (x.destaque === y.destaque) ? 0 : x ? -1 : 1 
+                                }),
                                 path: "/comprar",
                                 hasNext: currentPage < totalPages,
                                 hasPrevious: currentPage > 1,

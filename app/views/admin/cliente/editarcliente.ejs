@@ -45,10 +45,11 @@
 									<div class="col-12">
 										<select name="estadocivil" class="selectpicker form-control" id="selectZona" data-live-search="true">
 											<option selected disabled>Estado Civíl</option>
-											<option value="Não Especificado">Não Especificado</option>
-											<option value="Solteiro">Solteiro</option>
-											<option value="Casado">Casado</option>
-											<option value="Divorciado">Divorciado</option>
+											<option value="Não Especificado" <%= cliente.estadocivil=='Não Especificado' ? 'selected' : '' %> >Não Especificado</option>
+											<option value="Solteiro(a)" <%= cliente.estadocivil=='Solteiro(a)' ? 'selected' : '' %> >Solteiro(a)</option>
+											<option value="Casado(a)" <%= cliente.estadocivil=='Casado(a)' ? 'selected' : '' %> >Casado(a)</option>
+											<option value="Divorciado(a)" <%= cliente.estadocivil=='Divorciado(a)' ? 'selected' : '' %> >Divorciado(a)</option>
+											<option value="Víuvo(a)" <%= cliente.estadocivil=='Víuvo(a)' ? 'selected' : '' %> >Víuvo(a)</option>
 										</select>
 									</div>
 									<div class="col-12">
@@ -131,7 +132,7 @@
 							</form>
 						</div>
 						<div class="col-sm-6">
-							<form action="/admin/clientes/delete" method="POST">
+							<form data-confirm="true" action="/admin/clientes/delete" method="POST">
 								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 								<input type="hidden" name="id" value="<%= cliente.id %>">
 								<button type="submit" href="/admin/clientes" class="btn btn-sm btn-default-outline btn-filter">Deletar</button>
@@ -145,6 +146,7 @@
 
 	<%- include('../../includes/components/footer')%>
 	<%- include('../../includes/modals/modal-novodocumento')%>
+	<%- include('../../includes/modals/modal-confirmform')%>
 
 	<!-- Scroll to top -->
 	<div class="scroll-to-top">

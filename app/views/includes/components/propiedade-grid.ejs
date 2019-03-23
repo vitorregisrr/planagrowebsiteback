@@ -1,14 +1,13 @@
-<div class="imovel_grid">
+<div class="imovel_grid <%= prop.vendido ? 'sold' : '' %>">
+    <%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon"><span>vendido</span></div></div>' : '' %>
     <div class="img_area">
         <%- prop.ativo ? '<div class="sale_btn">Disponível</div>' : ''%>
         <%- prop.destaque ? '<div class="featured_btn">Destaque</div>' : ''%>
         <div class="imovel_cod">
             <%= prop.codigo %>
         </div>
-       <% if(prop.mainImage) {%>
-         <a href="/propriedade/<%= prop.codigo %>"><img class="lazy" src="/img/loading.gif" data-src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>"></a>
-       <% } %>
-
+      
+        <a href="/propriedade/<%= prop.codigo %>"><img class="lazy" src="/img/loading.gif" data-src="<%= prop.mainImage ? prop.mainImage.url : '/img/thumbs/imovel.jpg' %>" alt="<%= prop.titulo %>"></a>
     </div>
     <div class="imovel-text">
         <a href="/propriedade/<%= prop.codigo %>">
@@ -85,6 +84,13 @@
                 <li>
                     <span>Banheiros</span>
                     <%= prop.banheiros ? prop.banheiros : '' %>
+                </li>
+                <%}%>
+
+                <% if( prop.salas) {%>
+                <li>
+                    <span>Salas</span>
+                    <%= prop.salas ? prop.salas : '' %>
                 </li>
                 <%}%>
 

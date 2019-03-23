@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
     if (document.querySelector('input[name="selectedTipo"]')) {
         const disableTodos = document.querySelector('#selectTipo').getAttribute('data-disableTipo');
-        console.log(disableTodos)
         const tipoSelecionado = document.querySelector('input[name="selectedTipo"]').value,
             tiposUrbanos = `<optgroup label="Tipos Urbanos" id="selectUrbano">
                                 ${ !disableTodos ? '<option value="">Todos</option>' : '' }

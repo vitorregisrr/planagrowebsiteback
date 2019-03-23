@@ -92,10 +92,11 @@
 							<tbody>
 								<% for(prop of props) { %>
 								<tr>
-									<td>
-										<% if(prop.mainImage) {%>
-										<img data-src="<%= prop.mainImage.url %>" class="lazy" alt="<%= prop.titulo %>" style="height: 150px; width: 120px; object-fit: cover">
-										<% } %>
+									<td style="overflow: visible;"> 
+										<div style="position: relative; overflow: visible;">
+											<%- prop.vendido ? '<div class="sold__ribbon"><span>vendido</span></div>' : '' %>
+											<img src="/img/loading.gif"  data-src="<%= prop.mainImage ? prop.mainImage.url : '/img/thumbs/imovel.jpg' %>"class="lazy" alt="<%= prop.titulo %>" style="height: 150px; width: 120px; object-fit: cover">
+										</div>
 									</td>
 									<td>
 										<div class="property-text mt-2">

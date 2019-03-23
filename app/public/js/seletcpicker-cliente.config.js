@@ -4,7 +4,6 @@ $('.selectpicker-cliente')
         liveSearch: true
     })
     .ajaxSelectPicker({
-        log: 4,
         ajax: {
             url: '/api/cliente/searchbyajax',
             type: 'GET',
@@ -29,7 +28,6 @@ $('.selectpicker-cliente')
 
         preprocessData: function(data){
             var clientes = [];
-            console.log(data)
             data.clientes.forEach( cli => {
                 clientes.push(
                     {

@@ -9,7 +9,7 @@ const connection = mongoose.createConnection(mongoURI, {
 const Cliente = new Schema({
     nome: {
         type: String,
-        required: true
+        required: false
     },
 
     mainImage: {

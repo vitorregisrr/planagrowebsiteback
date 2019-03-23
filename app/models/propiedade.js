@@ -23,6 +23,12 @@ const Propiedade = new Schema({
         required: false,
     },
 
+    vendido: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+
     descricao: {
         type: String,
         required: false,
@@ -158,6 +164,11 @@ const Propiedade = new Schema({
     },
 
     banheiros: {
+        type: Number,
+        required: false,
+    },
+
+    salas: {
         type: Number,
         required: false,
     },
