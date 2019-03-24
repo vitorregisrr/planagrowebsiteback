@@ -53,8 +53,13 @@ exports.getPropiedade = (req, res, next) => {
         })
         .then(prop => {
             if( !prop ){
-                res.redirect('/comprar')
+                return res.redirect('/comprar');
             }
+
+            if( (!prop.ativo || prop.vendido) && !req.session.user ) {
+                return res.redirect('/comprar');
+            }
+
             Sobre.findOne()
                 .then(sobre => {
                     return res.render('shop/propriedade', {
