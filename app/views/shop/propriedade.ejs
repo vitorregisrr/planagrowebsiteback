@@ -10,6 +10,12 @@
 	<meta NAME="url" CONTENT="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
 	<meta property="og:url" content="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
 	<%- include('../includes/imports/head') %>
+	<meta property="og:title" content="Planagro Imóveis - <%= prop.titulo %>">
+	<meta property="og:description" content="<%= prop.descricao %>">
+	<meta property="og:image" content="<%= prop.mainImage ? prop.mainImage.url : '/img/thumbs/imovel.jpg' %>">
+	<meta NAME="Identifier-URL" CONTENT="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>" >
+	<meta NAME="url" CONTENT="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
+	<meta property="og:url" content="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
 	
 </head>
 
