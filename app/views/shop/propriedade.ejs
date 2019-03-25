@@ -2,6 +2,11 @@
 <html lang="pt-br">
 
 <head>
+<title>Planagro Imóveis - <%= prop.titulo %></title>
+<meta property="og:title" content="Planagro Imóveis - <%= prop.titulo %>">
+<meta property="og:description" content="<%= prop.descricao %>">
+<meta property="og:image" content="<%= prop.mainImage ? prop.mainImage.url : '/img/thumbs/imovel.jpg' %>">
+<meta property="og:url" content="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
 	<%- include('../includes/imports/head') %>
 </head>
 
