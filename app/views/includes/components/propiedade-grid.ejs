@@ -1,4 +1,4 @@
-<div class="imovel_grid <%= prop.vendido ? 'sold' : '' %>">
+<article class="imovel_grid <%= prop.vendido ? 'sold' : '' %>">
     <%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon"><span>vendido</span></div></div>' : '' %>
     <div class="img_area">
         <%- prop.ativo ? '<div class="sale_btn">Disponível</div>' : ''%>
@@ -81,35 +81,35 @@
                     <%= prop.dormitorios ? prop.dormitorios : '' %>
                 </li>
                 <%}%>
-
-                <% if( prop.banheiros) {%>
-                <li>
-                    <span>Banheiros</span>
-                    <%= prop.banheiros ? prop.banheiros : '' %>
-                </li>
-                <%}%>
-
-                <% if( prop.salas) {%>
-                <li>
-                    <span>Salas</span>
-                    <%= prop.salas ? prop.salas : '' %>
-                </li>
-                <%}%>
-
-                <% if( prop.cozinhas) {%>
-                <li>
-                    <span>Cozinhas</span>
-                    <%= prop.cozinhas ? prop.cozinhas : '' %>
-                </li>
-                <%}%>
-
+                
                 <% if( prop.suites) {%>
                 <li>
                     <span>Suítes</span>
                     <%= prop.suites ? prop.suites : '' %>
                 </li>
                 <%}%>
+                <% if( prop.banheiros) {%>
+                <li>
+                <span>Banheiros</span>
+                <%= prop.banheiros ? prop.banheiros : '' %>
+                </li>
+                <%}%>
+                
+                <% if( prop.salas) {%>
+                <li>
+                <span>Salas</span>
+                <%= prop.salas ? prop.salas : '' %>
+                </li>
+                <%}%>
+                
+                <% if( prop.cozinhas) {%>
+                <li>
+                <span>Cozinhas</span>
+                <%= prop.cozinhas ? prop.cozinhas : '' %>
+                </li>
+                <%}%>
                 <% } %>
+                
             </ul>
         </div>
     </div>
@@ -150,4 +150,4 @@
         <span class="small">Saiba mais por</span>
         <span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
     </a>
-</div>
+</article>
