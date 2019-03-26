@@ -2,7 +2,7 @@ const SitemapGenerator = require('sitemap-generator');
 
 module.exports = () => {
   // create generator
-  const generator = SitemapGenerator('http://www.planagroimoveis.com.br', {
+  const generator = SitemapGenerator('https://www.planagroimoveis.com.br', {
     stripQuerystring: false,
     filepath: './app/public/sitemap.xml',
   });
