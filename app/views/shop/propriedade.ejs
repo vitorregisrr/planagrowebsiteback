@@ -58,12 +58,12 @@
 									<div class="carousel-inner" role="listbox">
 										<div class="item active">
 											<% if(prop.mainImage) {%>
-											<img src="<%= prop.mainImage.url %>" alt="<%= prop.titulo %>">
+											<img src="<%= prop.mainImage.secure_url %>" alt="<%= prop.titulo %>">
 											<% } %>
 										</div>
 										<% prop.images.forEach( image => { %>
 										<div class="item">
-											<img src="<%= image.url %>" alt="<%= prop.title %>">
+											<img src="<%= image.secure_url %>" alt="<%= prop.title %>">
 										</div>
 										<% }) %>
 									</div>
