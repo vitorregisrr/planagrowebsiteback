@@ -200,6 +200,12 @@ const Propiedade = new Schema({
 
     codigo: {
         type: Number
+    },
+
+    date: {
+        type: Date,
+        default: Date.now(),
+        required: false
     }
 });
 
