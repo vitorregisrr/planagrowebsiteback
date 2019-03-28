@@ -32,40 +32,60 @@
 					<div class="row" id="startScroll">
 						<%- include('../../includes/form/errorBox') %>
 						<div class="col-md-9 col-sm-12">
-							<form action="/admin/propiedades/new" method="post" class="submit_form" enctype="multipart/form-data">
+							<form action="/admin/propiedades/new" method="post" class="submit_form"
+								enctype="multipart/form-data">
 								<div class="basic_information">
 									<h4 class="inner-title">Informações Básicas</h4>
 									<!-- Todos os inputs com class .rural-form e sao mostrados e os .urbano-form são escondidos
 									se a zona rural é selecionada, e vice-versa para a zona urbana selecionada.-->
 									<div class="row">
-										<div class="col-md-12 col-sm-12">
-											<select name="proprietarioId" data-live-search="true" title="Proprietário do Imóvel" class="selectpicker-cliente form-control">
+										<div class="col-md-10 col-md-10">
+											<select name="proprietarioId" data-live-search="true"
+												title="Proprietário do Imóvel"
+												class="selectpicker-cliente form-control">
 											</select>
 										</div>
-										<div class="col-md-12 col-sm-12">
-											<input name="titulo" type="text" placeholder="Título do Imóvel" class="form-control" value="<%= form.values ? form.values.titulo : null %>">
+										<div class="col-2">
+											<button type="button" class="btn btn-radius btn-default"
+												data-toggle="collapse" data-target="#novoCliente" aria-expanded="false"
+												aria-controls="novoCliente"><i class="fa fa-plus-circle"></i></button>
 										</div>
 										<div class="col-md-12 col-sm-12">
-											<textarea placeholder="Descrição do Imóvel" id="descricaoBox" name="descricao" class="form-control"><%= form.values ? form.values.descricao : null %></textarea>
+											<div class="collapse" id="novoCliente">
+												<input type="text" name="novoCliente"
+													placeholder="Nome do proprietário" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-12 col-sm-12 ">
+											<input name="titulo" type="text" placeholder="Título do Imóvel"
+												class="form-control"
+												value="<%= form.values ? form.values.titulo : null %>">
+										</div>
+										<div class="col-md-12 col-sm-12 ">
+											<textarea placeholder="Descrição do Imóvel" id="descricaoBox"
+												name="descricao"
+												class="form-control"><%= form.values ? form.values.descricao : null %></textarea>
 										</div>
 										<div class="col-md-6 col-sm-6">
-											<select name="zona" class="selectpicker form-control" id="selectZona" data-live-search="true">
+											<select name="zona" class="selectpicker form-control" id="selectZona"
+												data-live-search="true">
 												<option selected disabled>Zona do Imóvel</option>
 												<option <% if(form.values){ %>
-													<%= form.values.zona == 'Rural' ? 'selected' : ''%>
-													<% } %>
+													<%= form.values.zona == 'Rural' ? 'selected' : ''%> <% } %>
 													value="Rural">Zona Rural</option>
 												<option <% if(form.values){ %>
-													<%= form.values.zona == 'Urbana' ? 'selected' : ''%>
-													<% } %>
+													<%= form.values.zona == 'Urbana' ? 'selected' : ''%> <% } %>
 													value="Urbana">Zona Urbana</option>
 											</select>
 										</div>
 										<div class="col-md-6 col-sm-6">
-											<input type="hidden" name="selectedTipo" value="<%= form ? form.values.tipo : '' %>">
-											<select data-disableTipo="true" name="tipo" class="selectpicker form-control" id="selectTipo"
-											 data-live-search="true">
-												<option disabled selected label="Zona não selecionada"> Tipo de imóvel </option>
+											<input type="hidden" name="selectedTipo"
+												value="<%= form ? form.values.tipo : '' %>">
+											<select data-disableTipo="true" name="tipo"
+												class="selectpicker form-control" id="selectTipo"
+												data-live-search="true">
+												<option disabled selected label="Zona não selecionada"> Tipo de imóvel
+												</option>
 												<optgroup label="Zona não selecionada">
 													<option></option>
 												</optgroup>
@@ -74,26 +94,37 @@
 										</div>
 										<div class="col-md-6 col-sm-4 hidden rural-form">
 											<label for="extensao"> Extensão: </label>
-											<input type="number" name="extensao" step="any" placeholder="Extensão (hec.)" class="form-control" value="<%= form.values ? form.values.extensao : null %>">
+											<input type="number" name="extensao" step="any"
+												placeholder="Extensão (hec.)" class="form-control"
+												value="<%= form.values ? form.values.extensao : null %>">
 										</div>
 										<div class="col-md-6 col-sm-4 hidden urbano-form">
 											<label for="area"> Área: </label>
-											<input type="number" name="area" step="any" placeholder="Área (m²)" class="form-control" value="<%= form.values ? form.values.area : null %>">
+											<input type="number" name="area" step="any" placeholder="Área (m²)"
+												class="form-control"
+												value="<%= form.values ? form.values.area : null %>">
 										</div>
 
 										<div class="col-md-6 col-sm-4">
 											<label for="preco"> Preço: </label>
-											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask"
-											 data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
-											<input type="hidden" name="preco" id="intPreco" value="<%= form ? form.values.preco : '' %>">
-											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
+											<input type="text" placeholder="Preço (R$)."
+												style="margin-bottom: 5px !important" class="form-control moneymask"
+												data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
+											<input type="hidden" name="preco" id="intPreco"
+												value="<%= form ? form.values.preco : '' %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
+												opção.</small>
 										</div>
 										<div class="rural-form col-md-6 col-sm-4 hidden">
 											<label for="precoHec"> Preço por Hectar: </label>
-											<input type="text" placeholder="Preço (R$)." style="margin-bottom: 5px !important" class="form-control moneymask"
-											 data-realinput="#intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
-											<input type="hidden" name="precoHec" id="intPrecoHec" value="<%= form ? form.values.precoHec : '' %>">
-											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta opção.</small>
+											<input type="text" placeholder="Preço (R$)."
+												style="margin-bottom: 5px !important" class="form-control moneymask"
+												data-realinput="#intPrecoHec"
+												value="<%= form ? form.values.precoHec : '' %>">
+											<input type="hidden" name="precoHec" id="intPrecoHec"
+												value="<%= form ? form.values.precoHec : '' %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
+												opção.</small>
 										</div>
 									</div>
 								</div>
@@ -104,42 +135,49 @@
 											<div class="property_details urbano-form">
 												<label>Dormitórios</label>
 												<div class="number_picker">
-													<input name="dormitorios" type="number" maxlength="2" min="0" placeholder="0" class="form-control" value="<%= form.values ? form.values.dormitorios : null %>">
+													<input name="dormitorios" type="number" maxlength="2" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.dormitorios : null %>">
 												</div>
 											</div>
 											<div class="property_details urbano-form">
 												<label>Banheiros</label>
 												<div class="number_picker">
-													<input name="banheiros" type="number" maxlength="2" min="0" placeholder="0" class="form-control" value="<%= form.values ? form.values.banheiros : null %>">
+													<input name="banheiros" type="number" maxlength="2" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.banheiros : null %>">
 												</div>
 											</div>
 											<div class="property_details urbano-form">
 												<label>Suítes</label>
 												<div class="number_picker">
-													<input name="suites" type="number" maxlength="2" min="0" placeholder="0" class="form-control" value="<%= form.values ? form.values.suites : null %>">
+													<input name="suites" type="number" maxlength="2" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.suites : null %>">
 												</div>
 											</div>
 											<div class="property_details urbano-form">
 												<label>Cozinhas</label>
 												<div class="number_picker">
-													<input name="cozinhas" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
-													 value="<%= form.values ? form.values.cozinhas : null %>">
+													<input name="cozinhas" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.cozinhas : null %>">
 												</div>
 											</div>
 											<div class="property_details urbano-form">
 												<label>Salas</label>
 												<div class="number_picker">
-													<input name="salas" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
-													value="<%= form.values ? form.values.salas : null %>">
+													<input name="salas" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.salas : null %>">
 												</div>
 											</div>
 											<div class="property_details urbano-form">
 												<label>Pátio</label>
 												<div class="radio_check">
 													<input <% if(form.values){ %>
-													<%= form.values.patio == 'on' ? 'checked' : '' %>
-													<% } %>
-													type="checkbox" id="patio" name="patio">
+														<%= form.values.patio == 'on' ? 'checked' : '' %> <% } %>
+														type="checkbox" id="patio" name="patio">
 													<label for="patio"><span>Não</span><span>Sim</span></label>
 												</div>
 											</div>
@@ -148,9 +186,8 @@
 												<div class="number_picker">
 													<div class="radio_check">
 														<input <% if(form.values){ %>
-														<%= form.values.piscina == 'on' ? 'checked' : '' %>
-														<% } %>
-														type="checkbox" id="piscina" name="piscina">
+															<%= form.values.piscina == 'on' ? 'checked' : '' %> <% } %>
+															type="checkbox" id="piscina" name="piscina">
 														<label for="piscina"><span>Não</span><span>Sim</span></label>
 													</div>
 												</div>
@@ -159,44 +196,49 @@
 												<label for="mobiliado">Mobiliado</label>
 												<div class="radio_check">
 													<input <% if(form.values){ %>
-													<%= form.values.mobiliado == 'on' ? 'checked' : '' %>
-													<% } %>
-													type="checkbox" id="mobiliado" name="mobiliado">
+														<%= form.values.mobiliado == 'on' ? 'checked' : '' %> <% } %>
+														type="checkbox" id="mobiliado" name="mobiliado">
 													<label for="mobiliado"><span>Não</span><span>Sim</span></label>
 												</div>
 											</div>
 											<div class="property_details rural-form hidden">
 												<label>Açudes</label>
 												<div class="number_picker">
-													<input name="acudes" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
-													 value="<%= form.values ? form.values.acudes : null %>">
+													<input name="acudes" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.acudes : null %>">
 												</div>
 											</div>
 											<div class="property_details rural-form hidden">
 												<label>Mangueiras</label>
 												<div class="number_picker">
-													<input name="mangueiras" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
-													 value="<%= form.values ? form.values.mangueiras : null %>">
+													<input name="mangueiras" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.mangueiras : null %>">
 												</div>
 											</div>
 											<div class="property_details rural-form hidden">
 												<label>Galpões</label>
 												<div class="number_picker">
-													<input name="galpoes" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
-													 value="<%= form.values ? form.values.galpoes : null %>">
+													<input name="galpoes" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.galpoes : null %>">
 												</div>
 											</div>
 											<div class="property_details rural-form hidden">
 												<label>Sedes</label>
 												<div class="number_picker">
-													<input name="sedes" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control" value="<%= form.values ? form.values.sedes : null %>">
+													<input name="sedes" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.sedes : null %>">
 												</div>
 											</div>
 											<div class="property_details rural-form hidden">
 												<label>Barragens</label>
 												<div class="number_picker">
-													<input name="barragens" type="number" maxlength="2" min="0" min="0" placeholder="0" class="form-control"
-													 value="<%= form.values ? form.values.barragens : null %>">
+													<input name="barragens" type="number" maxlength="2" min="0" min="0"
+														placeholder="0" class="form-control"
+														value="<%= form.values ? form.values.barragens : null %>">
 												</div>
 											</div>
 										</div>
@@ -213,7 +255,9 @@
 												<% } %>
 												" />
 										<div class="vantagens">
-											<button id="nova_vantagem" type="button" class="btn btn-radius btn-default"><i class="fa fa-plus-circle"></i></button>
+											<button id="nova_vantagem" type="button"
+												class="btn btn-radius btn-default"><i
+													class="fa fa-plus-circle"></i></button>
 										</div>
 									</div>
 								</div>
@@ -221,82 +265,79 @@
 									<h4 class="inner-title">Endereço do Imóvel</h4>
 									<div class="row">
 										<div class="urbano-form">
-											<div class="col-md-12 col-sm-12">
+											<div class="col-md-12 col-sm-12 ">
 												<div class="row">
 													<div class="col-md-4 col-sm-6">
-														<input type="text" maxLength="9" name="cep" placeholder="CEP" class="form-control" value="<%= form.values ? form.values.cep : null %>">
+														<input type="text" maxLength="9" name="cep" placeholder="CEP"
+															class="form-control"
+															value="<%= form.values ? form.values.cep : null %>">
 													</div>
 													<div class="col-md-4 col-sm-6">
-														<input type="text" name="bairro" placeholder="Bairro" class="form-control" value="<%= form.values ? form.values.bairro : null %>">
+														<input type="text" name="bairro" placeholder="Bairro"
+															class="form-control"
+															value="<%= form.values ? form.values.bairro : null %>">
 													</div>
 													<div class="col-md-4 col-sm-4">
-														<input type="text" name="rua" placeholder="Rua" class="form-control" value="<%= form.values ? form.values.rua : null %>">
+														<input type="text" name="rua" placeholder="Rua"
+															class="form-control"
+															value="<%= form.values ? form.values.rua : null %>">
 													</div>
 													<div class="col-md-6 col-sm-4">
-														<input type="text" name="numero" placeholder="Número" class="form-control" value="<%= form.values ? form.values.numero : null %>">
+														<input type="text" name="numero" placeholder="Número"
+															class="form-control"
+															value="<%= form.values ? form.values.numero : null %>">
 													</div>
 													<div class="col-md-6 col-sm-4">
 														<select name="cidade" class="selectpicker form-control">
 															<option disabled selected>Cidade</option>
 															<option <% if(form.values){ %>
 																<%= form.values.cidade == 'Aceguá' ? 'selected' : ''%>
-																<% } %>
-																value="Aceguá">Aceguá</option>
+																<% } %> value="Aceguá">Aceguá</option>
 															<option <% if(form.values){ %>
 																<%= form.values.cidade == 'Bagé' ? 'selected' : ''%>
-																<% } %>
-																value="Bagé">Bagé</option>
+																<% } %> value="Bagé">Bagé</option>
 															<option <% if(form.values){ %>
 																<%= form.values.cidade == 'Candiota' ? 'selected' : ''%>
-																<% } %>
-																value="Candiota">Candiota</option>
+																<% } %> value="Candiota">Candiota</option>
 															<option <% if(form.values){ %>
 																<%= form.values.cidade == 'Dom Pedrito' ? 'selected' : ''%>
-																<% } %>
-																value="Dom Pedrito">Dom Pedrito</option>
+																<% } %> value="Dom Pedrito">Dom Pedrito</option>
 															<option <% if(form.values){ %>
 																<%= form.values.cidade == 'Hulha Negra' ? 'selected' : ''%>
-																<% } %>
-																value="Hulha Negra">Hulha Negra</option>
+																<% } %> value="Hulha Negra">Hulha Negra</option>
 															<option <% if(form.values){ %>
 																<%= form.values.cidade == 'Outros' ? 'selected' : ''%>
-																<% } %>
-																value="Outros">Outros</option>
+																<% } %> value="Outros">Outros</option>
 														</select>
 													</div>
 												</div>
 											</div>
 										</div>
 										<div class="rural-form hidden">
-											<div class="col-md-12 col-sm-12">
+											<div class="col-md-12 col-sm-12 ">
 												<div class="row">
 													<div class="col-md-6 col-sm-12">
-														<select name="municipio" class="selectpicker form-control" id="selectMunicipio">
+														<select name="municipio" class="selectpicker form-control"
+															id="selectMunicipio">
 															<option disabled selected>Municipio</option>
 															<option <% if(form.values){ %>
 																<%= form.values.municipio == 'Aceguá' ? 'selected' : ''%>
-																<% } %>
-																value="Aceguá">Aceguá</option>
+																<% } %> value="Aceguá">Aceguá</option>
 															<option <% if(form.values){ %>
 																<%= form.values.municipio == 'Bagé' ? 'selected' : ''%>
-																<% } %>
-																value="Bagé">Bagé</option>
+																<% } %> value="Bagé">Bagé</option>
 															<option <% if(form.values){ %>
 																<%= form.values.municipio == 'Candiota' ? 'selected' : ''%>
-																<% } %>
-																value="Candiota">Candiota</option>
+																<% } %> value="Candiota">Candiota</option>
 															<option <% if(form.values){ %>
 																<%= form.values.municipio == 'Dom Pedrito' ? 'selected' : ''%>
-																<% } %>
-																value="Dom Pedrito">Dom Pedrito</option>
+																<% } %> value="Dom Pedrito">Dom Pedrito</option>
 															<option <% if(form.values){ %>
 																<%= form.values.municipio == 'Hulha Negra' ? 'selected' : ''%>
-																<% } %>
-																value="Hulha Negra">Hulha Negra</option>
+																<% } %> value="Hulha Negra">Hulha Negra</option>
 															<option <% if(form.values){ %>
 																<%= form.values.municipio == 'Outros' ? 'selected' : ''%>
-																<% } %>
-																value="Outros">Outros</option>
+																<% } %> value="Outros">Outros</option>
 														</select>
 													</div>
 													<!-- Só é exibido se o município for Bagé -->
@@ -306,23 +347,19 @@
 
 															<option <% if(form){ %>
 																<%= form.values.localidade == 'Igrejinha' ? 'selected' : ''%>
-																<% } %>
-																value="Igrejinha">Igrejinha</option>
+																<% } %> value="Igrejinha">Igrejinha</option>
 
 															<option <% if(form){ %>
 																<%= form.values.localidade == 'Palmas' ? 'selected' : ''%>
-																<% } %>
-																value="Palmas">Palmas</option>
+																<% } %> value="Palmas">Palmas</option>
 
 															<option <% if(form){ %>
 																<%= form.values.localidade == 'Piraí' ? 'selected' : ''%>
-																<% } %>
-																value="Piraí">Piraí </option>
+																<% } %> value="Piraí">Piraí </option>
 
 															<option <% if(form){ %>
 																<%= form.values.localidade == 'Outros' ? 'selected' : ''%>
-																<% } %>
-																value="Outros">Outros</option>
+																<% } %> value="Outros">Outros</option>
 
 														</select>
 													</div>
@@ -348,9 +385,8 @@
 											<label>Em Destaque?</label>
 											<div class="radio_check">
 												<input <% if(form.values){ %>
-												<%= form.values.destaque == 'on' ? 'checked' : '' %>
-												<% } %>
-												type="checkbox" id="radio_destaque" name="destaque">
+													<%= form.values.destaque == 'on' ? 'checked' : '' %> <% } %>
+													type="checkbox" id="radio_destaque" name="destaque">
 												<label for="radio_destaque"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>
@@ -358,9 +394,8 @@
 											<label>Ativo?</label>
 											<div class="radio_check">
 												<input <% if(form.values){ %>
-												<%= form.values.ativo == 'on' ? 'checked' : '' %>
-												<% } %>
-												type="checkbox" id="ativo" name="ativo">
+													<%= form.values.ativo == 'on' ? 'checked' : '' %> <% } %>
+													type="checkbox" id="ativo" name="ativo">
 												<label for="ativo"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>
@@ -368,9 +403,8 @@
 											<label>Vendido?</label>
 											<div class="radio_check">
 												<input <% if(form.values){ %>
-												<%= form.values.vendido == 'on' ? 'checked' : '' %>
-												<% } %>
-												type="checkbox" id="vendido" name="vendido">
+													<%= form.values.vendido == 'on' ? 'checked' : '' %> <% } %>
+													type="checkbox" id="vendido" name="vendido">
 												<label for="vendido"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>

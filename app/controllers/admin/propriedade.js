@@ -120,7 +120,21 @@ exports.postNewPropiedade = (req, res, next) => {
                                 mainImage: image
                             })
                             .save()
+                            .then(prop => {
+                                if (req.novoCliente && req.novoCliente != '' && !req.proprietarioId) {
+                                    new Cliente({
+                                            nome: novoCliente
+                                        })
+                                        .save()
+                                        .then(cliente => {
+                                            prop.proprietarioId = cliente._id;
+                                            prop.save();
+                                        })
+                                        .catch(err => console.log(err))
+                                }
 
+                                return prop;
+                            })
                             .then(prop => {
                                 res.redirect('/admin/propiedades/outrasfotos/' + prop.codigo);
                             })
@@ -135,7 +149,21 @@ exports.postNewPropiedade = (req, res, next) => {
                 ...form
             })
             .save()
+            .then(prop => {
+                if (req.body.novoCliente && req.body.novoCliente != '' && !req.body.proprietarioId) {
+                    new Cliente({
+                            nome: req.body.novoCliente
+                        })
+                        .save()
+                        .then(cliente => {
+                            prop.proprietarioId = cliente._id;
+                            prop.save();
+                        })
+                        .catch(err => console.log(err))
 
+                }
+                return prop;
+            })
             .then(prop => {
                 res.redirect('/admin/propiedades/outrasfotos/' + prop.codigo);
             })
