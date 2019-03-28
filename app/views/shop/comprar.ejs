@@ -33,13 +33,13 @@
 				<div class="col-md-12">
 					<div class="imovel_search_form">
 						<div class="row">
-							<div class="filter_types col-12 d-flex align-middle mb-10">
+							<div class="filter_types col-12 d-flex align-middle">
 								<button id="btnUrbano" class="btn btn-default-outline <% if( form.filtrando ) { %>  <%= form.filtrando == 'Urbana' ? 'active' : '' %> <% } %> "><i
 									 class="fa fa-filter"></i> Filtrar por Urbanos</button>
 								<button id="btnRural" class="btn btn-default-outline  <% if( form.filtrando ) { %>  <%= form.filtrando == 'Rural' ? 'active' : '' %> <% } %> "><i
 									 class="fa fa-filter"></i> Filtrar por Rurais</button>
 							</div>
-							<div class="filter-forms">
+							<div class="filter-forms mt-10">
 								<form id="filtros-urbano" class="filter-form hidden" method="GET" action="/comprar">
 									<input type="hidden" name="zona" value="Urbana">
 									<input type="hidden" name="filtrando" value="Urbana">
@@ -292,7 +292,7 @@
 												value="3000000">R$3,000,000,00</option>
 										</select>
 									</div>
-									<div class="col-md-12 col-sm-6 send-filter-btns">
+									<div class="col-12 send-filter-btns">
 										<button type="submit" class="btn btn-default-outline"> <i class="fa fa-filter"></i> Filtrar Imóveis!</button>
 										<a role="button" href="/comprar?filtrando=Urbana" type="submit" class="mt-2 btn btn-sm btn-default-outline">
 											<i class="fa fa-filter"></i>
@@ -539,7 +539,7 @@
 												value="4">4+</option>
 										</select>
 									</div>
-									<div class="col-md-12 col-sm-6 send-filter-btns">
+									<div class="col-12 send-filter-btns">
 										<button type="submit" class="btn btn-default-outline"> <i class="fa fa-filter"></i> Filtrar Imóveis!</button>
 										<a role="button" href="/comprar?filtrando=Rural" type="submit" class="mt-2 btn btn-sm btn-default-outline">
 											<i class="fa fa-filter"></i>

@@ -20,6 +20,10 @@
 								<input type="hidden" name="filtrando" id="inputFiltrando">
 								<input type="hidden" name="selectedTipo" value="">
 								<div class="row">
+									<div class="col-md-3 col-sm-6">
+										<input type="text" name="keyword" class="form-control  m-0"
+											placeholder="Por palavra chave...">
+									</div>
 									<div class="col-md-2 col-sm-6">
 										<select name="zona" class="selectpicker form-control" id="selectZona">
 											<option disabled selected value="todos">Zona</option>
@@ -27,71 +31,53 @@
 											<option value="Rural">Rural</option>
 										</select>
 									</div>
-									<div class="col-md-3 col-sm-6">
+									<div class="col-md-2 col-sm-6">
 										<select name="tipo" class="selectpicker form-control" id="selectTipo">
-											<option disabled selected label="Zona não selecionada"> Tipo de imóvel</option>
+											<option disabled selected label="Zona não selecionada">Tipo de imóvel
+											</option>
 											<optgroup label="Zona não selecionada">
 												<option></option>
 											</optgroup>
 										</select>
 									</div>
-									<div class="col-md-2 col-sm-6 rural-form hidden">
-										<select name="extensaomin" class="selectpicker form-control">
-											<option selected disabled>Extensão Mín.</option>
-											<option value="0">Qualquer valor</option>
-											<option value="10">10 hec.</option>
-											<option value="50">50 hec.</option>
-											<option value="150">150 hec.</option>
-											<option value="300">300 hec.</option>
-											<option value="500">500 hec.</option>
-											<option value="700">700 hec.</option>
-											<option value="1000">1000 hec.</option>
+									<div class="col-md-3 col-sm-6 urbano-form">
+										<input type="hidden" id="valmin" name="valmin">
+										<input type="hidden" id="valmax" name="valmax">
+										<select id="faixaPreco" class="selectpicker form-control" title="Faixa de preço">
+											<option data-min="0" data-max="1000000000000">Qualquer preço
+											</option>
+											<option data-min="0" data-max="50000">Até R$50.000,00
+											</option>
+											<option data-min="50000" data-max="150000">R$50.000,00 -
+												R$150.000,00</option>
+											<option data-min="150000" data-max="300000">R$150.000,00 -
+												R$300.000,00</option>
+											<option data-min="300000" data-max="500000">R300.000,00 -
+												R$500.000,00</option>
+											<option data-min="500000" data-max="800000">R500.000,00 -
+												R$800.000,00</option>
+											<option data-min="800000" data-max="1200000">R800.000,00 -
+												R$1.200.000,00</option>
+											<option data-min="1200000" data-max="1000000000000">A partir
+												de R$1.200.000,00</option>
 										</select>
 									</div>
-									<div class="col-md-2 col-sm-6 rural-form hidden">
-										<select name="extensaomax" class="selectpicker form-control">
-											<option selected disabled>Extensão Máx.</option>
-											<option value="1000000000000">Qualquer valor</option>
-											<option value="10">10 hec.</option>
-											<option value="50">50 hec.</option>
-											<option value="150">150 hec.</option>
-											<option value="300">300 hec.</option>
-											<option value="500">500 hec.</option>
-											<option value="700">700 hec.</option>
-											<option value="1000">1000 hec.</option>
+									<div class="col-md-3 col-sm-6 hidden rural-form">
+										<input type="hidden" id="extensaomin" name="extensaomin">
+										<input type="hidden" id="extensaomax" name="extensaomax">
+										<select id="faixaHec" class="selectpicker form-control" title="Extensão (hec.)">
+											<option data-min="0" data-max="1000000000000">Qualquer extensão
+											</option>
+											<option data-min="0" data-max="50">Até 50 hectares</option>
+											<option data-min="150" data-max="300">150 - 300 hec.</option>
+											<option data-min="350" data-max="600">350 - 600 hec.</option>
+											<option data-min="600" data-max="900">600 - 900 hec.</option>
+											<option data-min="900" data-max="1200">900 - 1.200 hec.</option>
+											<option data-min="0" data-max="1000000000000">Apartir de 1.200 hec</option>
+
 										</select>
 									</div>
-									<div class="col-md-2 col-sm-6 urbano-form">
-										<select name="valmin" class="selectpicker form-control">
-											<option selected disabled>Valor Min.</option>
-											<option value="0">Qualquer valor</option>
-											<option value="100000">R$100,000,00</option>
-											<option value="200000">R$200,000,00</option>
-											<option value="400000">R$400,000,00</option>
-											<option value="600000">R$600,000,00</option>
-											<option value="800000">R$800,000,00</option>
-											<option value="1000000">R$1,000,000,00</option>
-											<option value="1500000">R$1,500,000,00</option>
-											<option value="2500000">R$2,500,000,00</option>
-											<option value="3000000">R$3,000,000,00</option>
-										</select>
-									</div>
-									<div class="col-md-2 col-sm-6 urbano-form">
-										<select name="valmax" class="selectpicker form-control">
-											<option selected disabled>Valor Max.</option>
-											<option value="1000000000000">Qualquer valor</option>
-											<option value="100000">R$100,000,00</option>
-											<option value="200000">R$200,000,00</option>
-											<option value="400000">R$400,000,00</option>
-											<option value="600000">R$600,000,00</option>
-											<option value="800000">R$800,000,00</option>
-											<option value="1000000">R$1,000,000,00</option>
-											<option value="1500000">R$1,500,000,00</option>
-											<option value="2500000">R$2,500,000,00</option>
-											<option value="3000000">R$3,000,000,00</option>
-										</select>
-									</div>
-									<div class="col-md-3 col-sm-4">
+									<div class="col-md-2 col-sm-6">
 										<input type="submit" name="search" value="Pesquisar" class="btn btn-default">
 									</div>
 								</div>
@@ -114,9 +100,6 @@
 				<div class="col-md-12">
 					<div class="title-row">
 						<h3 class="section_title_blue">IMÓVEIS <span>EM DESTAQUE</span></h3>
-						<div class="sub-title">
-							<p>Confira os imóveis mais quentes do nosso site!</p>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -154,9 +137,9 @@
 							<!-- Tab Content -->
 							<div class="row filter-list clearfix">
 								<% for(prop of props) {%>
-									<div class="imovel_column col-12 col-md-6">
-										<%- include('../includes/components/propiedade-grid') %>
-									</div>
+								<div class="imovel_column col-12 col-md-4">
+									<%- include('../includes/components/propiedade-grid') %>
+								</div>
 								<% } %>
 							</div>
 							<!-- End tab content -->
@@ -265,28 +248,41 @@
 
 <!-- Featured Filtering buttons mask -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-	$('[data-filter=".urbano"]').click(() => {
-		$('.urbanofilter-tabs').addClass('visible');
-		$('.urbanofilter-tabs').removeClass('hidden');
-		$('.ruralfilter-tabs').removeClass('visible');
-		$('.ruralfilter-tabs').addClass('hidden');
-	});
+	document.addEventListener("DOMContentLoaded", function () {
+		$('[data-filter=".urbano"]').click(() => {
+			$('.urbanofilter-tabs').addClass('visible');
+			$('.urbanofilter-tabs').removeClass('hidden');
+			$('.ruralfilter-tabs').removeClass('visible');
+			$('.ruralfilter-tabs').addClass('hidden');
+		});
 
-	$('[data-filter=".rural"]').click(() => {
-		$('.ruralfilter-tabs').addClass('visible');
-		$('.ruralfilter-tabs').removeClass('hidden');
-		$('.urbanofilter-tabs').removeClass('visible');
-		$('.urbanofilter-tabs').addClass('hidden');
-	});
+		$('[data-filter=".rural"]').click(() => {
+			$('.ruralfilter-tabs').addClass('visible');
+			$('.ruralfilter-tabs').removeClass('hidden');
+			$('.urbanofilter-tabs').removeClass('visible');
+			$('.urbanofilter-tabs').addClass('hidden');
+		});
 
-	$('[data-filter="all"]').click(() => {
-		$('.urbanofilter-tabs').removeClass('visible');
-		$('.urbanofilter-tabs').addClass('hidden');
-		$('.ruralfilter-tabs').removeClass('visible');
-		$('.ruralfilter-tabs').addClass('hidden');
+		$('[data-filter="all"]').click(() => {
+			$('.urbanofilter-tabs').removeClass('visible');
+			$('.urbanofilter-tabs').addClass('hidden');
+			$('.ruralfilter-tabs').removeClass('visible');
+			$('.ruralfilter-tabs').addClass('hidden');
+		});
 	});
-});
+</script>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		$('#faixaHec').change( function (){
+			console.log($(this).attr('data-max'))
+			$('#extensaomax').val( $(this).children("option:selected").attr('data-max'));
+			$('#extensaomin').val( $(this).children("option:selected").attr('data-min'));
+		});
+		$('#faixaPreco').change( function (){ 
+			$('#valmax').val( $(this).children("option:selected").attr('data-max'));
+			$('#valmin').val( $(this).children("option:selected").attr('data-min'));
+		});
+	});
 </script>
 
 </html>

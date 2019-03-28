@@ -1,7 +1,7 @@
 module.exports = (req) => {
 
     const query = {};
-    
+
     if (req.query.zona) {
         query.zona = req.query.zona
     }
@@ -9,9 +9,82 @@ module.exports = (req) => {
     if (req.query.tipo) {
         query.tipo = req.query.tipo
     }
-    
+
     if (req.query.codigo && req.query.codigo != '') {
         query.codigo = req.query.codigo;
+    }
+
+    if (req.query.valmin || req.query.valmax) {
+        let rangeQuery = {}
+
+        if (req.query.valmin) {
+            rangeQuery.$gt = req.query.valmin;
+
+        }
+
+        if (req.query.valmax) {
+            rangeQuery.$lt = req.query.valmax;
+        }
+
+        query.preco = rangeQuery;
+    }
+
+    if (req.query.keyword && req.query.keyword != '') {
+        query.$or = [{
+                'descricao': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+            {
+                'titulo': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+
+            {
+                'rua': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+
+            {
+                'bairro': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+
+            {
+                'cep': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+
+            {
+                'zona': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+
+            {
+                'tipo': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+
+            {
+                'numero': {
+                    $regex: req.query.keyword,
+                    $options: 'i'
+                }
+            },
+        ]
     }
 
     if (req.query.zona == 'Urbana') {
@@ -95,21 +168,7 @@ module.exports = (req) => {
             query.patio = req.query.patio;
         }
 
-        if (req.query.valmin || req.query.valmax) {
-            let rangeQuery = {}
-
-            if (req.query.valmin) {
-                rangeQuery.$gt = req.query.valmin;
-
-            }
-
-            if (req.query.valmax) {
-                rangeQuery.$lt = req.query.valmax;
-            }
-
-            query.preco = rangeQuery;
-        }
-    }else if( req.query.zona == 'Rural'){
+    } else if (req.query.zona == 'Rural') {
 
         if (req.query.municipio && req.query.municipio != '') {
             query.municipio = {
