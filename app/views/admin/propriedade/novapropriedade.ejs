@@ -445,8 +445,8 @@
 			vantagens = JSON.parse(inputVantagens.val());
 		}
 
-		let numberOfDetails = vantagens.length || 0;
-		let inputDetailsJson = document.querySelector('#vantagens_array');
+		numberOfDetails = vantagens.length || 0;
+		inputDetailsJson = document.querySelector('#vantagens_array');
 
 		vantagens.forEach(vantagem => {
 			$('.vantagem').children('.remove_vantagem').remove();
