@@ -25,15 +25,21 @@
 											placeholder="Por palavra chave...">
 									</div>
 									<div class="col-md-2 col-sm-6">
-										<select name="zona" class="selectpicker form-control" id="selectZona">
-											<option disabled selected value="todos">Zona</option>
+										<select name="zona" class="selectpicker form-control" title="Zona" id="selectZona">
 											<option value="Urbana">Urbana</option>
 											<option value="Rural">Rural</option>
 										</select>
 									</div>
-									<div class="col-md-2 col-sm-6">
+									<div class="col-md-2 col-sm-6 urbano-form">
+										<select name="genero" class="selectpicker form-control" id="selectGenero">
+											<option value="Venda">Comprar</option>
+											<option value="Aluguél">Alugar</option>
+											<option value="">Ambos</option>
+										</select>
+									</div>
+									<div class="col-md-2 col-sm-6  hidden rural-form">
 										<select name="tipo" class="selectpicker form-control" id="selectTipo">
-											<option disabled selected label="Zona não selecionada">Tipo de imóvel
+											<option disabled selected label="Zona não selecionada">Tipo de Propriedade
 											</option>
 											<optgroup label="Zona não selecionada">
 												<option></option>

@@ -79,6 +79,20 @@
 											</select>
 										</div>
 										<div class="col-md-6 col-sm-6">
+											<select name="genero" class="selectpicker form-control"
+												data-live-search="true" title="Gênero do Imóvel">
+												<option <% if(form.values){ %>
+													<%= form.values.genero == 'Venda' ? 'selected' : ''%> <% } %>
+													value="Venda">Venda</option>
+												<option <% if(form.values){ %>
+													<%= form.values.genero == 'Aluguél' ? 'selected' : ''%> <% } %>
+													value="Aluguél">Aluguél</option>
+												<option <% if(form.values){ %>
+													<%= form.values.genero == 'Ambos' ? 'selected' : ''%> <% } %>
+													value="Ambos">Ambos</option>
+											</select>
+										</div>
+										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo"
 												value="<%= form ? form.values.tipo : '' %>">
 											<select data-disableTipo="true" name="tipo"

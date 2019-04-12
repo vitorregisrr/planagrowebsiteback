@@ -60,8 +60,7 @@
 										</div>
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
-												data-live-search="true">
-												<option value="" selected disabled>Zona do Imóvel</option>
+												data-live-search="true" title="Zona do Imóvel">
 												<option <%=prop.zona=='Rural' ? 'selected' : '' %> value="Rural">Zona
 													Rural</option>
 												<option <%=prop.zona=='Urbana' ? 'selected' : '' %> value="Urbana">Zona
@@ -69,7 +68,18 @@
 											</select>
 										</div>
 										<div class="col-md-6 col-sm-6">
+											<select name="genero" class="selectpicker form-control" title="Gênero do Imóvel">
+												<option <%= prop.genero=='Venda' ? 'selected' : '' %> value="Venda">Venda
+												</option>
+												<option <%= prop.genero=='Aluguél' ? 'selected' : '' %> value="Aluguél">
+													Aluguél</option>
+												<option <%= prop.genero=='Ambos' ? 'selected' : '' %> value="Ambos">
+													Ambos</option>
+											</select>
+										</div>
+										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo" value="<%= prop.tipo %>">
+											<label for="tipo"> Tipo: </label>
 											<select data-disableTipo="true" name="tipo"
 												class="selectpicker form-control" id="selectTipo"
 												data-live-search="true">
@@ -401,8 +411,10 @@
 								<form data-confirm="true" action="/admin/propiedades/delete" method="POST">
 									<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 									<input type="hidden" name="id" value="<%= prop.id %>">
-									<button type="submit" href="/admin/propiedades" class="btn btn-sm btn-default-outline btn-filter" data-titulo="<%= prop.titulo %>"
-									 data-toggle="modal" data-target="#apagarModal">Deletar</button>
+									<button type="submit" href="/admin/propiedades"
+										class="btn btn-sm btn-default-outline btn-filter"
+										data-titulo="<%= prop.titulo %>" data-toggle="modal"
+										data-target="#apagarModal">Deletar</button>
 								</form>
 							</div>
 						</div>
@@ -411,7 +423,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<div id="dialogForm"></div>
 	<%- include('../../includes/components/footer')%>
 	<%- include('../../includes/modals/modal-novafoto')%>

@@ -13,7 +13,7 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="banner_area">
-						<h3 class="page_title">Comprar Imóvel</h3>
+						<h3 class="page_title">Pesquisar Imóveis</h3>
 						<div class="page_location">
 							<a href="index.html">Início</a>
 							<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -34,6 +34,12 @@
 					<div class="imovel_search_form">
 						<div class="row">
 							<div class="filter_types col-12 d-flex align-middle">
+								<a role="button" href="/comprar?genero=Venda" style="border-bottom: none" class="btn btn-default-outline <%= genero == 'Venda' ? 'active' : '' %> "><i
+									 class="fa fa-filter"></i> Quero comprar</a>
+								<a role="button" href="/alugar" style="border-bottom: none" class="btn btn-default-outline  <%= genero == 'Aluguél' ? 'active' : '' %> "><i
+									 class="fa fa-filter"></i> Quero alugar</a>
+							</div>
+							<div class="filter_types col-12 d-flex align-middle">
 								<button id="btnUrbano" class="btn btn-default-outline <% if( form.filtrando ) { %>  <%= form.filtrando == 'Urbana' ? 'active' : '' %> <% } %> "><i
 									 class="fa fa-filter"></i> Filtrar por Urbanos</button>
 								<button id="btnRural" class="btn btn-default-outline  <% if( form.filtrando ) { %>  <%= form.filtrando == 'Rural' ? 'active' : '' %> <% } %> "><i
@@ -42,6 +48,7 @@
 							<div class="filter-forms mt-10">
 								<form id="filtros-urbano" class="filter-form hidden" method="GET" action="/comprar">
 									<input type="hidden" name="zona" value="Urbana">
+									<input type="hidden" name="genero" value="<%= genero %>">
 									<input type="hidden" name="filtrando" value="Urbana">
 									<div class="col-md-2 col-sm-6">
 										<select name="tipo" class="selectpicker form-control">
@@ -302,6 +309,7 @@
 								<form id="filtros-rural" class="hidden filter-form" method="GET" action="/comprar">
 									<input type="hidden" name="zona" value="Rural">
 									<input type="hidden" name="filtrando" value="Rural">
+									<input type="hidden" name="genero" value="<%= genero %>">
 									<div class="col-md-3 col-sm-6">
 										<select name="tipo" class="selectpicker form-control">
 											<option disabled selected>Tipo</option>
@@ -565,11 +573,12 @@
 
 						<% if( props.length <= 0){ %>
 							<div class="error_area">
+								<div class="container">
 								<div style="font-size: 30px; line-height: 30px" class="page_error">Não encontramos nada! :(</div>
-								<h4 style="font-size: 15px; line-height: 25px; margin: 20px 0" class="section_title_green">Parece que não
-									achamos nada pelos filtros que você escolheu! Tente pesquisar de forma menos específica, ou verifique se os
-									endereços estão corretamente digitados.</h4>
+								<h4 style="font-size: 15px; line-height: 25px; margin: 20px 0;" class="section_title_green">Parece que não
+									achamos nada pelos filtros que você escolheu!<br/> Por gentileza, tente pesquisar de forma menos específica.</h4>
 								<a href="/comprar" class="btn btn-default">voltar para todas as propriedades</a>
+								</div>
 							</div>
 						<% } %>
 

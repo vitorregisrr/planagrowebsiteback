@@ -45,6 +45,11 @@ const Propiedade = new Schema({
         required: true,
     },
 
+    genero: {
+        type: String,
+        required: true,
+    },
+
     preco: {
         type: Number,
         default: 0,

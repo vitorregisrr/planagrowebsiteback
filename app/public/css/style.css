@@ -4224,7 +4224,7 @@ blockquote {
     display: inline-block;
     font-family: Montserrat, sans-serif;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
     margin: 5px;
     padding: 6px 20px;
     position: relative;
@@ -4718,15 +4718,19 @@ blockquote {
     margin-top: 20px !important
 }
 
+.mb-2 {
+    margin-bottom: 20px !important
+}
+
 .mb-0 {
     margin-bottom: 0 !important;
 }
 
 
 .imovel_search_form .filter-option {
-    font-weight: 600 !important;
+    font-weight: 500 !important;
 }
 
 .imovel_search_form input::placeholder {
-    font-weight: 600 !important;
+    font-weight: 500 !important;
 }

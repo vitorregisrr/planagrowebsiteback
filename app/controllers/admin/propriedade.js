@@ -363,6 +363,7 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.preco = req.body.preco;
                                 prop.precoHec = req.body.precoHec;
                                 prop.tipo = req.body.tipo;
+                                prop.genero = req.body.genero;
                                 prop.extensao = req.body.extensao;
                                 prop.area = req.body.area;
                                 prop.cep = req.body.cep;
@@ -414,6 +415,7 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.zona = req.body.zona;
                 prop.preco = req.body.preco;
                 prop.tipo = req.body.tipo;
+                prop.genero = req.body.genero;
                 prop.extensao = req.body.extensao;
                 prop.area = req.body.area;
                 prop.precoHec = req.body.precoHec;

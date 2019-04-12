@@ -10,6 +10,10 @@ exports.getComprar = (req, res, next) => {
 
     const query = getQueryFilter(req);
 
+    if( req.body.genero || req.query.genero ){
+        query.$or = [ { "genero" : req.query.genero || req.body.genero}, { "genero" : "Ambos"} ]
+    }
+
     Propiedade.find({ ...query, ativo: true})
         .countDocuments()
         .then(num => {
@@ -36,7 +40,8 @@ exports.getComprar = (req, res, next) => {
                                 robotsFollow: true,
                                 sobre: sobre,
                                 contact: true,
-                                form: req.query
+                                form: req.query,
+                                genero: req.body.genero || req.query.genero
                             });
                         })
                         .catch(err => next(err, 500));

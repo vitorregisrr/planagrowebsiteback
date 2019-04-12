@@ -44,14 +44,14 @@
 				<div class="col-md-8">
 					<div class="row">
 						<div class="col-md-12">
-							<div class="row">
+							<div class="row mb-2">
 								<div class="container">
 									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para
 										propriedades</a>
 								</div>
 							</div>
 							<% if(prop.mainImage || prop.images.length > 0) {%>
-							<div class="imovel_slider mt-2">
+							<div class="imovel_slider">
 							<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
 							<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
 									<!-- Wrapper for slides -->
@@ -144,6 +144,9 @@
 							<h4 class="inner-title">Detalhes da Propriedade</h4>
 							<div class="profile_data">
 								<ul>
+									<li><span>Gênero :</span>
+										<%= prop.genero %>
+									</li>
 									<li><span>Zona :</span>
 										<%= prop.zona %>
 									</li>

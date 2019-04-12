@@ -18,6 +18,7 @@ router.get('/sobre', shopCtrl.sobre.getSobre);
 
 router.get('/comprar', shopCtrl.propriedade.getComprar);
 
+router.get('/alugar', (req, res, next) => res.redirect('/comprar?genero=Aluguél'));
 
 router.get('/propriedade/:propCod', shopCtrl.propriedade.getPropiedade);
 

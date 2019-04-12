@@ -21,7 +21,7 @@ exports.getIndex = (req, res, next) => {
                                 deps: deps,
                                 robotsFollow: true,
                                 contact: true,
-                                csrfToken: req.csrfToken(),
+                                csrfToken: req.csrfToken()
                             })
                         })
                         .catch(err => next(err));
