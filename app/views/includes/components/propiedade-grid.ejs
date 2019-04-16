@@ -117,24 +117,24 @@
         <ul>
             <li class="imovel-price">
                 <i class="fa dollar-sign"></i>
-                <% if( prop.zona == 'Rural' ) {%>
-                <% if(prop.precoHec) { %>
-                </i> R$ <span class="tomoney">
-                    <%= prop.precoHec %></span>,00/hec
+                <% if( prop.zona == 'Rural' ) { %>
+                    <% if(prop.precoHec) { %>
+                        </i> R$ <span class="tomoney">
+                            <%= prop.precoHec %></span>,00/hec
 
-                <% } else if( prop.preco) { %>
-                </i> R$ <span class="tomoney">
-                    <%= prop.preco %></span>,00
-                <% } else {%>
-                Confira conosco!
-                <% } %>
-                <% } else{ %>
-                <% if( prop.preco) { %>
-                </i> R$ <span class="tomoney">
-                    <%= prop.preco %></span>,00
-                <% } else {%>
-                Confira conosco!
-                <% } %>
+                    <% } else if( prop.precovenda) { %>
+                        </i> R$ <span class="tomoney">
+                            <%= prop.precovenda %></span>,00
+                        <% } else {%>
+                        Confira conosco!
+                        <% } %>
+                <% } else { %>
+                    <% if( prop.precovenda || prop.precoaluguel) { %>
+                        </i> R$ <span class="tomoney">
+                        <%= (prop.genero === 'Venda' || prop.genero === 'Ambos') ? prop.precovenda : prop.precoaluguel %></span>,00
+                    <% } else {%>
+                    Confira conosco!
+                    <% } %>
                 <% } %>
             </li>
             <li class="flat-icon ">

@@ -68,8 +68,10 @@
 											</select>
 										</div>
 										<div class="col-md-6 col-sm-6">
-											<select name="genero" class="selectpicker form-control" title="Gênero do Imóvel">
-												<option <%= prop.genero=='Venda' ? 'selected' : '' %> value="Venda">Venda
+											<select name="genero" class="selectpicker form-control"
+												title="Gênero do Imóvel">
+												<option <%= prop.genero=='Venda' ? 'selected' : '' %> value="Venda">
+													Venda
 												</option>
 												<option <%= prop.genero=='Aluguél' ? 'selected' : '' %> value="Aluguél">
 													Aluguél</option>
@@ -103,12 +105,25 @@
 												class="form-control" value="<%= prop.area %>">
 										</div>
 
-										<div class="col-md-6 col-sm-4">
-											<label for="preco"> Preço: </label>
-											<input value="<%= prop.preco %>" style="margin-bottom: 5px !important"
+										<div class="col-md-6 col-sm-4 venda-form">
+											<label for="precovenda"> Preço Venda: </label>
+											<input value="<%= prop.precovenda %>" style="margin-bottom: 5px !important"
 												type="text" placeholder="Preço (R$)." class="form-control moneymask"
-												data-realinput="#intPreco">
-											<input type="hidden" name="preco" id="intPreco" value="<%= prop.preco %>">
+												data-realinput="#intprecovenda">
+											<input type="hidden" name="precovenda" id="intprecovenda"
+												value="<%= prop.precovenda %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
+												opção.</small>
+										</div>
+
+										<div class="col-md-6 col-sm-4 aluguel-form hidden">
+											<label for="precoaluguel"> Preço Aluguél: </label>
+											<input value="<%= prop.precoaluguel %>"
+												style="margin-bottom: 5px !important" type="text"
+												placeholder="Preço (R$)." class="form-control moneymask"
+												data-realinput="#intprecoaluguel">
+											<input type="hidden" name="precoaluguel" id="intprecoaluguel"
+												value="<%= prop.precoaluguel %>">
 											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
 												opção.</small>
 										</div>

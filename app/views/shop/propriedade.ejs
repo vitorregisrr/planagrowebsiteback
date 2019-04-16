@@ -155,12 +155,25 @@
 									</li>
 
 									<% if(prop.zona == 'Urbana') { %>
-									<% if(prop.preco) { %>
-									<li><span>Preço :</span> R$<span class="tomoney">
-											<%= prop.preco %></span></li>
-									<% }else{ %>
-									<li><span>Preço :</span><span>
-											Confira!</span></li>
+
+										<% if(prop.genero == 'Venda' || prop.genero == 'Ambos') { %>
+											<% if( prop.precovenda) { %> 
+												<li><span>Preço Venda :</span> R$<span class="tomoney">
+												<%= prop.precovenda %></span></li>
+											<% }else{ %>
+												<li><span>Preço Venda:</span><span>
+														Confira!</span></li>
+											<% } %>
+										<% } %>
+
+										<% if(prop.genero == 'Aluguél' || prop.genero == 'Ambos') { %>
+											<% if( prop.precoaluguel) { %> 
+												<li><span>Preço Aluguél :</span> R$<span class="tomoney">
+												<%= prop.precoaluguel %></span></li>
+											<% }else{ %>
+												<li><span>Preço Aluguél:</span><span>
+														Confira!</span></li>
+											<% } %>
 									<% } %>
 									<% if( prop.dormitorios) { %>
 									<li><span>Dormitórios :</span>

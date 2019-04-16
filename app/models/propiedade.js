@@ -56,6 +56,18 @@ const Propiedade = new Schema({
         required: false,
     },
 
+    precovenda: {
+        type: Number,
+        default: 0,
+        required: false,
+    },
+
+    precoaluguel: {
+        type: Number,
+        default: 0,
+        required: false,
+    },
+
     precoHec: {
         type: Number,
         default: 0,

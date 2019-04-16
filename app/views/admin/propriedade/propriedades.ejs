@@ -120,13 +120,13 @@
 												<a href="/admin/cliente/<%= prop.proprietarioId ? prop.proprietarioId.codigo : '' %>"><%= prop.proprietarioId ? prop.proprietarioId.nome : '' %></a></span>
 											<div class="listing_price">
 												 <% if(prop.zona == 'Urbana') { %>
-													 R$<span class="tomoney"><%= prop.preco %></span>
+													 R$<span class="tomoney"> <%= (prop.genero === 'Venda' || prop.genero === 'Ambos') ? prop.precovenda : prop.precoaluguel %></span>,00
 												 <% }else { %>
 													<% if(prop.precoHec) { %>
 														R$<span class="tomoney"><%= prop.precoHec %></span>/hec
 
 													<% }else if(prop.preco) {%>
-														R$<span class="tomoney"><%= prop.preco %></span>/hec
+														R$<span class="tomoney"><%= prop.precovenda %></span>/hec
 													<% } %>
 												<% } %>
 											</div>

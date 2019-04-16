@@ -1,4 +1,31 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
+
+    const selectGenero = $('select[name="genero"]');
+    selectGenero.change(function () {
+        switch ($(this).val()) {
+            case 'Ambos':
+                $(".venda-form").removeClass("hidden");
+                $(".venda-form").addClass("visible");
+                $(".aluguel-form").removeClass("hidden");
+                $(".aluguel-form").addClass("visible");
+                break;
+
+            case 'Aluguél':
+                $(".aluguel-form").removeClass("hidden");
+                $(".aluguel-form").addClass("visible");
+                $(".venda-form").removeClass("visible");
+                $(".venda-form").addClass("hidden");
+                break;
+
+            case 'Venda':
+                $(".venda-form").removeClass("hidden");
+                $(".venda-form").addClass("visible");
+                $(".aluguel-form").removeClass("visible");
+                $(".aluguel-form").addClass("hidden");
+                break;
+        }
+    });
+    selectGenero.change();
     
     if (document.querySelector('input[name="selectedTipo"]')) {
         const disableTodos = document.querySelector('#selectTipo').getAttribute('data-disableTipo');
@@ -13,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <option ${"Terreno"==tipoSelecionado?"selected":""} value="Terreno">Terreno</option>
                                 <option ${"Chácara"==tipoSelecionado?"selected":""} value="Chácara">Chácara</option>
                             </optgroup>`,
-    
+
             tiposRurais = `<optgroup label="Tipos Rurais" id="selectRural">
                                 ${ !disableTodos ? '<option value="">Todos</option>' : '' }
                                 <option ${"Chácara"==tipoSelecionado?"selected":""} value="Chácara">Chácara</option>
@@ -22,12 +49,12 @@ document.addEventListener("DOMContentLoaded", function() {
                                 <option ${"Terreno"==tipoSelecionado?"selected":""} value="Terreno">Terreno</option>
                                 <option ${"Lavoura"==tipoSelecionado?"selected":""} value="Lavoura">Lavoura</option>
                             </optgroup>`,
-    
+
             tiposVazio = `<option disabled selected  label="Zona não selecionada"> Tipo de imóvel </option>
                             <optgroup label="Zona não selecionada">
                             <option></option>
                           </optgroup>`;
-                          
+
         setForm = () => {
             switch ($("#inputFiltrando") && $("#inputFiltrando").val($("#selectZona").val()), $("#selectZona").val()) {
                 case "todos":
@@ -41,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             $(".selectpicker").selectpicker("refresh")
         };
-        
+
         setForm(), $("#selectZona").change(setForm)
     }
     $("#selectMunicipio").change(function () {

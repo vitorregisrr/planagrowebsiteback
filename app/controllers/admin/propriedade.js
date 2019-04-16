@@ -360,7 +360,8 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.titulo = req.body.titulo;
                                 prop.descricao = req.body.descricao;
                                 prop.zona = req.body.zona;
-                                prop.preco = req.body.preco;
+                                prop.precovenda = req.body.precovenda;
+                                prop.precoaluguel = req.body.precoaluguel;
                                 prop.precoHec = req.body.precoHec;
                                 prop.tipo = req.body.tipo;
                                 prop.genero = req.body.genero;
@@ -413,7 +414,8 @@ exports.postEditPropiedade = (req, res, next) => {
 
                 prop.descricao = req.body.descricao;
                 prop.zona = req.body.zona;
-                prop.preco = req.body.preco;
+                prop.precovenda = req.body.precovenda;
+                prop.precoaluguel = req.body.precoaluguel;
                 prop.tipo = req.body.tipo;
                 prop.genero = req.body.genero;
                 prop.extensao = req.body.extensao;

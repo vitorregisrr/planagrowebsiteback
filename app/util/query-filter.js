@@ -26,7 +26,13 @@ module.exports = (req) => {
             rangeQuery.$lt = req.query.valmax;
         }
 
-        query.preco = rangeQuery;
+        if (!req.query.genero || req.query.genero == 'Venda') {
+            query.precovenda = rangeQuery;
+            
+        } else {
+            query.precoaluguel = rangeQuery;
+
+        }
     }
 
     if (req.query.keyword && req.query.keyword != '') {

@@ -14,7 +14,7 @@
 			<div class="carousel-caption">
 				<div class="container">
 					<div class="slider-search-2">
-						<h1>Encontre e compre Imóveis Rurais e Urbanos!</h1>
+						<h1>Encontre e compre Imóveis Urbanos e Rurais!</h1>
 						<div class="imovel_search_form">
 							<form action="/comprar" method="GET" class="imovel_filter_input">
 								<input type="hidden" name="filtrando" id="inputFiltrando">
@@ -49,7 +49,7 @@
 									<div class="col-md-3 col-sm-6 urbano-form">
 										<input type="hidden" id="valmin" name="valmin">
 										<input type="hidden" id="valmax" name="valmax">
-										<select id="faixaPreco" class="selectpicker form-control" title="Faixa de preço">
+										<select id="faixaPrecoVenda" class="selectpicker form-control venda-form" title="Faixa de preço">
 											<option data-min="0" data-max="1000000000000">Qualquer preço
 											</option>
 											<option data-min="0" data-max="50000">Até R$50.000,00
@@ -66,6 +66,22 @@
 												R$1.200.000,00</option>
 											<option data-min="1200000" data-max="1000000000000">A partir
 												de R$1.200.000,00</option>
+										</select>
+										<select id="faixaPrecoAluguel" class="selectpicker form-control aluguel-form hidden" title="Faixa de preço">
+											<option data-min="0" data-max="1000000000000">Qualquer preço
+											</option>
+											<option data-min="0" data-max="200">Até R$200,00
+											</option>
+											<option data-min="200" data-max="500">R$200,00 -
+												R$500,00</option>
+											<option data-min="500" data-max="800">R$500,00 -
+												R$800,00</option>
+											<option data-min="1000" data-max="1200">R$1.000,00 -
+												R$1.200,00</option>
+											<option data-min="1500" data-max="2000">R1.500,00 -
+												R$2.000,00</option>
+											<option data-min="2000" data-max="1000000000000">A partir
+												de R$2.000,00</option>
 										</select>
 									</div>
 									<div class="col-md-3 col-sm-6 hidden rural-form">
@@ -279,12 +295,18 @@
 </script>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
+
 		$('#faixaHec').change( function (){
-			console.log($(this).attr('data-max'))
 			$('#extensaomax').val( $(this).children("option:selected").attr('data-max'));
 			$('#extensaomin').val( $(this).children("option:selected").attr('data-min'));
 		});
-		$('#faixaPreco').change( function (){ 
+
+		$('#faixaPrecoVenda').change( function (){ 
+			$('#valmax').val( $(this).children("option:selected").attr('data-max'));
+			$('#valmin').val( $(this).children("option:selected").attr('data-min'));
+		});
+		
+		$('#faixaPrecoAluguel').change( function (){ 
 			$('#valmax').val( $(this).children("option:selected").attr('data-max'));
 			$('#valmin').val( $(this).children("option:selected").attr('data-min'));
 		});

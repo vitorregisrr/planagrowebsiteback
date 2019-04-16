@@ -119,16 +119,28 @@
 												value="<%= form.values ? form.values.area : null %>">
 										</div>
 
-										<div class="col-md-6 col-sm-4">
-											<label for="preco"> Preço: </label>
+										<div class="col-md-6 col-sm-4 venda-form">
+											<label for="precovenda"> Preço Venda: </label>
 											<input type="text" placeholder="Preço (R$)."
 												style="margin-bottom: 5px !important" class="form-control moneymask"
-												data-realinput="#intPreco" value="<%= form ? form.values.preco : '' %>">
-											<input type="hidden" name="preco" id="intPreco"
-												value="<%= form ? form.values.preco : '' %>">
+												data-realinput="#intprecovenda" value="<%= form ? form.values.precovenda : '' %>">
+											<input type="hidden" name="precovenda" id="intprecovenda"
+												value="<%= form ? form.values.precovenda : '' %>">
 											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
 												opção.</small>
 										</div>
+
+										<div class="col-md-6 col-sm-4 aluguel-form hidden">
+											<label for="precoaluguel"> Preço Aluguél: </label>
+											<input type="text" placeholder="Preço (R$)."
+												style="margin-bottom: 5px !important" class="form-control moneymask"
+												data-realinput="#intprecoaluguel" value="<%= form ? form.values.precoaluguel : '' %>">
+											<input type="hidden" name="precoaluguel" id="intprecoaluguel"
+												value="<%= form ? form.values.precoaluguel : '' %>">
+											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
+												opção.</small>
+										</div>
+
 										<div class="rural-form col-md-6 col-sm-4 hidden">
 											<label for="precoHec"> Preço por Hectar: </label>
 											<input type="text" placeholder="Preço (R$)."
