@@ -92,6 +92,7 @@ exports.postNewPropiedade = (req, res, next) => {
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
     req.body.vendido = req.body.vendido == 'on' ? 'true' : 'false';
     req.body.destaque = req.body.destaque == 'on' ? 'true' : 'false';
+    req.body.taxas = req.body.taxas == 'on' ? 'true' : 'false';
 
     req.body.piscina = req.body.piscina == 'on' ? 'true' : 'false';
     req.body.patio = req.body.patio == 'on' ? 'true' : 'false';
@@ -326,6 +327,7 @@ exports.postEditPropiedade = (req, res, next) => {
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
     req.body.vendido = req.body.vendido == 'on' ? 'true' : 'false';
     req.body.destaque = req.body.destaque == 'on' ? 'true' : 'false';
+    req.body.taxas = req.body.taxas == 'on' ? 'true' : 'false';
 
     req.body.piscina = req.body.piscina == 'on' ? 'true' : 'false';
     req.body.patio = req.body.patio == 'on' ? 'true' : 'false';
@@ -361,6 +363,7 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.descricao = req.body.descricao;
                                 prop.zona = req.body.zona;
                                 prop.precovenda = req.body.precovenda;
+                                prop.taxas = req.body.taxas;
                                 prop.precoaluguel = req.body.precoaluguel;
                                 prop.precoHec = req.body.precoHec;
                                 prop.tipo = req.body.tipo;
@@ -415,6 +418,7 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.descricao = req.body.descricao;
                 prop.zona = req.body.zona;
                 prop.precovenda = req.body.precovenda;
+                prop.taxas = req.body.taxas;
                 prop.precoaluguel = req.body.precoaluguel;
                 prop.tipo = req.body.tipo;
                 prop.genero = req.body.genero;

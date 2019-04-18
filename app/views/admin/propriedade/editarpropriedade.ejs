@@ -153,6 +153,15 @@
 														value="<%= prop.dormitorios %>">
 												</div>
 											</div>
+
+											<div class="property_details urbano-form">
+												<label>Suítes</label>
+												<div class="number_picker">
+													<input name="suites" type="number" maxlength="2" min="0"
+														placeholder="0" class="form-control" value="<%= prop.suites %>">
+												</div>
+											</div>
+
 											<div class="property_details urbano-form">
 												<label>Banheiros</label>
 												<div class="number_picker">
@@ -161,13 +170,7 @@
 														value="<%= prop.banheiros %>">
 												</div>
 											</div>
-											<div class="property_details urbano-form">
-												<label>Suítes</label>
-												<div class="number_picker">
-													<input name="suites" type="number" maxlength="2" min="0"
-														placeholder="0" class="form-control" value="<%= prop.suites %>">
-												</div>
-											</div>
+
 											<div class="property_details urbano-form">
 												<label>Cozinhas</label>
 												<div class="number_picker">
@@ -294,6 +297,10 @@
 																value="Dom Pedrito">Dom Pedrito</option>
 															<option <%=prop.cidade=='Hulha Negra' ? 'selected' : '' %>
 																value="Hulha Negra">Hulha Negra</option>
+															<option <%=prop.cidade=='Hulha Negra' ? 'selected' : '' %>
+																value="Hulha Negra">Cassino</option>
+															<option <%=prop.cidade=='Pelotas' ? 'selected' : '' %>
+																value="Hulha Negra">Pelotas</option>
 															<option <%=prop.cidade=='Outros' ? 'selected' : '' %>
 																value="Outros">Outros</option>
 														</select>
@@ -389,6 +396,14 @@
 								<div class="system_infos">
 									<h4 class="inner-title">Informações de exibição</h4>
 									<div class="row">
+										<div class="system_info">
+											<label>Possuí taxas?</label>
+											<div class="radio_check">
+												<input <%=prop.taxas ? 'checked' : '' %> type="checkbox" id="taxas"
+													name="taxas">
+												<label for="taxas"><span>Não</span><span>Sim</span></label>
+											</div>
+										</div>
 										<div class="system_info">
 											<label>Em Destaque?</label>
 											<div class="radio_check">

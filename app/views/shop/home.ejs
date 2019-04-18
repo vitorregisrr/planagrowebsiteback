@@ -14,12 +14,25 @@
 			<div class="carousel-caption">
 				<div class="container">
 					<div class="slider-search-2">
-						<h1>Encontre e compre Imóveis Urbanos e Rurais!</h1>
+						<h1>Compre ou Aluguel Imóveis Urbanos e Rurais!</h1>
 						<div class="imovel_search_form">
 							<form action="/comprar" method="GET" class="imovel_filter_input">
 								<input type="hidden" name="filtrando" id="inputFiltrando">
 								<input type="hidden" name="selectedTipo" value="">
 								<div class="row">
+
+									<div class="col-6 col-md-4">
+										<a href="/comprar?genero=Venda" role="button" class="btn btn-default d-block mb-2">Imóveis a Venda</a>
+									</div>
+
+									<div class="col-6 col-md-4">
+										<a href="/comprar?genero=Aluguél" role="button" class="btn btn-default d-block mb-2">Imóveis para Alugar</a>
+									</div>
+
+									<div class="col-md-4">
+										<a href="/comprar" role="button" class="btn btn-default d-block mb-2">Todos os Imóveis</a>
+									</div>
+
 									<div class="col-md-3 col-6">
 										<input type="text" name="keyword" class="form-control"
 											placeholder="Por palavra chave...">

@@ -34,6 +34,17 @@ const Propiedade = new Schema({
         required: false,
     },
 
+    observacoesadmin: {
+        type: String,
+        required: false,
+    },
+
+    taxas: {
+        type: Boolean,
+        default: false,
+        required: false,
+    },
+
     // rural/urbana
     zona: {
         type: String,

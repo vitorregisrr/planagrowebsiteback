@@ -4,7 +4,7 @@
 
 body {
     font-size: 14px;
-    color: #474747;
+    color: #0f0f0f;
     font-family: Raleway, sans-serif;
     line-height: 26px;
     font-weight: 400;
@@ -136,11 +136,11 @@ label {
     text-align: left;
     width: 100%;
     margin-bottom: 20px !important;
-    color: #575757 !important
+    color: #292929 !important
 }
 
 .form-control::placeholder {
-    color: #727272 !important
+    color: #333333 !important
 }
 
 textarea {
@@ -218,7 +218,7 @@ a.btn-link {
 }
 
 .bootstrap-select .dropdown-menu.inner li a {
-    color: #a1a1a1;
+    color: #333333;
     padding: 0 10px
 }
 
@@ -444,7 +444,7 @@ section {
 .imovel_grid .imovel-text {
     height: 210px;
     overflow: hidden;
-    /* border: .3px solid rgba(7, 2, 2, 0.25); */
+    border: .3px solid rgba(80, 16, 16, 0.733);
 }
 
 .imovel_grid.sold {
@@ -971,7 +971,7 @@ input[type=radio]:checked {
 }
 
 .navbar-default .navbar-nav li a {
-    color: #444
+    color: rgb(31, 31, 31)
 }
 
 .nav_text>li>a {
@@ -1543,7 +1543,8 @@ input[type=radio]:checked {
 
 .bed_area {
     height: 50px;
-    /* border: .3px solid rgba(7, 2, 2, 0.25); */
+    border: .3px solid rgba(80, 16, 16, 0.733);
+    border-bottom: none;
     border-top: 1px solid #e5e5e5;
     -moz-transition: all .2s ease-in-out;
     -webkit-transition: all .2s ease-in-out;
@@ -1572,7 +1573,7 @@ input[type=radio]:checked {
     padding: 10px 20px;
     text-align: center;
     display: block;
-    /* border: .3px solid rgba(7, 2, 2, 0.25); */
+    border: .3px solid rgba(80, 16, 16, 0.733);
     line-height: 10px;
 }
 
@@ -1623,7 +1624,7 @@ input[type=radio]:checked {
     position: relative;
     text-align: center;
     width: 50px;
-    border-left: 1px solid rgba(7, 2, 2, 0.25);
+    border-left: 1px solid rgba(80, 16, 16, 0.733);
     -webkit-transition: all .3s ease-in;
     -moz-transition: all .3s ease-in;
     -ms-transition: all .3s ease-in;
@@ -4058,6 +4059,21 @@ blockquote {
     position: relative
 }
 
+@media screen and (max-width: 992px){
+    #slider-fixed{
+        height: 100vh !important;
+        margin-top: 150px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    #slider-fixed{
+        height: 110vh !important;
+        margin-top: 80px;
+    }
+}
+
+
 .slider-search-2 h1:before {
     border-left: 0 solid transparent;
     border-right: 25px solid transparent;
@@ -4249,7 +4265,7 @@ blockquote {
 .filter-list .imovel-text {
     padding-left: 15px;
     padding-right: 15px;
-    /* border-bottom: .3px solid rgba(7, 2, 2, 0.25); */
+    /* border-bottom: .3px solid rgba(80, 16, 16, 0.733); */
 }
 
 .location-img {
@@ -4733,4 +4749,8 @@ blockquote {
 
 .imovel_search_form input::placeholder {
     font-weight: 500 !important;
+}
+
+.d-block{
+    display: block !important;
 }
