@@ -10,9 +10,24 @@ exports.propiedade = [
             min: 5
         }),
 
-        body('preco', 'O campo número é inválido')
+        body('genero', 'O gênero é obrigatório')
+        .isString()
+        .custom((value, { req }) => {
+            if (req.body.genero == 'Ambos' || req.body.genero == 'Venda' || req.body.genero == 'Aluguél') {
+                return true;
+            }
+            throw new Error('O tipo escolhido é inválido.')
+        })
+        .withMessage('Gênero inválido.'),
+
+        body('precoaluguel', 'O campo preço do aluguél é inválido')
         .isNumeric()
-        .withMessage('Preço inválido, deve ser um número.')
+        .withMessage('Preço para aluguél inválido, deve ser um número.')
+        .toFloat(),
+
+        body('precovenda', 'O campo preço da venda é inválido')
+        .isNumeric()
+        .withMessage('Preço para venda inválido, deve ser um número.')
         .toFloat(),
 
         body('zona', 'A Zona é obrigatória')
@@ -77,8 +92,25 @@ exports.editPropiedade = [
             min: 5
         }),
 
-        body('preco', 'O campo número é inválido')
-        .withMessage('Preço inválido, deve ser um número.'),
+        body('genero', 'O genero é obrigatório')
+        .isString()
+        .custom((value, { req }) => {
+            if (req.body.genero == 'Ambos' || req.body.genero == 'Venda' || req.body.genero == 'Aluguél') {
+                return true;
+            }
+            throw new Error('O tipo escolhido é inválido.')
+        })
+        .withMessage('Genêro inválido.'),
+
+        body('precoaluguel', 'O campo preço do aluguél é inválido')
+        .isNumeric()
+        .withMessage('Preço para aluguél inválido, deve ser um número.')
+        .toFloat(),
+
+        body('precovenda', 'O campo preço da venda é inválido')
+        .isNumeric()
+        .withMessage('Preço para venda inválido, deve ser um número.')
+        .toFloat(),
 
         body('zona', 'A Zona é obrigatória')
         .isString()
