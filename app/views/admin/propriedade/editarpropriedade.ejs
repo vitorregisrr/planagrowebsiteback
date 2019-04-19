@@ -58,6 +58,13 @@
 											<textarea placeholder="Descrição do Imóvel" name="descricao"
 												class="form-control"><%= prop.descricao %></textarea>
 										</div>
+										
+										<div class="col-md-12 col-sm-12">
+											<label for="observacoesadmin"> Observacões de admnistrador</label>
+											<textarea placeholder="Observações de admnistrador" name="observacoesadmin"
+												class="form-control"><%= prop.observacoesadmin %></textarea>
+										</div>
+
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
 												data-live-search="true" title="Zona do Imóvel">
@@ -413,13 +420,32 @@
 											</div>
 										</div>
 										<div class="system_info">
-											<label>Ativo?</label>
+											<label>Ativo (geral)?</label>
 											<div class="radio_check">
 												<input <%=prop.ativo ? 'checked' : '' %> type="checkbox" id="ativo"
 													name="ativo">
 												<label for="ativo"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>
+
+										<!-- <div class="system_info">
+											<label>Ativo p/ Venda?</label>
+											<div class="radio_check">
+												<input <%=prop.ativovenda ? 'checked' : '' %> type="checkbox" id="ativovenda"
+													name="ativovenda">
+												<label for="ativovenda"><span>Não</span><span>Sim</span></label>
+											</div>
+										</div> 
+
+										<div class="system_info">
+											<label>Ativo p/ Aluguél?</label>
+											<div class="radio_check">
+												<input <%=prop.ativoaluguel ? 'checked' : '' %> type="checkbox" id="ativoaluguel"
+													name="ativoaluguel">
+												<label for="ativoaluguel"><span>Não</span><span>Sim</span></label>
+											</div>
+										</div> -->
+
 										<div class="system_info">
 											<label>Vendido?</label>
 											<div class="radio_check">

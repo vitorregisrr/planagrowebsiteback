@@ -2,6 +2,20 @@ module.exports = (req) => {
 
     const query = {};
 
+    // if( req.query.genero === 'Aluguél'){
+    //     query.ativoaluguel = true;
+    // }
+
+    // if( req.query.genero === 'Venda'){
+    //     query.ativovenda = true;
+    // }
+
+    // if( req.query.genero === 'Ambos' || !req.query.genero){
+    //     query.ativoaluguel = true;
+    //     query.ativovenda = true;
+    // }
+
+
     if (req.query.zona) {
         query.zona = req.query.zona
     }

@@ -66,6 +66,11 @@
 												name="descricao"
 												class="form-control"><%= form.values ? form.values.descricao : null %></textarea>
 										</div>
+										<div class="col-md-12 col-sm-12 ">
+											<textarea placeholder="Observacões de admnistrador"
+												name="observacoesadmin"
+												class="form-control"><%= form.values ? form.values.observacoesadmin : null %></textarea>
+										</div>
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
 												data-live-search="true">
@@ -437,7 +442,7 @@
 											</div>
 										</div>
 										<div class="system_info">
-											<label>Ativo?</label>
+											<label>Ativo (geral)?</label>
 											<div class="radio_check">
 												<input <% if(form.values){ %>
 													<%= form.values.ativo == 'on' ? 'checked' : '' %> <% } %>
@@ -445,6 +450,27 @@
 												<label for="ativo"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>
+
+										<!-- <div class="system_info">
+											<label>Ativo p/ venda?</label>
+											<div class="radio_check">
+												<input <% if(form.values){ %>
+													<%= form.values.ativovenda == 'on' ? 'checked' : '' %> <% } %>
+													type="checkbox" id="ativovenda" name="ativovenda">
+												<label for="ativovenda"><span>Não</span><span>Sim</span></label>
+											</div>
+										</div>
+
+										<div class="system_info">
+											<label>Ativo p/ aluguél?</label>
+											<div class="radio_check">
+												<input <% if(form.values){ %>
+													<%= form.values.ativoaluguel == 'on' ? 'checked' : '' %> <% } %>
+													type="checkbox" id="ativoaluguel" name="ativoaluguel">
+												<label for="ativoaluguel"><span>Não</span><span>Sim</span></label>
+											</div>
+										</div> -->
+
 										<div class="system_info">
 											<label>Vendido?</label>
 											<div class="radio_check">
