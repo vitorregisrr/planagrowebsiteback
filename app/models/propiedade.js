@@ -92,11 +92,13 @@ const Propiedade = new Schema({
 
     ativovenda: {
         type: Boolean,
+        default: false,
         required: true,
     },
 
     ativoaluguel: {
         type: Boolean,
+        default: false,
         required: true,
     },
 

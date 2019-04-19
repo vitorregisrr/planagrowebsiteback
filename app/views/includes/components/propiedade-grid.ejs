@@ -132,8 +132,8 @@
 
                     <% if( prop.precovenda || prop.precoaluguel) { %>
                         </i> R$ <span class="tomoney">
-                        <%= (prop.genero === 'Venda' || prop.genero === 'Ambos') ? prop.precovenda : prop.precoaluguel %></span>,00
-                        <%= prop.genero == 'Aluguél' && prop.taxas ? '+ taxas' : '' %>
+                        <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguél' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguél' ? prop.precoaluguel : prop.precovenda)) %></span>,00
+                        <%= (prop.genero === 'Aluguél' || (prop.genero === 'Ambos' && genero === 'Aluguél')) && prop.taxas ? '+ taxas' : '' %>
                     <% } else {%>
                     Confira conosco!
                     <% } %>

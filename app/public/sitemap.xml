@@ -13,6 +13,9 @@
     <loc>https://www.planagroimoveis.com.br/contato</loc>
   </url>
   <url>
+    <loc>https://www.planagroimoveis.com.br/comprar?genero=Alugu%C3%A9l</loc>
+  </url>
+  <url>
     <loc>https://www.planagroimoveis.com.br/comprar</loc>
   </url>
   <url>
@@ -34,10 +37,10 @@
     <loc>https://www.planagroimoveis.com.br/propriedade/364</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/comprar?genero=Alugu%C3%A9l</loc>
+    <loc>https://www.planagroimoveis.com.br/comprar?filtrando=Urbana</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/comprar?filtrando=Urbana</loc>
+    <loc>https://www.planagroimoveis.com.br/comprar?filtrando=Rural</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/456</loc>
@@ -50,9 +53,6 @@
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/436</loc>
-  </url>
-  <url>
-    <loc>https://www.planagroimoveis.com.br/comprar?filtrando=Rural</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/432</loc>

@@ -21,6 +21,7 @@ exports.getIndex = (req, res, next) => {
                                 deps: deps,
                                 robotsFollow: true,
                                 contact: true,
+                                genero: 'Ambos',
                                 csrfToken: req.csrfToken()
                             })
                         })
