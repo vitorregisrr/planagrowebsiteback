@@ -50,10 +50,12 @@
 												<% } %>
 											</select>
 										</div>
+
 										<div class="col-md-12 col-sm-12">
 											<input name="titulo" type="text" placeholder="Título do Imóvel"
 												class="form-control" value="<%= prop.titulo %>">
 										</div>
+										
 										<div class="col-md-12 col-sm-12">
 											<textarea placeholder="Descrição do Imóvel" name="descricao"
 												class="form-control"><%= prop.descricao %></textarea>
@@ -74,6 +76,7 @@
 													Urbana</option>
 											</select>
 										</div>
+
 										<div class="col-md-6 col-sm-6">
 											<select name="genero" class="selectpicker form-control"
 												title="Gênero do Imóvel">
@@ -86,6 +89,7 @@
 													Ambos</option>
 											</select>
 										</div>
+
 										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo" value="<%= prop.tipo %>">
 											<label for="tipo"> Tipo: </label>
@@ -100,12 +104,14 @@
 												<!-- Está sendo escrito pela mascara do javascript no arquivo zonaMaskFilter.js -->
 											</select>
 										</div>
+
 										<div class="col-md-6 col-sm-4 hidden rural-form">
 											<label for="extensao"> Extensão: </label>
 											<input type="number" name="extensao" step="any"
 												placeholder="Extensão (hec.)" class="form-control"
 												value="<%= prop.extensao %>">
 										</div>
+										
 										<div class="col-md-6 col-sm-4 hidden urbano-form">
 											<label for="area"> Área: </label>
 											<input type="number" name="area" step="any" placeholder="Área (m²)"
@@ -145,6 +151,7 @@
 											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
 												opção.</small>
 										</div>
+										
 									</div>
 								</div>
 								<div class="description">

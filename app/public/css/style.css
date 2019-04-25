@@ -4730,13 +4730,17 @@ blockquote {
     margin: 0
 }
 
+.p-0{
+    padding: 0 !important;
+}
+
 .mt-2 {
     margin-top: 20px !important
 }
 
 .mb-2 {
     margin-bottom: 20px !important
-}
+}y
 
 .mb-0 {
     margin-bottom: 0 !important;
@@ -4753,4 +4757,8 @@ blockquote {
 
 .d-block{
     display: block !important;
+}
+
+.footer-links a{
+    color: #601416 !important;
 }
