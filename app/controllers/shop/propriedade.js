@@ -2,14 +2,6 @@ const Propiedade = require('../../models/propiedade'),
     Sobre = require('../../models/sobre'),
     getQueryFilter = require('../../util/query-filter');
 
-Propiedade.find()
-.then( props => {
-    props.forEach( prop => {
-        prop.precovenda = prop.preco;
-        prop.save();
-    });
-})
-
 exports.getComprar = (req, res, next) => {
     const currentPage = req.query.page ? parseInt(req.query.page) : 1,
         ITEMS_PER_PAGE = 8;
