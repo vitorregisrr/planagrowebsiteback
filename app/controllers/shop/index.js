@@ -2,7 +2,6 @@ const Propiedade = require('../../models/propiedade'),
     Sobre = require('../../models/sobre'),
     Depoimento = require('../../models/depoimento');
 
-
 exports.getIndex = (req, res, next) => {
     Sobre.findOne()
         .then(sobre => {

@@ -3,8 +3,6 @@ const Propiedade = require('../../models/propiedade'),
     fileHelper = require('../../util/file-helper'),
     cloudinary = require('../../util/cloudinary');
 
-
-
 //GET CLIENTE PROFILE
 exports.getCliente = (req, res, next) => {
     const clienteCod = req.params.clienteCod;
