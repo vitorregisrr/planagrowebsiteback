@@ -2,7 +2,6 @@ module.exports = (req) => {
 
     const query = {};
 
-    query.$and = [];
     // if( req.query.genero === 'Aluguél'){
     //     query.ativoaluguel = true;
     // }
@@ -51,6 +50,8 @@ module.exports = (req) => {
     }
 
     if (req.query.keyword && req.query.keyword != '') {
+        query.$and = [];
+        
         query.$and.push({ $or : [
             {
                 'descricao': {

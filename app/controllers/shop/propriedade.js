@@ -10,6 +10,9 @@ exports.getComprar = (req, res, next) => {
     const query = getQueryFilter(req);
 
     if( req.body.genero || req.query.genero ){
+        if(!query.$and ){
+            query.$and = [];
+        }
         query.$and.push( { $or: [ { "genero" : req.query.genero || req.body.genero}, { "genero" : "Ambos"} ] })
     }
 
