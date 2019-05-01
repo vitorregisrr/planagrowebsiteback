@@ -124,9 +124,9 @@ exports.postNewPropiedade = (req, res, next) => {
                             })
                             .save()
                             .then(prop => {
-                                if (req.novoCliente && req.novoCliente != '' && !req.proprietarioId) {
+                                if (req.body.novoCliente && req.body.novoCliente != '' && !req.body.proprietarioId) {
                                     new Cliente({
-                                            nome: novoCliente
+                                            nome: req.body.novoCliente
                                         })
                                         .save()
                                         .then(cliente => {
