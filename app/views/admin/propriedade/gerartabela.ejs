@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <%- include('../../includes/imports/head') %>
+    <%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+    <%- include('../../includes/components/nav') %>
+    <!-- Banner Section Start -->
+    <section id="banner" class="img-webp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="banner_area">
+                        <h3 class="page_title">Painel de Admnistração</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
+
+    <!-- Profile Setting Start -->
+    <section id="profile_setting">
+        <div class="container">
+            <div class="row">
+                <%- include('../../includes/components/painelMenu') %>
+                <div class="col-md-8 col-sm-12">
+                    <div class="row" id="startScroll">
+                        <%- include('../../includes/form/errorBox') %>
+                        <div class="col-md-9 col-sm-12">
+                            <form action="/admin/propiedades/gerartabela" method="POST" class="submit_form"
+                                enctype="multipart/form-data">
+                                <input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <div class="basic_information">
+                                    <h4 class="inner-title">Gerar tabela</h4>
+                                    <!-- Todos os inputs com class .rural-form e sao mostrados e os .urbano-form são escondidos
+									se a zona rural é selecionada, e vice-versa para a zona urbana selecionada.-->
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12">
+                                            <select name="proprietarioId" data-live-search="true"
+                                                title="Proprietário do Imóvel"
+                                                class="selectpicker-cliente form-control">
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <input type="hidden" name="selectedTipo" value="">
+                                            <select name="zona" class="selectpicker form-control" id="selectZona"
+                                                data-live-search="true" title="Zona do Imóvel">
+                                                <option value="Rural">Zona
+                                                    Rural</option>
+                                                <option value="Urbana">Zona
+                                                    Urbana</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <select name="genero" class="selectpicker form-control"
+                                                title="Gênero do Imóvel">
+                                                <option value="Venda">
+                                                    Venda
+                                                </option>
+                                                <option value="Aluguél">
+                                                    Aluguél</option>
+                                                <option value="Ambos">
+                                                    Ambos</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6">
+                                            <select data-disableTipo="true" name="tipo"
+                                                class="selectpicker form-control" id="selectTipo"
+                                                data-live-search="true" title="Tipo de imóvel">
+                                                <optgroup label="Zona não selecionada">
+                                                    <option></option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <input type="hidden" id="valmin" name="valmin">
+                                            <input type="hidden" id="valmax" name="valmax">
+                                            <select id="faixaPrecoVenda" class="selectpicker form-control venda-form"
+                                                title="Faixa de preço">
+                                                <option data-min="0" data-max="1000000000000">Qualquer preço
+                                                </option>
+                                                <option data-min="0" data-max="50000">Até R$50.000,00
+                                                </option>
+                                                <option data-min="50000" data-max="150000">R$50.000,00 -
+                                                    R$150.000,00</option>
+                                                <option data-min="150000" data-max="300000">R$150.000,00 -
+                                                    R$300.000,00</option>
+                                                <option data-min="300000" data-max="500000">R300.000,00 -
+                                                    R$500.000,00</option>
+                                                <option data-min="500000" data-max="800000">R500.000,00 -
+                                                    R$800.000,00</option>
+                                                <option data-min="800000" data-max="1200000">R800.000,00 -
+                                                    R$1.200.000,00</option>
+                                                <option data-min="1200000" data-max="1000000000000">A partir
+                                                    de R$1.200.000,00</option>
+                                            </select>
+                                            <select id="faixaPrecoAluguel"
+                                                class="selectpicker form-control aluguel-form hidden"
+                                                title="Faixa de preço">
+                                                <option data-min="0" data-max="1000000000000">Qualquer preço
+                                                </option>
+                                                <option data-min="0" data-max="200">Até R$200,00
+                                                </option>
+                                                <option data-min="200" data-max="500">R$200,00 -
+                                                    R$500,00</option>
+                                                <option data-min="500" data-max="800">R$500,00 -
+                                                    R$800,00</option>
+                                                <option data-min="1000" data-max="1200">R$1.000,00 -
+                                                    R$1.200,00</option>
+                                                <option data-min="1500" data-max="2000">R1.500,00 -
+                                                    R$2.000,00</option>
+                                                <option data-min="2000" data-max="1000000000000">A partir
+                                                    de R$2.000,00</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-default">Gerar tabela</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <%- include('../../includes/components/footer')%>
+
+    <!-- Scroll to top -->
+    <div class="scroll-to-top">
+        <a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            $('#faixaPrecoVenda').change(function () {
+                $('#valmax').val($(this).children("option:selected").attr('data-max'));
+                $('#valmin').val($(this).children("option:selected").attr('data-min'));
+            });
+
+            $('#faixaPrecoAluguel').change(function () {
+                $('#valmax').val($(this).children("option:selected").attr('data-max'));
+                $('#valmin').val($(this).children("option:selected").attr('data-min'));
+            });
+        });
+    </script>
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

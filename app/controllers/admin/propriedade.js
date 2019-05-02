@@ -1,7 +1,10 @@
 const Propiedade = require('../../models/propiedade'),
     Cliente = require('../../models/cliente'),
     fileHelper = require('../../util/file-helper'),
-    cloudinary = require('../../util/cloudinary');
+    cloudinary = require('../../util/cloudinary'),
+    queryFilter = require('../../util/query-filter'),
+    json2xls = require('json2xls'),
+    excel = require('node-excel-export');
 
 //PROPIEDADES
 exports.getPropiedades = (req, res, next) => {
@@ -493,3 +496,207 @@ exports.deletePropiedade = (req, res, next) => {
 
         .catch(err => next(err));
 };
+
+exports.getTabela = (req, res, next) => {
+    res.render('admin/propriedade/gerartabela', {
+        pageTitle: "Gerar tabela",
+        path: "admin/gerartabela",
+        errorMessage: [],
+        form: false,
+        robotsFollow: false,
+        contact: false
+    });
+}
+
+exports.postTabela = (req, res, next) => {
+    const query = queryFilter({
+        query: req.body
+    });
+
+    Propiedade.find({
+            ...query
+        })
+        .populate('proprietarioId')
+        .then(props => {
+            const prepareData = props.map(prop => {
+                const data = {
+                    codigo: prop.codigo,
+                    titulo: prop.titulo,
+                    tipo: prop.tipo,
+                    genero: prop.genero,
+                    precovenda: prop.zona == 'Urbana' ? prop.precovenda : prop.precoHec,
+                    precoaluguel: prop.precoaluguel,
+                    cidade: prop.zona == 'Urbana' ? prop.cidade : prop.municipio,
+                    rua: prop.rua,
+                    bairro: prop.bairro,
+                    numero: prop.numero,
+                    cep: prop.cep,
+                    area: prop.area,
+                    extensao: prop.extensao,
+                    dormitorios: prop.dormitorios,
+                    suites: prop.suites,
+                    salas: prop.salas,
+                    cozinhas: prop.cozinhas,
+                    banheiros: prop.banheiros,
+                    proprietario: prop.proprietarioId ? prop.proprietarioId.nome : ''
+                }
+                return data;
+            });
+
+            Promise.all(prepareData)
+                .then(data => {
+                    // var xls = json2xls(json);
+                    // const randomNumber = Math.random();
+                    // fs.writeFileSync('app/public/tempimages/table'+randomNumber+'.xls', xls, 'binary');
+                    var styles = {
+                        header: {
+                            fill: {
+                                fgColor: {
+                                    rgb: '601416'
+                                }
+                            },
+                            font: {
+                                color: {
+                                    rgb: 'FFFFFFFF',
+                                },
+                                sz: 14
+                            }
+                        },
+                    };
+
+                    var specification = {
+                        codigo: {
+                            "displayName": 'Código',
+                            "headerStyle": styles.header,
+                            "cellStyle": styles.header,
+                            "width": 80
+                        },
+
+                        titulo: {
+                            "displayName": 'Título',
+                            "headerStyle": styles.header,
+                            "width": 270
+                        },
+
+                        tipo: {
+                            displayName: 'Tipo',
+                            headerStyle: styles.header,
+                            width: 110
+                        },
+
+                        genero: {
+                            displayName: 'Gênero',
+                            headerStyle: styles.header,
+                            width: 80
+                        },
+
+                        precovenda: {
+                            displayName: 'Preço Venda',
+                            headerStyle: styles.header,
+                            width: 120
+                        },
+
+                        precoaluguel: {
+                            displayName: 'Preco Aluguél',
+                            headerStyle: styles.header,
+                            width: 120
+                        },
+
+                        cidade: {
+                            displayName: 'Cidade',
+                            headerStyle: styles.header,
+                            width: 80
+                        },
+
+                        rua: {
+                            displayName: 'Rua',
+                            headerStyle: styles.header,
+                            width: 200
+                        },
+
+                        bairro: {
+                            displayName: 'Bairro',
+                            headerStyle: styles.header,
+                            width: 150
+                        },
+
+                        numero: {
+                            displayName: 'Número',
+                            headerStyle: styles.header,
+                            width: 100
+                        },
+
+                        cep: {
+                            displayName: 'CEP',
+                            headerStyle: styles.header,
+                            width: 100
+                        },
+
+                        area: {
+                            displayName: 'Área',
+                            headerStyle: styles.header,
+                            width: 70
+                        },
+
+
+                        extensao: {
+                            displayName: 'Extensão',
+                            headerStyle: styles.header,
+                            width: 70
+                        },
+
+
+                        dormitorios: {
+                            displayName: 'Quartos',
+                            headerStyle: styles.header,
+                            width: 60
+                        },
+
+
+                        suites: {
+                            displayName: 'Suítes',
+                            headerStyle: styles.header,
+                            width: 60
+                        },
+
+
+                        salas: {
+                            displayName: 'Salas',
+                            headerStyle: styles.header,
+                            width: 60
+                        },
+
+
+                        cozinhas: {
+                            displayName: 'Cozinhas',
+                            headerStyle: styles.header,
+                            width: 60
+                        },
+
+                        banheiros: {
+                            displayName: 'Banheiros',
+                            headerStyle: styles.header,
+                            width: 80
+                        },
+
+                        proprietario: {
+                            "displayName": 'Proprietário',
+                            "headerStyle": styles.header,
+                            "width": 215
+                        },
+                    }
+
+                    const xls = excel.buildExport(
+                        [{
+                            name: 'Tabela_Propriedades.xlsx',
+                            data,
+                            specification
+                        }]
+                    );
+                    res.setHeader('Content-disposition', 'attachment; filename=Tabela_Propriedades.xlsx');
+                    res.send(xls);
+                })
+                .catch(err => next(err, 500))
+        })
+        .catch(err => next(err, 500));
+}

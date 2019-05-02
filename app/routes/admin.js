@@ -28,6 +28,10 @@ router.get('/admin', isAuth, setLocals, adminCtrl.info.getInfo);
     router.get('/admin/propiedades/new', isAuth, setLocals, adminCtrl.propriedade.getNewPropiedade);
     //POST NEW
     router.post('/admin/propiedades/new', isAuth, setLocals, validators.propriedade.propiedade, adminCtrl.propriedade.postNewPropiedade);
+    //GET GERAR TABELA
+    router.get('/admin/propiedades/gerartabela', isAuth, setLocals, adminCtrl.propriedade.getTabela);
+    //POST GERAR TABELA
+    router.post('/admin/propiedades/gerartabela', isAuth, setLocals,  adminCtrl.propriedade.postTabela);
     //GET EDIT
     router.get('/admin/propiedades/edit/:propId', isAuth, setLocals, adminCtrl.propriedade.getEditPropiedade);
     //POST EDIT
