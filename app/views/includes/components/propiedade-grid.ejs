@@ -1,7 +1,7 @@
 <article class="imovel_grid <%= prop.vendido ? 'sold' : '' %>">
     <%- prop.vendido ? '<div class="imovel_grid__sold"><div class="sold__ribbon"><span>'+ (prop.genero == 'Venda' ? 'vendido' : 'alugado') +'</span></div></div>' : ''%>
     <div class="img_area">
-        <%- prop.ativo ? '<div class="sale_btn">'+  (prop.genero == 'Ambos' ? 'Aluguél e Venda' : prop.genero) +'</div>' : ''%>
+        <%- prop.ativo ? '<div class="sale_btn">'+  (prop.genero == 'Ambos' ? 'Aluguel e Venda' : prop.genero) +'</div>' : ''%>
         <%- prop.destaque ? '<div class="featured_btn">Destaque</div>' : ''%>
         <div class="imovel_cod">
             <%= prop.codigo %>
@@ -132,8 +132,8 @@
 
                     <% if( prop.precovenda || prop.precoaluguel) { %>
                         </i> R$ <span class="tomoney">
-                        <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguél' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguél' ? prop.precoaluguel : prop.precovenda)) %></span>,00
-                        <%= (prop.genero === 'Aluguél' || (prop.genero === 'Ambos' && genero === 'Aluguél')) && prop.taxas ? '+ taxas' : '' %>
+                        <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguel' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguel' ? prop.precoaluguel : prop.precovenda)) %></span>,00
+                        <%= (prop.genero === 'Aluguel' || (prop.genero === 'Ambos' && genero === 'Aluguel')) && prop.taxas ? '+ taxas' : '' %>
                     <% } else {%>
                     Confira conosco!
                     <% } %>
