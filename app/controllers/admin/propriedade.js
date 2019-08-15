@@ -597,7 +597,7 @@ exports.postTabela = (req, res, next) => {
                         },
 
                         precoaluguel: {
-                            displayName: 'Preco Aluguél',
+                            displayName: 'Preco Aluguel',
                             headerStyle: styles.header,
                             width: 120
                         },

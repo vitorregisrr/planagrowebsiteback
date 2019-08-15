@@ -83,8 +83,8 @@
 												<option <%= prop.genero=='Venda' ? 'selected' : '' %> value="Venda">
 													Venda
 												</option>
-												<option <%= prop.genero=='Aluguél' ? 'selected' : '' %> value="Aluguél">
-													Aluguél</option>
+												<option <%= prop.genero=='Aluguel' ? 'selected' : '' %> value="Aluguel">
+													Aluguel</option>
 												<option <%= prop.genero=='Ambos' ? 'selected' : '' %> value="Ambos">
 													Ambos</option>
 											</select>
@@ -130,7 +130,7 @@
 										</div>
 
 										<div class="col-md-6 col-sm-4 aluguel-form hidden">
-											<label for="precoaluguel"> Preço Aluguél: </label>
+											<label for="precoaluguel"> Preço Aluguel: </label>
 											<input value="<%= prop.precoaluguel %>"
 												style="margin-bottom: 5px !important" type="text"
 												placeholder="Preço (R$)." class="form-control moneymask"
@@ -445,7 +445,7 @@
 										</div> 
 
 										<div class="system_info">
-											<label>Ativo p/ Aluguél?</label>
+											<label>Ativo p/ Aluguel?</label>
 											<div class="radio_check">
 												<input <%=prop.ativoaluguel ? 'checked' : '' %> type="checkbox" id="ativoaluguel"
 													name="ativoaluguel">
