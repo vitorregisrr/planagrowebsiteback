@@ -13,7 +13,7 @@ exports.propiedade = [
         body('genero', 'O gênero é obrigatório')
         .isString()
         .custom((value, { req }) => {
-            if (req.body.genero == 'Ambos' || req.body.genero == 'Venda' || req.body.genero == 'Aluguél') {
+            if (req.body.genero == 'Ambos' || req.body.genero == 'Venda' || req.body.genero == 'Aluguel') {
                 return true;
             }
             throw new Error('O tipo escolhido é inválido.')
@@ -98,6 +98,7 @@ exports.editPropiedade = [
             if (req.body.genero == 'Ambos' || req.body.genero == 'Venda' || req.body.genero == 'Aluguel') {
                 return true;
             }
+            console.log('caiu no erro')
             throw new Error('O tipo escolhido é inválido.')
         })
         .withMessage('Genêro inválido.'),
