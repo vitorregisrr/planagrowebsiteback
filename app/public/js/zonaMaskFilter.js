@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 $(".aluguel-form").addClass("visible");
                 break;
 
-            case 'Aluguél':
+            case 'Aluguel':
                 $(".aluguel-form").removeClass("hidden");
                 $(".aluguel-form").addClass("visible");
                 $(".venda-form").removeClass("visible");
