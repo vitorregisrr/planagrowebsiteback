@@ -11,4 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
             currentForm.submit();
         })
   });
+
+
+  new WOW().init();
 });
