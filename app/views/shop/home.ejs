@@ -1,148 +1,164 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-	<%- include('../includes/imports/head') %>
-</head>
+    <head>
+        <%- include('../includes/imports/head') %>
+    </head>
 
-<body class="pagewrap wow fadeIn">
-	<%- include('../includes/components/nav') %>
+    <body class="pagewrap wow fadeIn">
+        <%- include('../includes/components/nav') %>
 
-	<!-- Slider Part Start -->
-	<section id="slider-fixed" class="img-webp">
-		<div class="fix-banner">
-			<div class="carousel-caption">
-				<div class="container">
-					<div class="slider-search-2 wow fadeInUp">
-						<h1>Compre, Alugue ou Arrende Imóveis Urbanos e Rurais!</h1>
-						<div class="imovel_search_form">
-							<form action="/comprar" method="GET" class="imovel_filter_input">
-								<input type="hidden" name="filtrando" id="inputFiltrando">
-								<input type="hidden" name="selectedTipo" value="">
-								<div class="row">
+        <!-- Slider Part Start -->
+        <section id="slider-fixed" class="img-webp">
+            <div class="fix-banner">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="slider-search-2 wow fadeInUp">
+                            <h1>Compre, Alugue ou Arrende Imóveis Urbanos e Rurais!</h1>
+                            <div class="imovel_search_form">
+                                <form action="/comprar" method="GET" class="imovel_filter_input">
+                                    <input type="hidden" name="filtrando" id="inputFiltrando">
+                                    <input type="hidden" name="selectedTipo" value="">
+                                    <div class="row">
 
-									<div class="col-6 col-md-4">
-										<a href="/comprar?genero=Venda" role="button" class="btn btn-default d-block mb-2">Imóveis a Venda</a>
-									</div>
+                                        <div class="col-6 col-md-4">
+                                            <a
+                                                href="/comprar?genero=Venda"
+                                                role="button"
+                                                class="btn btn-default d-block mb-2">Imóveis a Venda</a>
+                                        </div>
 
-									<div class="col-6 col-md-4">
-										<a href="/comprar?genero=Aluguel" role="button" class="btn btn-default d-block mb-2">Imóveis para Alugar</a>
-									</div>
+                                        <div class="col-6 col-md-4">
+                                            <a
+                                                href="/comprar?genero=Aluguel"
+                                                role="button"
+                                                class="btn btn-default d-block mb-2">Imóveis para Alugar</a>
+                                        </div>
 
-									<div class="col-md-4">
-										<a href="/comprar" role="button" class="btn btn-default d-block mb-2">Todos os Imóveis</a>
-									</div>
+                                        <div class="col-md-4">
+                                            <a href="/comprar" role="button" class="btn btn-default d-block mb-2">Todos os Imóveis</a>
+                                        </div>
 
-									<div class="col-md-3 col-6">
-										<input type="text" name="keyword" class="form-control"
-											placeholder="Por palavra chave...">
-									</div>
-									<div class="col-md-2 col-sm-6">
-										<select name="zona" class="selectpicker form-control" title="Zona" id="selectZona">
-											<option value="Urbana">Urbana</option>
-											<option value="Rural">Rural</option>
-										</select>
-									</div>
-									<div class="col-md-2 col-sm-6 urbano-form">
-										<select name="genero" class="selectpicker form-control" id="selectGenero">
-											<option value="Venda">Comprar</option>
-											<option value="Aluguel">Alugar</option>
-											<option value="">Ambos</option>
-										</select>
-									</div>
-									<div class="col-md-2 col-sm-6  hidden rural-form">
-										<select name="tipo" class="selectpicker form-control" id="selectTipo">
-											<option disabled selected label="Zona não selecionada">Tipo de Propriedade
-											</option>
-											<optgroup label="Zona não selecionada">
-												<option></option>
-											</optgroup>
-										</select>
-									</div>
-									<div class="col-md-3 col-sm-6 urbano-form">
-										<input type="hidden" id="valmin" name="valmin">
-										<input type="hidden" id="valmax" name="valmax">
-										<select id="faixaPrecoVenda" class="selectpicker form-control venda-form" title="Faixa de preço">
-											<option data-min="0" data-max="1000000000000">Qualquer preço
-											</option>
-											<option data-min="0" data-max="50000">Até R$50.000,00
-											</option>
-											<option data-min="50000" data-max="150000">R$50.000,00 -
-												R$150.000,00</option>
-											<option data-min="150000" data-max="300000">R$150.000,00 -
-												R$300.000,00</option>
-											<option data-min="300000" data-max="500000">R300.000,00 -
-												R$500.000,00</option>
-											<option data-min="500000" data-max="800000">R500.000,00 -
-												R$800.000,00</option>
-											<option data-min="800000" data-max="1200000">R800.000,00 -
-												R$1.200.000,00</option>
-											<option data-min="1200000" data-max="1000000000000">A partir
-												de R$1.200.000,00</option>
-										</select>
-										<select id="faixaPrecoAluguel" class="selectpicker form-control aluguel-form hidden" title="Faixa de preço">
-											<option data-min="0" data-max="1000000000000">Qualquer preço
-											</option>
-											<option data-min="0" data-max="200">Até R$200,00
-											</option>
-											<option data-min="200" data-max="500">R$200,00 -
-												R$500,00</option>
-											<option data-min="500" data-max="800">R$500,00 -
-												R$800,00</option>
-											<option data-min="1000" data-max="1200">R$1.000,00 -
-												R$1.200,00</option>
-											<option data-min="1500" data-max="2000">R1.500,00 -
-												R$2.000,00</option>
-											<option data-min="2000" data-max="1000000000000">A partir
-												de R$2.000,00</option>
-										</select>
-									</div>
-									<div class="col-md-3 col-sm-6 hidden rural-form">
-										<input type="hidden" id="extensaomin" name="extensaomin">
-										<input type="hidden" id="extensaomax" name="extensaomax">
-										<select id="faixaHec" class="selectpicker form-control" title="Extensão (hec.)">
-											<option data-min="0" data-max="1000000000000">Qualquer extensão
-											</option>
-											<option data-min="0" data-max="50">Até 50 hectares</option>
-											<option data-min="150" data-max="300">150 - 300 hec.</option>
-											<option data-min="350" data-max="600">350 - 600 hec.</option>
-											<option data-min="600" data-max="900">600 - 900 hec.</option>
-											<option data-min="900" data-max="1200">900 - 1.200 hec.</option>
-											<option data-min="0" data-max="1000000000000">Apartir de 1.200 hec</option>
+                                        <div class="col-md-3 col-6">
+                                            <input
+                                                type="text"
+                                                name="keyword"
+                                                class="form-control"
+                                                placeholder="Por palavra chave...">
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <select
+                                                name="zona"
+                                                class="selectpicker form-control"
+                                                title="Zona"
+                                                id="selectZona">
+                                                <option value="Urbana">Urbana</option>
+                                                <option value="Rural">Rural</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-sm-6 urbano-form">
+                                            <select name="genero" class="selectpicker form-control" id="selectGenero">
+                                                <option value="Venda">Comprar</option>
+                                                <option value="Aluguel">Alugar</option>
+                                                <option value="">Ambos</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-sm-6  hidden rural-form">
+                                            <select name="tipo" class="selectpicker form-control" id="selectTipo">
+                                                <option disabled selected label="Zona não selecionada">Tipo de Propriedade
+                                                </option>
+                                                <optgroup label="Zona não selecionada">
+                                                    <option></option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 urbano-form">
+                                            <input type="hidden" id="valmin" name="valmin">
+                                            <input type="hidden" id="valmax" name="valmax">
+                                            <select
+                                                id="faixaPrecoVenda"
+                                                class="selectpicker form-control venda-form"
+                                                title="Faixa de preço">
+                                                <option data-min="0" data-max="1000000000000">Qualquer preço
+                                                </option>
+                                                <option data-min="0" data-max="50000">Até R$50.000,00
+                                                </option>
+                                                <option data-min="50000" data-max="150000">R$50.000,00 - R$150.000,00</option>
+                                                <option data-min="150000" data-max="300000">R$150.000,00 - R$300.000,00</option>
+                                                <option data-min="300000" data-max="500000">R300.000,00 - R$500.000,00</option>
+                                                <option data-min="500000" data-max="800000">R500.000,00 - R$800.000,00</option>
+                                                <option data-min="800000" data-max="1200000">R800.000,00 - R$1.200.000,00</option>
+                                                <option data-min="1200000" data-max="1000000000000">A partir de R$1.200.000,00</option>
+                                            </select>
+                                            <select
+                                                id="faixaPrecoAluguel"
+                                                class="selectpicker form-control aluguel-form hidden"
+                                                title="Faixa de preço">
+                                                <option data-min="0" data-max="1000000000000">Qualquer preço
+                                                </option>
+                                                <option data-min="0" data-max="200">Até R$200,00
+                                                </option>
+                                                <option data-min="200" data-max="500">R$200,00 - R$500,00</option>
+                                                <option data-min="500" data-max="800">R$500,00 - R$800,00</option>
+                                                <option data-min="1000" data-max="1200">R$1.000,00 - R$1.200,00</option>
+                                                <option data-min="1500" data-max="2000">R1.500,00 - R$2.000,00</option>
+                                                <option data-min="2000" data-max="1000000000000">A partir de R$2.000,00</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3 col-sm-6 hidden rural-form">
+                                            <input type="hidden" id="extensaomin" name="extensaomin">
+                                            <input type="hidden" id="extensaomax" name="extensaomax">
+                                            <select id="faixaHec" class="selectpicker form-control" title="Extensão (hec.)">
+                                                <option data-min="0" data-max="1000000000000">Qualquer extensão
+                                                </option>
+                                                <option data-min="0" data-max="50">Até 50 hectares</option>
+                                                <option data-min="150" data-max="300">150 - 300 hec.</option>
+                                                <option data-min="350" data-max="600">350 - 600 hec.</option>
+                                                <option data-min="600" data-max="900">600 - 900 hec.</option>
+                                                <option data-min="900" data-max="1200">900 - 1.200 hec.</option>
+                                                <option data-min="0" data-max="1000000000000">Apartir de 1.200 hec</option>
 
-										</select>
-									</div>
-									<div class="col-md-2 col-sm-6">
-										<input type="submit" name="search" value="Pesquisar" class="btn btn-default">
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="advance-page">
-							<a href="/comprar" class="btn btn-primary">Pesquisa Avançada</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Slider Part End -->
+                                            </select>
+                                        </div>
+                                        <div class="col-md-2 col-sm-6">
+                                            <input type="submit" name="search" value="Pesquisar" class="btn btn-default">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="advance-page">
+                                <a href="/comprar" class="btn btn-primary">Pesquisa Avançada</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Slider Part End -->
 
-	<!-- imovel Tab -->
-	<section id="imovel-tab">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="title-row">
-						<h3 class="section_title_blue wow fadeInUp">IMÓVEIS <span>EM DESTAQUE</span></h3>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="gallery-section">
-						<div class="auto-container">
-							<!--Filtros em JS, na hora de colocar os imóveis tu precisa deixar ali na classe
+        <!-- imovel Tab -->
+        <section id="imovel-tab">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-2">
+                        <div class="title-row">
+                            <h3 class="section_title_blue wow fadeInUp">IMÓVEIS
+                                <span>EM DESTAQUE</span>
+                            </h3>
+                            <small class="warning-light wow fadeInUp">
+                               <i class="fa fa-info-circle mr-2"></i>   Algumas informações podem estar temporariamente desatualizadas, devido a
+                                modificações sem aviso prévio à imobiliária. Os valores exibidos poderão ter
+                                alterações e o imóvel poderá não estar disponível. Por favor, entre em contato
+                                conosco.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gallery-section">
+                            <div class="auto-container">
+                                <!--Filtros em JS, na hora de colocar os imóveis tu precisa deixar ali na classe
 							a categoria dele, ali o primeiro por exemplo tem a classe urbano e apartamento, que
 							são as categorias dele e é por essas classes que eles vao ser filtrados
 							<div class="filters">
@@ -168,162 +184,189 @@
 
 								</ul>
 							</div> -->
-							<!--Filter List-->
-							<!-- Tab Content -->
-							<div class="row filter-list clearfix">
-								<% for(prop of props) {%>
-								<div class="imovel_column col-12 col-md-4">
-									<%- include('../includes/components/propiedade-grid') %>
-								</div>
-								<% } %>
-							</div>
-							<!-- End tab content -->
-							<div class="row">
-								<div class="col-md-12">
-									<div class="float-right">
-										<a role="button" href="/comprar" class="btn btn-default">Ver mais</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End imovel Tab -->
+                                <!--Filter List-->
+                                <!-- Tab Content -->
+                                <div class="row filter-list clearfix">
+                                    <% for(prop of props) {%>
+                                        <div class="imovel_column col-12 col-md-4">
+                                            <%- include('../includes/components/propiedade-grid') %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                                <!-- End tab content -->
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="float-right">
+                                            <a role="button" href="/comprar" class="btn btn-default">Ver mais</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End imovel Tab -->
 
-	<!-- Offer Part Start -->
-	<section id="offer-style-3">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="title-row">
-						<h3 class="section_title_blue">NOSSOS <span>DIFERENCIAIS</span></h3>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 col-sm-6">
-					<div class="offer_area wow fadeInLeft" data-wow-delay="200ms" data-wow-duration="1000ms">
-						<div class="circle_area"><i class="flaticon-home-1"></i></div>
-						<a href="/sobre">
-							<h5 class="offer-title">
-								<%= sobre.diferencial1.titulo %>
-							</h5>
-						</a>
-						<p>
-							<%= sobre.diferencial1.desc %>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="offer_area wow fadeInLeft" data-wow-delay="100ms" data-wow-duration="1000ms">
-						<div class="circle_area"><i class="flaticon-pencil-and-paper"></i></div>
-						<a href="/sobre">
-							<h5 class="offer-title">
-								<%= sobre.diferencial2.titulo %>
-							</h5>
-						</a>
-						<p>
-							<%= sobre.diferencial2.desc %>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="offer_area wow fadeInRight" data-wow-delay="100ms" data-wow-duration="1000ms">
-						<div class="circle_area"><i class="flaticon-home"></i></div>
-						<a href="/sobre">
-							<h5 class="offer-title">
-								<%= sobre.diferencial3.titulo %>
-							</h5>
-						</a>
-						<p>
-							<%= sobre.diferencial3.desc %>
-						</p>
-					</div>
-				</div>
-				<div class="col-md-3 col-sm-6">
-					<div class="offer_area wow fadeInRight" data-wow-delay="200ms" data-wow-duration="1000ms">
-						<div class="circle_area"><i class="flaticon-connections"></i></div>
-						<a href="/sobre">
-							<h5 class="offer-title">
-								<%= sobre.diferencial4.titulo %>
-							</h5>
-						</a>
-						<p>
-							<%= sobre.diferencial4.desc %>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Offer Part End -->
+        <!-- Offer Part Start -->
+        <section id="offer-style-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title-row">
+                            <h3 class="section_title_blue">NOSSOS
+                                <span>DIFERENCIAIS</span>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div
+                            class="offer_area wow fadeInLeft"
+                            data-wow-delay="200ms"
+                            data-wow-duration="1000ms">
+                            <div class="circle_area">
+                                <i class="flaticon-home-1"></i>
+                            </div>
+                            <a href="/sobre">
+                                <h5 class="offer-title">
+                                    <%= sobre.diferencial1.titulo %>
+                                </h5>
+                            </a>
+                            <p>
+                                <%= sobre.diferencial1.desc %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div
+                            class="offer_area wow fadeInLeft"
+                            data-wow-delay="100ms"
+                            data-wow-duration="1000ms">
+                            <div class="circle_area">
+                                <i class="flaticon-pencil-and-paper"></i>
+                            </div>
+                            <a href="/sobre">
+                                <h5 class="offer-title">
+                                    <%= sobre.diferencial2.titulo %>
+                                </h5>
+                            </a>
+                            <p>
+                                <%= sobre.diferencial2.desc %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div
+                            class="offer_area wow fadeInRight"
+                            data-wow-delay="100ms"
+                            data-wow-duration="1000ms">
+                            <div class="circle_area">
+                                <i class="flaticon-home"></i>
+                            </div>
+                            <a href="/sobre">
+                                <h5 class="offer-title">
+                                    <%= sobre.diferencial3.titulo %>
+                                </h5>
+                            </a>
+                            <p>
+                                <%= sobre.diferencial3.desc %>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div
+                            class="offer_area wow fadeInRight"
+                            data-wow-delay="200ms"
+                            data-wow-duration="1000ms">
+                            <div class="circle_area">
+                                <i class="flaticon-connections"></i>
+                            </div>
+                            <a href="/sobre">
+                                <h5 class="offer-title">
+                                    <%= sobre.diferencial4.titulo %>
+                                </h5>
+                            </a>
+                            <p>
+                                <%= sobre.diferencial4.desc %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Offer Part End -->
 
-	<!-- Contact Section End -->
-	<%- include('../includes/components/info-banner') %>
+        <!-- Contact Section End -->
+        <%- include('../includes/components/info-banner') %>
 
-	<%- include('../includes/components/footer-contact') %>
+        <%- include('../includes/components/footer-contact') %>
 
-	<%- include('../includes/components/footer') %>
+        <%- include('../includes/components/footer') %>
 
-	<div class="scroll-to-top">
-		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
-	</div>
+        <div class="scroll-to-top">
+            <a href="#" class="scroll-btn" data-target=".pagewrap">
+                <i class="fa fa-angle-up" aria-hidden="true"></i>
+            </a>
+        </div>
 
-	<%- include('../includes/imports/end') %>
+        <%- include('../includes/imports/end') %>
 
-	<%- include('../includes/modals/modal-share') %>
+        <%- include('../includes/modals/modal-share') %>
 
-</body>
+    </body>
 
-<!-- Main Banner search mask -->
-<script src="js/zonaMaskFilter.js"></script>
+    <!-- Main Banner search mask -->
+    <script src="js/zonaMaskFilter.js"></script>
 
-<!-- Featured Filtering buttons mask -->
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
-		$('[data-filter=".urbano"]').click(() => {
-			$('.urbanofilter-tabs').addClass('visible');
-			$('.urbanofilter-tabs').removeClass('hidden');
-			$('.ruralfilter-tabs').removeClass('visible');
-			$('.ruralfilter-tabs').addClass('hidden');
-		});
+    <!-- Featured Filtering buttons mask -->
+    <script>
+        document
+            .addEventListener("DOMContentLoaded", function () {
+                $('[data-filter=".urbano"]').click(() => {
+                    $('.urbanofilter-tabs').addClass('visible');
+                    $('.urbanofilter-tabs').removeClass('hidden');
+                    $('.ruralfilter-tabs').removeClass('visible');
+                    $('.ruralfilter-tabs').addClass('hidden');
+                });
 
-		$('[data-filter=".rural"]').click(() => {
-			$('.ruralfilter-tabs').addClass('visible');
-			$('.ruralfilter-tabs').removeClass('hidden');
-			$('.urbanofilter-tabs').removeClass('visible');
-			$('.urbanofilter-tabs').addClass('hidden');
-		});
+                $('[data-filter=".rural"]').click(() => {
+                    $('.ruralfilter-tabs').addClass('visible');
+                    $('.ruralfilter-tabs').removeClass('hidden');
+                    $('.urbanofilter-tabs').removeClass('visible');
+                    $('.urbanofilter-tabs').addClass('hidden');
+                });
 
-		$('[data-filter="all"]').click(() => {
-			$('.urbanofilter-tabs').removeClass('visible');
-			$('.urbanofilter-tabs').addClass('hidden');
-			$('.ruralfilter-tabs').removeClass('visible');
-			$('.ruralfilter-tabs').addClass('hidden');
-		});
-	});
-</script>
-<script>
-	document.addEventListener("DOMContentLoaded", function () {
+                $('[data-filter="all"]').click(() => {
+                    $('.urbanofilter-tabs').removeClass('visible');
+                    $('.urbanofilter-tabs').addClass('hidden');
+                    $('.ruralfilter-tabs').removeClass('visible');
+                    $('.ruralfilter-tabs').addClass('hidden');
+                });
+            });
+    </script>
+    <script>
+        document
+            .addEventListener("DOMContentLoaded", function () {
 
-		$('#faixaHec').change( function (){
-			$('#extensaomax').val( $(this).children("option:selected").attr('data-max'));
-			$('#extensaomin').val( $(this).children("option:selected").attr('data-min'));
-		});
+                $('#faixaHec')
+                    .change(function () {
+                        $('#extensaomax').val($(this).children("option:selected").attr('data-max'));
+                        $('#extensaomin').val($(this).children("option:selected").attr('data-min'));
+                    });
 
-		$('#faixaPrecoVenda').change( function (){ 
-			$('#valmax').val( $(this).children("option:selected").attr('data-max'));
-			$('#valmin').val( $(this).children("option:selected").attr('data-min'));
-		});
-		
-		$('#faixaPrecoAluguel').change( function (){ 
-			$('#valmax').val( $(this).children("option:selected").attr('data-max'));
-			$('#valmin').val( $(this).children("option:selected").attr('data-min'));
-		});
-	});
-</script>
+                $('#faixaPrecoVenda').change(function () {
+                    $('#valmax').val($(this).children("option:selected").attr('data-max'));
+                    $('#valmin').val($(this).children("option:selected").attr('data-min'));
+                });
+
+                $('#faixaPrecoAluguel').change(function () {
+                    $('#valmax').val($(this).children("option:selected").attr('data-max'));
+                    $('#valmin').val($(this).children("option:selected").attr('data-min'));
+                });
+            });
+    </script>
 
 </html>

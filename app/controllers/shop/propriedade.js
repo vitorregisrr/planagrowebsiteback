@@ -23,7 +23,7 @@ exports.getComprar = (req, res, next) => {
             const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
             Propiedade.find({ ...query, ativo: true})
-                .sort({vendido: 1, $natural: -1})
+                .sort({vendido: 1, date: -1})
                 .skip((currentPage - 1) * ITEMS_PER_PAGE)
                 .limit(ITEMS_PER_PAGE)
                 .then(props => {

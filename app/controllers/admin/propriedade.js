@@ -363,6 +363,7 @@ exports.postEditPropiedade = (req, res, next) => {
                                 fileHelper.delete(newPath);
 
                                 prop.mainImage = image;
+                                prop.date = Date.now();
                                 prop.ativo = req.body.ativo;
                                 // prop.ativoaluguel = req.body.ativoaluguel;
                                 // prop.ativovenda = req.body.ativovenda;
@@ -417,6 +418,7 @@ exports.postEditPropiedade = (req, res, next) => {
             } else {
 
                 prop.ativo = req.body.ativo;
+                prop.date = Date.now();
                 // prop.ativoaluguel = req.body.ativoaluguel;
                 // prop.ativovenda = req.body.ativovenda;
                 prop.vendido = req.body.vendido;

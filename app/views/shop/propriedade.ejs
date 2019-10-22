@@ -2,16 +2,16 @@
 <html lang="pt-br">
 
 <head>
-<title>Planagro Imóveis - <%= prop.titulo %></title>
+	<title>Planagro Imóveis - <%= prop.titulo %></title>
 	<meta property="og:title" content="Planagro Imóveis - <%= prop.titulo %>">
 	<meta property="og:description" content="<%= prop.descricao %>">
 	<meta property="og:image" content="<%= prop.mainImage ? prop.mainImage.url : '/img/thumbs/imovel.jpg' %>">
 	<meta property="og:image:height" content="300px">
 	<meta property="og:image:width" content="300px">
-	<meta NAME="Identifier-URL" CONTENT="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>" >
+	<meta NAME="Identifier-URL" CONTENT="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
 	<meta name="twitter:image:alt" content="<%= prop.descricao %>">
 	<meta NAME="url" CONTENT="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
-	<meta property="og:url" content="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">	
+	<meta property="og:url" content="https://www.planagroimoveis.com.br/propriedade/<%= prop.codigo %>">
 	<%- include('../includes/imports/head', { is_prop: true}) %>
 </head>
 
@@ -52,8 +52,8 @@
 							</div>
 							<% if(prop.mainImage || prop.images.length > 0) {%>
 							<div class="imovel_slider">
-							<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
-							<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
+								<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
+									<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
 										<div class="item active">
@@ -127,12 +127,22 @@
 									allowfullscreen></iframe>
 							</div>
 							<% } %>
+
+							<div class="col-12">
+								<small class="warning-light text-center" style="max-width: 92%; text-align: left; margin: 0;">
+									<i class="fa fa-info-circle mr-2"></i> Algumas informações podem estar
+									temporariamente desatualizadas, devido a
+									modificações sem aviso prévio à imobiliária. Os valores exibidos poderão ter
+									alterações e o imóvel poderá não estar disponível. Por favor, entre em contato
+									conosco.
+								</small>
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="imovel_sidebar">
-						<div class="contact_agent sidebar-widget">
+						<div class="contact_agent sidebar-widget p-1">
 							<a style="border-top: none; border-radius: 10px;" href="<%= encodeURI(`https://api.whatsapp.com/send?phone=55${sobre.whatsapp}&text=Oi! Tenho interesse na propriedade "
 							 ${prop.titulo}", código "${prop.codigo}" . Pode me tirar algumas dúvidas? O link da propriedade é
 							 www.planagroimoveis.com.br/propriedade/${prop.codigo}`)%>" class="call-whatsapp">
@@ -156,24 +166,24 @@
 
 									<% if(prop.zona == 'Urbana') { %>
 
-										<% if(prop.genero == 'Venda' || prop.genero == 'Ambos') { %>
-											<% if( prop.precovenda) { %> 
-												<li><span>Preço Venda :</span> R$<span class="tomoney">
-												<%= prop.precovenda %></span></li>
-											<% }else{ %>
-												<li><span>Preço Venda:</span><span>
-														Confira!</span></li>
-											<% } %>
-										<% } %>
+									<% if(prop.genero == 'Venda' || prop.genero == 'Ambos') { %>
+									<% if( prop.precovenda) { %>
+									<li><span>Preço Venda :</span> R$<span class="tomoney">
+											<%= prop.precovenda %></span></li>
+									<% }else{ %>
+									<li><span>Preço Venda:</span><span>
+											Confira!</span></li>
+									<% } %>
+									<% } %>
 
-										<% if(prop.genero == 'Aluguel' || prop.genero == 'Ambos') { %>
-											<% if( prop.precoaluguel) { %> 
-												<li><span>Preço Aluguel :</span> R$<span class="tomoney">
-												<%= prop.precoaluguel %></span></li>
-											<% }else{ %>
-												<li><span>Preço Aluguel:</span><span>
-														Confira!</span></li>
-											<% } %>
+									<% if(prop.genero == 'Aluguel' || prop.genero == 'Ambos') { %>
+									<% if( prop.precoaluguel) { %>
+									<li><span>Preço Aluguel :</span> R$<span class="tomoney">
+											<%= prop.precoaluguel %></span></li>
+									<% }else{ %>
+									<li><span>Preço Aluguel:</span><span>
+											Confira!</span></li>
+									<% } %>
 									<% } %>
 									<% if( prop.dormitorios) { %>
 									<li><span>Dormitórios :</span>

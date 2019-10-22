@@ -9,6 +9,7 @@ exports.getIndex = (req, res, next) => {
                     destaque: true,
                     ativo: true
                 })
+                 .sort({vendido: 1, date: -1})
                 .then(props => {
                     Depoimento.find()
                         .then(deps => {
