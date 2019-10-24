@@ -1585,6 +1585,7 @@ input[type=radio]:checked {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: none;
 }
 
 .call-documentos:hover {
@@ -1599,6 +1600,12 @@ input[type=radio]:checked {
     transition: all .2s;
     color: #8f8f8f;
     font-weight: 500
+}
+
+.call-documentos span {
+    transition: all .2s;
+    color: rgb(80, 16, 16);
+    font-weight: 500;
 }
 
 .call-whatsapp:hover span {

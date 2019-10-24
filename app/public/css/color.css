@@ -3,3 +3,7 @@
 .color-primary{
     color: #601416 !important;
 }
+
+.color-hover-white:hover{
+    color: #fff !important;
+}
