@@ -4,10 +4,10 @@
     <loc>https://www.planagroimoveis.com.br/</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/sobre</loc>
+    <loc>https://www.planagroimoveis.com.br/comprar?genero=Venda</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/comprar?genero=Venda</loc>
+    <loc>https://www.planagroimoveis.com.br/sobre</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/contato</loc>
@@ -17,6 +17,9 @@
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/comprar</loc>
+  </url>
+  <url>
+    <loc>https://www.planagroimoveis.com.br/propriedade/656</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/684</loc>
@@ -35,9 +38,6 @@
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/680</loc>
-  </url>
-  <url>
-    <loc>https://www.planagroimoveis.com.br/propriedade/656</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/652</loc>
@@ -136,6 +136,9 @@
     <loc>https://www.planagroimoveis.com.br/propriedade/108</loc>
   </url>
   <url>
+    <loc>https://www.planagroimoveis.com.br/propriedade/620</loc>
+  </url>
+  <url>
     <loc>https://www.planagroimoveis.com.br/comprar?page=6</loc>
   </url>
   <url>
@@ -143,9 +146,6 @@
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/576</loc>
-  </url>
-  <url>
-    <loc>https://www.planagroimoveis.com.br/propriedade/620</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/560</loc>
@@ -187,10 +187,10 @@
     <loc>https://www.planagroimoveis.com.br/comprar?page=4</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/propriedade/384</loc>
+    <loc>https://www.planagroimoveis.com.br/propriedade/332</loc>
   </url>
   <url>
-    <loc>https://www.planagroimoveis.com.br/propriedade/332</loc>
+    <loc>https://www.planagroimoveis.com.br/propriedade/384</loc>
   </url>
   <url>
     <loc>https://www.planagroimoveis.com.br/propriedade/388</loc>
