@@ -119,6 +119,10 @@ label {
     margin-right: -1px
 }
 
+.filter_types{
+    text-align: center;
+}
+
 .imovel_search_form button[type=submit] {
     float: right
 }
@@ -284,6 +288,12 @@ a.btn-link {
 
 section {
     padding: 80px 0
+}
+
+@media screen and (max-width: 560px){
+    #imovel-tab{
+        padding: 40px 0;
+    }
 }
 
 #profile_setting {
