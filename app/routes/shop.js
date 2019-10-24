@@ -8,6 +8,7 @@ const validators = {
 const shopCtrl = {
     contato: require('../controllers/shop/contato'),
     sobre: require('../controllers/shop/sobre'),
+    documentos: require('../controllers/shop/documentos'),
     propriedade: require('../controllers/shop/propriedade'),
     index: require('../controllers/shop/index')
 }
@@ -15,6 +16,8 @@ const shopCtrl = {
 router.get('/', shopCtrl.index.getIndex);
 
 router.get('/sobre', shopCtrl.sobre.getSobre);
+
+router.get('/documentos', shopCtrl.documentos.getDocumentos);
 
 router.get('/comprar', shopCtrl.propriedade.getComprar);
 

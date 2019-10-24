@@ -13,5 +13,10 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
+  $('label[data-toggle="collapse"]').click( function(){
+    $('label[data-toggle="collapse"]').attr('aria-expanded', false);
+      $('.input_group_collapse .collapse').removeClass('in');
+  })
+
   new WOW().init();
 });

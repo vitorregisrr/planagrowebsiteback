@@ -43,7 +43,7 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12 wow fadeInUp">
 							<div class="row mb-2">
 								<div class="container">
 									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para
@@ -85,7 +85,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<div class="detail_text">
+							<div class="detail_text wow fadeInUp">
 								<div class="imovel-text">
 									<h4 class="imovel-title">
 										<%= prop.titulo %>
@@ -129,7 +129,7 @@
 							<% } %>
 
 							<div class="col-12">
-								<small class="warning-light text-center" style="max-width: 92%; text-align: left; margin: 0;">
+								<small class="warning-light text-center wow fadeInUp" style="max-width: 92%; text-align: left; margin: 0;">
 									<i class="fa fa-info-circle mr-2"></i> Algumas informações podem estar
 									temporariamente desatualizadas, devido a
 									modificações sem aviso prévio à imobiliária. Os valores exibidos poderão ter
@@ -142,7 +142,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="imovel_sidebar">
-						<div class="contact_agent sidebar-widget p-1">
+						<div class="wow fadeInUp contact_agent sidebar-widget p-1 mb-2">
 							<a style="border-top: none; border-radius: 10px;" href="<%= encodeURI(`https://api.whatsapp.com/send?phone=55${sobre.whatsapp}&text=Oi! Tenho interesse na propriedade "
 							 ${prop.titulo}", código "${prop.codigo}" . Pode me tirar algumas dúvidas? O link da propriedade é
 							 www.planagroimoveis.com.br/propriedade/${prop.codigo}`)%>" class="call-whatsapp">
@@ -150,7 +150,12 @@
 								<span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
 							</a>
 						</div>
-						<div class="imovel_listing sidebar-widget">
+						<div class="wow fadeInUp contact_agent sidebar-widget p-1 mb-2">
+							<a style="border-top: none; border-radius: 10px;" href="/documentos"  class="call-documentos call-whatsapp">
+								<span class="color-primary"><i class="fa fa-file" aria-hidden="true"></i> Documentos Necessários</span>
+							</a>
+						</div>
+						<div class="imovel_listing wow fadeInUp sidebar-widget">
 							<h4 class="inner-title">Detalhes da Propriedade</h4>
 							<div class="profile_data">
 								<ul>
@@ -261,7 +266,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="contact_agent sidebar-widget">
+						<div class="wow fadeInUp contact_agent sidebar-widget">
 							<div class="property__share">
 								<h4 class="inner-title">Compartilhar</h4>
 								<!-- Compartilha o link da propiedade atual  -->
@@ -279,7 +284,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="contact_agent sidebar-widget">
+						<div class="wow fadeInUp contact_agent sidebar-widget">
 							<div class="agent_details">
 								<%- include('../includes/form/errorBox') %>
 								<%  if(successMessage) { %>
