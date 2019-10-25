@@ -18,5 +18,18 @@ document.addEventListener("DOMContentLoaded", function() {
       $('.input_group_collapse .collapse').removeClass('in');
   })
 
+
+  $('.adv-modal__close').click( function(){
+      $(this).parent().removeClass('show');
+      $(this).parent().attr('aria-expanded', false);
+      $('.adv-modal-backdrop').removeClass('show');
+    });
+    
+    $('.adv-modal-backdrop').click( function(){
+      $('.adv-modal').removeClass('show');
+      $('.adv-modal').attr('aria-expanded', false);
+      $('.adv-modal-backdrop').removeClass('show');
+  });
+
   new WOW().init();
 });

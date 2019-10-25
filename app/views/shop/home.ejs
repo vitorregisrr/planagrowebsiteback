@@ -85,9 +85,9 @@
                                                 </option>
                                                 <option data-min="50000" data-max="150000">R$50.000,00 - R$150.000,00</option>
                                                 <option data-min="150000" data-max="300000">R$150.000,00 - R$300.000,00</option>
-                                                <option data-min="300000" data-max="500000">R300.000,00 - R$500.000,00</option>
-                                                <option data-min="500000" data-max="800000">R500.000,00 - R$800.000,00</option>
-                                                <option data-min="800000" data-max="1200000">R800.000,00 - R$1.200.000,00</option>
+                                                <option data-min="300000" data-max="500000">R$300.000,00 - R$500.000,00</option>
+                                                <option data-min="500000" data-max="800000">R$500.000,00 - R$800.000,00</option>
+                                                <option data-min="800000" data-max="1200000">R$800.000,00 - R$1.200.000,00</option>
                                                 <option data-min="1200000" data-max="1000000000000">A partir de R$1.200.000,00</option>
                                             </select>
                                             <select
@@ -301,10 +301,12 @@
 
         <!-- Contact Section End -->
         <%- include('../includes/components/info-banner') %>
-
+        
         <%- include('../includes/components/footer-contact') %>
-
+        
         <%- include('../includes/components/footer') %>
+        
+        <%- include('../includes/components/adv-modal') %>
 
         <div class="scroll-to-top">
             <a href="#" class="scroll-btn" data-target=".pagewrap">
@@ -366,6 +368,10 @@
                     $('#valmax').val($(this).children("option:selected").attr('data-max'));
                     $('#valmin').val($(this).children("option:selected").attr('data-min'));
                 });
+
+                $('.adv-modal').attr('data-expanded', true);
+                $('.adv-modal').addClass('show');
+                $('.adv-modal-backdrop').addClass('show');
             });
     </script>
 
