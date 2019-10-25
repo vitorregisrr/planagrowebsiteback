@@ -4762,6 +4762,11 @@ blockquote {
     padding: 0 !important;
 }
 
+.pt-0 {
+    padding-top: 0 !important;
+}
+
+
 .mt-2 {
     margin-top: 20px !important
 }
@@ -4770,8 +4775,14 @@ blockquote {
     margin-bottom: 20px !important
 }
 
-y .mb-0 {
+.mb-0 {
     margin-bottom: 0 !important;
+}
+
+@media (min-width: 992px) {
+    .pt-md-3 {
+        padding-top: 30px !important;
+    }
 }
 
 
@@ -4816,6 +4827,10 @@ y .mb-0 {
 
 .pt-3 {
     padding-top: 30px !important;
+}
+
+.pb-3 {
+    padding-bottom: 30px !important;
 }
 
 .mb-3 {
@@ -4918,7 +4933,7 @@ y .mb-0 {
 }
 
 .d-flex {
-    display: flex !important; 
+    display: flex !important;
 }
 
 .d-none {
