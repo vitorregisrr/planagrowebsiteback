@@ -993,6 +993,12 @@ input[type=radio]:checked {
     font-size: 16px
 }
 
+@media screen and (max-width: 1200px){
+    .nav_text>li>a {
+        font-size: 12px
+    }
+}
+
 .navbar-nav li a .fa.fa-caret-down {
     font-size: 10px
 }
@@ -1075,6 +1081,12 @@ input[type=radio]:checked {
     float: right;
     color: #fff;
     z-index: 5
+}
+
+@media screen and (max-width: 1200px){
+    .submit_imovel>a {
+        font-size: 12px;
+    }
 }
 
 @media screen and (max-width:396px) {
