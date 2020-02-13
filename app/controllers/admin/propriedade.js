@@ -381,6 +381,12 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.genero = req.body.genero;
                                 prop.extensao = req.body.extensao;
                                 prop.area = req.body.area;
+                                prop.municipio = req.body.municipio;
+                                if (prop.municipio === 'Bagé') {
+                                    prop.localidade = req.body.localidade;
+                                } else {
+                                    prop.localidade = '';
+                                }
                                 prop.cep = req.body.cep;
                                 prop.bairro = req.body.bairro;
                                 prop.rua = req.body.rua;
@@ -440,6 +446,12 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.extensao = req.body.extensao;
                 prop.area = req.body.area;
                 prop.precoHec = req.body.precoHec;
+                prop.municipio = req.body.municipio;
+                if (prop.municipio === 'Bagé') {
+                    prop.localidade = req.body.localidade;
+                } else {
+                    prop.localidade = '';
+                }
                 prop.cep = req.body.cep;
                 prop.bairro = req.body.bairro;
                 prop.rua = req.body.rua;
