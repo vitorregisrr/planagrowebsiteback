@@ -232,6 +232,12 @@
 									</li>
 									<% } %>
 									<% } else{ %>
+										<% if( prop.municipio ) { %>
+											<li><span>Município :</span>
+												<%= prop.municipio %>
+											</li>
+											<% } %>
+											
 									<% if(prop.preco) { %>
 									<li><span>Preço :</span> R$<span class="tomoney">
 											<%= prop.preco %></span></li>

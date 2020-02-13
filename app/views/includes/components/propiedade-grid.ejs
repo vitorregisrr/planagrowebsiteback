@@ -19,8 +19,8 @@
         </a>
         <span><i class="fa fa-map-marker" aria-hidden="true"></i>
             <% if( prop.zona == 'Rural' ){ %>
-            <%= prop.cidade ? prop.cidade : '' %>
-            <%= prop.localidade ? `, ${prop.localidade}` : '' %>.
+            <%= prop.municipio ? prop.municipio : '' %>
+            <%= prop.localidade ? `, ${prop.localidade}` : '' %>
             <%}else{ %>
             <%= prop.rua ? `Rua ${prop.rua}` : ''%>
             <%= prop.numero ? `, ${prop.numero}` : '' %>
