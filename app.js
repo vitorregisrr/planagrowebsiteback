@@ -4,7 +4,7 @@ const bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     session = require('express-session'),
     mongoDBSession = require('connect-mongodb-session')(session);
-    path = require('path'),
+path = require('path'),
     express = require('express'),
     app = express(),
     MONGO_URI = require('./app/util/mongo_URI'),
@@ -18,6 +18,8 @@ const bodyParser = require('body-parser'),
     fileHelper = require('./app/util/file-helper'),
     fs = require('fs'),
     nodeCron = require('node-cron');
+
+require('dotenv').config();
 
 app.set('view engine', 'ejs');
 app.set('views', 'app/views');
@@ -62,14 +64,14 @@ app.use(errorRoutes.get500);
 // Sitemap task
 sitemapGenerator()
 nodeCron.schedule('0 0 0 * * *', function () {
-   sitemapGenerator()
+    sitemapGenerator()
 });
 
 //starting server
 const connection = mongoose.connect(MONGO_URI, {
-        useNewUrlParser: true
-    })
-    .then((resul) => {})
+    useNewUrlParser: true
+})
+    .then((resul) => { })
     .then(resul => {
         app.listen(process.env.PORT || 3000);
     })

@@ -6,13 +6,16 @@ const User = new Schema({
         type: String,
         required: true
     },
-    user: {
+    usuario: {
         type: String,
         required: true
     },
     password: {
         type: String,
         required: true
+    },
+    ativo: {
+        type: Boolean
     },
     resetToken: String,
     resetTokenExpiration: Date
