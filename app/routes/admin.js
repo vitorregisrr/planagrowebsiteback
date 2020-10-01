@@ -106,6 +106,7 @@ router.post('/admin/user/new', isAuth, setLocals, adminCtrl.user.postNewUser);
 router.get('/admin/user/new', isAuth, setLocals, adminCtrl.user.getNewUser);
 router.get('/admin/user/edit/:id', isAuth, setLocals, adminCtrl.user.getEditUser);
 router.post('/admin/user/edit/', isAuth, setLocals, adminCtrl.user.postEditUser);
+router.post('/admin/user/delete/', isAuth, setLocals, adminCtrl.user.deleteUser);
 
 
 //API

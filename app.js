@@ -41,7 +41,8 @@ app.use(expressSession({
     saveUninitialized: false,
     store: storeSession,
     cookie: {
-        maxAge: 60 * 60 * 24 * 30 * 1000
+        // maxAge: 60 * 60 * 24 * 30 * 1000    
+        maxAge: 3600 * 1000 //1 hora em milisegundos
     }
 }));
 app.use(multer.single('image'));
@@ -64,7 +65,8 @@ app.use(errorRoutes.get500);
 // Sitemap task
 sitemapGenerator()
 nodeCron.schedule('0 0 0 * * *', function () {
-    sitemapGenerator()
+    sitemapGenerator();
+    //implementar a funcionalidade de mudar os usuarios muitos ativos
 });
 
 //starting server
