@@ -92,6 +92,6 @@ MOUDELO DE VIDEO DE YOUTUVE DE TOUR PELO IMOVEL
 
 02/10/2020 
 CORREÇÃO DOS DETALHES DO IMÓVEL EM VERSÃO MOBILE EM SHOP/propriedade
-
+CORREÇÃO MENU A EMPRESA/DOCUMENTOS NECESSÁRIOS
 ---------------------------------------------------------------------------
 */

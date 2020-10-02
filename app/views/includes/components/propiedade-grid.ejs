@@ -1,4 +1,4 @@
-<article class="imovel_grid <%= prop.vendido ? 'sold' : '' %> wow fadeInUp">
+<article class="imovel_grid  <%= prop.vendido ? 'sold' : '' %> wow fadeInUp">
     <%- prop.vendido ? '<div class="imovel_grid__sold"><div class="sold__ribbon"><span>'+ (prop.genero == 'Venda' ? 'vendido' : 'alugado') +'</span></div></div>' : ''%>
     <div class="img_area">
         <%- prop.ativo ? '<div class="sale_btn">'+  (prop.genero == 'Ambos' ? 'Aluguel e Venda' : prop.genero) +'</div>' : ''%>
@@ -90,26 +90,26 @@
                 <%}%>
                 <% if( prop.banheiros) {%>
                 <li>
-                <span>Banheiros</span>
-                <%= prop.banheiros ? prop.banheiros : '' %>
+                    <span>Banheiros</span>
+                    <%= prop.banheiros ? prop.banheiros : '' %>
                 </li>
                 <%}%>
                 
                 <% if( prop.salas) {%>
                 <li>
-                <span>Salas</span>
-                <%= prop.salas ? prop.salas : '' %>
+                    <span>Salas</span>
+                    <%= prop.salas ? prop.salas : '' %>
                 </li>
                 <%}%>
                 
                 <% if( prop.cozinhas) {%>
                 <li>
-                <span>Cozinhas</span>
-                <%= prop.cozinhas ? prop.cozinhas : '' %>
+                    <span>Cozinhas</span>
+                    <%= prop.cozinhas ? prop.cozinhas : '' %>
                 </li>
                 <%}%>
                 <% } %>
-                
+
             </ul>
         </div>
     </div>
@@ -118,33 +118,37 @@
             <li class="imovel-price">
                 <i class="fa dollar-sign"></i>
                 <% if( prop.zona == 'Rural' ) { %>
-                    <% if(prop.precoHec) { %>
-                        </i> R$ <span class="tomoney">
-                            <%= prop.precoHec %></span>,00/hec
+                <% if(prop.precoHec) { %>
+                </i> R$ <span class="tomoney">
+                    <%= prop.precoHec %></span>,00/hec
 
-                    <% } else if( prop.precovenda) { %>
-                        </i> R$ <span class="tomoney">
-                            <%= prop.precovenda %></span>,00
-                        <% } else {%>
-                        Confira conosco!
-                        <% } %>
+                <% } else if( prop.precovenda) { %>
+                </i> R$ <span class="tomoney">
+                    <%= prop.precovenda %></span>,00
+                <% } else {%>
+                Confira conosco!
+                <% } %>
                 <% } else {  %>
 
-                    <% if( prop.precovenda || prop.precoaluguel) { %>
-                        </i> R$ <span class="tomoney">
-                        <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguel' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguel' ? prop.precoaluguel : prop.precovenda)) %></span>,00
-                        <%= (prop.genero === 'Aluguel' || (prop.genero === 'Ambos' && genero === 'Aluguel')) && prop.taxas ? '+ taxas' : '' %>
-                    <% } else {%>
-                    Confira conosco!
-                    <% } %>
+                <% if( prop.precovenda || prop.precoaluguel) { %>
+                </i> R$ <span class="tomoney">
+                    <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguel' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguel' ? prop.precoaluguel : prop.precovenda)) %></span>,00
+                <%= (prop.genero === 'Aluguel' || (prop.genero === 'Ambos' && genero === 'Aluguel')) && prop.taxas ? '+ taxas' : '' %>
+                <% } else {%>
+                Confira conosco!
+                <% } %>
                 <% } %>
             </li>
+            <!---
+            
             <li class="flat-icon ">
                 <button class="share-button" type="button" data-codigo="<%= prop.codigo %>"
                     data-titulo="<%= prop.titulo %>" data-toggle="modal" data-target="#shareModal">
                     <i class="flaticon-connections"></i>
                 </button>
             </li>
+            
+            -->
         </ul>
     </div>
     <a href="<%= encodeURI(`https://api.whatsapp.com/send?phone=55${sobre.whatsapp}&text=Oi! Tenho interesse na propriedade "${prop.titulo}", código "${prop.codigo}". Pode me tirar algumas dúvidas? O link da propriedade é www.planagroimoveis.com.br/propriedade/${prop.codigo}`)%>"
