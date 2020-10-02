@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,400i,500,500i,600,600i);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,400i);
 
+
 body {
     font-size: 14px;
     color: #0f0f0f;
@@ -4960,4 +4961,9 @@ blockquote {
     .d-lg-none {
         display: none !important;
     }
+
+    .d-lg-block{
+        display: block !important;
+    }
+
 }

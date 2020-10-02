@@ -1,0 +1,117 @@
+<div class="imovel_listing wow fadeInUp sidebar-widget d-none d-lg-block">
+    <h4 class="inner-title">Detalhes da Propriedade</h4>
+    <div class="profile_data">
+        <ul>
+            <li><span>Gênero :</span>
+                <%= prop.genero %>
+            </li>
+            <li><span>Zona :</span>
+                <%= prop.zona %>
+            </li>
+            <li><span>Tipo :</span>
+                <%= prop.tipo %>
+            </li>
+
+            <% if(prop.zona == 'Urbana') { %>
+
+            <% if(prop.genero == 'Venda' || prop.genero == 'Ambos') { %>
+            <% if( prop.precovenda) { %>
+            <li><span>Preço Venda :</span> R$<span class="tomoney">
+                    <%= prop.precovenda %></span></li>
+            <% }else{ %>
+            <li><span>Preço Venda:</span><span>
+                    Confira!</span></li>
+            <% } %>
+            <% } %>
+
+            <% if(prop.genero == 'Aluguel' || prop.genero == 'Ambos') { %>
+            <% if( prop.precoaluguel) { %>
+            <li><span>Preço Aluguel :</span> R$<span class="tomoney">
+                    <%= prop.precoaluguel %></span></li>
+            <% }else{ %>
+            <li><span>Preço Aluguel:</span><span>
+                    Confira!</span></li>
+            <% } %>
+            <% } %>
+            <% if( prop.dormitorios) { %>
+            <li><span>Dormitórios :</span>
+                <%= prop.dormitorios %>
+            </li>
+            <% } %>
+
+            <% if( prop.banheiros) { %>
+            <li><span>Banheiros :</span>
+                <%= prop.banheiros %>
+            </li>
+            <% } %>
+
+            <% if( prop.suites) { %>
+            <li><span>Suites :</span>
+                <%= prop.suites %>
+            </li>
+            <% } %>
+
+            <% if( prop.cozinhas) { %>
+            <li><span>Cozinhas :</span>
+                <%= prop.cozinhas %>
+            </li>
+            <% } %>
+
+            <% if( prop.patio ) { %>
+            <li><span>Pátio :</span>
+                <%= prop.patio ? 'Sim' : 'Não' %>
+            </li>
+            <% } %>
+
+            <% if(prop.piscina) { %>
+            <li><span>Piscina :</span>
+                <%= prop.piscina ? 'Sim' : 'Não' %>
+            </li>
+            <% } %>
+
+            <% if(prop.mobiliado) { %>
+            <li><span>Mobiliado :</span>
+                <%= prop.mobiliado ? 'Sim' : 'Não' %>
+            </li>
+            <% } %>
+            <% } else{ %>
+            <% if( prop.municipio ) { %>
+            <li><span>Município :</span>
+                <%= prop.municipio %>
+            </li>
+            <% } %>
+
+            <% if(prop.preco) { %>
+            <li><span>Preço :</span> R$<span class="tomoney">
+                    <%= prop.preco %></span></li>
+            <% } %>
+            <% if(prop.precoHec) { %>
+            <li><span>Preço/hec:</span>
+                R$<span class="tomoney"><%= prop.precoHec %></span></li>
+            <% }else{ %>
+            <li><span>Preço/hec:</span>
+                <span>Confira!</span></li>
+            <% } %>
+
+            <% if( prop.acudes ) { %>
+            <li><span>Açudes :</span>
+                <%= prop.acudes %>
+            </li>
+            <% } %>
+
+            <% if( prop.galpoes ) { %>
+            <li><span>Galpões :</span>
+                <%= prop.galpoes %>
+            </li>
+            <% } %>
+
+            <% if( prop.mangueiras ) { %>
+            <li><span>Mangueiras :</span>
+                <%= prop.mangueiras %>
+            </li>
+            <% } %>
+
+            <% } %>
+        </ul>
+    </div>
+</div>
