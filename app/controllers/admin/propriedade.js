@@ -5,6 +5,7 @@ const Propiedade = require('../../models/propiedade'),
     queryFilter = require('../../util/query-filter'),
     json2xls = require('json2xls'),
     excel = require('node-excel-export');
+const youtube = require('../../util/id_youtube');
 
 //PROPIEDADES
 exports.getPropiedades = (req, res, next) => {
@@ -37,8 +38,8 @@ exports.getPropiedades = (req, res, next) => {
     }
 
     Propiedade.find({
-            ...query
-        })
+        ...query
+    })
         .countDocuments()
         .then(num => {
             totalItems = num;
@@ -89,7 +90,7 @@ exports.getNewPropiedade = (req, res, next) => {
         })
         .catch(err => next(err, 500))
 };
-
+ 
 //POST NEW PROPIEDADE
 exports.postNewPropiedade = (req, res, next) => {
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
@@ -105,6 +106,11 @@ exports.postNewPropiedade = (req, res, next) => {
 
     req.body.vantagens = req.body.vantagens ? JSON.parse(req.body.vantagens) : [];
 
+    const link_youtube = req.body.youtube_id;
+
+    req.body.youtube_id = youtube.extractIdYoutubeVideo(link_youtube);
+
+    
     const form = {
         ...req.body
     }
@@ -116,21 +122,22 @@ exports.postNewPropiedade = (req, res, next) => {
         fileHelper.compressImage(req.file, 700)
             .then(newPath => {
                 cloudinary.uploader.upload(newPath, {
-                        folder: 'planagro'
-                    })
+                    folder: 'planagro'
+                })
                     .then(image => {
                         fileHelper.delete(newPath);
 
                         new Propiedade({
-                                ...form,
-                                mainImage: image
-                            })
+                            ...form,
+                            mainImage: image,
+
+                        })
                             .save()
                             .then(prop => {
                                 if (req.body.novoCliente && req.body.novoCliente != '' && !req.body.proprietarioId) {
                                     new Cliente({
-                                            nome: req.body.novoCliente
-                                        })
+                                        nome: req.body.novoCliente
+                                    })
                                         .save()
                                         .then(cliente => {
                                             prop.proprietarioId = cliente._id;
@@ -152,14 +159,14 @@ exports.postNewPropiedade = (req, res, next) => {
 
     } else {
         new Propiedade({
-                ...form
-            })
+            ...form
+        })
             .save()
             .then(prop => {
                 if (req.body.novoCliente && req.body.novoCliente != '' && !req.body.proprietarioId) {
                     new Cliente({
-                            nome: req.body.novoCliente
-                        })
+                        nome: req.body.novoCliente
+                    })
                         .save()
                         .then(cliente => {
                             prop.proprietarioId = cliente._id;
@@ -182,8 +189,8 @@ exports.setPropiedadeImage = (req, res, next) => {
     const propId = req.body.id;
 
     Propiedade.findOne({
-            _id: propId,
-        })
+        _id: propId,
+    })
         .then(prop => {
             if (!prop) {
                 return res.status(500).json({
@@ -195,8 +202,8 @@ exports.setPropiedadeImage = (req, res, next) => {
                 .then(newPath => {
 
                     cloudinary.uploader.upload(newPath, {
-                            folder: 'planagro'
-                        })
+                        folder: 'planagro'
+                    })
 
                         .then(image => {
                             fileHelper.delete(newPath);
@@ -232,8 +239,8 @@ exports.removePropiedadeImage = (req, res, next) => {
     const imageId = req.body.imageId;
 
     Propiedade.findOne({
-            _id: propId,
-        })
+        _id: propId,
+    })
 
         .then(prop => {
             if (!prop) {
@@ -276,8 +283,8 @@ exports.getEditPropiedade = (req, res, next) => {
     const propId = req.params.propId;
 
     Propiedade.findOne({
-            _id: propId
-        })
+        _id: propId
+    })
         .populate('proprietarioId')
         .then(prop => {
             if (!prop) {
@@ -308,8 +315,8 @@ exports.getOutrasFotos = (req, res, next) => {
     const propCod = req.params.propCod;
 
     Propiedade.findOne({
-            codigo: propCod
-        })
+        codigo: propCod
+    })
         .then(prop => {
             if (!prop) {
                 return res.redirect('/admin/propiedades')
@@ -340,9 +347,16 @@ exports.postEditPropiedade = (req, res, next) => {
     req.body.patio = req.body.patio == 'on' ? 'true' : 'false';
     req.body.mobiliado = req.body.mobiliado == 'on' ? 'true' : 'false';
 
+    const link_youtube = req.body.youtube_id;
+    req.body.youtube_id = youtube.extractIdYoutubeVideo(link_youtube);
+
+    console.log(link_youtube);
+    console.log(req.body.youtube_id);
+
+
     Propiedade.findOne({
-            _id: req.body.id
-        })
+        _id: req.body.id
+    })
         .then(prop => {
 
             if (!prop) {
@@ -357,8 +371,8 @@ exports.postEditPropiedade = (req, res, next) => {
                 fileHelper.compressImage(req.file, 700)
                     .then(newPath => {
                         cloudinary.uploader.upload(newPath, {
-                                folder: 'planagro'
-                            })
+                            folder: 'planagro'
+                        })
                             .then(image => {
                                 fileHelper.delete(newPath);
 
@@ -414,6 +428,8 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.barragens = req.body.barragens;
                                 prop.acudes = req.body.acudes;
 
+                                prop.youtube_id = req.body.youtube_id;
+
                                 prop.save();
                                 return res.redirect('/admin/propiedades');
 
@@ -468,6 +484,8 @@ exports.postEditPropiedade = (req, res, next) => {
                 prop.imobiliado = req.body.imobiliado;
                 prop.patio = req.body.patio;
 
+                prop.youtube_id = req.body.youtube_id;
+
                 //detalhes rural
                 prop.mangueiras = req.body.mangueiras;
                 prop.galpoes = req.body.galpoes;
@@ -486,8 +504,8 @@ exports.deletePropiedade = (req, res, next) => {
     const id = req.body.id;
 
     Propiedade.findOneAndDelete({
-            _id: id
-        })
+        _id: id
+    })
 
         .then(prop => {
             if (!prop) {
@@ -528,8 +546,8 @@ exports.postTabela = (req, res, next) => {
     });
 
     Propiedade.find({
-            ...query
-        })
+        ...query
+    })
         .populate('proprietarioId')
         .then(props => {
             const prepareData = props.map(prop => {

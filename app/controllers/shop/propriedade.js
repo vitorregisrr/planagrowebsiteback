@@ -70,7 +70,7 @@ exports.getPropiedade = (req, res, next) => {
             Sobre.findOne()
                 .then(sobre => {
                     return res.render('shop/propriedade', {
-                            pageTitle: prop.titulo,
+                            pageTitle: prop.youtube_id,
                             prop: prop,
                             mapURI: `Rua ${prop.rua}, numero ${prop.numero}. Bairro${prop.bairro}. CEP: ${prop.cep}`,
                             path: "/propiedade",

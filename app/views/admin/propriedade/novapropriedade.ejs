@@ -67,8 +67,7 @@
 												class="form-control"><%= form.values ? form.values.descricao : null %></textarea>
 										</div>
 										<div class="col-md-12 col-sm-12 ">
-											<textarea placeholder="Observacões de admnistrador"
-												name="observacoesadmin"
+											<textarea placeholder="Observacões de admnistrador" name="observacoesadmin"
 												class="form-control"><%= form.values ? form.values.observacoesadmin : null %></textarea>
 										</div>
 										<div class="col-md-6 col-sm-6">
@@ -100,7 +99,7 @@
 										<div class="col-md-6 col-sm-6">
 											<input type="hidden" name="selectedTipo"
 												value="<%= form ? form.values.tipo : '' %>">
-												<label for="tipo"> Tipo: </label>
+											<label for="tipo"> Tipo: </label>
 											<select data-disableTipo="true" name="tipo"
 												class="selectpicker form-control" id="selectTipo"
 												data-live-search="true">
@@ -452,26 +451,6 @@
 											</div>
 										</div>
 
-										<!-- <div class="system_info">
-											<label>Ativo p/ venda?</label>
-											<div class="radio_check">
-												<input <% if(form.values){ %>
-													<%= form.values.ativovenda == 'on' ? 'checked' : '' %> <% } %>
-													type="checkbox" id="ativovenda" name="ativovenda">
-												<label for="ativovenda"><span>Não</span><span>Sim</span></label>
-											</div>
-										</div>
-
-										<div class="system_info">
-											<label>Ativo p/ aluguél?</label>
-											<div class="radio_check">
-												<input <% if(form.values){ %>
-													<%= form.values.ativoaluguel == 'on' ? 'checked' : '' %> <% } %>
-													type="checkbox" id="ativoaluguel" name="ativoaluguel">
-												<label for="ativoaluguel"><span>Não</span><span>Sim</span></label>
-											</div>
-										</div> -->
-
 										<div class="system_info">
 											<label>Vendido?</label>
 											<div class="radio_check">
@@ -480,6 +459,11 @@
 													type="checkbox" id="vendido" name="vendido">
 												<label for="vendido"><span>Não</span><span>Sim</span></label>
 											</div>
+										</div>
+
+										<div class="col-md-12 col-sm-12 ">
+											<input name="youtube_id" type="text" placeholder="Link do Youtube"
+												class="form-control" value="<%= form.values ? form.values.youtube_id : null  %>">
 										</div>
 									</div>
 									<div class="browse_submit">

@@ -247,6 +247,9 @@ const Propiedade = new Schema({
         type: Date,
         default: Date.now(),
         required: false
+    },
+    youtube_id:{
+        type: String        
     }
 });
 

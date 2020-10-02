@@ -128,8 +128,18 @@
 							</div>
 							<% } %>
 
+							<% if(prop.youtube_id) { %>
+							<div class="single_map mb-3">
+								<h4 class="inner-title">TOUR PELO IMÓVEL</h4>
+								<iframe id="" type="text/html" width="100%" height="350"
+								src="http://www.youtube.com/embed/<%=prop.youtube_id%>?autoplay=1" frameborder="0" allowfullscreen style="border: 0;"></iframe>
+							</div>
+							<%}%>
+
+
 							<div class="col-12">
-								<small class="warning-light text-center wow fadeInUp" style="max-width: 92%; text-align: left; margin: 0;">
+								<small class="warning-light text-center wow fadeInUp"
+									style="max-width: 92%; text-align: left; margin: 0;">
 									<i class="fa fa-info-circle mr-2"></i> Algumas informações podem estar
 									temporariamente desatualizadas, devido a
 									modificações sem aviso prévio à imobiliária. Os valores exibidos poderão ter
@@ -151,8 +161,10 @@
 							</a>
 						</div>
 						<div class="wow fadeInUp contact_agent sidebar-widget p-1 mb-2">
-							<a style="border-top: none; border-radius: 10px;" href="/documentos"  class="call-documentos call-whatsapp color-primary color-hover-white">
-								<span class="color-inherit"><i class="fa fa-file" aria-hidden="true"></i> Documentos Necessários</span>
+							<a style="border-top: none; border-radius: 10px;" href="/documentos"
+								class="call-documentos call-whatsapp color-primary color-hover-white">
+								<span class="color-inherit"><i class="fa fa-file" aria-hidden="true"></i> Documentos
+									Necessários</span>
 							</a>
 						</div>
 						<div class="imovel_listing wow fadeInUp sidebar-widget">
@@ -232,12 +244,12 @@
 									</li>
 									<% } %>
 									<% } else{ %>
-										<% if( prop.municipio ) { %>
-											<li><span>Município :</span>
-												<%= prop.municipio %>
-											</li>
-											<% } %>
-											
+									<% if( prop.municipio ) { %>
+									<li><span>Município :</span>
+										<%= prop.municipio %>
+									</li>
+									<% } %>
+
 									<% if(prop.preco) { %>
 									<li><span>Preço :</span> R$<span class="tomoney">
 											<%= prop.preco %></span></li>
@@ -319,14 +331,14 @@
 										</div>
 										<div class="col-md-12">
 											<input name="mensagem" type="hidden" value="<%= `Oi! Tenho interesse na propriedade " ${prop.titulo}", código
-											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div> <div
-												class="col-md-12">
-											<button type="submit" class="btn btn-default" name="submit">ME
-												LIGUEM!</button>
+											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div>
+											<div class="col-md-12">
+												<button type="submit" class="btn btn-default" name="submit">ME
+													LIGUEM!</button>
+											</div>
 										</div>
-									</div>
-									<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
-									<input type="hidden" name="codigo" value="<%= prop.codigo %>">
+										<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+										<input type="hidden" name="codigo" value="<%= prop.codigo %>">
 								</form>
 							</div>
 						</div>

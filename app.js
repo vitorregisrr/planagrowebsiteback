@@ -80,3 +80,15 @@ const connection = mongoose.connect(MONGO_URI, {
     .catch(err => console.log(err));
 
 module.exports = connection;
+
+/*
+------------------------------NOTAS DE ATUALIZAÇÕES------------------------
+
+01/10/2020  MODULO DE USUARIOS - CRUD DE USER / ATIVO E INATIVO  E VALIDAÇÃO DA OPERAÇÃO POR USUARIO
+            ONDE APENAS 2 USUARIOS PODEM FAZER OPERAÇÕES NO USER PAGE - PLANAGROADMIN E THALESSALAZAR
+
+            MOUDELO DE VIDEO DE YOUTUVE DE TOUR PELO IMOVEL
+
+
+---------------------------------------------------------------------------
+*/
