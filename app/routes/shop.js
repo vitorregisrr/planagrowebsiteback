@@ -1,3 +1,4 @@
+const Propriedade = require('../models/propiedade');
 const express = require('express'),
     router = express.Router();
 
@@ -32,5 +33,11 @@ router.post('/vender', validators.contato.vender, shopCtrl.contato.postVender);
 
 router.get('/contato', shopCtrl.contato.getContato);
 router.post('/contato', validators.contato.contato, shopCtrl.contato.postContato);
+
+router.get('/retonajsonpropriedade/:id', (req, res) => {
+    let id = req.params.id;
+    let propriedade = Propriedade.findById({_id: id});
+    res.json(propriedade);
+});
 
 module.exports = router;
