@@ -17,7 +17,8 @@ const adminCtrl = {
     sobre: require('../controllers/admin/sobre'),
     cliente: require('../controllers/admin/cliente'),
     propriedade: require('../controllers/admin/propriedade'),
-    user: require('../controllers/admin/user')
+    user: require('../controllers/admin/user'),
+    banner: require('../controllers/admin/banner')
 }
 
 //INDEX 
@@ -108,6 +109,11 @@ router.get('/admin/user/edit/:id', isAuth, setLocals, adminCtrl.user.getEditUser
 router.post('/admin/user/edit/', isAuth, setLocals, adminCtrl.user.postEditUser);
 router.post('/admin/user/delete/', isAuth, setLocals, adminCtrl.user.deleteUser);
 
+//Banner
+router.get('/admin/banner', isAuth, setLocals, adminCtrl.banner.getBanner);
+router.get('/admin/banner/new', isAuth, setLocals, adminCtrl.banner.getNewBanner)
+router.post('/admin/banner/new', isAuth, setLocals, adminCtrl.banner.postNewBanner); //novo banner
+router.get('/admin/banner/edit/:id', isAuth, setLocals, adminCtrl.banner.getEditBanner);
 
 //API
 //NOVA FOTO  PARA UMA PROPIEDADE

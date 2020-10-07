@@ -31,7 +31,6 @@ exports.postNewFuncionario = (req, res, next) => {
                 })
                 .then(image => {
                     fileHelper.delete(newPath);
-
                     new Funcionario({
                             ...form,
                             image: image,

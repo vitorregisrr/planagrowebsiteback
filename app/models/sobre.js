@@ -59,13 +59,10 @@ const Sobre = new Schema({
         type: Object,
         required: false
     },
-
     diferencial4: {
         type: Object,
         required: false
-    },
-
-
+    }
 });
 
 module.exports = mongoose.model('Sobre', Sobre);

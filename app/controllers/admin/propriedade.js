@@ -154,7 +154,7 @@ exports.postNewPropiedade = (req, res, next) => {
 
                             .catch(err => next(err));
                     })
-                    .catch(err => next(JSON.stringify(err)))
+                    
             })
 
     } else {
