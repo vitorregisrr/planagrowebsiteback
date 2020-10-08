@@ -21,39 +21,33 @@ exports.postNewBanner = async (req, res, next) => {
     const fixed = req.body.fixed == 'on' ? 'true' : 'false';
 
     const referente = 'home';
-    if (req.file) {
-        const result = await cloudinary.v2.uploader.upload(req.file.path);
 
-        if (result) {
-            new Banner({
-                titulo,
-                descricao,
-                textobotao,
-                linkbotao,
-                fixed,
-                referente,
-                image: result
-            }).save().then(() => {
-                res.redirect('/admin');
-            }).catch(err => {
-                console.log(err);
-                res.render('admin/banner/novoBanner', {
-                    pageTitle: "Novo Banner",
-                    path: "admin/banner",
-                    errorMessage: ["Houve algum erro ao cadastrar o banner"],
-                    robotsFollow: false,
-                    contact: false
+    if (req.file) {
+        fileHelper.compressImage(req.file).then(newPath => {
+            cloudinary.uploader.upload(newPath, { folder: 'planagro' }).then(result => {
+                fileHelper.delete(newPath);
+                new Banner({
+                    titulo,
+                    descricao,
+                    textobotao,
+                    linkbotao,
+                    fixed,
+                    referente,
+                    image: result
+                }).save().then(() => {
+                    res.redirect('/admin');
+                }).catch(err => {
+                    console.log(err);
+                    res.render('admin/banner/novoBanner', {
+                        pageTitle: "Novo Banner",
+                        path: "admin/banner",
+                        errorMessage: ["Houve algum erro ao cadastrar o banner"],
+                        robotsFollow: false,
+                        contact: false
+                    });
                 });
-            });
-        } else {
-            res.render('admin/banner/novoBanner', {
-                pageTitle: "Novo Banner",
-                path: "admin/banner",
-                errorMessage: ["Houve algum erro ao processar a imagem. Tente novamente!"],
-                robotsFollow: false,
-                contact: false
-            });
-        }
+            }).catch(err => next(err));
+        }).catch(err => next(err));
     } else {
         //define form para poder colocar nos value para o 
         //usuario não perder o que já foi colocado input

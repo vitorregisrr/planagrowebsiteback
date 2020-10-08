@@ -12,7 +12,6 @@ try {
     CLOUDINARY_SECRET = process.env.CLOUDINARY_SECRET;
 }
 
-
 cloudinary.config({
     cloud_name: 'dhenuhnbj',
     api_key: CLOUDINARY_KEY,
