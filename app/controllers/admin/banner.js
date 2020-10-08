@@ -63,11 +63,22 @@ exports.postNewBanner = async (req, res, next) => {
     }
 };
 
+exports.getNewBanner = (req, res, next) => {
+    res.render('admin/banner/novoBanner', {
+        pageTitle: "Novo Banner",
+        path: "admin/banner",
+        errorMessage: [],
+        form: false,
+        robotsFollow: false,
+        contact: false
+    });
+};
+
 exports.getEditBanner = (req, res, next) => {
     const id = req.params.id;
     Banner.findById({ _id: id }).then(banner => {
-        res.status(200).render('admin/user/edituser', {
-            pageTitle: "Ediçãio de Banner",
+        res.status(200).render('admin/banner/editBanner', {
+            pageTitle: "Edição de Banner",
             path: "admin/banner",
             robotsFollow: false,
             banner: banner,
@@ -77,13 +88,39 @@ exports.getEditBanner = (req, res, next) => {
     });
 };
 
-exports.getNewBanner = (req, res, next) => {
-    res.render('admin/banner/novoBanner', {
-        pageTitle: "Novo Banner",
-        path: "admin/banenr",
-        errorMessage: [],
-        form: false,
-        robotsFollow: false,
-        contact: false
-    });
-};
+exports.postEditBanner = (req, res, next) => {
+    const id = req.body.id;
+    const fixed = req.body.fixed == 'on' ? 'true' : 'false';
+    const { titulo, descricao, linkbotao, textobotao, referente } = req.body;
+
+    Banner.findOne({ _id: id }).then(banner => {
+        console.log(banner)
+        if (req.file) {
+            console.log(req.file);
+            fileHelper.compressImage(req.file).then(newPath => {
+                cloudinary.uploader.upload(newPath, { folder: 'planagro' }).then(result => {
+                    fileHelper.delete(newPath);
+                    banner.image = result;
+                    banner.fixed = fixed;
+                    banner.titulo = titulo;
+                    banner.descricao = descricao;
+                    banner.linkbotao = linkbotao;
+                    banner.textobotao = textobotao;
+                    banner.referente = referente;
+                    banner.save();
+                    return res.redirect('/admin/banner');
+                }).catch(err => next(err));
+            }).catch(err => next(err));
+        } else {
+            banner.fixed = fixed;
+            banner.titulo = titulo;
+            banner.descricao = descricao;
+            banner.linkbotao = linkbotao;
+            banner.textobotao = textobotao;
+            banner.referente = referente;
+            banner.save();
+            return res.redirect('/admin/banner');
+        }
+    }).catch(err => next(err));
+}
+

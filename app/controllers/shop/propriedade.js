@@ -4,7 +4,7 @@ const Propiedade = require('../../models/propiedade'),
 
 exports.getComprar = (req, res, next) => {
     const currentPage = req.query.page ? parseInt(req.query.page) : 1,
-        ITEMS_PER_PAGE = 8;
+        ITEMS_PER_PAGE = 20;
     let totalItems;
 
     const query = getQueryFilter(req);

@@ -114,6 +114,8 @@ router.get('/admin/banner', isAuth, setLocals, adminCtrl.banner.getBanner);
 router.get('/admin/banner/new', isAuth, setLocals, adminCtrl.banner.getNewBanner)
 router.post('/admin/banner/new', isAuth, setLocals, adminCtrl.banner.postNewBanner); //novo banner
 router.get('/admin/banner/edit/:id', isAuth, setLocals, adminCtrl.banner.getEditBanner);
+router.post('/admin/banner/edit', isAuth, setLocals, adminCtrl.banner.postEditBanner); //edição de banner
+
 
 //API
 //NOVA FOTO  PARA UMA PROPIEDADE

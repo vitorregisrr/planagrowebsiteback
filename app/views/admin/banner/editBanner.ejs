@@ -27,28 +27,32 @@
 	<section id="profile_setting">
 		<div class="container">
 			<div class="row">
-				<%- include('../../includes/components/painelMenu') %>
+				<%- include('../../includes/components/painelwMenu') %>
 				<div class="col-md-8 col-sm-12">
 					<div class="row" id="startScroll">
 						<%- include('../../includes/form/errorBox') %>
-						<form action="/admin/banner/new" method="POST" enctype="multipart/form-data">
+						<form action="/admin/banner/edit" method="POST" enctype="multipart/form-data">
+							<input type="text" hidden name="id" value="<%=banner._id%>">
+							<input type="text" hidden name="referente" value="<%=banner.referente%>">
+							
 							<h4 class="inner-title"><%=pageTitle%></h4>
-							<p>Caso não queira que algo não seja exibido, basta deixar o campo em branco</p>
+							<p>Caso não queira que algo não seja exibido, basta deixar o campo em branco. <br>
+							Somente selecione outra imagem, caso queira realizar a troca da mesma</p>
 							<div class="col-md-12 col-sm-12">
 								<input name="titulo" type="textarea" placeholder="Texto Principal" class="form-control"
-									value="">
+									value="<%=banner.titulo%>">
 							</div>
 							<div class="col-md-12 col-sm-12">
 								<input name="descricao" type="text" placeholder="Texto Auxiliar" class="form-control"
-									value="">
+									value="<%=banner.descricao%>">
 							</div>
 							<div class="col-md-12 col-sm-12">
 								<input name="textobotao" type="text" placeholder="Texto do Botão" class="form-control"
-									value="">
+									value="<%=banner.textobotao%>">
 							</div>
 							<div class="col-md-12 col-sm-12">
 								<input name="linkbotao" type="text" placeholder="Link do Botão" class="form-control"
-									value="">
+									value="<%=banner.linkbotao%>">
 							</div>
 
 							<div class="col-md-12 col-sm-12">
