@@ -27,17 +27,18 @@
 	<section id="profile_setting">
 		<div class="container">
 			<div class="row">
-				<%- include('../../includes/components/painelwMenu') %>
+				<%- include('../../includes/components/painelMenu') %>
 				<div class="col-md-8 col-sm-12">
 					<div class="row" id="startScroll">
 						<%- include('../../includes/form/errorBox') %>
+
 						<form action="/admin/banner/edit" method="POST" enctype="multipart/form-data">
 							<input type="text" hidden name="id" value="<%=banner._id%>">
 							<input type="text" hidden name="referente" value="<%=banner.referente%>">
-							
+
 							<h4 class="inner-title"><%=pageTitle%></h4>
 							<p>Caso não queira que algo não seja exibido, basta deixar o campo em branco. <br>
-							Somente selecione outra imagem, caso queira realizar a troca da mesma</p>
+								Somente selecione outra imagem, caso queira realizar a troca da mesma</p>
 							<div class="col-md-12 col-sm-12">
 								<input name="titulo" type="textarea" placeholder="Texto Principal" class="form-control"
 									value="<%=banner.titulo%>">
@@ -59,7 +60,8 @@
 								<div class="system_info">
 									<label>Efeito de Perspectiva?</label>
 									<div class="radio_check">
-										<input type="checkbox" id="fixed" name="fixed">
+										<input <%=banner.fixed ? 'checked' : '' %> type="checkbox" id="fixed"
+											name="fixed">
 										<label for="fixed"><span>Não</span><span>Sim</span></label>
 									</div>
 								</div>
