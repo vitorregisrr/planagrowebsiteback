@@ -4909,3 +4909,23 @@ blockquote {
 .imovel-price-cents {
     margin-left: -3px;
 }
+
+.sponsor {
+    width: 100%;
+    margin-top: 12px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sponsor img {
+    width: 100%;
+}
+
+@media (max-width: 992px) {
+    .sponsor {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+}

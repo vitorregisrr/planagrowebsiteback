@@ -684,11 +684,27 @@
 							</div>
 						<% } %>
 
-						<% for(prop of props) {%>
+						<%var x = 0; for(prop of props) {%>
+							
+							<% if( x % 12 == 0  && x != 0) {%>
+								<div class="col-md-12 sponsor"> 
+
+									<% if(bannerimoveis[0].linkbotao != '') { %>
+										<a href="https://www.google.com.br" target="_blank">
+											<img src="https://via.placeholder.com/1290x300"  alt="" class="img-fluid">
+										</a>
+									<% } else {%>
+										<a  style="cursor: not-allowed;">
+											<img src="https://via.placeholder.com/1290x300"  alt="" class="img-fluid">
+										</a>
+									<% } %>
+
+								</div>
+							<%  }  %>
 							<div class="imovel_column col-md-3 col-sm-4 col-xs-12">
 								<%- include('../includes/components/propiedade-grid.ejs') %>
 							</div>
-						<% } %>
+							<%  ++x; } %>
 					</div>
 					<!-- End imovel Grids -->
 					<div class="row">
