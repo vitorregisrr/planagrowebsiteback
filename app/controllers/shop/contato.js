@@ -1,20 +1,26 @@
 const Sobre = require('../../models/sobre'),
     transporter = require('../../util/email-transporter')();
+const Banner = require('../../models/banner');
 
 exports.getContato = (req, res, next) => {
     Sobre.findOne()
         .then(sobre => {
-            res.render('shop/contato', {
-                pageTitle: "Entre em contato conosco!",
-                path: "/contato",
-                robotsFollow: true,
-                sobre: sobre,
-                contact: true,
-                errorMessage: [],
-                csrfToken: req.csrfToken(),
-                successMessage: false,
-                form: false, 
-            });
+            Banner.find({ referente: 'contato-banner' }).then(banner => {
+
+                res.render('shop/contato', {
+                    pageTitle: "Entre em contato conosco!",
+                    path: "/contato",
+                    robotsFollow: true,
+                    sobre: sobre,
+                    banner: banner,
+                    contact: true,
+                    errorMessage: [],
+                    csrfToken: req.csrfToken(),
+                    successMessage: false,
+                    form: false,
+                });
+                
+            }).catch(err => next(err));
         })
         .catch(err => next(err));
 }
@@ -23,10 +29,10 @@ exports.postContato = (req, res, next) => {
     Sobre.findOne()
         .then(sobre => {
             transporter.sendMail({
-                    to: sobre.email,
-                    from: req.body.email,
-                    subject: 'Mensagem de contato recebida pelo site!',
-                    html: `
+                to: sobre.email,
+                from: req.body.email,
+                subject: 'Mensagem de contato recebida pelo site!',
+                html: `
                     <h3> Você recebeu uma nova mensagem de contato a partir do formulário do seu site! </h3>
                     <p>De: ${req.body.nome}</p>
                     <p>Telefone: ${req.body.telefone}</p>
@@ -34,7 +40,7 @@ exports.postContato = (req, res, next) => {
                     <p>Com a mensagem: ${req.body.mensagem}</p>
                     <h5> Responda o mais rápido possível, não deixe seu cliente esperando! </h5>
                 `
-                })
+            })
                 .then(resul => {
                     res.render('shop/contato', {
                         pageTitle: "Entre em contato conosco!",
@@ -55,8 +61,8 @@ exports.postContato = (req, res, next) => {
 
 exports.postInteresse = (req, res, next) => {
     Sobre.findOne()
-    .then(sobre => {
-        transporter.sendMail({
+        .then(sobre => {
+            transporter.sendMail({
                 to: sobre.email,
                 from: req.body.email,
                 subject: 'Mensagem de contato recebida pelo site!',
@@ -69,22 +75,22 @@ exports.postInteresse = (req, res, next) => {
                 <h5> Responda o mais rápido possível, não deixe seu cliente esperando! </h5>
             `
             })
-            .then(resul => {
-                res.render('shop/contato', {
-                    pageTitle: "Entre em contato conosco!",
-                    path: "/contato",
-                    robotsFollow: true,
-                    sobre: sobre,
-                    contact: true,
-                    errorMessage: [],
-                    successMessage: 'Mensagem enviada, assim que possível entraremos em contato com uma resposta!',
-                    csrfToken: req.csrfToken(),
-                    form: false,
-                });
-            })
-            .catch(err => next(err))
-    })
-    .catch(err => next(err, 500));
+                .then(resul => {
+                    res.render('shop/contato', {
+                        pageTitle: "Entre em contato conosco!",
+                        path: "/contato",
+                        robotsFollow: true,
+                        sobre: sobre,
+                        contact: true,
+                        errorMessage: [],
+                        successMessage: 'Mensagem enviada, assim que possível entraremos em contato com uma resposta!',
+                        csrfToken: req.csrfToken(),
+                        form: false,
+                    });
+                })
+                .catch(err => next(err))
+        })
+        .catch(err => next(err, 500));
 }
 
 
@@ -92,24 +98,24 @@ exports.getVender = (req, res, next) => {
     Sobre.findOne()
         .then(sobre => {
             return res.render('shop/vender', {
-                    pageTitle: "Vender Imóveis ou Propiedades",
-                    path: "/vender",
-                    robotsFollow: true,
-                    errorMessage: [],
-                    sobre: sobre,
-                    contact: true,
-                    csrfToken: req.csrfToken(),
-                    form: false,
-                    successMessage: false
-                })
+                pageTitle: "Vender Imóveis ou Propiedades",
+                path: "/vender",
+                robotsFollow: true,
+                errorMessage: [],
+                sobre: sobre,
+                contact: true,
+                csrfToken: req.csrfToken(),
+                form: false,
+                successMessage: false
+            })
         })
         .catch(err => next(err));
 }
 
 exports.postVender = (req, res, next) => {
     Sobre.findOne()
-    .then(sobre => {
-        transporter.sendMail({
+        .then(sobre => {
+            transporter.sendMail({
                 to: sobre.email,
                 from: req.body.email,
                 subject: 'Você recebeu uma proposta de venda no seu website!',
@@ -127,27 +133,27 @@ exports.postVender = (req, res, next) => {
                 <p>Tipo: ${req.body.tipo}</p>
                 <p>Descricao: ${req.body.descricao}</p>
                 <p>Endereço: ${req.body.endereco}</p>
-                <p>Cidade: ${req.body.cidade  ? req.body.cidade : 'Não especificado'}</p>
+                <p>Cidade: ${req.body.cidade ? req.body.cidade : 'Não especificado'}</p>
                 <p>Localidade: ${req.body.localidade ? req.body.localidade : 'Não especificado'}</p>   
 
                 <h5> Responda o mais rápido possível, não deixe seu cliente esperando! </h5>
             `
             })
-            .then(resul => {
-                res.render('shop/vender', {
-                    pageTitle: "Entre em contato conosco!",
-                    path: "/vender",
-                    robotsFollow: true,
-                    sobre: sobre,
-                    contact: true,
-                    errorMessage: [],
-                    successMessage: 'Mensagem enviada, assim que possível entraremos em contato com uma resposta!',
-                    csrfToken: req.csrfToken(),
-                    form: false,
-                });
-            })
-            .catch(err => next(err))
-    })
+                .then(resul => {
+                    res.render('shop/vender', {
+                        pageTitle: "Entre em contato conosco!",
+                        path: "/vender",
+                        robotsFollow: true,
+                        sobre: sobre,
+                        contact: true,
+                        errorMessage: [],
+                        successMessage: 'Mensagem enviada, assim que possível entraremos em contato com uma resposta!',
+                        csrfToken: req.csrfToken(),
+                        form: false,
+                    });
+                })
+                .catch(err => next(err))
+        })
 
-    .catch(err => next(err, 500));
+        .catch(err => next(err, 500));
 }

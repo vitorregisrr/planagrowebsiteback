@@ -115,6 +115,7 @@ router.get('/admin/banner/new', isAuth, setLocals, adminCtrl.banner.getNewBanner
 router.post('/admin/banner/new', isAuth, setLocals, adminCtrl.banner.postNewBanner); //novo banner
 router.get('/admin/banner/edit/:id', isAuth, setLocals, adminCtrl.banner.getEditBanner);
 router.post('/admin/banner/edit', isAuth, setLocals, adminCtrl.banner.postEditBanner); //edição de banner
+router.post('/admin/banner/default/', isAuth, setLocals, adminCtrl.banner.postRedefineDefault); //redefine banner para o layout padrão
 
 
 //API

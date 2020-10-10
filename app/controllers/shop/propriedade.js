@@ -30,7 +30,7 @@ exports.getComprar = (req, res, next) => {
                 .then(props => {
                     Sobre.findOne()
                         .then(sobre => {
-                            Banner.find({ referente: 'home' }).then(banner => {
+                            Banner.find({ referente: 'compra-banner' }).then(banner => {
                                 Banner.find({ referente: 'entre-imoveis' }).then(bannerimoveis => {
                                     res.render('shop/comprar', {
                                         pageTitle: "Comprar, alugar ou arrendar propiedades rurais ou urbanas",

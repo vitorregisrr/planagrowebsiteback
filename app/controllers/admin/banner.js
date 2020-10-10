@@ -20,7 +20,7 @@ exports.postNewBanner = async (req, res, next) => {
     const { titulo, descricao, textobotao, linkbotao } = req.body;
     const fixed = req.body.fixed == 'on' ? 'true' : 'false';
 
-    const referente = 'entre-imoveis';
+    const referente = 'compra-banner';
 
     if (req.file) {
         fileHelper.compressImage(req.file).then(newPath => {
@@ -124,3 +124,60 @@ exports.postEditBanner = (req, res, next) => {
     }).catch(err => next(err));
 }
 
+exports.postRedefineDefault = (req, res, next) => {
+    const referente = req.body.referente;
+    
+    if(referente == 'entre-imoveis') {
+        return res.redirect('/admin/banner');
+    } else {
+        const bannerdefault = {
+            fixed : true,
+            titulo : 'Quer vender seu imóvel?',
+            descricao : '',
+            textobotao : 'ENTRE EM CONTATO',
+            linkbotao : '/contato',
+            image : {
+                asset_id: "29c99fee070eedc3568f94739eddf0db",
+                public_id: "zhmoo1l5lsrkzekyy4cn",
+                version: 1602179855,
+                version_id: "51090030b34ea0873c53f48e55b58da3",
+                signature: "a0b345417d3ff05c2a2479dd077ba03ed9a167d7",
+                width: 1920,
+                height: 940,
+                format: "jpg",
+                resource_type: "image",
+                created_at: "2020-10-08T17:57:35Z",
+                tags: [],
+                bytes: 176599,
+                type: "upload",
+                etag: "5a84dcd2eef1b28130273550ce5a47b2",
+                placeholder: false,
+                url: "http://res.cloudinary.com/dhenuhnbj/image/upload/v1602179855/zhmoo1l5lsrkzekyy4cn.jpg",
+                secure_url: "https://res.cloudinary.com/dhenuhnbj/image/upload/v1602179855/zhmoo1l5lsrkzekyy4cn.jpg",
+                access_mode: "public",
+                original_filename: "1602179852170-banner1920x1170",
+                original_extension: "jpeg"
+            }
+     
+        };
+
+        Banner.findOne({referente: referente}).then(banner => {
+            banner.titulo = bannerdefault.titulo;
+            banner.descricao = bannerdefault.descricao;
+            banner.textobotao = bannerdefault.textobotao;
+            banner.linkbotao = bannerdefault.linkbotao;
+            banner.fixed = bannerdefault.fixed;
+            banner.image = bannerdefault.image;
+
+            
+            console.log('----------------------------------------')
+            console.log(banner)
+
+            banner.save().then(() => {
+                return res.redirect('/admin/banner');
+            }).catch(err => next(err));
+
+        }).catch(err => next(err));
+    }
+    
+};
