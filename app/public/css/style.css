@@ -4928,3 +4928,10 @@ blockquote {
         margin-bottom: 12px;
     }
 }
+
+.ordenador {
+    float: right;
+    padding-left: 0px;
+    padding-right: 30px;
+    z-index: 3;
+}

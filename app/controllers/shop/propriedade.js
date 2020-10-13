@@ -9,19 +9,45 @@ exports.getComprar = (req, res, next) => {
     let totalItems;
 
     const query = getQueryFilter(req);
+    const sort = {
+        vendido: 1,
+        date: -1
+    }
 
+    console.log(query);
+    console.log('---------------------------');
+    console.log(req.body);
+    console.log('---------------------------');
+    console.log(req.query);
+    
     if (req.body.genero || req.query.genero) {
         if (!query.$and) {
             query.$and = [];
         }
         query.$and.push({ $or: [{ "genero": req.query.genero || req.body.genero }, { "genero": "Ambos" }] })
     }
+    
+    //configurando o ordenador conforme aluguel
+    if(req.body.genero == 'Aluguel', req.query.genero == 'Aluguel') {
+        if(req.body.ordenador == 'pc' || req.query.ordenador == 'pc') {
+            sort.precoaluguel = 1
+        }
+    }    
+        
+    console.log('---------------------------');
+    console.log(sort);
+    console.log('---------------------------');
 
     Propiedade.find({ ...query, ativo: true })
         .countDocuments()
         .then(num => {
             totalItems = num;
             const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
+            const ordenação = {
+                vendido: 1,
+                date: -1,
+            };
 
             Propiedade.find({ ...query, ativo: true })
                 .sort({ vendido: 1, date: -1 })
