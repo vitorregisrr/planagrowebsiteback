@@ -1537,7 +1537,6 @@ input[type=radio]:checked {
     padding: 10px 20px;
     text-align: center;
     display: block;
-    border: .1px solid rgba(80, 16, 16, 0.733);
     line-height: 10px;
 }
 

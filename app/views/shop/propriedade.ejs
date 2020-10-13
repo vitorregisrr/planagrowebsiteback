@@ -48,24 +48,33 @@
 								<div class="container">
 									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para
 										propriedades</a>
+
+										<a role="button" data-lightbox="mygallery" href="<%= prop.mainImage.secure_url%>" class="btn btn-sm btn-default"> <i class="fa fa-search"></i> Zoom</a>
 								</div>
 							</div>
 							<% if(prop.mainImage || prop.images.length > 0) {%>
 							<div class="imovel_slider">
+								
 								<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
 									<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
+										
 										<div class="item active">
 											<% if(prop.mainImage) {%>
-											<img src="<%= prop.mainImage.secure_url %>" alt="<%= prop.titulo %>">
+													<img src="<%= prop.mainImage.secure_url %>" alt="<%= prop.titulo %>">
 											<% } %>
 										</div>
+
 										<% prop.images.forEach( image => { %>
 										<div class="item">
-											<img src="<%= image.secure_url %>" alt="<%= prop.title %>">
+										<a data-lightbox="mygallery" href="<%=image.secure_url%>">
+
+										</a>
+										<img src="<%= image.secure_url %>" alt="<%= prop.title %>">
 										</div>
 										<% }) %>
+
 									</div>
 
 
@@ -90,6 +99,7 @@
 									<h4 class="imovel-title">
 										<%= prop.titulo %>
 									</h4>
+
 									<span><i class="fa fa-map-marker" aria-hidden="true"></i>
 										<%= prop.rua ? `Rua ${prop.rua}` : ''%>
 										<%= prop.numero ? `num. ${prop.numero}.` : '' %>
