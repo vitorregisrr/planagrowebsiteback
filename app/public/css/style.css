@@ -4931,7 +4931,7 @@ blockquote {
 
 .ordenador {
     float: right;
-    padding-left: 0px;
-    padding-right: 30px;
+    width: 225px;
     z-index: 3;
+    padding: 0;
 }

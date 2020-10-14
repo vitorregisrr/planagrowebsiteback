@@ -520,15 +520,24 @@
 				</div>
 
 				<% if(genero == 'Aluguel' || genero == 'Venda') {%>
-				<div class="col-md-3 col-sm-3 ordenador">
-					<select name="genero" class="selectpicker form-control" title="Ordenar por:">
-						<option <% if(form.values){ %> <%= form.values.genero == 'Venda' ? 'selected' : ''%> <% } %>
-							value="Venda">Preço: Maior ao Menor</option>
-						<option <% if(form.values){ %> <%= form.values.genero == 'Venda' ? 'selected' : ''%> <% } %>
-							value="Venda">Preço: Menor ao Maior</option>
-
-					</select>
+				<div class="container">
+					<div class="col-md-3 ordenador">
+						<select name="ordenador" class="selectpicker form-control" title="Ordenar por:">
+							<option value="pd">Preço: Maior ao Menor</option>
+							<option value="pc">Preço: Menor ao Maior</option>
+	
+							<option value="dd">Dormitórios: Maior ao Menor</option>
+							<option value="dc">Dormitórios: Menor ao Maior</option>
+	
+							<option value="sd">Suítes: Maior ao Menor</option>
+							<option value="sc">Suítes: Menor ao Maior</option>
+	
+							<option value="bd">Banheiros: Maior ao Menor</option>
+							<option value="bc">Banheiros: Menor ao Maior</option>
+						</select>
+					</div>
 				</div>
+				
 				<% }%>
 
 				<div class="row col-md-12">
@@ -559,7 +568,7 @@
 								<img src="https://via.placeholder.com/1290x300" alt="" class="img-fluid">
 							</a>
 							<% } else {%>
-							<a style="cursor: not-allowed;">
+							<a style="">
 								<img src="https://via.placeholder.com/1290x300" alt="" class="img-fluid">
 							</a>
 							<% } %>
