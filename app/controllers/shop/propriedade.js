@@ -14,12 +14,6 @@ exports.getComprar = (req, res, next) => {
         date: -1
     }
 
-    console.log(query);
-    console.log('---------------------------');
-    console.log(req.body);
-    console.log('---------------------------');
-    console.log(req.query);
-
     if (req.body.genero || req.query.genero) {
         if (!query.$and) {
             query.$and = [];
@@ -27,34 +21,40 @@ exports.getComprar = (req, res, next) => {
         query.$and.push({ $or: [{ "genero": req.query.genero || req.body.genero }, { "genero": "Ambos" }] })
     }
 
+    console.log(req.query);
+    console.log(req.body);
+
     //configurando o ordenador conforme aluguel
     //  1: CRESCENTE -1:DESCRESCENTE
-
     if (req.body.genero == 'Aluguel', req.query.genero == 'Aluguel') {
         if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precoaluguel = 1; }
         if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precoaluguel = -1; }
-        if (req.body.ordenador == 'dc' || req.query.ordenador == 'dc') { sort.dormitorios = -1; }
-        if (req.body.ordenador == 'dd' || req.query.ordenador == 'dd') { sort.dormitorios = 1; }
-        if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.suites = -1; }
-        if (req.body.ordenador == 'sd' || req.query.ordenador == 'sd') { sort.suites = 1; }
-        if (req.body.ordenador == 'bc' || req.query.ordenador == 'bc') { sort.banheiros == -1; }
-        if (req.body.ordenador == 'bd' || req.query.ordenador == 'bd') { sort.banheiros == 1; }
+        if (req.body.ordenador == 'dc' || req.query.ordenador == 'dc') { sort.dormitorios = 1; }
+        if (req.body.ordenador == 'dd' || req.query.ordenador == 'dd') { sort.dormitorios = -1; }
+        if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.suites = 1; }
+        if (req.body.ordenador == 'sd' || req.query.ordenador == 'sd') { sort.suites = -1; }
+        if (req.body.ordenador == 'bc' || req.query.ordenador == 'bc') { sort.banheiros = 1; }
+        if (req.body.ordenador == 'bd' || req.query.ordenador == 'bd') { sort.banheiros = -1; }
     }
 
     if (req.body.genero == 'Venda', req.query.genero == 'Venda') {
         if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precovenda = 1; }
         if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precovenda = -1; }
-        if (req.body.ordenador == 'dc' || req.query.ordenador == 'dc') { sort.dormitorios = -1; }
-        if (req.body.ordenador == 'dd' || req.query.ordenador == 'dd') { sort.dormitorios = 1; }
-        if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.suites = -1; }
-        if (req.body.ordenador == 'sd' || req.query.ordenador == 'sd') { sort.suites = 1; }
-        if (req.body.ordenador == 'bc' || req.query.ordenador == 'bc') { sort.banheiros == -1; }
-        if (req.body.ordenador == 'bd' || req.query.ordenador == 'bd') { sort.banheiros == 1; }
+        if (req.body.ordenador == 'dc' || req.query.ordenador == 'dc') { sort.dormitorios = 1; }
+        if (req.body.ordenador == 'dd' || req.query.ordenador == 'dd') { sort.dormitorios = -1; }
+        if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.suites = 1; }
+        if (req.body.ordenador == 'sd' || req.query.ordenador == 'sd') { sort.suites = -1; }
+        if (req.body.ordenador == 'bc' || req.query.ordenador == 'bc') { sort.banheiros = 1; }
+        if (req.body.ordenador == 'bd' || req.query.ordenador == 'bd') { sort.banheiros = -1; }
     }
 
     if (sort.precovenda || sort.precoaluguel || sort.dormitorios || sort.suites || sort.banheiros) {
         delete sort.date;
     }
+
+    console.log(req.query);
+    console.log('----------------------------------------')
+    console.log(query);
 
     Propiedade.find({ ...query, ativo: true })
         .countDocuments()
@@ -67,7 +67,6 @@ exports.getComprar = (req, res, next) => {
                 .skip((currentPage - 1) * ITEMS_PER_PAGE)
                 .limit(ITEMS_PER_PAGE)
                 .then(props => {
-
 
                     if (!req.query || !req.body) {
                         props = props.sort((x, y) => {
@@ -115,6 +114,7 @@ exports.getPropiedade = (req, res, next) => {
         codigo: propCod
     })
         .then(prop => {
+            
             if (!prop) {
                 return res.redirect('/comprar');
             }

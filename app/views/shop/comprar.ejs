@@ -53,7 +53,9 @@
 								<form id="filtros-urbano" class="filter-form hidden" method="GET" action="/comprar">
 									<input type="hidden" name="zona" value="Urbana">
 									<input type="hidden" name="genero" value="<%= genero %>">
-									<input type="hidden" name="filtrando" value="Urbana">
+
+									<!-- <input type="hidden" name="filtrando" value="Urbana"> -->
+
 									<div class="col-md-2 col-sm-6">
 										<select name="tipo" class="selectpicker form-control">
 											<option selected disabled>Tipo</option>
@@ -79,6 +81,7 @@
 												Chácara</option>
 										</select>
 									</div>
+									
 									<div class="col-md-2 col-sm-3">
 										<input name="cep" type="text" placeholder="CEP" class="form-control"
 											value="<%= form.cep ? form.cep : ''%>">
@@ -519,26 +522,7 @@
 					</small>
 				</div>
 
-				<% if(genero == 'Aluguel' || genero == 'Venda') {%>
-				<div class="container">
-					<div class="col-md-3 ordenador">
-						<select name="ordenador" class="selectpicker form-control" title="Ordenar por:">
-							<option value="pd">Preço: Maior ao Menor</option>
-							<option value="pc">Preço: Menor ao Maior</option>
-	
-							<option value="dd">Dormitórios: Maior ao Menor</option>
-							<option value="dc">Dormitórios: Menor ao Maior</option>
-	
-							<option value="sd">Suítes: Maior ao Menor</option>
-							<option value="sc">Suítes: Menor ao Maior</option>
-	
-							<option value="bd">Banheiros: Maior ao Menor</option>
-							<option value="bc">Banheiros: Menor ao Maior</option>
-						</select>
-					</div>
-				</div>
-				
-				<% }%>
+			<%-include('../includes/components/ordenador')%>
 
 				<div class="row col-md-12">
 					<!-- imovel Grids -->
@@ -547,13 +531,16 @@
 						<% if( props.length <= 0){ %>
 						<div class="error_area">
 							<div class="container">
-								<div style="font-size: 30px; line-height: 30px" class="page_error">Não encontramos nada!
+								<div style="font-size: 30px; line-height: 30px" class="page_error">Não
+									encontramos nada!
 									:(</div>
 								<h4 style="font-size: 15px; line-height: 25px; margin: 20px 0;"
 									class="section_title_green">Parece que não
-									achamos nada pelos filtros que você escolheu!<br /> Por gentileza, tente pesquisar
+									achamos nada pelos filtros que você escolheu!<br /> Por gentileza, tente
+									pesquisar
 									de forma menos específica.</h4>
-								<a href="/comprar" class="btn btn-default">voltar para todas as propriedades</a>
+								<a href="/comprar" class="btn btn-default">voltar para todas as
+									propriedades</a>
 							</div>
 						</div>
 						<% } %>
@@ -568,7 +555,7 @@
 								<img src="https://via.placeholder.com/1290x300" alt="" class="img-fluid">
 							</a>
 							<% } else {%>
-							<a style="">
+							<a>
 								<img src="https://via.placeholder.com/1290x300" alt="" class="img-fluid">
 							</a>
 							<% } %>
@@ -591,7 +578,6 @@
 		</div>
 	</section>
 	<!-- imovel Grid End -->
-
 	<%- include('../includes/components/info-banner') %>
 
 	<%- include('../includes/components/footer-contact') %>
@@ -636,7 +622,6 @@
 				$('#filtros-urbano').removeClass('visible');
 				$('#filtros-urbano').addClass('hidden');
 			}
-
 		});
 
 		$('#btnRural').click(function () {
@@ -654,7 +639,12 @@
 				$('#filtros-rural').addClass('hidden');
 			}
 		});
+
+		
+
 	});
+
+
 </script>
 
 </html>
