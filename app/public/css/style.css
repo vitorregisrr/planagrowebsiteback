@@ -4474,7 +4474,12 @@ blockquote {
     -moz-transition: all .4s ease-in;
     -ms-transition: all .4s ease-in;
     -o-transition: all .4s ease-in;
-    transition: all .4s ease-in
+    transition: all .4s ease-in;
+ 
+}
+
+.filter-forms {
+    z-index: 10;
 }
 
 .input_group_collapse label {

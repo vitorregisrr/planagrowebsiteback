@@ -34,44 +34,57 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="contact_area">
-						<p>Use o formulário abaixo para entrar em contato conosco, seja para tirar dúvidas, solicitar uma ligação ou
+						<p>Use o formulário abaixo para entrar em contato conosco, seja para tirar dúvidas, solicitar
+							uma ligação ou
 							visita a sua propriedade, ou deixar critícas ou sugestões.</p>
 						<%- include('../includes/form/errorBox') %>
 						<%  if(successMessage) { %>
-							<div class="alert alert-success mt-2" role="alert">
-								<p>
-									<%= successMessage %>
-								</p>
-							</div>
+						<div class="alert alert-success mt-2" role="alert">
+							<p>
+								<%= successMessage %>
+							</p>
+						</div>
 						<% } %>
-						<form id="contact-form" class="contact_message" action="/contato" method="post">
+						<form id="contact-form" class="contact_message" onsubmit="captchaAndSend(event, this)"
+							action="contato" method="POST">
 							<div class="row">
+								<input type="text" hidden id="captcharesponse">
 								<div class="form-group col-md-6 col-sm-6">
-									<input class="form-control" id="name" type="text" name="nome" placeholder="Seu Nome" value="<%= form ? form.values.nome : '' %>">
+									<input class="form-control" id="name" type="text" name="nome" placeholder="Seu Nome"
+										value="<%= form ? form.values.nome : '' %>">
 								</div>
 								<div class="form-group col-md-6 col-sm-6">
-									<input  class="form-control" id="telefone" type="tel" name="telefone" placeholder="Telefone para contato" value="<%= form ? form.values.telefone: '' %>">
+									<input class="form-control" id="telefone" type="tel" name="telefone"
+										placeholder="Telefone para contato"
+										value="<%= form ? form.values.telefone: '' %>">
 								</div>
 								<div class="form-group col-md-6 col-sm-6">
-									<input class="form-control" id="email" type="email" name="email" placeholder="Endereço de Email" value="<%= form ? form.values.email: '' %>">
+									<input class="form-control" id="email" type="email" name="email"
+										placeholder="Endereço de Email" value="<%= form ? form.values.email: '' %>">
 								</div>
 								<div class="form-group col-md-6 col-sm-6">
-									<input class="form-control" id="assunto" type="text" name="assunto" placeholder="Assunto" value="<%= form ? form.values.assunto : ''%>">
+									<input class="form-control" id="assunto" type="text" name="assunto"
+										placeholder="Assunto" value="<%= form ? form.values.assunto : ''%>">
 								</div>
 								<div class="form-group col-md-12 col-sm-12">
-									<textarea class="form-control" id="mensagem" name="mensagem" placeholder="Mensagem"><%= form ? form.values.mensagem : '' %></textarea>
+									<textarea class="form-control" id="mensagem" name="mensagem"
+										placeholder="Mensagem"><%= form ? form.values.mensagem : '' %></textarea>
 								</div>
+
+								<input type="text" name="captcha" id="captcha">
+
 								<div class="form-group col-md-12 col-sm-12">
 									<input id="send" class="btn btn-default" type="submit" value="Enviar">
 								</div>
 								<div class="col-md-12">
 									<div class="error-handel">
 										<div id="success">Seu email foi enviado com sucesso, Obrigado!</div>
-										<div id="error">Houve um erro no envio do seu email. Tente novamente mais tarde!</div>
+										<div id="error">Houve um erro no envio do seu email. Tente novamente mais tarde!
+										</div>
 									</div>
 								</div>
 							</div>
-							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+							<input type="hidden" id='_csrf' name="_csrf" value="<%= csrfToken %>">
 						</form>
 					</div>
 				</div>
@@ -98,9 +111,9 @@
 						</div>
 					</div>
 					<div class="contact_map">
-						<iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=<%= sobre.endereco %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
-						 allowfullscreen></iframe>
-
+						<iframe width="100%" height="450" frameborder="0" style="border:0"
+							src="https://www.google.com/maps/embed/v1/place?q=<%= sobre.endereco %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
+							allowfullscreen></iframe>
 					</div>
 				</div>
 			</div>
@@ -112,14 +125,27 @@
 	<%- include('../includes/components/footer-contact') %>
 
 	<%- include('../includes/components/footer') %>
-
+0
 
 	<!-- Scroll to top -->
 	<div class="scroll-to-top">
 		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
 	</div>
-</body>
 
+
+</body>
+<script>
+
+	function captchaAndSend(event, form) {
+		event.preventDefault();
+		grecaptcha.execute('6LdZxtcZAAAAADPVatJwJ4XJ9qjUDDU7zFqhF3yK', { action: '/contato' }).then(function (token) {
+			const captcha = token;
+			document.getElementById('captcha').value = captcha;
+			form.submit();
+		});
+	}
+
+</script>
 <%- include('../includes/imports/end') %>
 
 </html>

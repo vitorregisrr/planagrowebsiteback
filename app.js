@@ -34,6 +34,7 @@ const storeSession = new mongoDBSession({
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressSession({
     secret: 'A vida é muito coolzástica',

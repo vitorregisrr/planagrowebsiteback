@@ -1,6 +1,9 @@
 const Sobre = require('../../models/sobre'),
     transporter = require('../../util/email-transporter')();
 const Banner = require('../../models/banner');
+require('dotenv').config();
+const request = require('request');
+
 
 exports.getContato = (req, res, next) => {
     Sobre.findOne()
@@ -19,7 +22,7 @@ exports.getContato = (req, res, next) => {
                     successMessage: false,
                     form: false,
                 });
-                
+
             }).catch(err => next(err));
         })
         .catch(err => next(err));
@@ -28,25 +31,26 @@ exports.getContato = (req, res, next) => {
 exports.postContato = (req, res, next) => {
     Sobre.findOne()
         .then(sobre => {
-            transporter.sendMail({
-                to: sobre.email,
-                from: req.body.email,
-                subject: 'Mensagem de contato recebida pelo site!',
-                html: `
-                    <h3> Você recebeu uma nova mensagem de contato a partir do formulário do seu site! </h3>
-                    <p>De: ${req.body.nome}</p>
-                    <p>Telefone: ${req.body.telefone}</p>
-                    <p>E mail: ${req.body.email}</p>
-                    <p>Com a mensagem: ${req.body.mensagem}</p>
-                    <h5> Responda o mais rápido possível, não deixe seu cliente esperando! </h5>
-                `
-            })
-                .then(resul => {
+            Banner.find({ referente: 'contato-banner' }).then(banner => {
+                transporter.sendMail({
+                    to: 'thalessalazar.12@gmail.com',
+                    from: req.body.email,
+                    subject: 'Mensagem de contato recebida pelo site!',
+                    html: `
+                        <h3> Você recebeu uma nova mensagem de contato a partir do formulário do seu site! </h3>
+                        <p>De: ${req.body.nome}</p>
+                        <p>Telefone: ${req.body.telefone}</p>
+                        <p>E mail: ${req.body.email}</p>
+                        <p>Com a mensagem: ${req.body.mensagem}</p>
+                        <h5> Responda o mais rápido possível, não deixe seu cliente esperando! </h5>
+                    `
+                }).then(resul => {
                     res.render('shop/contato', {
                         pageTitle: "Entre em contato conosco!",
                         path: "/contato",
                         robotsFollow: true,
                         sobre: sobre,
+                        banner: banner,
                         contact: true,
                         errorMessage: [],
                         successMessage: 'Mensagem enviada, assim que possível entraremos em contato com uma resposta!',
@@ -54,6 +58,8 @@ exports.postContato = (req, res, next) => {
                         form: false,
                     });
                 })
+                    .catch(err => next(err))
+            })
                 .catch(err => next(err))
         })
         .catch(err => next(err, 500));
@@ -156,4 +162,144 @@ exports.postVender = (req, res, next) => {
         })
 
         .catch(err => next(err, 500));
+}
+
+
+exports.apiPostContato = (req, res, next) => {
+
+    console.log(req.body.captcha);
+
+    if (!req.body.captcha) {
+        res.json({
+            'msg': 'captcha token is undefined'
+        });
+    }
+
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_PK}&response=${req.body.captcha}`;
+
+    request(verifyUrl, (err, response, body) => {
+        if (err) {
+            console.log(err);
+        }
+
+        body = JSON.parse(body);
+
+        if (!body.success || body.score < 0.3) {
+            res.json({ msg: 'Erro', score: body.score });
+        }
+
+        res.json({ msg: 'You have been verifide!' })
+    });
+}
+
+exports.postContatoRecaptcha = (req, res, next) => {
+    console.log(req.body.captcha);
+
+    if (!req.body.captcha) {
+        Sobre.findOne().then(sobre => {
+            Banner.findOne({ referente: 'contato-banner' }).then(banner => {
+                res.render('shop/contato', {
+                    pageTitle: "Entre em contato conosco!",
+                    path: "/contato",
+                    robotsFollow: true,
+                    sobre: sobre,
+                    banner: banner,
+                    contact: true,
+                    errorMessage: ['Houve algum erro ao processar seu pedido. Tente novamente mais tarde'],
+                    successMessage: '',
+                    csrfToken: req.csrfToken(),
+                    form: false,
+                });
+            })
+                .catch(err => next(err));
+        })
+            .catch(err => next(err));
+    }
+
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_PK}&response=${req.body.captcha}`;
+
+    request(verifyUrl, (err, response, body) => {
+        if (err) {
+            console.log('----------------------------------------');
+            console.log(err);
+            console.log('----------------------------------------');
+            // Sobre.findOne().then(sobre => {
+            //     Banner.findOne({ referente: 'contato-banner' }).then(banner => {
+            //         res.render('shop/contato', {
+            //             pageTitle: "Entre em contato conosco!",
+            //             path: "/contato",
+            //             robotsFollow: true,
+            //             sobre: sobre,
+            //             banner: banner,
+            //             contact: true,
+            //             errorMessage: ['Houve algum erro ao processar seu pedido. Tente novamente mais tarde'],
+            //             successMessage: '',
+            //             csrfToken: req.csrfToken(),
+            //             form: false,
+            //         });
+            //     })
+            //         .catch(err => next(err));
+            // })
+            //     .catch(err => next(err));
+        }
+
+        body = JSON.parse(body);
+
+        if (!body.success || body.score < 0.3) {
+            Sobre.findOne().then(sobre => {
+                Banner.find({ referente: 'contato-banner' }).then(banner => {
+                    res.render('shop/contato', {
+                        pageTitle: "Entre em contato conosco!",
+                        path: "/contato",
+                        robotsFollow: true,
+                        sobre: sobre,
+                        banner: banner,
+                        contact: true,
+                        errorMessage: ['Houve algum erro ao processar seu pedido. Tente novamente mais tarde'],
+                        successMessage: '',
+                        csrfToken: req.csrfToken(),
+                        form: false,
+                    });
+                })
+                    .catch(err => next(err));
+            })
+                .catch(err => next(err));
+        }
+
+        console.log('-----------------------------------------------')
+        // Se chegou aqui é pq ele validou e não é um ROBO, então posso enviar o email e retornar success para a rota  
+        Sobre.findOne()
+            .then(sobre => {
+                Banner.find({ referente: 'contato-banner' }).then(banner => {
+                    console.log(banner);
+                    transporter.sendMail({
+                        to: 'thalessalazar.12@gmail.com',
+                        from: req.body.email,
+                        subject: 'Mensagem de contato recebida pelo site!',
+                        html: `
+                        <h3> Você recebeu uma nova mensagem de contato a partir do formulário do seu site! </h3>
+                        <p>De: ${req.body.nome}</p>
+                        <p>Telefone: ${req.body.telefone}</p>
+                        <p>E mail: ${req.body.email}</p>
+                        <p>Com a mensagem: ${req.body.mensagem}</p>
+                        <h5> Responda o mais rápido possível, não deixe seu cliente esperando! </h5>
+                    `
+                    }).then(resul => {
+                        res.render('shop/contato', {
+                            pageTitle: "Entre em contato conosco!",
+                            path: "/contato",
+                            robotsFollow: true,
+                            sobre: sobre,
+                            banner: banner,
+                            contact: true,
+                            errorMessage: [],
+                            successMessage: 'Mensagem enviada, assim que possível entraremos em contato com uma resposta!',
+                            csrfToken: req.csrfToken(),
+                            form: false,
+                        });
+                    }) .catch(err => console.log(err));
+                }) .catch(err => console.log(err));
+               
+            }) .catch(err => console.log(err));
+    });
 }
