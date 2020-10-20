@@ -21,25 +21,49 @@ exports.getComprar = (req, res, next) => {
         query.$and.push({ $or: [{ "genero": req.query.genero || req.body.genero }, { "genero": "Ambos" }] })
     }
 
-    console.log(req.query);
-    console.log(req.body);
-
     //configurando o ordenador conforme aluguel
     //  1: CRESCENTE -1:DESCRESCENTE
-    if (req.body.genero == 'Aluguel', req.query.genero == 'Aluguel') {
+
+    if (req.body.genero == 'Aluguel' || req.query.genero == 'Aluguel') {
         if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precoaluguel = 1; }
         if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precoaluguel = -1; }
-        if (req.body.ordenador == 'dc' || req.query.ordenador == 'dc') { sort.dormitorios = 1; }
-        if (req.body.ordenador == 'dd' || req.query.ordenador == 'dd') { sort.dormitorios = -1; }
-        if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.suites = 1; }
-        if (req.body.ordenador == 'sd' || req.query.ordenador == 'sd') { sort.suites = -1; }
-        if (req.body.ordenador == 'bc' || req.query.ordenador == 'bc') { sort.banheiros = 1; }
-        if (req.body.ordenador == 'bd' || req.query.ordenador == 'bd') { sort.banheiros = -1; }
     }
-
-    if (req.body.genero == 'Venda', req.query.genero == 'Venda') {
+    if (req.body.genero == 'Venda' || req.query.genero == 'Venda') {
         if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precovenda = 1; }
         if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precovenda = -1; }
+    }
+
+    if (req.body.zona == 'Rural' || req.query.zona == 'Rural') {
+        if (req.body.genero == 'Aluguel' || req.query.genero == 'Aluguel') {
+            if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precoaluguel = 1; }
+            if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precoaluguel = -1; }
+        }
+        if (req.body.genero == 'Venda' || req.query.genero == 'Venda') {
+            if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precovenda = 1; }
+            if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precovenda = -1; }
+        }
+        if (req.body.ordenador == 'ec' || req.query.ordenador == 'ec') { sort.extensao = 1 }
+        if (req.body.ordenador == 'ed' || req.query.ordenador == 'ed') { sort.extensao = -1 }
+        if (req.body.ordenador == 'ac' || req.query.ordenador == 'ac') { sort.acudes = 1 }
+        if (req.body.ordenador == 'ad' || req.query.ordenador == 'ad') { sort.acudes = -1 }
+        if (req.body.ordenador == 'mc' || req.query.ordenador == 'mc') { sort.mangueiras = 1 }
+        if (req.body.ordenador == 'md' || req.query.ordenador == 'md') { sort.mangueiras = -1 }
+        if (req.body.ordenador == 'gc' || req.query.ordenador == 'gc') { sort.galpoes = 1 }
+        if (req.body.ordenador == 'gd' || req.query.ordenador == 'gd') { sort.galpoes = -1 }
+        if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.sedes = 1 }
+        if (req.body.ordenador == 'sd' || req.query.ordenador == 'sd') { sort.sedes = -1 }
+    }
+
+
+    if (req.body.zona == 'Urbana' || req.query.zona == 'Urbana') {
+        if (req.body.genero == 'Aluguel' || req.query.genero == 'Aluguel') {
+            if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precoaluguel = 1; }
+            if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precoaluguel = -1; }
+        }
+        if (req.body.genero == 'Venda' || req.query.genero == 'Venda') {
+            if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precovenda = 1; }
+            if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precovenda = -1; }
+        }
         if (req.body.ordenador == 'dc' || req.query.ordenador == 'dc') { sort.dormitorios = 1; }
         if (req.body.ordenador == 'dd' || req.query.ordenador == 'dd') { sort.dormitorios = -1; }
         if (req.body.ordenador == 'sc' || req.query.ordenador == 'sc') { sort.suites = 1; }
@@ -48,13 +72,12 @@ exports.getComprar = (req, res, next) => {
         if (req.body.ordenador == 'bd' || req.query.ordenador == 'bd') { sort.banheiros = -1; }
     }
 
-    if (sort.precovenda || sort.precoaluguel || sort.dormitorios || sort.suites || sort.banheiros) {
+
+
+    if (sort.precovenda || sort.precoaluguel || sort.dormitorios || sort.suites || sort.banheiros
+        || sort.extensao || sort.acudes || sort.mangueiras || sort.galpoes || sort.sedes) {
         delete sort.date;
     }
-
-    console.log(req.query);
-    console.log('----------------------------------------')
-    console.log(query);
 
     Propiedade.find({ ...query, ativo: true })
         .countDocuments()
@@ -114,7 +137,7 @@ exports.getPropiedade = (req, res, next) => {
         codigo: propCod
     })
         .then(prop => {
-            
+
             if (!prop) {
                 return res.redirect('/comprar');
             }

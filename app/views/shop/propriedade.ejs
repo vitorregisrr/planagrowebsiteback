@@ -49,29 +49,30 @@
 									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para
 										propriedades</a>
 
-										<a role="button" data-lightbox="mygallery" href="<%= prop.mainImage.secure_url%>" class="btn btn-sm btn-default"> <i class="fa fa-search"></i> Zoom</a>
+									<a role="button" data-lightbox="mygallery" href="<%= prop.mainImage.secure_url%>"
+										class="btn btn-sm btn-default"> <i class="fa fa-search"></i> Zoom</a>
 								</div>
 							</div>
 							<% if(prop.mainImage || prop.images.length > 0) {%>
 							<div class="imovel_slider">
-								
+
 								<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
 									<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
-										
+
 										<div class="item active">
 											<% if(prop.mainImage) {%>
-													<img src="<%= prop.mainImage.secure_url %>" alt="<%= prop.titulo %>">
+											<img src="<%= prop.mainImage.secure_url %>" alt="<%= prop.titulo %>">
 											<% } %>
 										</div>
 
 										<% prop.images.forEach( image => { %>
 										<div class="item">
-										<a data-lightbox="mygallery" href="<%=image.secure_url%>">
+											<a data-lightbox="mygallery" href="<%=image.secure_url%>">
 
-										</a>
-										<img src="<%= image.secure_url %>" alt="<%= prop.title %>">
+											</a>
+											<img src="<%= image.secure_url %>" alt="<%= prop.title %>">
 										</div>
 										<% }) %>
 
@@ -129,7 +130,7 @@
 								</div>
 							</div>
 							<% } %>
-							
+
 							<%- include('../includes/components/propriedade/imovel_detalhes_mobile') %>
 
 							<% if(prop.zona == 'Urbana'){ %>
@@ -182,7 +183,7 @@
 
 
 						<%- include('../includes/components/propriedade/imovel_detalhes_desktop') %>
-						
+
 
 						<div class="wow fadeInUp contact_agent sidebar-widget">
 							<div class="property__share">
@@ -214,7 +215,8 @@
 								<% } %>
 								<h4 class="inner-title">Tenho interesse!</h4>
 								<p>Entraremos em contato pelos dados fornecidos. </p>
-								<form class="message_agent" action="/interesse" method="post">
+								<form class="message_agent" action="/interesse" method="post" id="interesse_form"
+									name="interesse_form" onsubmit="captchaAndSend(event, this)">
 									<div class="row">
 										<div class="col-md-12">
 											<input type="text" class="form-control" name="nome" placeholder="Seu nome"
@@ -229,16 +231,19 @@
 												placeholder="Seu Telefone"
 												value="<%= form ? form.values.telefone : '' %>">
 										</div>
+										<input type="text" hidden name="captcha" id="captcha">
+										<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+										<input type="hidden" name="codigo" value="<%= prop.codigo %>">
 										<div class="col-md-12">
 											<input name="mensagem" type="hidden" value="<%= `Oi! Tenho interesse na propriedade " ${prop.titulo}", código
 											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div>
 											<div class="col-md-12">
-												<button type="submit" class="btn btn-default" name="submit">ME
-													LIGUEM!</button>
+
+												<input id="send" class="btn btn-default" type="submit"
+													value="ME LIGUEM!">
 											</div>
 										</div>
-										<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
-										<input type="hidden" name="codigo" value="<%= prop.codigo %>">
+
 								</form>
 							</div>
 						</div>
@@ -264,6 +269,17 @@
 <script>
 	var a2a_config = a2a_config || {};
 	a2a_config.locale = "pt-BR";
+
+
+	function captchaAndSend(event, form) {
+		event.preventDefault();
+		grecaptcha.execute('6LdZxtcZAAAAADPVatJwJ4XJ9qjUDDU7zFqhF3yK', { action: '/interesse' }).then(function (token) {
+			const captcha = token;
+			document.getElementById('captcha').value = captcha;
+			document.getElementById('interesse_form').submit();
+		});
+	}
+
 </script>
 <script async src="https://static.addtoany.com/menu/page.js"></script>
 <%- include('../includes/imports/end') %>
