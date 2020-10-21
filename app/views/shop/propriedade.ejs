@@ -15,7 +15,7 @@
 	<%- include('../includes/imports/head', { is_prop: true}) %>
 </head>
 
-<body class="pagewrap wow fadeInd">
+<body class="pagewrap wow fadeInd" onload="addDescricao()">
 
 	<%- include('../includes/components/nav') %>
 	<!-- Banner Section Start -->
@@ -110,10 +110,8 @@
 										<%= prop.municipio ? `${prop.municipio}` : '' %>
 										<% } %>
 									</span>
-									<blockquote>
-										<%- prop.descricao %>
-									</blockquote>
-
+									<span style="margin-top: 5px;" id="descricaoSpan"></span>
+									<input id="descricao" type="text" hidden value="<%=prop.descricao%>">
 								</div>
 							</div>
 							<% if(prop.vantagens.length > 0) { %>
@@ -144,7 +142,8 @@
 
 							<% if(prop.youtube_id) { %>
 							<div class="single_map mb-3">
-								<h4 class="inner-title">TOUR PELO IMÓVEL</h4>
+								<h4 class="inner-title">
+									<%= prop.zona == 'Urbana' ? 'TOUR PELO IMÓVEL' : 'VEJA A PROPRIEDADE'%></h4>
 								<iframe id="" type="text/html" width="100%" height="350"
 									src="http://www.youtube.com/embed/<%=prop.youtube_id%>?autoplay=1" frameborder="0"
 									allowfullscreen style="border: 0;"></iframe>
@@ -270,6 +269,10 @@
 	var a2a_config = a2a_config || {};
 	a2a_config.locale = "pt-BR";
 
+	function addDescricao() {
+		var descricao = document.getElementById('descricao').value;
+		document.getElementById('descricaoSpan').innerHTML = descricao;
+	}
 
 	function captchaAndSend(event, form) {
 		event.preventDefault();
