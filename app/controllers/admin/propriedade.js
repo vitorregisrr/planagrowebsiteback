@@ -93,6 +93,8 @@ exports.getNewPropiedade = (req, res, next) => {
  
 //POST NEW PROPIEDADE
 exports.postNewPropiedade = (req, res, next) => {
+    console.log(req.body.editorInput);
+    
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
     // req.body.ativoaluguel = req.body.ativoaluguel == 'on' ? 'true' : 'false';
     // req.body.ativovenda = req.body.ativovenda == 'on' ? 'true' : 'false';

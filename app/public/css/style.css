@@ -3781,7 +3781,6 @@ blockquote {
     background-size: cover;
 }
 
-
 #imovel-submit.webp {
     background: url(../img/banner1920x1170.webp) no-repeat fixed;
     background-position: center center;
@@ -4475,7 +4474,6 @@ blockquote {
     -ms-transition: all .4s ease-in;
     -o-transition: all .4s ease-in;
     transition: all .4s ease-in;
- 
 }
 
 .filter-forms {
@@ -4939,4 +4937,48 @@ blockquote {
     width: 225px;
     z-index: 3;
     padding: 0;
+}
+
+.wrapper {
+    background-color: #fff;
+    width: 100%;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    padding-top: 20pt;
+    margin-bottom: 20px;
+}
+
+.options {
+    width: 100%;
+    height: 30pt;
+    margin-top: 5pt;
+    border-top: 1px solid rgb(230, 230, 230);
+}
+
+iframe {
+    border: 0;
+    width: 100%;
+    margin-bottom: 5pt;
+    height: 150pt;
+}
+
+.seperator {
+    display: inline;
+    border-left: 1px solid #ddd;
+    height: 30pt;
+}
+
+.options button {
+    margin: 0;
+    padding: 0;
+    height: 30pt;
+    width: 30pt;
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    color: #333;
+}
+
+.options button:active {
+    color: #333;
 }

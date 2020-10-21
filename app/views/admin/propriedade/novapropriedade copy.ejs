@@ -33,8 +33,7 @@
 						<%- include('../../includes/form/errorBox') %>
 						<div class="col-md-9 col-sm-12">
 							<form action="/admin/propiedades/new" method="post" class="submit_form"
-								enctype="multipart/form-data" id="propriedade_form"
-								onsubmit="consoleIframe(event, this)">
+								enctype="multipart/form-data" id="propriedade_form" onsubmit="consoleIframe(event, this)">
 								<div class="basic_information">
 									<h4 class="inner-title">Informações Básicas</h4>
 									<!-- Todos os inputs com class .rural-form e sao mostrados e os .urbano-form são escondidos
@@ -62,79 +61,15 @@
 												class="form-control"
 												value="<%= form.values ? form.values.titulo : null %>">
 										</div>
-
-										<!-- RICH TEXT EDITOR DESCRICAO DE IMÓVEIS -->
-										<div class="col-md-12 col-sm-12">
-
-											<div class="wrapper">
-												<p>Descrição do Imóvel</p>
-												<div class="options">
-													<button type="button" onClick="transform('bold', null, 0)">
-														<i class="fas fa-bold"></i>
-													</button>
-													<button type="button" onClick="transform('italic', null, 0)">
-														<i class="fas fa-italic"></i>
-													</button>
-													<button type="button" onClick="transform('strikeThrough', null, 0)">
-														<i class="fas fa-strikethrough"></i>
-													</button>
-													<button type="button" onClick="transform('underline', null, 0)">
-														<i class="fas fa-underline"></i>
-													</button>
-													<div class="seperator"></div>
-													<button type="button"
-														onClick="transform('insertOrderedList', null, 0)">
-														<i class="fas fa-list-ol"></i>
-													</button>
-													<button type="button"
-														onClick="transform('insertUnorderedList', null, 0)">
-														<i class="fas fa-list-ul"></i>
-													</button>
-
-												</div>
-												<iframe name="editorDescricao" id="editorDescricao"></iframe>
-												<input type="text" hidden id="descricao" name="descricao">
-											</div>
+										<div class="col-md-12 col-sm-12 ">
+											<textarea placeholder="Descrição do Imóvel" id="descricaoBox"
+												name="descricao"
+												class="form-control"><%= form.values ? form.values.descricao : null %></textarea>
 										</div>
-
-										<!-- ----------------------------------- -->
-
-										<!-- RICH TEXT EDITOR OBSERVAÇÕES DE ADMIN -->
-										<div class="col-md-12 col-sm-12">
-
-											<div class="wrapper">
-												<p>Observações de Admin</p>
-												<div class="options">
-													<button type="button" onClick="transform('bold', null, 1)">
-														<i class="fas fa-bold"></i>
-													</button>
-													<button type="button" onClick="transform('italic', null, 1)">
-														<i class="fas fa-italic"></i>
-													</button>
-													<button type="button" onClick="transform('strikeThrough', null, 1)">
-														<i class="fas fa-strikethrough"></i>
-													</button>
-													<button type="button" onClick="transform('underline', null, 1)">
-														<i class="fas fa-underline"></i>
-													</button>
-													<div class="seperator"></div>
-													<button type="button"
-														onClick="transform('insertOrderedList', null, 1)">
-														<i class="fas fa-list-ol"></i>
-													</button>
-													<button type="button"
-														onClick="transform('insertUnorderedList', null, 1)">
-														<i class="fas fa-list-ul"></i>
-													</button>
-
-												</div>
-												<iframe name="editorObservacoes" id="editorObservacoes"></iframe>
-												<input type="text" hidden id="observacoesadmin" name="observacoesadmin">
-											</div>
+										<div class="col-md-12 col-sm-12 ">
+											<textarea placeholder="Observacões de admnistrador" name="observacoesadmin"
+												class="form-control"><%= form.values ? form.values.observacoesadmin : null %></textarea>
 										</div>
-
-										<!-- ----------------------------------- -->
-
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
 												data-live-search="true">
@@ -532,7 +467,37 @@
 												value="<%= form.values ? form.values.youtube_id : null  %>">
 										</div>
 
+										<div class="col-md-12">
+											<div class="wrapper">
+												<div class="options">
+													<button type="button" onClick="transform('bold', null)">
+														<i class="fas fa-bold"></i>
+													</button>
+													<button type="button" onClick="transform('italic', null)">
+														<i class="fas fa-italic"></i>
+													</button>
+													<button type="button" onClick="transform('strikeThrough', null)">
+														<i class="fas fa-strikethrough"></i>
+													</button>
+													<button type="button" onClick="transform('underline', null)">
+														<i class="fas fa-underline"></i>
+													</button>
 
+													<div class="seperator"></div>
+													<button type="button"
+														onClick="transform('insertOrderedList', null)">
+														<i class="fas fa-list-ol"></i>
+													</button>
+													<button type="button"
+														onClick="transform('insertUnorderedList', null)">
+														<i class="fas fa-list-ul"></i>
+													</button>
+
+												</div>
+												<iframe name="editor" id="editor"></iframe>
+												<input type="text"  id="editorInput" name="editorInput">
+											</div>
+										</div>
 									</div>
 									<div class="browse_submit">
 										<input type="submit" class="btn btn-default" value="Adicionar">
@@ -561,35 +526,17 @@
 
 <!-- SCRIPT VANTAGENS -->
 <script>
-	editorDescricao.document.designMode = "On";
-	editorObservacoes.document.designMode = "On";
-	
-	function transform(option, argument, editor) {
-		// se for 0 == descricao
-		// se for 1 == observacoes
+	editor.document.designMode = "On";
 
-		if(editor == 0) {
-			editorDescricao.document.execCommand(option, false, argument);
-		}
-
-		if(editor == 1) {
-			editorObservacoes.document.execCommand(option, false, argument);
-		}
-
+	function transform(option, argument) {
+		editor.document.execCommand(option, false, argument);
 	}
 
-	function consoleIframe(event, form) {
+	function consoleIframe(eent, form) {
 		event.preventDefault();
-
-		var editorDescricao = document.getElementById("editorDescricao");
-		var contentDescricao = editorDescricao.contentWindow.document.body.innerHTML;
-		
-		var editorObservacoes = document.getElementById("editorObservacoes");
-		var contentObservacoes = editorObservacoes.contentWindow.document.body.innerHTML;
-
-		document.getElementById('descricao').value = contentDescricao;
-		document.getElementById('observacoesadmin').value = contentObservacoes;
-
+		var editor = document.getElementById("editor");
+		var content = editor.contentWindow.document.body.innerHTML;
+		document.getElementById('editorInput').value = content;
 		document.getElementById('propriedade_form').submit();
 	}
 
