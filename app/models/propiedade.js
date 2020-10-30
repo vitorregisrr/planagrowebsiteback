@@ -39,6 +39,7 @@ const Propiedade = new Schema({
         required: false,
     },
 
+  
     taxas: {
         type: Boolean,
         default: false,
@@ -53,7 +54,7 @@ const Propiedade = new Schema({
 
     tipo: {
         type: String,
-        required: true,
+        required: true
     },
 
     genero: {
@@ -250,6 +251,12 @@ const Propiedade = new Schema({
     },
     youtube_id:{
         type: String        
+    },
+      //observacao rapida para facilidar visualização
+    // de alguma obs na listagem de propriedade
+    obsrapidas: {
+        type: String,
+        required: false
     }
 });
 

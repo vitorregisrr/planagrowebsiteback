@@ -17,6 +17,9 @@ const User = new Schema({
     ativo: {
         type: Boolean
     },
+    admin: {
+        type: Boolean
+    },
     resetToken: String,
     resetTokenExpiration: Date
 });

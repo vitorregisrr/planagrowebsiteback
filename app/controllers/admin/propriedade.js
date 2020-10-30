@@ -93,11 +93,7 @@ exports.getNewPropiedade = (req, res, next) => {
  
 //POST NEW PROPIEDADE
 exports.postNewPropiedade = (req, res, next) => {
-    console.log(req.body.editorInput);
-    
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
-    // req.body.ativoaluguel = req.body.ativoaluguel == 'on' ? 'true' : 'false';
-    // req.body.ativovenda = req.body.ativovenda == 'on' ? 'true' : 'false';
     req.body.vendido = req.body.vendido == 'on' ? 'true' : 'false';
     req.body.destaque = req.body.destaque == 'on' ? 'true' : 'false';
     req.body.taxas = req.body.taxas == 'on' ? 'true' : 'false';
@@ -112,7 +108,8 @@ exports.postNewPropiedade = (req, res, next) => {
 
     req.body.youtube_id = youtube.extractIdYoutubeVideo(link_youtube);
 
-    
+    console.log(req.body.observacoesrapidas);
+
     const form = {
         ...req.body
     }
@@ -120,6 +117,7 @@ exports.postNewPropiedade = (req, res, next) => {
     if (req.body.proprietarioId == '') {
         delete form.proprietarioId;
     }
+
     if (req.file) {
         fileHelper.compressImage(req.file, 700)
             .then(newPath => {
@@ -292,7 +290,7 @@ exports.getEditPropiedade = (req, res, next) => {
             if (!prop) {
                 return res.redirect('/admin/propiedades')
             }
-
+            console.log(prop.obsrapidas)
             Cliente.find()
                 .select('codigo nome')
                 .then(clientes => {
@@ -338,6 +336,7 @@ exports.getOutrasFotos = (req, res, next) => {
 
 //POST EDIT PROPIEDADE
 exports.postEditPropiedade = (req, res, next) => {
+    console.log('entrou no postedit')
     req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
     // req.body.ativovenda = req.body.ativovenda == 'on' ? 'true' : 'false';
     // req.body.ativoaluguel = req.body.ativoaluguel == 'on' ? 'true' : 'false';
@@ -352,10 +351,6 @@ exports.postEditPropiedade = (req, res, next) => {
     const link_youtube = req.body.youtube_id;
     req.body.youtube_id = youtube.extractIdYoutubeVideo(link_youtube);
 
-    console.log(link_youtube);
-    console.log(req.body.youtube_id);
-
-
     Propiedade.findOne({
         _id: req.body.id
     })
@@ -364,6 +359,13 @@ exports.postEditPropiedade = (req, res, next) => {
             if (!prop) {
                 return next(new Error('Houve um erro e a sua propiedade não foi encontrada, volte e tente novamente.'));
             }
+
+            console.log(prop.obsrapidas);
+            console.log(req.body.obsrapidas);
+
+            prop.obsrapidas = req.body.obsrapidas
+
+            console.log('depois:', prop.obsrapidas);
 
             if (req.file) {
                 if (prop.mainImage) {
@@ -376,6 +378,7 @@ exports.postEditPropiedade = (req, res, next) => {
                             folder: 'planagro'
                         })
                             .then(image => {
+
                                 fileHelper.delete(newPath);
 
                                 prop.mainImage = image;
@@ -431,6 +434,9 @@ exports.postEditPropiedade = (req, res, next) => {
                                 prop.acudes = req.body.acudes;
 
                                 prop.youtube_id = req.body.youtube_id;
+
+                                
+
 
                                 prop.save();
                                 return res.redirect('/admin/propiedades');

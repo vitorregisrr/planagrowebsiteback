@@ -2,13 +2,15 @@ const User = require('../../models/user');
 
 exports.postNewUser = async (req, res, next) => {
     const { email, usuario, password } = req.body;
-    req.body.ativo = req.body.patio == 'on' ? 'true' : 'false';
+    req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
+    req.body.admin = req.body.admin == 'on' ? 'true' : 'false';
     let ativo = req.body.ativo;
+    let admin = req.body.admin;
 
     if (req.session.user.usuario === 'thalessalazar' || req.session.user.usuario === 'planagroadmin') {
         User.findOne({ usuario: usuario }).then(result => {
             if (!result) {
-                User.create({ email, usuario, password, ativo });
+                User.create({ email, usuario, password, ativo, admin });
                 res.redirect('/admin/user');
             } else {
                 res.status(422).render('admin/user/newuser', {
@@ -75,27 +77,34 @@ exports.getEditUser = (req, res) => {
 };
 
 exports.postEditUser = async (req, res) => {
-    const { id, email, usuario, password } = req.body;
-    req.body.ativo = req.body.patio == 'on' ? 'true' : 'false';
-    let ativo = req.body.ativo;
 
-    if (req.session.user.usuario === 'thalessalazar' || req.session.user.usuario === 'planagroadmin') {
-        User.find({ usuario: usuario }).then(result => {
-            if (result.usuario === usuario) {
-                let filter = { _id: id };
-                let update = {
-                    email: email,
-                    usuario: usuario,
-                    password: password,
-                    ativo: ativo
-                }
-                User.findOneAndUpdate(filter, update, { new: true }).then(() => {
-                    res.redirect('/admin/user');
-                });
-            } else {
-                console.log('entrou no else');
-            }
-        });
+    const { id, email, usuario, password } = req.body;
+    req.body.ativo = req.body.ativo == 'on' ? 'true' : 'false';
+    req.body.admin = req.body.admin == 'on' ? 'true' : 'false';
+    let ativo = req.body.ativo;
+    let admin = req.body.admin;
+
+    if (req.session.user.admin == true) {
+        let filter = { _id: id };
+        let update = {
+            email: email,
+            usuario: usuario,
+            password: password,
+            ativo: ativo,
+            admin: admin
+        }
+        User.findOneAndUpdate(filter, update, { new: true }).then(() => {
+            res.redirect('/admin/user');
+        }).catch(err => {
+            res.status(400).render('admin/user/edituser', {
+                pageTitle: "Ediçãio de Usúario",
+                path: "admin/user",
+                robotsFollow: false,
+                user: user,
+                errorMessage: ["Houve algum erro ao executar esta ação, tente novamente em alguns minutos"],
+                contact: false
+            });
+        })
     } else {
         res.status(400).render('admin/user/edituser', {
             pageTitle: "Ediçãio de Usúario",

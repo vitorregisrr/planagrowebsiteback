@@ -32,7 +32,8 @@
 						<%- include('../../includes/form/errorBox') %>
 						<div class="col-md-9 col-sm-12">
 							<form action="/admin/propiedades/edit" method="post" class="submit_form"
-								enctype="multipart/form-data" id="propriedade_form" onsubmit="consoleIframe(event, this)">
+								enctype="multipart/form-data" id="propriedade_form"
+								onsubmit="consoleIframe(event, this)">
 								<input name="id" type="hidden" value="<%= prop.id %>">
 
 								<div class="basic_information">
@@ -127,6 +128,14 @@
 										</div>
 
 										<!-- ----------------------------------- -->
+
+
+
+										<div class="col-md-12 col-sm-12 ">
+											<input name="obsrapidas" type="text" placeholder="Observações rápidas"
+												class="form-control" value="<%= prop.obsrapidas %>">
+										</div>
+
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
 												data-live-search="true" title="Zona do Imóvel">
@@ -347,19 +356,20 @@
 												<div class="row">
 													<div class="col-md-4 col-sm-6">
 														<input value="<%= prop.cep %>" type="text" maxLength="9"
-															name="cep" placeholder="CEP" class="form-control">
+															onblur="pesquisacep(this.value)" name="cep"
+															placeholder="CEP" id="cep" class="form-control">
 													</div>
 													<div class="col-md-4 col-sm-6">
 														<input value="<%= prop.bairro %>" type="text" name="bairro"
-															placeholder="Bairro" class="form-control">
+															placeholder="Bairro" id="bairro" class="form-control">
 													</div>
 													<div class="col-md-4 col-sm-4">
 														<input value="<%= prop.rua %>" type="text" name="rua"
-															placeholder="Rua" class="form-control">
+															placeholder="Rua" id="rua" class="form-control">
 													</div>
 													<div class="col-md-6 col-sm-4">
 														<input value="<%= prop.numero %>" type="text" name="numero"
-															placeholder="Número" class="form-control">
+															placeholder="Número" id="numero" class="form-control">
 													</div>
 													<div class="col-md-6 col-sm-4">
 														<select name="cidade" class="selectpicker form-control">
@@ -664,9 +674,48 @@
 
 		inputVantagens.val(JSON.stringify(vantagens));
 	};
+
+
+	function limpa_formulario() {
+		document.getElementById('cep').value('');
+		document.getElementById('bairro').value('');
+		document.getElementById('rua').value('');
+	}
+
+	function meu_callback(conteudo) {
+		if (!("erro" in conteudo)) {
+			document.getElementById('rua').value = (conteudo.logradouro);
+			document.getElementById('bairro').value = (conteudo.bairro);
+		}
+	}
+
+	function pesquisacep(valor) {
+		var cep = valor.replace(/\D/g, '');
+
+		if (cep != '') {
+			var validacep = /^[0-9]{8}$/;
+
+			if (validacep.test(cep)) {
+				document.getElementById('rua').value = "...";
+				document.getElementById('bairro').value = "...";
+
+				var script = document.createElement('script');
+
+				script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+				document.body.appendChild(script);
+			} else {
+				limpa_formulario();
+				alert('Formato de CEP inválido');
+			}
+		} else {
+			limpa_formulario();
+		}
+	}
 </script>
 
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
 	integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
 	crossorigin="anonymous"></script>
+
 </html>

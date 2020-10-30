@@ -26,6 +26,7 @@
                                 <tr>
                                     <td>Login</td>
                                     <td>Ativo</td>
+                                    <td>Admin</td>
                                     <td>Ações</td>
                                 </tr>
                             </thead>
@@ -43,11 +44,12 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <% if(!user.ativo) {%>
-                                            Não
-                                            <%} else {%>
-                                            Sim
-                                            <%}%>
+                                            <% if(!user.ativo) {%> Não <%} else {%> Sim <%}%>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <% if(!user.admin) {%> Não <%} else {%> Sim <%}%>
                                         </span>
                                     </td>
                                     <td>

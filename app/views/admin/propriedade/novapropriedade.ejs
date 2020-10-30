@@ -101,7 +101,6 @@
 
 										<!-- RICH TEXT EDITOR OBSERVAÇÕES DE ADMIN -->
 										<div class="col-md-12 col-sm-12">
-
 											<div class="wrapper">
 												<p>Observações de Admin</p>
 												<div class="options">
@@ -126,14 +125,20 @@
 														onClick="transform('insertUnorderedList', null, 1)">
 														<i class="fas fa-list-ul"></i>
 													</button>
-
 												</div>
 												<iframe name="editorObservacoes" id="editorObservacoes"></iframe>
 												<input type="text" hidden id="observacoesadmin" name="observacoesadmin">
 											</div>
 										</div>
-
 										<!-- ----------------------------------- -->
+
+										<div class="col-md-12 col-sm-12 ">
+											<input name="obsrapidas" type="text" placeholder="Observações rápidas"
+												class="form-control"
+												value="<%= form.values ? form.values.obsrapidas : null %>">
+										</div>
+									
+
 
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
@@ -369,17 +374,16 @@
 											<div class="col-md-12 col-sm-12 ">
 												<div class="row">
 													<div class="col-md-4 col-sm-6">
-														<input type="text" maxLength="9" name="cep" placeholder="CEP"
-															class="form-control"
-															value="<%= form.values ? form.values.cep : null %>">
+														<input type="text" maxLength="9" name="cep" placeholder="CEP" id="cep"
+															class="form-control" onblur="pesquisacep(this.value)">
 													</div>
 													<div class="col-md-4 col-sm-6">
-														<input type="text" name="bairro" placeholder="Bairro"
+														<input type="text" name="bairro" placeholder="Bairro" id="bairro"
 															class="form-control"
 															value="<%= form.values ? form.values.bairro : null %>">
 													</div>
 													<div class="col-md-4 col-sm-4">
-														<input type="text" name="rua" placeholder="Rua"
+														<input type="text" name="rua" placeholder="Rua" id="rua"
 															class="form-control"
 															value="<%= form.values ? form.values.rua : null %>">
 													</div>
@@ -563,16 +567,16 @@
 <script>
 	editorDescricao.document.designMode = "On";
 	editorObservacoes.document.designMode = "On";
-	
+
 	function transform(option, argument, editor) {
 		// se for 0 == descricao
 		// se for 1 == observacoes
 
-		if(editor == 0) {
+		if (editor == 0) {
 			editorDescricao.document.execCommand(option, false, argument);
 		}
 
-		if(editor == 1) {
+		if (editor == 1) {
 			editorObservacoes.document.execCommand(option, false, argument);
 		}
 
@@ -583,7 +587,7 @@
 
 		var editorDescricao = document.getElementById("editorDescricao");
 		var contentDescricao = editorDescricao.contentWindow.document.body.innerHTML;
-		
+
 		var editorObservacoes = document.getElementById("editorObservacoes");
 		var contentObservacoes = editorObservacoes.contentWindow.document.body.innerHTML;
 
@@ -656,6 +660,43 @@
 
 		inputVantagens.val(JSON.stringify(vantagens));
 	};
+
+	function limpa_formulario() {
+		document.getElementById('cep').value('');
+		document.getElementById('bairro').value('');
+		document.getElementById('rua').value('');
+	}
+
+	function meu_callback(conteudo) {
+		if(!("erro" in conteudo)) {
+			document.getElementById('rua').value=(conteudo.logradouro);
+			document.getElementById('bairro').value=(conteudo.bairro);
+		}
+	}
+
+	function pesquisacep(valor) {
+		var cep = valor.replace(/\D/g, '');
+
+		if (cep != '') {
+			var validacep = /^[0-9]{8}$/;
+
+			if (validacep.test(cep)) {
+				document.getElementById('rua').value = "...";
+				document.getElementById('bairro').value = "...";
+
+				var script = document.createElement('script');
+
+				script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+				document.body.appendChild(script);
+			} else {
+				limpa_formulario();
+				alert('Formato de CEP inválido');
+			}
+		} else {
+			limpa_formulario();
+		}
+	}
 </script>
 
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"

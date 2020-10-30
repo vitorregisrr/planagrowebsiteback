@@ -43,6 +43,8 @@ router.get('/admin/propiedades/outrasfotos/:propCod', isAuth, setLocals, adminCt
 //DELETE 
 router.post('/admin/propiedades/delete', isAuth, setLocals, adminCtrl.propriedade.deletePropiedade);
 
+
+
 //CLIENTES
 router.get('/admin/clientes', isAuth, setLocals, adminCtrl.cliente.getClientes);
 //GET PROFILE

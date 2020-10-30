@@ -29,16 +29,24 @@
                                         <div class="col-md-12 col-sm-12 ">
                                             <input name="email" type="email" placeholder="E-mail" class="form-control"
                                                 value="<%=user.email%>">
-                                            <input name="usuario" type="text" disabled placeholder="Usuario"
+                                            <input name="usuario" type="text"  placeholder="Usuario"
                                                 class="form-control" value="<%=user.usuario%>">
                                             <input name="password" type="password" placeholder="Senha"
                                                 class="form-control" value="<%=user.password%>">
                                             <div class="property_details">
                                                 <label>Ativo</label>
                                                 <div class="radio_check">
-                                                    <input type="checkbox" <%=user.ativo ? 'checked' : '' %> id="patio"
-                                                        name="patio">
-                                                    <label for="patio"><span>Não</span><span>Sim</span></label>
+                                                    <input type="checkbox" <%= user.ativo ? 'checked' : '' %> id="ativo"
+                                                        name="ativo">
+                                                    <label for="ativo"><span>Não</span><span>Sim</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="property_details">
+                                                <label>Admin</label>
+                                                <div class="radio_check">
+                                                    <input type="checkbox" <%= user.admin ? 'checked' : '' %> id="admin"
+                                                        name="admin">
+                                                    <label for="admin"><span>Não</span><span>Sim</span></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -53,8 +61,7 @@
                                 <form data-confirm="true" action="/admin/user/delete" method="POST">
                                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                     <input type="hidden" name="id" value="<%= user._id %>">
-                                    <button type="submit"
-                                        class="btn btn-default-outline btn-filter"
+                                    <button type="submit" class="btn btn-default-outline btn-filter"
                                         data-titulo="<%= user.usuario %>" data-toggle="modal"
                                         data-target="#apagarModal">Deletar</button>
                                 </form>
@@ -65,8 +72,8 @@
     </section>
     <!-- Profile Setting End -->
 
-    
-	<%- include('../../includes/modals/modal-confirmform')%>
+
+    <%- include('../../includes/modals/modal-confirmform')%>
     <%- include('../../includes/components/footer')%>
 
     <!-- Scroll to top -->

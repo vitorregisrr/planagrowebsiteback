@@ -110,6 +110,7 @@
 										<%= prop.municipio ? `${prop.municipio}` : '' %>
 										<% } %>
 									</span>
+									
 									<span style="margin-top: 5px;" id="descricaoSpan"></span>
 									<input id="descricao" type="text" hidden value="<%=prop.descricao%>">
 								</div>
@@ -134,8 +135,8 @@
 							<% if(prop.zona == 'Urbana'){ %>
 							<div class="single_map">
 								<h4 class="inner-title">LOCAL NO MAPA</h4>
-								<iframe width="100%" height="350" frameborder="0" style="border:0"
-									src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
+								<iframe class="youtube-frame" frameborder="0"
+									src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB4yBaa_b_AkQLZKuYKU0O0A8FDOggbahU"
 									allowfullscreen></iframe>
 							</div>
 							<% } %>
@@ -143,10 +144,10 @@
 							<% if(prop.youtube_id) { %>
 							<div class="single_map mb-3">
 								<h4 class="inner-title">
-									<%= prop.zona == 'Urbana' ? 'TOUR PELO IMÓVEL' : 'VEJA A PROPRIEDADE'%></h4>
-								<iframe id="" type="text/html" width="100%" height="350"
+									<%= prop.zona == 'Urbana' ? 'TOUR PELO IMÓVEL' : 'TOUR PELA PROPRIEDADE'%></h4>
+								<iframe  type="text/html" class="youtube-frame" class="youtube-frame"
 									src="http://www.youtube.com/embed/<%=prop.youtube_id%>?autoplay=1" frameborder="0"
-									allowfullscreen style="border: 0;"></iframe>
+									allowfullscreen></iframe>
 							</div>
 							<%}%>
 							<div class="col-12">
@@ -172,12 +173,13 @@
 							<span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
 							</a>
 						</div>
+
 						<div class="wow fadeInUp contact_agent sidebar-widget p-1 mb-2">
-							<a style="border-top: none; border-radius: 10px;" href="/documentos"
+							<a style="border-top: none; border-radius: 10px;" href="/documentos" a
 								class="call-documentos call-whatsapp color-primary color-hover-white">
 								<span class="color-inherit"><i class="fa fa-file" aria-hidden="true"></i> Documentos
 									Necessários</span>
-							</a>
+					 		</a>
 						</div>
 
 
@@ -237,7 +239,6 @@
 											<input name="mensagem" type="hidden" value="<%= `Oi! Tenho interesse na propriedade " ${prop.titulo}", código
 											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div>
 											<div class="col-md-12">
-
 												<input id="send" class="btn btn-default" type="submit"
 													value="ME LIGUEM!">
 											</div>
