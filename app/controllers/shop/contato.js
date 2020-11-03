@@ -33,7 +33,7 @@ exports.postContato = (req, res, next) => {
         .then(sobre => {
             Banner.find({ referente: 'contato-banner' }).then(banner => {
                 transporter.sendMail({
-                    to: 'thalessalazar.12@gmail.com',
+                    to: sobre.email,
                     from: req.body.email,
                     subject: 'Mensagem de contato recebida pelo site!',
                     html: `
