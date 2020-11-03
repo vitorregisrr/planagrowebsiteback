@@ -160,19 +160,23 @@ exports.getPropiedade = (req, res, next) => {
 
             Sobre.findOne()
                 .then(sobre => {
-                    return res.render('shop/propriedade', {
-                        pageTitle: prop.youtube_id,
-                        prop: prop,
-                        mapURI: `Rua ${prop.rua}, numero ${prop.numero}. Bairro${prop.bairro}. CEP: ${prop.cep}`,
-                        path: "/propiedade",
-                        robotsFollow: true,
-                        sobre: sobre,
-                        contact: true,
-                        errorMessage: [],
-                        form: false,
-                        successMessage: false,
-                        csrfToken: req.csrfToken(),
+                    Banner.find({referente: 'compra-banner'}).then(banner => {
+                        return res.render('shop/propriedade', {
+                            pageTitle: prop.youtube_id,
+                            prop: prop,
+                            mapURI: `Rua ${prop.rua}, numero ${prop.numero}. Bairro${prop.bairro}. CEP: ${prop.cep}`,
+                            path: "/propiedade",
+                            robotsFollow: true,
+                            sobre: sobre,
+                            contact: true,
+                            errorMessage: [],
+                            banner: banner,
+                            form: false,
+                            successMessage: false,
+                            csrfToken: req.csrfToken(),
+                        });
                     })
+                    .catch(err => next(err, 500))
                 })
                 .catch(err => next(err, 500))
         })
