@@ -44,17 +44,17 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <% if(!user.ativo) {%> Não <%} else {%> Sim <%}%>
+                                            <% if(!user.ativo) { %> Não <% } else { %> Sim <% } %>
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <% if(!user.admin) {%> Não <%} else {%> Sim <%}%>
+                                            <% if(!user.admin) {%> Não <%} else {%> Sim <% } %>
                                         </span>
                                     </td>
                                     <td>
                                         <span class="text-center"><a href="/admin/user/edit/<%= user._id %>"><i
-                                                class="fa fa-pencil" aria-hidden="true"></i><br />Editar</a>
+                                                    class="fa fa-pencil" aria-hidden="true"></i><br />Editar</a>
                                         </span>
                                     </td>
                                 </tr>
@@ -65,8 +65,8 @@
                 </div>
             </div>
     </section>
-    <!-- Profile Setting End -->
 
+    <!-- Profile Setting End -->
     <%- include('../../includes/components/footer')%>
 
     <!-- Scroll to top -->

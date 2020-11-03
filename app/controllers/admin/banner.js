@@ -20,8 +20,6 @@ exports.postNewBanner = async (req, res, next) => {
     const { titulo, descricao, textobotao, linkbotao } = req.body;
     const fixed = req.body.fixed == 'on' ? 'true' : 'false';
 
-    const referente = 'compra-banner';
-
     if (req.file) {
         fileHelper.compressImage(req.file).then(newPath => {
             cloudinary.uploader.upload(newPath, { folder: 'planagro' }).then(result => {
@@ -107,6 +105,7 @@ exports.postEditBanner = (req, res, next) => {
                     banner.linkbotao = linkbotao;
                     banner.textobotao = textobotao;
                     banner.referente = referente;
+                    banner.genero = genero;
                     banner.save();
                     return res.redirect('/admin/banner');
                 }).catch(err => next(err));
@@ -118,6 +117,7 @@ exports.postEditBanner = (req, res, next) => {
             banner.linkbotao = linkbotao;
             banner.textobotao = textobotao;
             banner.referente = referente;
+            banner.genero = genero;
             banner.save();
             return res.redirect('/admin/banner');
         }

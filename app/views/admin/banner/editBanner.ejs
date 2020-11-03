@@ -37,6 +37,7 @@
 						<form action="/admin/banner/edit" method="POST" enctype="multipart/form-data">
 							<input type="text" hidden name="id" value="<%=banner._id%>">
 							<input type="text" hidden name="referente" value="<%=banner.referente%>">
+							<input type="hidden" name="genero" value="<%= banner.genero %>">
 
 							<h4 class="inner-title"><%=pageTitle%></h4>
 							<p>Caso não queira que algo não seja exibido, basta deixar o campo em branco. <br>
@@ -74,6 +75,7 @@
 							</div>
 
 							<div class="row">
+							
 								<div class="col-md-12">
 									<div class="img-submit">
 										<input name="image" type="file" id="main-img-upload" />
@@ -89,9 +91,17 @@
 						<form action="/admin/banner/edit" method="POST" enctype="multipart/form-data">
 							<input type="text" hidden name="id" value="<%=banner._id%>">
 							<input type="text" hidden name="referente" value="<%=banner.referente%>">
-
+							<input type="text" hidden name="genero" value="<%=banner.genero%>">
 							<h4 class="inner-title"><%=pageTitle%></h4>
 							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<input name="" disabled type="text" placeholder="Texto Auxiliar" class="form-control"
+										value="Referente: <%=banner.referente%>">
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<input name="" disabled type="text" placeholder="Texto Auxiliar" class="form-control"
+										value="Genero: <%=banner.genero%>">
+								</div>
 								<div class="col-md-12">
 									<div class="img-submit">
 										<input name="image" type="file" id="main-img-upload" />
@@ -108,7 +118,7 @@
 							<form data-confirm="true" action="/admin/banner/default" method="POST">
 								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
 								<input type="hidden" name="referente" value="<%= banner.referente %>">
-								<button type="submit" class="btn btn-default-outline btn-filter"
+								<button type="submit" class="btn btn-default"
 									data-titulo="<%= banner.referente %>" data-toggle="modal"
 									data-target="#apagarModal">Redefinir Padrão</button>
 							</form>

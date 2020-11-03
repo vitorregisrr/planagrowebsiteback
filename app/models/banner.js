@@ -27,7 +27,10 @@ const Banner = new Schema({
         type: String,
     },
     linkbotao: {
-        type: String,
+        type: String
+    },
+    genero: {
+        type: String
     }
 });
 

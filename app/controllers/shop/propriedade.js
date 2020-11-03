@@ -14,6 +14,8 @@ exports.getComprar = (req, res, next) => {
         date: -1
     }
 
+
+
     if (req.body.genero || req.query.genero) {
         if (!query.$and) {
             query.$and = [];
@@ -22,8 +24,7 @@ exports.getComprar = (req, res, next) => {
     }
 
     //configurando o ordenador conforme aluguel
-    //  1: CRESCENTE -1:DESCRESCENTE
-
+    //  1: CRESCENTE -1:DESCRESCENTE - tem que ser refatorado para algo mais simples e dinamico
     if (req.body.genero == 'Aluguel' || req.query.genero == 'Aluguel') {
         if (req.body.ordenador == 'pc' || req.query.ordenador == 'pc') { sort.precoaluguel = 1; }
         if (req.body.ordenador == 'pd' || req.query.ordenador == 'pd') { sort.precoaluguel = -1; }
@@ -73,6 +74,16 @@ exports.getComprar = (req, res, next) => {
     }
 
 
+    //teste genero da busca para puxar o banner referente aquele genero
+    //se não for aluguel ou venda ele busca o banner do genero ambos que já foi presetado
+    var generoBanner = 'Ambos';
+    if (req.body.genero == 'Aluguel' || req.query.genero == 'Aluguel') { generoBanner = 'Aluguel'; }
+    if (req.body.genero == 'Venda' || req.query.genero == 'Venda') { generoBanner = 'Venda'; }
+    const filter = {
+        referente: 'entre-imoveis',
+        genero: generoBanner
+    }
+
 
     if (sort.precovenda || sort.precoaluguel || sort.dormitorios || sort.suites || sort.banheiros
         || sort.extensao || sort.acudes || sort.mangueiras || sort.galpoes || sort.sedes) {
@@ -96,14 +107,14 @@ exports.getComprar = (req, res, next) => {
                             return (x.destaque === y.destaque) ? 0 : x ? -1 : 1
                         })
                     }
-
                     Sobre.findOne()
                         .then(sobre => {
                             Banner.find({ referente: 'compra-banner' }).then(banner => {
-                                Banner.find({ referente: 'entre-imoveis' }).then(bannerimoveis => {
+                                Banner.find(filter).then(bannerimoveis => {
                                     if (req.query == {} || req.body == {}) {
                                         let prop = props.sort()
                                     }
+                                    console.log(bannerimoveis);
                                     res.render('shop/comprar', {
                                         pageTitle: "Comprar, alugar ou arrendar propiedades rurais ou urbanas",
                                         props: props,

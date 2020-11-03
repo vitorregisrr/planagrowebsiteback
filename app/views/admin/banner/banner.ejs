@@ -55,13 +55,17 @@
 											<h6 class="property-title">
 												<%=banner.referente%>
 											</h6>
-											<span><%=banner.titulo%></span> <br>
-											<span><%=banner.descricao%></span>
+											<% if (banner.referente != 'entre-imoveis') {%>
+												<span><%=banner.titulo%></span><br>
+												<span><%=banner.descricao%></span>
+											<% } else { %>
+												<span> Genero: <%=banner.genero%></span>
+											<% } %>
 										</div>
 									</td>
 									<td>
-										<span class="text-center"><a href="/admin/banner/edit/<%= banner._id %>"><i
-													class="fa fa-pencil" aria-hidden="true"></i><br />Editar</a>
+										<span class="text-center"><a href="/admin/banner/edit/<%= banner._id %>">
+											<i class="fa fa-pencil" aria-hidden="true"></i><br />Editar</a>
 										</span>
 									</td>
 								</tr>
