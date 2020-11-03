@@ -89,7 +89,7 @@ exports.getEditBanner = (req, res, next) => {
 exports.postEditBanner = (req, res, next) => {
     const id = req.body.id;
     const fixed = req.body.fixed == 'on' ? 'true' : 'false';
-    const { titulo, descricao, linkbotao, textobotao, referente } = req.body;
+    const { titulo, descricao, linkbotao, textobotao, referente, genero } = req.body;
 
     Banner.findOne({ _id: id }).then(banner => {
         console.log(banner)

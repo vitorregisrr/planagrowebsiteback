@@ -63,6 +63,7 @@
 												value="<%= form.values ? form.values.titulo : null %>">
 										</div>
 
+									
 										<!-- RICH TEXT EDITOR DESCRICAO DE IMÓVEIS -->
 										<div class="col-md-12 col-sm-12">
 
@@ -565,13 +566,14 @@
 
 <!-- SCRIPT VANTAGENS -->
 <script>
+
+	
 	editorDescricao.document.designMode = "On";
 	editorObservacoes.document.designMode = "On";
 
 	function transform(option, argument, editor) {
 		// se for 0 == descricao
 		// se for 1 == observacoes
-
 		if (editor == 0) {
 			editorDescricao.document.execCommand(option, false, argument);
 		}
@@ -579,7 +581,6 @@
 		if (editor == 1) {
 			editorObservacoes.document.execCommand(option, false, argument);
 		}
-
 	}
 
 	function consoleIframe(event, form) {
