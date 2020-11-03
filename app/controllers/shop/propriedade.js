@@ -110,6 +110,7 @@ exports.getComprar = (req, res, next) => {
                     Sobre.findOne()
                         .then(sobre => {
                             Banner.find({ referente: 'compra-banner' }).then(banner => {
+                                console.log('COMPRA BANNER:----', banner);
                                 Banner.find(filter).then(bannerimoveis => {
                                     if (req.query == {} || req.body == {}) {
                                         let prop = props.sort()
