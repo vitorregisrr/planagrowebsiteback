@@ -20,8 +20,8 @@ exports.postLogin = (req, res, next) => {
     };
 
     User.findOne({
-            usuario: form.usuario
-        })
+        usuario: form.usuario
+    })
         .then(user => {
             if (!user) {
                 return res
@@ -47,9 +47,26 @@ exports.postLogin = (req, res, next) => {
                     if (err) {
                         next(err);
                     }
-                    return res.redirect('/admin');
+                    if (user.ativo) {
+                        return res.redirect('/admin');
+                    } else {
+                        return res
+                            .status(422)
+                            .render('admin/auth/login', {
+                                path: '/login',
+                                pageTitle: 'Login',
+                                errorMessage: ["Usuario sem permissão para acessar o sistema!"],
+                                form: {
+                                    values: {
+                                        usuario: form.usuario
+                                    },
+                                    hasError: ['password']
+                                },
+                                robotsFollow: false,
+                            })
+                    }
                 });
-            }else{
+            } else {
                 return res
                     .status(422)
                     .render('admin/auth/login', {
@@ -65,7 +82,7 @@ exports.postLogin = (req, res, next) => {
                         robotsFollow: false,
                     })
             }
-            
+
         })
         .catch(err => console.log(err));
 }

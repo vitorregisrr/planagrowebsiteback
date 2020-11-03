@@ -15,7 +15,7 @@
 	<%- include('../includes/imports/head', { is_prop: true}) %>
 </head>
 
-<body class="pagewrap wow fadeInd">
+<body class="pagewrap wow fadeInd" onload="addDescricao()">
 
 	<%- include('../includes/components/nav') %>
 	<!-- Banner Section Start -->
@@ -48,24 +48,34 @@
 								<div class="container">
 									<a role="button" href="/comprar" class="btn btn-sm btn-default">Voltar para
 										propriedades</a>
+
+									<a role="button" data-lightbox="mygallery" href="<%= prop.mainImage.secure_url%>"
+										class="btn btn-sm btn-default"> <i class="fa fa-search"></i> Zoom</a>
 								</div>
 							</div>
 							<% if(prop.mainImage || prop.images.length > 0) {%>
 							<div class="imovel_slider">
+
 								<div id="fotos-imovel-carousel" class="carousel slide" data-ride="carousel">
 									<%- prop.vendido ? '<div class="imovel_grid__sold"> <div class="sold__ribbon" style="z-index: 4"><span>vendido</span></div></div>' : '' %>
 									<!-- Wrapper for slides -->
 									<div class="carousel-inner" role="listbox">
+
 										<div class="item active">
 											<% if(prop.mainImage) {%>
 											<img src="<%= prop.mainImage.secure_url %>" alt="<%= prop.titulo %>">
 											<% } %>
 										</div>
+
 										<% prop.images.forEach( image => { %>
 										<div class="item">
+											<a data-lightbox="mygallery" href="<%=image.secure_url%>">
+
+											</a>
 											<img src="<%= image.secure_url %>" alt="<%= prop.title %>">
 										</div>
 										<% }) %>
+
 									</div>
 
 
@@ -90,6 +100,7 @@
 									<h4 class="imovel-title">
 										<%= prop.titulo %>
 									</h4>
+
 									<span><i class="fa fa-map-marker" aria-hidden="true"></i>
 										<%= prop.rua ? `Rua ${prop.rua}` : ''%>
 										<%= prop.numero ? `num. ${prop.numero}.` : '' %>
@@ -99,10 +110,9 @@
 										<%= prop.municipio ? `${prop.municipio}` : '' %>
 										<% } %>
 									</span>
-									<blockquote>
-										<%- prop.descricao %>
-									</blockquote>
-
+									
+									<span style="margin-top: 5px;" id="descricaoSpan"></span>
+									<input id="descricao" type="text" hidden value="<%=prop.descricao%>">
 								</div>
 							</div>
 							<% if(prop.vantagens.length > 0) { %>
@@ -119,17 +129,30 @@
 								</div>
 							</div>
 							<% } %>
+
+							<%- include('../includes/components/propriedade/imovel_detalhes_mobile') %>
+
 							<% if(prop.zona == 'Urbana'){ %>
 							<div class="single_map">
 								<h4 class="inner-title">LOCAL NO MAPA</h4>
-								<iframe width="100%" height="350" frameborder="0" style="border:0"
-									src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB1459b7b1uEANJS7VuybYeTwC66AEGaMU"
+								<iframe class="youtube-frame" frameborder="0"
+									src="https://www.google.com/maps/embed/v1/place?q=<%= mapURI %>&key=AIzaSyB4yBaa_b_AkQLZKuYKU0O0A8FDOggbahU"
 									allowfullscreen></iframe>
 							</div>
 							<% } %>
 
+							<% if(prop.youtube_id) { %>
+							<div class="single_map mb-3">
+								<h4 class="inner-title">
+									<%= prop.zona == 'Urbana' ? 'TOUR PELO IMÓVEL' : 'TOUR PELA PROPRIEDADE'%></h4>
+								<iframe  type="text/html" class="youtube-frame" class="youtube-frame"
+									src="http://www.youtube.com/embed/<%=prop.youtube_id%>?autoplay=1" frameborder="0"
+									allowfullscreen></iframe>
+							</div>
+							<%}%>
 							<div class="col-12">
-								<small class="warning-light text-center wow fadeInUp" style="max-width: 92%; text-align: left; margin: 0;">
+								<small class="warning-light text-center wow fadeInUp"
+									style="max-width: 92%; text-align: left; margin: 0;">
 									<i class="fa fa-info-circle mr-2"></i> Algumas informações podem estar
 									temporariamente desatualizadas, devido a
 									modificações sem aviso prévio à imobiliária. Os valores exibidos poderão ter
@@ -146,132 +169,23 @@
 							<a style="border-top: none; border-radius: 10px;" href="<%= encodeURI(`https://api.whatsapp.com/send?phone=55${sobre.whatsapp}&text=Oi! Tenho interesse na propriedade "
 							 ${prop.titulo}", código "${prop.codigo}" . Pode me tirar algumas dúvidas? O link da propriedade é
 							 www.planagroimoveis.com.br/propriedade/${prop.codigo}`)%>" class="call-whatsapp">
-								<span class="small">Saiba mais por</span>
-								<span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
+							<span class="small">Saiba mais por</span>
+							<span class="whatsapp">Whatsapp <i class="icon-whatsapp"></i></span>
 							</a>
 						</div>
+
 						<div class="wow fadeInUp contact_agent sidebar-widget p-1 mb-2">
-							<a style="border-top: none; border-radius: 10px;" href="/documentos"  class="call-documentos call-whatsapp color-primary color-hover-white">
-								<span class="color-inherit"><i class="fa fa-file" aria-hidden="true"></i> Documentos Necessários</span>
-							</a>
+							<a style="border-top: none; border-radius: 10px;" href="/documentos" a
+								class="call-documentos call-whatsapp color-primary color-hover-white">
+								<span class="color-inherit"><i class="fa fa-file" aria-hidden="true"></i> Documentos
+									Necessários</span>
+					 		</a>
 						</div>
-						<div class="imovel_listing wow fadeInUp sidebar-widget">
-							<h4 class="inner-title">Detalhes da Propriedade</h4>
-							<div class="profile_data">
-								<ul>
-									<li><span>Gênero :</span>
-										<%= prop.genero %>
-									</li>
-									<li><span>Zona :</span>
-										<%= prop.zona %>
-									</li>
-									<li><span>Tipo :</span>
-										<%= prop.tipo %>
-									</li>
 
-									<% if(prop.zona == 'Urbana') { %>
 
-									<% if(prop.genero == 'Venda' || prop.genero == 'Ambos') { %>
-									<% if( prop.precovenda) { %>
-									<li><span>Preço Venda :</span> R$<span class="tomoney">
-											<%= prop.precovenda %></span></li>
-									<% }else{ %>
-									<li><span>Preço Venda:</span><span>
-											Confira!</span></li>
-									<% } %>
-									<% } %>
+						<%- include('../includes/components/propriedade/imovel_detalhes_desktop') %>
 
-									<% if(prop.genero == 'Aluguel' || prop.genero == 'Ambos') { %>
-									<% if( prop.precoaluguel) { %>
-									<li><span>Preço Aluguel :</span> R$<span class="tomoney">
-											<%= prop.precoaluguel %></span></li>
-									<% }else{ %>
-									<li><span>Preço Aluguel:</span><span>
-											Confira!</span></li>
-									<% } %>
-									<% } %>
-									<% if( prop.dormitorios) { %>
-									<li><span>Dormitórios :</span>
-										<%= prop.dormitorios %>
-									</li>
-									<% } %>
 
-									<% if( prop.banheiros) { %>
-									<li><span>Banheiros :</span>
-										<%= prop.banheiros %>
-									</li>
-									<% } %>
-
-									<% if( prop.suites) { %>
-									<li><span>Suites :</span>
-										<%= prop.suites %>
-									</li>
-									<% } %>
-
-									<% if( prop.cozinhas) { %>
-									<li><span>Cozinhas :</span>
-										<%= prop.cozinhas %>
-									</li>
-									<% } %>
-
-									<% if( prop.patio ) { %>
-									<li><span>Pátio :</span>
-										<%= prop.patio ? 'Sim' : 'Não' %>
-									</li>
-									<% } %>
-
-									<% if(prop.piscina) { %>
-									<li><span>Piscina :</span>
-										<%= prop.piscina ? 'Sim' : 'Não' %>
-									</li>
-									<% } %>
-
-									<% if(prop.mobiliado) { %>
-									<li><span>Mobiliado :</span>
-										<%= prop.mobiliado ? 'Sim' : 'Não' %>
-									</li>
-									<% } %>
-									<% } else{ %>
-										<% if( prop.municipio ) { %>
-											<li><span>Município :</span>
-												<%= prop.municipio %>
-											</li>
-											<% } %>
-											
-									<% if(prop.preco) { %>
-									<li><span>Preço :</span> R$<span class="tomoney">
-											<%= prop.preco %></span></li>
-									<% } %>
-									<% if(prop.precoHec) { %>
-									<li><span>Preço/hec:</span>
-										R$<span class="tomoney"><%= prop.precoHec %></span></li>
-									<% }else{ %>
-									<li><span>Preço/hec:</span>
-										<span>Confira!</span></li>
-									<% } %>
-
-									<% if( prop.acudes ) { %>
-									<li><span>Açudes :</span>
-										<%= prop.acudes %>
-									</li>
-									<% } %>
-
-									<% if( prop.galpoes ) { %>
-									<li><span>Galpões :</span>
-										<%= prop.galpoes %>
-									</li>
-									<% } %>
-
-									<% if( prop.mangueiras ) { %>
-									<li><span>Mangueiras :</span>
-										<%= prop.mangueiras %>
-									</li>
-									<% } %>
-
-									<% } %>
-								</ul>
-							</div>
-						</div>
 						<div class="wow fadeInUp contact_agent sidebar-widget">
 							<div class="property__share">
 								<h4 class="inner-title">Compartilhar</h4>
@@ -302,7 +216,8 @@
 								<% } %>
 								<h4 class="inner-title">Tenho interesse!</h4>
 								<p>Entraremos em contato pelos dados fornecidos. </p>
-								<form class="message_agent" action="/interesse" method="post">
+								<form class="message_agent" action="/interesse" method="post" id="interesse_form"
+									name="interesse_form" onsubmit="captchaAndSend(event, this)">
 									<div class="row">
 										<div class="col-md-12">
 											<input type="text" class="form-control" name="nome" placeholder="Seu nome"
@@ -317,16 +232,18 @@
 												placeholder="Seu Telefone"
 												value="<%= form ? form.values.telefone : '' %>">
 										</div>
+										<input type="text" hidden name="captcha" id="captcha">
+										<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
+										<input type="hidden" name="codigo" value="<%= prop.codigo %>">
 										<div class="col-md-12">
 											<input name="mensagem" type="hidden" value="<%= `Oi! Tenho interesse na propriedade " ${prop.titulo}", código
-											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div> <div
-												class="col-md-12">
-											<button type="submit" class="btn btn-default" name="submit">ME
-												LIGUEM!</button>
+											 "${prop.codigo}" . Pode entrar em contato comigo e me passar mais informações?"`%>" </div>
+											<div class="col-md-12">
+												<input id="send" class="btn btn-default" type="submit"
+													value="ME LIGUEM!">
+											</div>
 										</div>
-									</div>
-									<input class="form-control" type="hidden" name="_csrf" value="<%= csrfToken %>">
-									<input type="hidden" name="codigo" value="<%= prop.codigo %>">
+
 								</form>
 							</div>
 						</div>
@@ -339,7 +256,7 @@
 
 
 	<!-- Contact Section End -->
-	<%- include('../includes/components/info-banner') %>
+	<%- include('../includes/components/banner') %>
 
 	<%- include('../includes/components/footer-contact') %>
 
@@ -352,6 +269,21 @@
 <script>
 	var a2a_config = a2a_config || {};
 	a2a_config.locale = "pt-BR";
+
+	function addDescricao() {
+		var descricao = document.getElementById('descricao').value;
+		document.getElementById('descricaoSpan').innerHTML = descricao;
+	}
+
+	function captchaAndSend(event, form) {
+		event.preventDefault();
+		grecaptcha.execute('6LdZxtcZAAAAADPVatJwJ4XJ9qjUDDU7zFqhF3yK', { action: '/interesse' }).then(function (token) {
+			const captcha = token;
+			document.getElementById('captcha').value = captcha;
+			document.getElementById('interesse_form').submit();
+		});
+	}
+
 </script>
 <script async src="https://static.addtoany.com/menu/page.js"></script>
 <%- include('../includes/imports/end') %>

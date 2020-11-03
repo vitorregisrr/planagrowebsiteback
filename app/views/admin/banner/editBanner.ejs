@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head')%>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner" class="img-webp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+					<div class="row" id="startScroll">
+						<%- include('../../includes/form/errorBox') %>
+
+
+						<% if(banner.referente != 'entre-imoveis') {%>
+						<form action="/admin/banner/edit" method="POST" enctype="multipart/form-data">
+							<input type="text" hidden name="id" value="<%=banner._id%>">
+							<input type="text" hidden name="referente" value="<%=banner.referente%>">
+							<input type="hidden" name="genero" value="<%= banner.genero %>">
+
+							<h4 class="inner-title"><%=pageTitle%></h4>
+							<p>Caso não queira que algo não seja exibido, basta deixar o campo em branco. <br>
+								Somente selecione outra imagem, caso queira realizar a troca da mesma</p>
+							<div class="col-md-12 col-sm-12">
+								<input name="asd" disabled type="textarea" placeholder="Texto Principal"
+									class="form-control" value="<%=banner.referente%>">
+							</div>
+							<div class="col-md-12 col-sm-12">
+								<input name="titulo" type="textarea" placeholder="Texto Principal" class="form-control"
+									value="<%=banner.titulo%>">
+							</div>
+							<div class="col-md-12 col-sm-12">
+								<input name="descricao" type="text" placeholder="Texto Auxiliar" class="form-control"
+									value="<%=banner.descricao%>">
+							</div>
+							<div class="col-md-12 col-sm-12">
+								<input name="textobotao" type="text" placeholder="Texto do Botão" class="form-control"
+									value="<%=banner.textobotao%>">
+							</div>
+							<div class="col-md-12 col-sm-12">
+								<input name="linkbotao" type="text" placeholder="Link do Botão" class="form-control"
+									value="<%=banner.linkbotao%>">
+							</div>
+
+							<div class="col-md-12 col-sm-12">
+								<div class="system_info">
+									<label>Efeito de Perspectiva?</label>
+									<div class="radio_check">
+										<input <%=banner.fixed ? 'checked' : '' %> type="checkbox" id="fixed"
+											name="fixed">
+										<label for="fixed"><span>Não</span><span>Sim</span></label>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+							
+								<div class="col-md-12">
+									<div class="img-submit">
+										<input name="image" type="file" id="main-img-upload" />
+									</div>
+								</div>
+							</div>
+							<div class="browse_submit">
+								<button type="submit" class="btn btn-default float-left"> Salvar </button>
+							</div>
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+						<% } else {%>
+						<form action="/admin/banner/edit" method="POST" enctype="multipart/form-data">
+							<input type="text" hidden name="id" value="<%=banner._id%>">
+							<input type="text" hidden name="referente" value="<%=banner.referente%>">
+							<input type="text" hidden name="genero" value="<%=banner.genero%>">
+							<h4 class="inner-title"><%=pageTitle%></h4>
+							<div class="row">
+								<div class="col-md-6 col-sm-12">
+									<input name="" disabled type="text" placeholder="Texto Auxiliar" class="form-control"
+										value="Referente: <%=banner.referente%>">
+								</div>
+								<div class="col-md-6 col-sm-12">
+									<input name="" disabled type="text" placeholder="Texto Auxiliar" class="form-control"
+										value="Genero: <%=banner.genero%>">
+								</div>
+								<div class="col-md-12">
+									<div class="img-submit">
+										<input name="image" type="file" id="main-img-upload" />
+									</div>
+								</div>
+							</div>
+							<div class="browse_submit">
+								<button type="submit" class="btn btn-default float-left"> Salvar </button>
+							</div>
+							<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+						</form>
+						<% } %>
+						<div class="col-sm-6">
+							<form data-confirm="true" action="/admin/banner/default" method="POST">
+								<input type="hidden" name="_csrf" value="<%= csrfToken %>">
+								<input type="hidden" name="referente" value="<%= banner.referente %>">
+								<button type="submit" class="btn btn-default"
+									data-titulo="<%= banner.referente %>" data-toggle="modal"
+									data-target="#apagarModal">Redefinir Padrão</button>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/modals/modal-confirm-redefine-banner')%>
+	<%- include('../../includes/components/footer')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

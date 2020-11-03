@@ -10,6 +10,7 @@
                     de Clientes</a></li>
             <li class="<%= path == 'admin/funcionarios' ? 'active' : ''%>"><a href="/admin/funcionarios"><i class="flaticon-office"></i>Funcionários
                     da Empresa</a></li>
+            <li class="<%= path == 'admin/banner' ? 'active' : ''%>"><a href="/admin/banner"><i class="flaticon-multimedia"></i> Gerenciar Banners </a></li>
         </ul>
         <ul>
             <li class=""><span>Gerenciamento de Propriedades</span></li>
@@ -27,6 +28,10 @@
             <li class="<%= path == 'admin/novocliente' ? 'active' : ''%>"><a href="/admin/clientes/new"><i class="flaticon-star"></i>
                     Novo Cliente</a></li>
         </ul>
+        <ul>
+        <li class="<%= path == 'admin/user' ? 'active' : ''%>"><a href="/admin/user"><i class="flaticon-user"></i>Usuarios</a></li>
+        <li class="<%= path == 'admin/user/new' ? 'active' : ''%>"><a href="/admin/user/new"><i class="flaticon-star"></i>Novo Usuario</a></li>
+        </ul>   
         <ul>
             <li class="<%= path == 'admin/logout' ? 'active' : ''%>"><a href="/admin/logout"><i class="flaticon-upload"></i>Sair</a></li>
         </ul>

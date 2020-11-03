@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<%- include('../../includes/imports/head')%>
+	<%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+	<%- include('../../includes/components/nav') %>
+	<!-- Banner Section Start -->
+	<section id="banner" class="img-webp">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner_area">
+						<h3 class="page_title">Painel de Admnistração</h3>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Banner Section End -->
+
+	<!-- Profile Setting Start -->
+	<section id="profile_setting">
+		<div class="container">
+			<div class="row">
+				<%- include('../../includes/components/painelMenu') %>
+				<div class="col-md-8 col-sm-12">
+
+					<%- include('../../includes/form/errorBox') %>
+					<div class="my_property_list">
+						<table class="list_table" border="0" cellpadding="0" cellspacing="0">
+							<thead>
+								<tr>
+									<td>Imagem</td>
+									<td>Referente</td>
+									<td>Ações</td>
+								</tr>
+							</thead>
+							<tbody>
+								<% for( banner of banners ) { %>
+								<tr>
+									<td style="overflow: visible; margin-right: 0; padding-right: 0;">
+										<div style="position: relative; overflow: visible; background-size: cover;">
+											<img src="/img/loading.gif" alt="" data-src="<%=banner.image.url%>" class="lazy"
+
+												style="width: 200px; height: 100px; object-fit: cover; margin: 0;">
+										</div>
+									</td>
+									<td>
+										<div class="property-text mt-2">
+											<h6 class="property-title">
+												<%=banner.referente%>
+											</h6>
+											<% if (banner.referente != 'entre-imoveis') {%>
+												<span><%=banner.titulo%></span><br>
+												<span><%=banner.descricao%></span>
+											<% } else { %>
+												<span> Genero: <%=banner.genero%></span>
+											<% } %>
+										</div>
+									</td>
+									<td>
+										<span class="text-center"><a href="/admin/banner/edit/<%= banner._id %>">
+											<i class="fa fa-pencil" aria-hidden="true"></i><br />Editar</a>
+										</span>
+									</td>
+								</tr>
+								<% } %>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!-- Profile Setting End -->
+
+	<%- include('../../includes/components/footer')%>
+
+	<!-- Scroll to top -->
+	<div class="scroll-to-top">
+		<a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+	</div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>

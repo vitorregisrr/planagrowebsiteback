@@ -1,0 +1,28 @@
+<% if(banner[0].fixed === true ) {%>
+<section id="imovel-submit" class=" wow fadeInUp"
+    style="background: url(<%=banner[0].image.url%>) no-repeat fixed; background-position: center center; background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="banner-element">
+                <h2 class="banner-title"><%= banner[0].titulo %></h2>
+                <p class="banner-desc"><%= banner[0].descricao %></p>
+                <a class="btn btn-default" href="<%= banner[0].linkbotao%>"><%=banner[0].textobotao%> </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% } else {%>
+<section id="imovel-submit" class="no-webp wow fadeInUp"
+    style="background: url(<%=banner[0].image.url%>) no-repeat; background-position: center center; background-size: cover;">
+    <div class="container">
+        <div class="row">
+            <div class="banner-element">
+                <h2 class="banner-title"><%= banner[0].titulo %></h2>
+                <p class="banner-desc"><%= banner[0].descricao %></p>
+                <a class="btn btn-default" href="<%= banner[0].linkbotao%>"><%=banner[0].textobotao%> </a>
+            </div>
+        </div>
+    </div>
+</section>
+<%}%>

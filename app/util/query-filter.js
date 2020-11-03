@@ -14,7 +14,7 @@ module.exports = (req) => {
     //     query.ativoaluguel = true;
     //     query.ativovenda = true;
     // }
-
+    
 
     if (req.query.zona) {
         query.zona = req.query.zona

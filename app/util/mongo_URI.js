@@ -1,4 +1,5 @@
 let MONGO_URI;
+require('dotenv').config();
 
 try {
     const config = require('../../config');

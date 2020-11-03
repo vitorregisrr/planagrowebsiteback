@@ -1,0 +1,85 @@
+<% if(genero == 'Aluguel' || genero == 'Venda' || genero == 'Ambos') {%>
+<div class="container">
+    <div class="col-md-3 ordenador">
+
+        <form action="/comprar/" method="GET" name="ordenadorForm" id="ordenadorForm">
+
+            <% if(form.zona == 'Urbana') { %>
+
+            <input type="hidden" name="zona" value="<%= form.zona %>">
+            <input type="hidden" name="tipo" value="<%= form.tipo ? form.tipo : ''%>">
+            <input type="hidden" name="cep" value="<%= form.cep ? form.cep : '' %>">
+            <input type="hidden" name="cidade" value="<%= form.cidade ? form.cidade : '' %>">
+            <input type="hidden" name="rua" value="<%= form.rua ? form.rua : '' %>">
+            <input type="hidden" name="bairro" value="<%= form.bairro ? form.bairro : '' %>">
+            <input type="hidden" name="codigo" value="<%= form.codigo ? form.codigo : '' %>">
+            <input type="hidden" name="dormitorios" value="<%= form.dormitorios ? form.dormitorios : '' %>">
+            <input type="hidden" name="banheiros" value="<%= form.banheiros ? form.banheiros : '' %>">
+            <input type="hidden" name="cozinhas" value="<%= form.cozinhas ? form.cozinhas : '' %>">
+            <input type="hidden" name="suites" value="<%= form.suites ? form.suites : '' %>">
+            <input type="hidden" name="patio" value="<%= form.patio ? form.patio : '' %>">
+            <input type="hidden" name="piscina" value="<%= form.piscina ? form.piscina : '' %>">
+            <input type="hidden" name="valmin" value="<%= form.valmin ? form.valmin : '' %>">
+            <input type="hidden" name="valmax" value="<%= form.valmax ? form.valmax : '' %>">
+
+            <% } %>
+
+            <% if(form.zona == 'Rural') {%>
+
+            <input type="hidden" name="zona" value="<%= form.zona ? form.zona : '' %>">
+            <input type="hidden" name="tipo" value="<%= form.tipo ? form.tipo : '' %>">
+            <input type="hidden" name="municipo" value="<%= form.municipio ? form.municipio : '' %>">
+            <input type="hidden" name="localidade" value="<%= form.localidade ? form.localidade : '' %>">
+            <input type="hidden" name="codigo" value="<%= form.codigo ? form.codigo : '' %>">
+            <input type="hidden" name="extensaomin" value="<%= form.extensaomin ? form.extensaomin : '' %>">
+            <input type="hidden" name="extensaomax" value="<%= form.extensaomax ? form.extensaomax : '' %>">
+            <input type="hidden" name="acudes" value="<%= form.acudes ? form.acudes : '' %>">
+            <input type="hidden" name="mangueiras" value="<%= form.mangueira ? form.mangueira : '' %>">
+            <input type="hidden" name="galpoes" value="<%= form.galpoes ? form.galpoes : '' %>">
+            <input type="hidden" name="sedes" value="<%= form.sedes ? form.sedes : '' %>">
+
+            <% } %>
+
+            <input type="hidden" name="filtrando" value="<%= form.filtrando ? form.filtrando : '' %>">
+            <input type="hidden" name="genero" value="<%= form.genero ? form.genero : '' %>">
+            <!-- <select name="ordenador" class="selectpicker form-control" title="Ordenar por:" onchange="document.forms['ordenadorForm'].submit()"> -->
+            <select name="ordenador" class="selectpicker form-control" id="ordenadorSelect" title="Ordenar por:"
+                onchange="document.forms['ordenadorForm'].submit();">
+                <option value="pd">Preço: Maior ao Menor</option>
+                <option value="pc">Preço: Menor ao Maior</option>
+
+                <% if(form.zona == 'Urbana') { %>
+
+                <option value="dd">Dormitórios: Maior ao Menor</option>
+                <option value="dc">Dormitórios: Menor ao Maior</option>
+
+                <option value="sd">Suítes: Maior ao Menor</option>
+                <option value="sc">Suítes: Menor ao Maior</option>
+
+                <option value="bd">Banheiros: Maior ao Menor</option>
+                <option value="bc">Banheiros: Menor ao Maior</option>
+
+                <% } %>
+
+                <% if (form.zona == 'Rural') {%>
+                <option value="ed">Extensão: Maior ao Menor</option>
+                <option value="ec">Extensão: Menor ao Maior</option>
+
+                <option value="ad">Açudes: Maior ao Menor</option>
+                <option value="ac">Açudes: Menor ao Maior</option>
+
+                <option value="md">Mangueiras: Maior ao Menor</option>
+                <option value="mc">Mangueiras: Menor ao Maior</option>
+
+                <option value="gd">Galpões: Maior ao Menor</option>
+                <option value="gc">Galpões: Menor ao Maior</option>
+
+                <option value="gd">Sedes: Maior ao Menor</option>
+                <option value="gc">Sedes: Menor ao Maior</option>
+                <% } %>
+            </select>
+        </form>
+    </div>
+</div>
+
+<% }%>

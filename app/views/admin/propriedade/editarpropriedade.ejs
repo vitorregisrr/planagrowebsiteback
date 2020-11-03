@@ -6,7 +6,7 @@
 	<%- include('../../includes/imports/adminhead') %>
 </head>
 
-<body class="pagewrap wow fadeIn">
+<body class="pagewrap wow fadeIn" onload="addRichText()">
 	<%- include('../../includes/components/nav') %>
 	<!-- Banner Section Start -->
 	<section id="banner" class="img-webp">
@@ -32,7 +32,8 @@
 						<%- include('../../includes/form/errorBox') %>
 						<div class="col-md-9 col-sm-12">
 							<form action="/admin/propiedades/edit" method="post" class="submit_form"
-								enctype="multipart/form-data">
+								enctype="multipart/form-data" id="propriedade_form"
+								onsubmit="consoleIframe(event, this)">
 								<input name="id" type="hidden" value="<%= prop.id %>">
 
 								<div class="basic_information">
@@ -55,24 +56,94 @@
 											<input name="titulo" type="text" placeholder="Título do Imóvel"
 												class="form-control" value="<%= prop.titulo %>">
 										</div>
-										
 										<div class="col-md-12 col-sm-12">
-											<textarea placeholder="Descrição do Imóvel" name="descricao"
-												class="form-control"><%= prop.descricao %></textarea>
+
+											<div class="wrapper">
+												<p>Descrição do Imóvel</p>
+												<div class="options">
+													<button type="button" onClick="transform('bold', null, 0)">
+														<i class="fas fa-bold"></i>
+													</button>
+													<button type="button" onClick="transform('italic', null, 0)">
+														<i class="fas fa-italic"></i>
+													</button>
+													<button type="button" onClick="transform('strikeThrough', null, 0)">
+														<i class="fas fa-strikethrough"></i>
+													</button>
+													<button type="button" onClick="transform('underline', null, 0)">
+														<i class="fas fa-underline"></i>
+													</button>
+													<div class="seperator"></div>
+													<button type="button"
+														onClick="transform('insertOrderedList', null, 0)">
+														<i class="fas fa-list-ol"></i>
+													</button>
+													<button type="button"
+														onClick="transform('insertUnorderedList', null, 0)">
+														<i class="fas fa-list-ul"></i>
+													</button>
+
+												</div>
+												<iframe name="editorDescricao" id="editorDescricao"></iframe>
+												<input type="text" hidden id="descricao" name="descricao"
+													value="<%=prop.descricao%>">
+											</div>
 										</div>
-										
+
+										<!-- ----------------------------------- -->
+
+										<!-- RICH TEXT EDITOR OBSERVAÇÕES DE ADMIN -->
 										<div class="col-md-12 col-sm-12">
-											<label for="observacoesadmin"> Observacões de admnistrador</label>
-											<textarea placeholder="Observações de admnistrador" name="observacoesadmin"
-												class="form-control"><%= prop.observacoesadmin %></textarea>
+
+											<div class="wrapper">
+												<p>Observações de Admin</p>
+												<div class="options">
+													<button type="button" onClick="transform('bold', null, 1)">
+														<i class="fas fa-bold"></i>
+													</button>
+													<button type="button" onClick="transform('italic', null, 1)">
+														<i class="fas fa-italic"></i>
+													</button>
+													<button type="button" onClick="transform('strikeThrough', null, 1)">
+														<i class="fas fa-strikethrough"></i>
+													</button>
+													<button type="button" onClick="transform('underline', null, 1)">
+														<i class="fas fa-underline"></i>
+													</button>
+													<div class="seperator"></div>
+													<button type="button"
+														onClick="transform('insertOrderedList', null, 1)">
+														<i class="fas fa-list-ol"></i>
+													</button>
+													<button type="button"
+														onClick="transform('insertUnorderedList', null, 1)">
+														<i class="fas fa-list-ul"></i>
+													</button>
+
+												</div>
+												<iframe name="editorObservacoes" id="editorObservacoes"></iframe>
+												<input type="text" hidden id="observacoesadmin" name="observacoesadmin"
+													value="<%=prop.observacoesadmin%>">
+											</div>
+										</div>
+
+										<!-- ----------------------------------- -->
+
+
+
+										<div class="col-md-12 col-sm-12 ">
+											<input name="obsrapidas" type="text" placeholder="Observações rápidas"
+												class="form-control" value="<%= prop.obsrapidas %>">
 										</div>
 
 										<div class="col-md-6 col-sm-6">
 											<select name="zona" class="selectpicker form-control" id="selectZona"
 												data-live-search="true" title="Zona do Imóvel">
-												<option <%=prop.zona=='Rural' ? 'selected' : '' %> value="Rural">Zona
+												<option <%=prop.zona=='Rural' ? 'selected' : '' %> value="Rural">
+													Zona
 													Rural</option>
-												<option <%=prop.zona=='Urbana' ? 'selected' : '' %> value="Urbana">Zona
+												<option <%=prop.zona=='Urbana' ? 'selected' : '' %> value="Urbana">
+													Zona
 													Urbana</option>
 											</select>
 										</div>
@@ -96,7 +167,8 @@
 											<select data-disableTipo="true" name="tipo"
 												class="selectpicker form-control" id="selectTipo"
 												data-live-search="true">
-												<option value="" disabled selected label="Zona não selecionada"> Tipo de
+												<option value="" disabled selected label="Zona não selecionada">
+													Tipo de
 													imóvel </option>
 												<optgroup label="Zona não selecionada">
 													<option></option>
@@ -111,7 +183,7 @@
 												placeholder="Extensão (hec.)" class="form-control"
 												value="<%= prop.extensao %>">
 										</div>
-										
+
 										<div class="col-md-6 col-sm-4 hidden urbano-form">
 											<label for="area"> Área: </label>
 											<input type="number" name="area" step="any" placeholder="Área (m²)"
@@ -151,7 +223,7 @@
 											<small class="rural-form hidden">Coloque o valor 0 se não desejar esta
 												opção.</small>
 										</div>
-										
+
 									</div>
 								</div>
 								<div class="description">
@@ -284,19 +356,20 @@
 												<div class="row">
 													<div class="col-md-4 col-sm-6">
 														<input value="<%= prop.cep %>" type="text" maxLength="9"
-															name="cep" placeholder="CEP" class="form-control">
+															onblur="pesquisacep(this.value)" name="cep"
+															placeholder="CEP" id="cep" class="form-control">
 													</div>
 													<div class="col-md-4 col-sm-6">
 														<input value="<%= prop.bairro %>" type="text" name="bairro"
-															placeholder="Bairro" class="form-control">
+															placeholder="Bairro" id="bairro" class="form-control">
 													</div>
 													<div class="col-md-4 col-sm-4">
 														<input value="<%= prop.rua %>" type="text" name="rua"
-															placeholder="Rua" class="form-control">
+															placeholder="Rua" id="rua" class="form-control">
 													</div>
 													<div class="col-md-6 col-sm-4">
 														<input value="<%= prop.numero %>" type="text" name="numero"
-															placeholder="Número" class="form-control">
+															placeholder="Número" id="numero" class="form-control">
 													</div>
 													<div class="col-md-6 col-sm-4">
 														<select name="cidade" class="selectpicker form-control">
@@ -461,6 +534,12 @@
 												<label for="vendido"><span>Não</span><span>Sim</span></label>
 											</div>
 										</div>
+
+										<div class="col-md-12 col-sm-12 ">
+											<input name="youtube_id" type="text" placeholder="Link do Youtube"
+												class="form-control"
+												value="<%=prop.youtube_id ? 'https://www.youtube.com/watch?v=' + prop.youtube_id  : '' %>">
+										</div>
 									</div>
 									<div class="browse_submit">
 										<div class="row">
@@ -504,6 +583,38 @@
 
 <!-- SCRIPT VANTAGENS -->
 <script>
+	editorDescricao.document.designMode = "On";
+	editorObservacoes.document.designMode = "On";
+
+	function transform(option, argument, editor) {
+		// se for 0 == descricao // se for 1 == observacoes
+		if (editor == 0) { editorDescricao.document.execCommand(option, false, argument); }
+		if (editor == 1) { editorObservacoes.document.execCommand(option, false, argument); }
+	}
+
+	function addRichText() {
+		var editorDescricao = document.getElementById('editorDescricao');
+		editorDescricao.contentWindow.document.body.innerHTML = document.getElementById('descricao').value;
+
+		var editorObservacoes = document.getElementById('editorObservacoes');
+		editorObservacoes.contentWindow.document.body.innerHTML = document.getElementById('observacoesadmin').value;
+	}
+
+	function consoleIframe(event, form) {
+		event.preventDefault();
+
+		var editorDescricao = document.getElementById("editorDescricao");
+		var contentDescricao = editorDescricao.contentWindow.document.body.innerHTML;
+
+		var editorObservacoes = document.getElementById("editorObservacoes");
+		var contentObservacoes = editorObservacoes.contentWindow.document.body.innerHTML;
+
+		document.getElementById('descricao').value = contentDescricao;
+		document.getElementById('observacoesadmin').value = contentObservacoes;
+
+		document.getElementById('propriedade_form').submit();
+	}
+
 	document.addEventListener("DOMContentLoaded", function () {
 		inputVantagens = $('#inputVantagens');
 		btnNewVantagem = $('#nova_vantagem');
@@ -563,6 +674,48 @@
 
 		inputVantagens.val(JSON.stringify(vantagens));
 	};
+
+
+	function limpa_formulario() {
+		document.getElementById('cep').value('');
+		document.getElementById('bairro').value('');
+		document.getElementById('rua').value('');
+	}
+
+	function meu_callback(conteudo) {
+		if (!("erro" in conteudo)) {
+			document.getElementById('rua').value = (conteudo.logradouro);
+			document.getElementById('bairro').value = (conteudo.bairro);
+		}
+	}
+
+	function pesquisacep(valor) {
+		var cep = valor.replace(/\D/g, '');
+
+		if (cep != '') {
+			var validacep = /^[0-9]{8}$/;
+
+			if (validacep.test(cep)) {
+				document.getElementById('rua').value = "...";
+				document.getElementById('bairro').value = "...";
+
+				var script = document.createElement('script');
+
+				script.src = 'https://viacep.com.br/ws/' + cep + '/json/?callback=meu_callback';
+
+				document.body.appendChild(script);
+			} else {
+				limpa_formulario();
+				alert('Formato de CEP inválido');
+			}
+		} else {
+			limpa_formulario();
+		}
+	}
 </script>
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js"
+	integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0"
+	crossorigin="anonymous"></script>
 
 </html>

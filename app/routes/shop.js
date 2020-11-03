@@ -1,9 +1,11 @@
+const Propriedade = require('../models/propiedade');
 const express = require('express'),
     router = express.Router();
+const request = require('request');
 
 const validators = {
-        contato: require('../middleware/validators/contato')
-    }
+    contato: require('../middleware/validators/contato')
+}
 
 const shopCtrl = {
     contato: require('../controllers/shop/contato'),
@@ -31,6 +33,9 @@ router.get('/vender', shopCtrl.contato.getVender);
 router.post('/vender', validators.contato.vender, shopCtrl.contato.postVender);
 
 router.get('/contato', shopCtrl.contato.getContato);
-router.post('/contato', validators.contato.contato, shopCtrl.contato.postContato);
+//router.post('/contato', validators.contato.contato, shopCtrl.contato.postContato);
+
+//verifica se o envio do formulário foi feito por robo, se passar envia o email
+router.post('/contato', shopCtrl.contato.postContatoRecaptcha); 
 
 module.exports = router;

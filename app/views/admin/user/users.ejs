@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <%- include('../../includes/imports/head') %>
+    <%- include('../../includes/imports/adminhead') %>
+</head>
+
+<body class="pagewrap wow fadeIn">
+    <%- include('../../includes/components/nav') %>
+    <!-- Banner Section Start -->
+    <%- include('../../includes/components/admin-banner.ejs')%>
+    <!-- Banner Section End -->
+
+    <!-- Profile Setting Start -->
+    <section id="profile_setting">
+        <div class="container">
+            <div class="row">
+                <%- include('../../includes/components/painelMenu') %>
+                <div class="col-md-8 col-sm-12">
+
+                    <%- include('../../includes/form/errorBox') %>
+                    <div class="my_property_list">
+                        <table class="list_table" border="0" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <td>Login</td>
+                                    <td>Ativo</td>
+                                    <td>Admin</td>
+                                    <td>Ações</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(user of users) { %>
+                                <tr>
+                                    <td>
+                                        <div class="property-text mt-2">
+                                            <h6 class="property-title">
+                                                <%= user.email %>
+                                            </h6>
+                                            <span> <i class="fa fa-user"></i>
+                                                <%=user.usuario%>
+                                            </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <% if(!user.ativo) { %> Não <% } else { %> Sim <% } %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <% if(!user.admin) {%> Não <%} else {%> Sim <% } %>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="text-center"><a href="/admin/user/edit/<%= user._id %>"><i
+                                                    class="fa fa-pencil" aria-hidden="true"></i><br />Editar</a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Profile Setting End -->
+    <%- include('../../includes/components/footer')%>
+
+    <!-- Scroll to top -->
+    <div class="scroll-to-top">
+        <a href="#" class="scroll-btn" data-target=".pagewrap"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+    </div>
+
+</body>
+
+<%- include('../../includes/imports/end')%>
+<%- include('../../includes/imports/adminend') %>
+
+</html>
