@@ -76,6 +76,8 @@
 							<div class="imovel_column col-md-3 col-sm-4 col-xs-12">
 								<%- include('../includes/components/propiedade-grid.ejs') %>
 							</div>
+
+							<% if(bannerimoveis[0].ativo == true) {%>
 						<!-- logica do banner para quando for maior ou igual a 12 o propsLength -->
 							<% if ( propsLength >= 12) { %>
 							
@@ -94,7 +96,7 @@
 									<%- include('../includes/components/entreimoveis-banner.ejs') %>
 								<% } %>
 
-							<% } %>
+							<% } } %>
 
 						<%  x++ } %>
 

@@ -31,6 +31,9 @@ const Banner = new Schema({
     },
     genero: {
         type: String
+    },
+    ativo: {
+        type: Boolean
     }
 });
 
