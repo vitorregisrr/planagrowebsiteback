@@ -144,7 +144,7 @@ exports.postInteresse = (req, res, next) => {
                 Banner.find({ referente: 'contato-banner' }).then(banner => {
                     console.log(banner);
                     transporter.sendMail({
-                        to: 'thalessalazar.12@gmail.com',
+                        to: sobre.email,
                         from: req.body.email,
                         subject: 'Mensagem de contato recebida pelo site!',
                         html: `
