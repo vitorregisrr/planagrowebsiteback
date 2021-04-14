@@ -119,20 +119,20 @@
                 <i class="fa dollar-sign"></i>
                 <% if( prop.zona == 'Rural' ) { %>
                 <% if(prop.precoHec) { %>
-                </i> R$ <span class="tomoney">
-                    <%= prop.precoHec %></span>,00/hec
+                </i> <span class="tomoney">
+                    <%= prop.precoHec %></span>/hec
 
                 <% } else if( prop.precovenda) { %>
-                </i> R$ <span class="tomoney">
-                    <%= prop.precovenda %></span>,00
+                </i> <span class="tomoney">
+                    <%= prop.precovenda %></span>
                 <% } else {%>
                 Confira conosco!
                 <% } %>
                 <% } else {  %>
 
                 <% if( prop.precovenda || prop.precoaluguel) { %>
-                </i> R$ <span class="tomoney">
-                    <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguel' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguel' ? prop.precoaluguel : prop.precovenda)) %></span>,00
+                </i> <span class="tomoney">
+                    <%= prop.genero == 'Venda' ? prop.precovenda : (prop.genero == 'Aluguel' ? prop.precoaluguel : ( prop.genero === 'Ambos' && genero === 'Aluguel' ? prop.precoaluguel : prop.precovenda)) %></span>
                 <%= (prop.genero === 'Aluguel' || (prop.genero === 'Ambos' && genero === 'Aluguel')) && prop.taxas ? '+ taxas' : '' %>
                 <% } else {%>
                 Confira conosco!
